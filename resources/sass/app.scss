@@ -1,0 +1,18 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+@import '../template/plugins/fontawesome-free/css/all.min.css';
+@import '../template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css';
+@import '../template/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '../template/plugins/jqvmap/jqvmap.min.css';
+@import '../template/dist/css/adminlte.min.css';
+@import '../template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css';
+@import '../template/plugins/daterangepicker/daterangepicker.css';
+@import '../template/plugins/summernote/summernote-bs4.css';
