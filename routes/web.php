@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('store1','UserController@store1')->name('user.store1');
 
 Route::resource('user', 'UserController');
+Route::resource('categoria', 'CategoriaController');

@@ -23,16 +23,17 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-</html>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        @include('layouts.header')
+      @include('layouts.header')
     
         @yield('content')
     
-    @include('layouts.footer')
+      @include('layouts.footer')
     </div>
     <script src="{{ asset("css/fullcalendar/moment.main.js") }}"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>  
 </body>
+</html>
+

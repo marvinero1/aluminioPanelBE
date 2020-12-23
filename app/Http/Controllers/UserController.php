@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Session;
+use File;
+use DB;
+use Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -116,7 +119,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+       
+
+
     }
 
     /**
@@ -128,7 +133,7 @@ class UserController extends Controller
     public function edit($id)
     {
       
-        return view('user.edit', ['user' =>User::findOrFail($id)]);
+        return view('user.update', ['user' =>User::findOrFail($id)]);
     }
 
     /**
@@ -138,9 +143,61 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        
+        $request->validate([
+            'name' => 'required',
+            'apellido' => 'required', 
+            'direccion' => 'nullable',
+            'telefono' => 'required',
+            'pais' => 'nullable',
+            'ciudad' => 'nullable',
+            'whatsapp' => 'nullable',
+            'nombre_empresa' => 'nullable',
+            'nit' => 'nullable',
+            'imagen' => 'nullable',
+            'password'=>'required',
+            'role'=>'required',
+        ]);
+
+        DB::beginTransaction();
+        $requestData = $request->all();
+        //dd($requestData);
+        $mensaje = "Usuario Actualizado correctamente :3";
+
+        if($request->imagen){
+            $data = $request->imagen;
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/user', mime_content_type('images/user'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/user';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $archivo_antiguo = $user->imagen;
+                $requestData['imagen'] = $img;
+                $mensaje = "Usuario Actualizado correctamente :3";
+                if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
+                    $mensaje = "Usuario Actualizado. error al eliminar la imagen";
+                }
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
+
+        if($user->update($requestData)){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+             return redirect()->route('user.index');
     }
 
     /**
