@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class subcategoria extends Model
 {
     protected $auditTimestamps = true;
     protected $auditStrict = true;
@@ -20,7 +20,10 @@ class Categoria extends Model
     
     protected $fillable = ['nombre',
                         'descripcion',
-                        'user'];
+                        'user',
+                        'categorias_id'];
 
-    
+    public function categoria(){
+        return $this->hasOne(Categoria::class,'id');
+    }
 }

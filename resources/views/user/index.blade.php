@@ -1,230 +1,101 @@
 @extends('layouts.main')
 
 @section('content')
-<br><br><br>
-<div class="content-wrapper">
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="mb-4">
-                        <div class="avatar-flip">
-                            <img src="http://media.idownloadblog.com/wp-content/uploads/2012/04/Phil-Schiller-headshot-e1362692403868.jpg"
-                                height="150" width="150">
-                            <img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original"
-                                height="150" width="150">
-                        </div>
-                        <h2 style="text-align: center;">{{ Auth::user()->name }}</h2>
-                        <h4 style="text-align: center;">{{ Auth::user()->ciudad }}, {{ Auth::user()->pais }}</h4><br>
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <h4><strong>Apellido</strong> </h4>
-                                <h5>{{ Auth::user()->apellido }}</h5>
-                            </div>
-                            <div class="col-md-6">
-                                <h4><strong>Whatsapp</strong> </h4>
-                                <h5>{{ Auth::user()->whatsapp }}</h5>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <h4><strong>Dirección</strong> </h4>
-                                <h5>{{ Auth::user()->direccion }}</h5>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>
-                                    <h4><strong>Teléfono</strong> </h4>
-                                </h4>
-                                <h5>{{ Auth::user()->telefono }}</h5>
-                            </div>
-                        </div>
+<div class="content-wrapper pt-3">
+    <h1 style="text-align: center" class="mb-4">Usuarios</h1>
+    <div class="content">
+        {{-- @if (Session::has('message'))
+        <div class="alert alert-success">{{ Session::get('message') }}</div>
+        @endif
+        @if (Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+        @endif
+        <div class="float-left">
+            <a href="{{ route('categoria.create')}}"><button class="btn btn-primary">
+                    <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Categorias</button></a>
+        </div> --}}
+        <div class="float-right">
+            <form class="form-inline my-2 my-lg-0">
+                <input name="buscarpor" class="form-control mr-sm-2" type="search"
+                    placeholder="Buscador Usuario" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="border: 1px #3097D1 solid;">
+                    <span class="search"></span>&nbsp;Buscar</button>
+            </form>
+        </div><br><br><br>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        {{-- <th>Id</th>  --}}
+                        <th style="text-align:center;">Imagen</th>
+                        <th style="text-align:center;">Nombre</th>
+                        <th style="text-align:center;">Apellido</th>
+                        <th style="text-align:center;">Direccion</th>
+                        <th style="text-align:center;">Telefono</th>
+                        <th style="text-align:center;">Pais</th>
+                        <th style="text-align:center;">Ciudad</th>
+                        <th style="text-align:center;">Whatsapp</th>
+                        <th style="text-align:center;">Nombre Empresa</th>
+                        <th style="text-align:center;">Nit</th>
+                        <th style="text-align:center;">Role</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($user as $users)
+                    <tr>
+                        <td style="text-align:center;">
 
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <h4><strong>Role</strong> </h4>
-                                <h5>{{ Auth::user()->role }}</h5>
-                            </div>
-                            <div class="col-md-6">
-                                <h4><strong>Desde:</strong> </h4>
-                                <h5>{{ Auth::user()->created_at }}</h5>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
+                        @if( $users->imagen != 'null')
+                            <img img src="images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="150px" width="150px">
+                        @else
+                            <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="150px" width="150px"
+                                style="display: block;margin: 0 auto;">
+                        @endif
+                        </td>
+                        <td style="text-align:center;">{{ $users->name }}</td>
+                        <td style="text-align:center;">{{ $users->apellido }}</td>
+                        <td style="text-align:center;">{{ $users->direccion }}</td>
+                        <td style="text-align:center;">{{ $users->telefono }}</td>
+                        <td style="text-align:center;">{{ $users->pais }}</td>
+                        <td style="text-align:center;">{{ $users->ciudad }}</td>
+                        <td style="text-align:center;">{{ $users->whatsapp }}</td>
+                        <td style="text-align:center;">{{ $users->nombre_empresa }}</td>
+                        <td style="text-align:center;">{{ $users->nit }}</td>
+                        <td style="text-align:center;">{{ $users->role }}</td>
+                        {{-- <td style="text-align:center;">
+                            <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
+                                accept-charset="UTF-8" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Image"
+                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fa-trash-o"
+                                        aria-hidden="true"></i> Eliminar</button>
+                            </form>
+                        </td> --}}
+                    </tr>
+                    @endforeach
 
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-dark" data-toggle="modal"
-                                data-target="#exampleModal{{ Auth::user()->id }}">
-                                Editar
-                            </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal{{ Auth::user()->id }}" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        @if( Auth::user()->role == 'user')
-                                            <div class="modal-body">
-                                                <form action="{{route('user.update',Auth::user()->id)}}" method="POST">
-                                                    {{csrf_field()}}
-                                                    {{ method_field('PUT') }}
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label for="nombre">Nombre</label>
-                                                            <input type="text" class="form-control" id="nombre" placeholder="Nombre"
-                                                                name="name" value="{{ Auth::user()->name }}">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Apellido</label>
-                                                            <input type="text" class="form-control" placeholder="Apellido"
-                                                                name="apellido" value="{{ Auth::user()->apellido }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Direccion</label>
-                                                            <input type="text" class="form-control" placeholder="Direccion"
-                                                                name="direccion" value="{{ Auth::user()->direccion }}">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Telefono</label>
-                                                            <input type="number" class="form-control" placeholder="Telefono"
-                                                                name="telefono" value="{{ Auth::user()->telefono }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Pais</label>
-                                                            <input type="text" class="form-control" placeholder="Pais" name="pais"
-                                                            value="{{ Auth::user()->pais }}">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Ciudad</label>
-                                                            <input type="text" class="form-control" placeholder="Ciudad"
-                                                                name="ciudad" value="{{ Auth::user()->ciudad }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Whatsapp</label>
-                                                            <input type="number" class="form-control" placeholder="Whatsapp"
-                                                                name="whatsapp" value="{{ Auth::user()->whatsapp }}">
-                                                        </div>
-                                                        <div class="col-sm-6" >
-                                                            <p><strong>Imagen</strong></p>
-                                                            <label for="file-upload" class="custom-file-upload" style="text-align: center;">
-                                                                <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
-                                                                <strong>Imagen</strong>
-                                                            </label>
-                                                            <input id="file-upload" type="file" name="imagen">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Correo Electronico</label>
-                                                            <input type="text" class="form-control" placeholder="Email "
-                                                                name="email" value="{{ Auth::user()->email }}">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Contraseña</label>
-                                                            <input type="password" class="form-control" placeholder="Contraseña"
-                                                                name="password" value="{{ Auth::user()->password }}">
-                                                        </div>
-                                                        <input type="hidden" name="role" value="user">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary px-4 float-right">
-                                                        <span class="icon-save"></span>&nbsp;Guardar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        @endif
-                                        @if( Auth::user()->role == 'admin')
-                                            <div class="modal-body">
-                                                <form action="{{route('user.store1')}}" method="POST">
-                                                    {{csrf_field()}}
-                                                    <div class="form-group row">
-                                                        
-                                                        <div class="col-sm-6">
-                                                            <label>Nombre Empresa</label>
-                                                            <input type="text" class="form-control" placeholder="Nombre Empresa"
-                                                                name="name">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Nit</label>
-                                                            <input type="number" class="form-control" placeholder="Nit" name="nit">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Pais</label>
-                                                            <input type="text" class="form-control" placeholder="Pais" name="pais">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Ciudad</label>
-                                                            <input type="text" class="form-control" placeholder="Ciudad"
-                                                                name="ciudad">
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Direccion</label>
-                                                            <input type="text" class="form-control" placeholder="Direccion"
-                                                                name="direccion">
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Telefono</label>
-                                                            <input type="number" class="form-control" placeholder="Telefono"
-                                                                name="telefono" required>
-                                                        </div>
-                                                    </div><br>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-6">
-                                                            <label>Correo Electronico</label>
-                                                            <input type="text" class="form-control" placeholder="Email "
-                                                                name="email" required>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label>Contraseña</label>
-                                                            <input type="password" class="form-control" placeholder="Contraseña"
-                                                                name="password" required>
-                                                        </div>
-                                                        <input type="hidden" name="role" value="empresa">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary px-4 float-right">
-                                                        <span class="icon-save"></span>&nbsp;Guardar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        @endif
-                                        
-                                    </div>
-                                </div>
-                            </div>
+                </tbody>
+            </table><br><br>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
         </div>
     </div>
 </div>
+
 @endsection
 <style>
+    .modal-dialog {
+        max-width: 780px !important;
+    }
+
     input[type="file"] {
         display: none;
     }
+
     .custom-file-upload {
         width: 100%;
         border: 1px solid #ccc;
@@ -232,88 +103,5 @@
         padding: 6px 12px;
         cursor: pointer;
     }
-    .container {
-        width: 400px;
-        margin: 120px auto 120px;
-        background-color: #fff;
-        padding: 0 20px 20px;
-        border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.075);
-        -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.075);
-        -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.075);
-        text-align: center;
-    }
 
-    .container:hover .avatar-flip {
-        transform: rotateY(180deg);
-        -webkit-transform: rotateY(180deg);
-    }
-
-    .container:hover .avatar-flip img:first-child {
-        opacity: 0;
-    }
-
-    .container:hover .avatar-flip img:last-child {
-        opacity: 1;
-    }
-
-    .avatar-flip {
-        border-radius: 100px;
-        overflow: hidden;
-        height: 150px;
-        width: 150px;
-        position: relative;
-        margin: auto;
-        top: -60px;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        box-shadow: 0 0 0 13px #f0f0f0;
-        -webkit-box-shadow: 0 0 0 13px #f0f0f0;
-        -moz-box-shadow: 0 0 0 13px #f0f0f0;
-    }
-
-    .avatar-flip img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        border-radius: 100px;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-    }
-
-    .avatar-flip img:first-child {
-        z-index: 1;
-    }
-
-    .avatar-flip img:last-child {
-        z-index: 0;
-        transform: rotateY(180deg);
-        -webkit-transform: rotateY(180deg);
-        opacity: 0;
-    }
-
-    h2 {
-        font-size: 32px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #333;
-    }
-
-    h4 {
-        font-size: 13px;
-        color: #00baff;
-        letter-spacing: 1px;
-        margin-bottom: 25px
-    }
-
-    p {
-        font-size: 16px;
-        line-height: 26px;
-        margin-bottom: 20px;
-        color: #666;
-    }
 </style>

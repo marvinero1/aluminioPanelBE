@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\subcategoria;
 use App\Categoria;
-use Illuminate\Http\Request;
 use Session;
+use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class SubcategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,10 @@ class CategoriaController extends Controller
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');
+        $categoria = Categoria::all();
+        $subcategoria = subcategoria::where('nombre','like',"%$nombre%")->latest()->get();
         
-        $categoria = Categoria::where('nombre','like',"%$nombre%")->latest()->get();
-        
-        return view('categoria.index', compact('categoria'));
+        return view('sub-categoria.index', compact('categoria','subcategoria'));
     }
 
     /**
@@ -28,8 +29,9 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('categoria.create');
+    {   
+        $categoria = Categoria::all();
+        return view('sub-categoria.create', compact('categoria'));
     }
 
     /**
@@ -46,23 +48,24 @@ class CategoriaController extends Controller
             'user' => 'nullable',
         ]);
         
-        Categoria::create([
+        subcategoria::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
+            'categorias_id' => $request->categorias_id,
             'user' => $request->user,
         ]);
         
-        Session::flash('message','Categoria creado exisitosamente!');
-        return redirect()->route('categoria.index');
+        Session::flash('message','Sub-Categoria creado exisitosamente!');
+        return redirect()->route('sub-categoria.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(subcategoria $subcategoria)
     {
         //
     }
@@ -70,10 +73,10 @@ class CategoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit(subcategoria $subcategoria)
     {
         //
     }
@@ -82,10 +85,10 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categoria  $categoria
+     * @param  \App\subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, subcategoria $subcategoria)
     {
         //
     }
@@ -93,10 +96,10 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(subcategoria $subcategoria)
     {
         //
     }

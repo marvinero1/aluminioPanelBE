@@ -51,7 +51,7 @@
                   </a>
 
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('user.index')}}"><p>Mi Perfil</p></a>  
+                    <a class="dropdown-item" href="{{ route('profile')}}"><p>Mi Perfil</p></a> 
                     <hr>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                          onclick="event.preventDefault();
@@ -80,7 +80,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              {{-- <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle"> --}}
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -96,7 +96,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              {{-- <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3"> --}}
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -112,7 +112,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              {{-- <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3"> --}}
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -181,7 +181,12 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/images/default-person.jpg" class="img-circle elevation-2" alt="User Image">
+          @if( Auth::user()->imagen == 'null')
+            <img img src="images/default-person.jpg" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px">
+          @else
+            <img src="/{{ Auth::user()->imagen }}" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px"
+                style="display: block;margin: 0 auto;">
+          @endif
         </div>
         <div class="info">
           <a href="{{ route('user.index')}}" class="d-block">{{ Auth::user()->name }}</a>
@@ -193,43 +198,81 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="/categoria" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>Categoria
-                {{-- <span class="badge badge-info right">2</span> --}}
+                <span class="badge badge-info right">2</span>
               </p>
             </a>
-          </li>
+          </li> --}}
 
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="/categoria" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Categorias
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/user" class="nav-link active">
+                <a href="/categoria" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Categoria</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="/sub-categoria" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Sub-Categorias</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
+              
+              
             </ul>
+          </li>
+
+
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Mi Perfil
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/profile" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Mi Perfil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/favoritos" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mis Favoritos</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/favoritos" class="nav-link">
+              <i class="nav-icon far fa-star"></i>
+              <p>Favoritos
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/productos" class="nav-link">
+              <i class="nav-icon far fa-product"></i>
+              <p>Productos
+                {{-- <span class="badge badge-info right">2</span> --}}
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="/user" class="nav-link">

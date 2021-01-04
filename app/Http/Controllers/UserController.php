@@ -19,7 +19,16 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return view('user.index');
+        $name = $request->get('buscarpor');
+        
+        $user = User::where('name','like',"%$name%")->latest()->get();
+        
+        return view('user.index', compact('user'));
+    }
+
+    public function index1(Request $request)
+    {
+        return view('user.profile');
     }
 
     /**
@@ -74,8 +83,7 @@ class UserController extends Controller
         session::flash('message','Usuario Registrado Exisitosamente!');
         return redirect('/login')->with("message", "Usuario creado exitosamente!");  
     }
-    public function store1(Request $request)
-    {   //dd($request);
+    public function store1(Request $request){   
         $request->validate([
             'name' => 'required',
             'apellido' => 'nullable', 
@@ -91,7 +99,6 @@ class UserController extends Controller
             'role'=>'required',
         ]);
 
-        //dd($request);
         User::create([
             'name' => $request->name,
             'apellido' => $request->apellido,
@@ -117,11 +124,8 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
+    public function show(User $user){
        
-
-
     }
 
     /**
@@ -130,9 +134,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-      
+    public function edit($id){
         return view('user.update', ['user' =>User::findOrFail($id)]);
     }
 
@@ -145,25 +147,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {   
-        
-        $request->validate([
-            'name' => 'required',
-            'apellido' => 'required', 
-            'direccion' => 'nullable',
-            'telefono' => 'required',
-            'pais' => 'nullable',
-            'ciudad' => 'nullable',
-            'whatsapp' => 'nullable',
-            'nombre_empresa' => 'nullable',
-            'nit' => 'nullable',
-            'imagen' => 'nullable',
-            'password'=>'required',
-            'role'=>'required',
-        ]);
+        $user = User::find($id);
 
         DB::beginTransaction();
         $requestData = $request->all();
-        //dd($requestData);
+       
         $mensaje = "Usuario Actualizado correctamente :3";
 
         if($request->imagen){

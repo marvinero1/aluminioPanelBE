@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Producto;
 use App\Categoria;
-use Illuminate\Http\Request;
-use Session;
 
-class CategoriaController extends Controller
+use Illuminate\Http\Request;
+
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,9 @@ class CategoriaController extends Controller
     {
         $nombre = $request->get('buscarpor');
         
-        $categoria = Categoria::where('nombre','like',"%$nombre%")->latest()->get();
+        $producto = Producto::where('nombre','like',"%$nombre%")->latest()->get();
         
-        return view('categoria.index', compact('categoria'));
+        return view('productos.index', compact('producto'));
     }
 
     /**
@@ -28,8 +29,9 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('categoria.create');
+    {   
+        $categoria = Categoria::all();
+        return view('productos.create', compact('categoria'));
     }
 
     /**
@@ -40,29 +42,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'nullable',
-            'user' => 'nullable',
-        ]);
-        
-        Categoria::create([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'user' => $request->user,
-        ]);
-        
-        Session::flash('message','Categoria creado exisitosamente!');
-        return redirect()->route('categoria.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(Producto $producto)
     {
         //
     }
@@ -70,10 +59,10 @@ class CategoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit(Producto $producto)
     {
         //
     }
@@ -82,10 +71,10 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categoria  $categoria
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, Producto $producto)
     {
         //
     }
@@ -93,10 +82,10 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Producto $producto)
     {
         //
     }

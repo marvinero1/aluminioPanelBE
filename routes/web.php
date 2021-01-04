@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('store1','UserController@store1')->name('user.store1');
+Route::get('profile','UserController@index1')->name('profile');
 
 Route::resource('user', 'UserController');
 Route::resource('categoria', 'CategoriaController');
+Route::resource('sub-categoria', 'SubcategoriaController');
+Route::resource('favoritos', 'FavoritoController');
+Route::resource('productos', 'ProductoController');
