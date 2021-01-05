@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use App\Categoria;
-
+use App\subcategoria;
 use Illuminate\Http\Request;
+use File;
+use DB;
+use Image;
+use Session;
 
 class ProductoController extends Controller
 {
@@ -17,10 +21,12 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');
+        $categoria = Categoria::all();
+        $subcategoria = subcategoria::all();
         
         $producto = Producto::where('nombre','like',"%$nombre%")->latest()->get();
         
-        return view('productos.index', compact('producto'));
+        return view('productos.index', compact('producto','categoria','subcategoria'));
     }
 
     /**
@@ -31,7 +37,9 @@ class ProductoController extends Controller
     public function create()
     {   
         $categoria = Categoria::all();
-        return view('productos.create', compact('categoria'));
+        $subcategoria = subcategoria::all();
+
+        return view('productos.create', compact('categoria','subcategoria'));
     }
 
     /**
@@ -41,8 +49,61 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $imagen = null;
+        $mensaje= 'Producto Registrado correctamente';
+        //dd($request);
+
+        // $request->validate([
+        //     'nombre' => 'required',
+        //     'estado' => 'required',
+        //     'imagen' => 'nullable|image',
+        //     'precio' => 'required',
+        //     'medida' => 'required',
+        //     'tipo_medida' => 'required',
+        //     'puntuacion'  => 'nullable',
+        //     'descripcion'  => 'nullable',
+        //     'importadora' => 'required',
+        //     'categorias_id' => 'required',
+        //     'subcategorias_id' => 'required',
+        // ]);
+        
+        DB::beginTransaction();
+        $requestData = $request->all();
+
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/productos', mime_content_type('images/productos'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/productos';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje = "Producto Registrado correctamente";    
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
+
+        $producto = Producto::create($requestData);
+
+        if($producto){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+            return redirect()->route('productos.index'); 
+
     }
 
     /**

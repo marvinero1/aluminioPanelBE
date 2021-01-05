@@ -16,15 +16,18 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->boolean('disponible','no-disponible');
+            $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
             $table->string('imagen')->nullable();
             $table->double('precio');
+            $table->double('medida');
+            $table->string('tipo_medida');
+
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('importadora')->nullable();
             $table->unsignedBigInteger('categorias_id')->unsigned();
             $table->unsignedBigInteger('subcategorias_id')->unsigned();
-            $table->unsignedBigInteger('favoritos_id')->unsigned();
+            $table->unsignedBigInteger('favoritos_id')->nullable();
             
             $table->foreign('categorias_id')->references('id')->on('categorias')
             ->onDelete('cascade');

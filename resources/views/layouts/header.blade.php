@@ -181,7 +181,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          @if( Auth::user()->imagen == 'null')
+          @if( Auth::user()->imagen == '')
             <img img src="images/default-person.jpg" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px">
           @else
             <img src="/{{ Auth::user()->imagen }}" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px"
@@ -234,6 +234,24 @@
           </li>
 
 
+          
+          <li class="nav-item">
+            <a href="/favoritos" class="nav-link">
+              <i class="nav-icon far fa-star"></i>
+              <p>Favoritos
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/productos" class="nav-link">
+              <i class="nav-icon far fa fa-archive" aria-hidden="true"></i>
+              <p>Productos
+                {{-- <span class="badge badge-info right">2</span> --}}
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -257,22 +275,6 @@
               </li>
               
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="/favoritos" class="nav-link">
-              <i class="nav-icon far fa-star"></i>
-              <p>Favoritos
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/productos" class="nav-link">
-              <i class="nav-icon far fa-product"></i>
-              <p>Productos
-                {{-- <span class="badge badge-info right">2</span> --}}
-              </p>
-            </a>
           </li>
           <li class="nav-item">
             <a href="/user" class="nav-link">

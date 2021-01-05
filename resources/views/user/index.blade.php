@@ -46,7 +46,7 @@
                     <tr>
                         <td style="text-align:center;">
 
-                        @if( $users->imagen != 'null')
+                        @if( $users->imagen == 'null')
                             <img img src="images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="150px" width="150px">
                         @else
                             <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="150px" width="150px"

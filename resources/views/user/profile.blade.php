@@ -10,7 +10,7 @@
                     <div class="col-md-8">
                         <div class="mb-4 text-center" >
                             <div class="avatar-flip">
-                                @if( Auth::user()->imagen != 'null')
+                                @if( Auth::user()->imagen == 'null')
                                     <img img src="images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="250px" width="250px">
                                 @else
                                     <img src="/{{ Auth::user()->imagen }}" class="img-thumbnail" alt="Usuario" height="250px" width="250px"
