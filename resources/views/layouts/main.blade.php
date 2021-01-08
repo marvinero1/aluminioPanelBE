@@ -16,7 +16,8 @@
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
   {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link href="images/favicon.png" rel="icon">

@@ -17,9 +17,9 @@ class CategoriaController extends Controller
     {
         $nombre = $request->get('buscarpor');
         
-        $categoria = Categoria::where('nombre','like',"%$nombre%")->latest()->get();
+        $categoria = Categoria::where('nombre','like',"%$nombre%")->latest()->paginate(10);
         
-        return view('categoria.index', compact('categoria'));
+        return view('categoria.index', ['categoria' => $categoria]);
     }
 
     /**
@@ -73,9 +73,9 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit($id)
     {
-        //
+        return view('categoria.edit', ['categoria' =>Categoria::findOrFail($id)]);
     }
 
     /**
@@ -85,9 +85,19 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        $request->all();
+        
+        $categoria = Categoria::find($id);
+
+        $categoria->nombre = $request->get('nombre');
+        $categoria->descripcion = $request->get('descripcion');
+
+        $categoria->update(); 
+        
+        Session::flash('message','Categoria Editado Exisitosamente!');
+        return redirect()->route('categoria.index');
     }
 
     /**
@@ -96,8 +106,12 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
-    {
-        //
+    public function destroy($id){
+        $categoria = Categoria::findOrFail($id);
+
+        $categoria->delete();
+
+        Session::flash('message','Categoria eliminado exitosamente!');
+        return redirect()->route('categoria.index');
     }
 }

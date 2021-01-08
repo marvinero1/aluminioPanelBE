@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Favorito;
+use Session;
 use Illuminate\Http\Request;
 
 class FavoritoController extends Controller
@@ -12,9 +13,16 @@ class FavoritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request){
+
+        $buscar = $request->get('buscarpor');
+        $favorito = Favorito::where('id','like',"%$buscar%")->latest()->paginate(10);
+
+        // $favorito = Favorito::whereHas('productos', function (Builder $query) use($buscar) {
+        //     $query->where('nombre', 'like', '%'.$buscar.'%');
+        // })->latest()->paginate(10);
+
+        return view('favoritos.index', ['favorito' => $favorito]);
     }
 
     /**
@@ -35,7 +43,36 @@ class FavoritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->all();
+
+        $exit = Favorito::where(function($q1)use($request){
+            if($request->productos_id){
+                $q1->where('user_id',$request->user_id)->where('productos_id',$request->productos_id);
+            }
+        })
+        // ->orWhere(function($q1)use($request){
+        //     if($request->bono_id){
+        //     $q1->where('user_id',$request->user_id)->where('bono_id',$request->bono_id);
+        //     }
+            
+        // })
+        // ->orWhere(function($q1)use($request){
+        //     if($request->titulo_id){
+        //     $q1->where('user_id',$request->user_id)->where('titulo_id',$request->titulo_id);
+        //     }
+        //})
+        ->get();
+        if(count($exit) == 0){
+            Favorito::create([
+                'productos_id' => $request->productos_id,
+                'user_id' => $request->user_id,
+                
+            ]);  
+            Session::flash('message','Agregado a Favoritos!');
+        }else{
+            Session::flash('message','Ya esta agregado a Favoritos!');
+        }
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -78,8 +115,13 @@ class FavoritoController extends Controller
      * @param  \App\Favorito  $favorito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorito $favorito)
+    public function destroy($id)
     {
-        //
+        $favorito = Favorito::findOrFail($id);
+
+        $favorito->delete();
+
+        Session::flash('message','Favorito eliminado exitosamente!');
+        return redirect()->route('favoritos.index');  
     }
 }

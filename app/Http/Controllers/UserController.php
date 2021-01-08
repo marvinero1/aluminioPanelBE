@@ -48,7 +48,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        //dd($request);
         $request->validate([
             'name' => 'required',
             'apellido' => 'required', 
@@ -57,10 +58,8 @@ class UserController extends Controller
             'pais' => 'nullable',
             'ciudad' => 'nullable',
             'whatsapp' => 'nullable',
-            'nombre_empresa' => 'nullable',
-            'nit' => 'nullable',
             'email' => 'required',
-            'password'=>'required',
+            'password' => 'required|string|min:6',
             'role'=>'required',
         ]);
 
@@ -73,8 +72,6 @@ class UserController extends Controller
             'pais' => $request->pais,
             'ciudad' => $request->ciudad,
             'whatsapp' => $request->whatsapp,
-            'nombre_empresa' => $request->nombre_empresa,
-            'nit' => $request->nit,
             'email' => $request->email,
             'role' => $request->role,
             'password' => Hash::make($request->password),
@@ -84,6 +81,7 @@ class UserController extends Controller
         return redirect('/login')->with("message", "Usuario creado exitosamente!");  
     }
     public function store1(Request $request){   
+        //dd($request);
         $request->validate([
             'name' => 'required',
             'apellido' => 'nullable', 
@@ -92,10 +90,9 @@ class UserController extends Controller
             'pais' => 'nullable',
             'ciudad' => 'nullable',
             'whatsapp' => 'nullable',
-            'nombre_empresa' => 'nullable',
-            'nit' => 'nullable',
+            'nit' => 'required',
             'email' => 'required',
-            'password'=>'required',
+            'password' => 'required|string|min:6',
             'role'=>'required',
         ]);
 
@@ -107,7 +104,6 @@ class UserController extends Controller
             'pais' => $request->pais,
             'ciudad' => $request->ciudad,
             'whatsapp' => $request->whatsapp,
-            'nombre_empresa' => $request->nombre_empresa,
             'nit' => $request->nit,
             'email' => $request->email,
             'role' => $request->role,
@@ -145,13 +141,13 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function update(Request $request, $id){   
         $user = User::find($id);
-
-        DB::beginTransaction();
-        $requestData = $request->all();
        
+        DB::beginTransaction();
+
+        $requestData = $request->all();
+
         $mensaje = "Usuario Actualizado correctamente :3";
 
         if($request->imagen){
@@ -177,8 +173,8 @@ class UserController extends Controller
                 $mensaje = "Error al guardar la imagen";
             }
         }
-
-        if($user->update($requestData)){
+       
+        if($user->update($request)){
             DB::commit();
         }else{
             DB::rollback();
@@ -197,5 +193,25 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function updatepassword(Request $request, $id){   
+        $user = User::find($id);
+        
+        $request->validate([
+            
+            'email' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+            
+        ]);
+
+        //dd($request);
+        User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        
+        session::flash('message','Usuario Editado Exisitosamente!');
+        return redirect('/login')->with("message", "Usuario Editado exitosamente!"); 
     }
 }

@@ -19,7 +19,7 @@ class CreateProductosTable extends Migration
             $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
             $table->string('imagen')->nullable();
             $table->double('precio');
-            $table->double('medida');
+            $table->string('medida');
             $table->string('tipo_medida');
 
             $table->string('puntuacion')->nullable();
@@ -33,9 +33,6 @@ class CreateProductosTable extends Migration
             ->onDelete('cascade');
 
             $table->foreign('subcategorias_id')->references('id')->on('subcategorias')
-            ->onDelete('cascade');
-
-            $table->foreign('favoritos_id')->references('id')->on('favoritos')
             ->onDelete('cascade');
 
             $table->softDeletes();

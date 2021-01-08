@@ -43,23 +43,10 @@
                             </div>
                             <div class="card-footer">
                                 <a type="button" class="btn btn-secondary float-right" href="{{url('/categoria')}}">Cerrar</a>
-                                <button type="submit" class="btn btn-primary float-right mr-2">Guardar</button>
+                                <button type="submit" class="btn btn-primary float-right mr-2"><i class="fa fas fa-save"></i> Guardar</button>
                             </div>
                         </form>
                     </div>
     </section>
 </div>
-<style>
-    input[type="file"] {
-        display: none;
-    }
-
-    .custom-file-upload {
-        width: 100%;
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-    }
-</style>
 @endsection

@@ -76,9 +76,9 @@ class SubcategoriaController extends Controller
      * @param  \App\subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(subcategoria $subcategoria)
-    {
-        //
+    public function edit($id){   
+        // $categoria = Categoria::all();
+        // return view('sub-categoria.edit', ['subcategoria' =>subcategoria::findOrFail($id)]);
     }
 
     /**
@@ -89,8 +89,20 @@ class SubcategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, subcategoria $subcategoria)
-    {
-        //
+    {   
+        // $categoria = Categoria::all();
+
+        // $request->all();
+        
+        // $subcategoria = subcategoria::find($id);
+
+        // $subcategoria->nombre = $request->get('nombre');
+        // $subcategoria->descripcion = $request->get('descripcion');
+
+        // $subcategoria->update(); 
+        
+        // Session::flash('message','Sub-Categoria Editado Exisitosamente!');
+        // return redirect()->route('sub-categoria.index');
     }
 
     /**
@@ -99,8 +111,13 @@ class SubcategoriaController extends Controller
      * @param  \App\subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subcategoria $subcategoria)
+    public function destroy($id)
     {
-        //
+        $subcategoria = subcategoria::findOrFail($id);
+
+        $subcategoria->delete();
+
+        Session::flash('message','Subcategoria eliminado exitosamente!');
+        return redirect()->route('sub-categoria.index');
     }
 }

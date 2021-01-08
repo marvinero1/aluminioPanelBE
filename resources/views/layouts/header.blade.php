@@ -254,7 +254,7 @@
 
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-id-badge"></i>
               <p>
                 Mi Perfil
                 <i class="right fas fa-angle-left"></i>

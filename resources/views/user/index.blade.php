@@ -28,14 +28,13 @@
                     <tr>
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">Imagen</th>
-                        <th style="text-align:center;">Nombre</th>
+                        <th style="text-align:center;">Nombre Empresa</th>
                         <th style="text-align:center;">Apellido</th>
                         <th style="text-align:center;">Direccion</th>
                         <th style="text-align:center;">Telefono</th>
                         <th style="text-align:center;">Pais</th>
                         <th style="text-align:center;">Ciudad</th>
                         <th style="text-align:center;">Whatsapp</th>
-                        <th style="text-align:center;">Nombre Empresa</th>
                         <th style="text-align:center;">Nit</th>
                         <th style="text-align:center;">Role</th>
                         
@@ -46,8 +45,8 @@
                     <tr>
                         <td style="text-align:center;">
 
-                        @if( $users->imagen == 'null')
-                            <img img src="images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="150px" width="150px">
+                        @if( $users->imagen == '')
+                            <img img src="/images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="150px" width="150px">
                         @else
                             <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="150px" width="150px"
                                 style="display: block;margin: 0 auto;">
@@ -60,7 +59,6 @@
                         <td style="text-align:center;">{{ $users->pais }}</td>
                         <td style="text-align:center;">{{ $users->ciudad }}</td>
                         <td style="text-align:center;">{{ $users->whatsapp }}</td>
-                        <td style="text-align:center;">{{ $users->nombre_empresa }}</td>
                         <td style="text-align:center;">{{ $users->nit }}</td>
                         <td style="text-align:center;">{{ $users->role }}</td>
                         {{-- <td style="text-align:center;">

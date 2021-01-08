@@ -10,18 +10,24 @@
         @if (Session::has('error'))
         <div class="alert alert-danger">{{ Session::get('error') }}</div>
         @endif
-        <div class="float-left">
-            <a href="{{ route('productos.create')}}"><button class="btn btn-primary">
-                    <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Producto</button></a>
+        <div class="col-md-6 float-left">
+            <div class="input-group col-md-8 float-left">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa fas fa-search"></i></span>
+                </div>
+                <form style="display: contents !important;margin-top: 0em !important;margin-block-end: 0em !important">
+                    <input type="text" aria-describedby="basic-addon1" name="buscarpor" class="form-control " type="search"
+                    placeholder="Buscador Nombre Producto" aria-label="Search" style="width: 55% !important;">&nbsp;&nbsp;
+                    <button class="btn btn-outline-success " type="submit" style="border: 1px #3097D1 solid;">
+                        <span class="search"></span>&nbsp;Buscar</button>
+                </form>
+              </div>
         </div>
         <div class="float-right">
-            <form class="form-inline my-2 my-lg-0">
-                <input name="buscarpor" class="form-control mr-sm-2" type="search"
-                    placeholder="Buscador Producto" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="border: 1px #3097D1 solid;">
-                    <span class="search"></span>&nbsp;Buscar</button>
-            </form>
+            <a href="{{ route('productos.create')}}"><button class="btn btn-primary">
+                    <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Producto</button></a>
         </div><br><br><br>
+        
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
@@ -60,14 +66,51 @@
                         {{-- <td style="text-align:center;">{{ $productos->categorias->nombre }}</td> --}}
 
                         <td style="text-align:center;">
+                            <button data-toggle="modal" data-target="#modalFavoritos{{$productos->id}}"
+                                class="btn btn-danger btn-sm"><span class="icon-heart-o"></span>&nbsp;
+                                Agregar a Favoritos</button>
+                            <a href="{{ route('productos.show',$productos->id ) }}">
+                                <button class="btn btn-secondary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button>
+                            </a>
                             <form action="{{ route('productos.destroy',$productos->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Image"
-                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fa-trash-o"
+                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fa-trash"
                                         aria-hidden="true"></i> Eliminar</button>
                             </form>
+
+                            {{-- MODAL FAVORITOS --}}
+                            <div class="modal fade" id="modalFavoritos{{$productos->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Administración Favoritos</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{route('favoritos.store')}}" method="POST"
+                                                enctype="multipart/form-data" style="margin-block-end:-1em !important;">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="productos_id" value="{{$productos->id}}">
+                                                @if(Auth::user())
+                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                @endif
+                                                <h4>Agregar a Lista de Favoritos</h4>
+                                                <div class="row" style="display: block;">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" style="width: 100% !important; "><span
+                                                                class="icon-star" ></span>&nbsp; Añadir</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

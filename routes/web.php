@@ -18,13 +18,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::update('updatepassword','UserController@updatepassword');
 Route::post('store1','UserController@store1')->name('user.store1');
-Route::get('profile','UserController@index1')->name('profile');
-
 Route::resource('user', 'UserController');
+
+Route::middleware(['auth'])->group(function () {
+Route::put('user/{user}/updatepassword','UserController@updatepassword')->name('user.updatepassword');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('profile','UserController@index1')->name('profile');    
+
 Route::resource('categoria', 'CategoriaController');
 Route::resource('sub-categoria', 'SubcategoriaController');
 Route::resource('favoritos', 'FavoritoController');
-Route::resource('productos', 'ProductoController');
+Route::resource('productos', 'ProductoController');    
+});

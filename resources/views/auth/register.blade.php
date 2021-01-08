@@ -126,12 +126,12 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6">
-                                                <label>Direccion</label>
+                                                <label>Dirección</label>
                                                 <input type="text" class="form-control" placeholder="Direccion"
                                                     name="direccion">
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>Telefono</label>
+                                                <label>Teléfono</label>
                                                 <input type="number" class="form-control" placeholder="Telefono"
                                                     name="telefono" required>
                                             </div>
@@ -153,7 +153,6 @@
                                                 <input type="number" class="form-control" placeholder="Whatsapp"
                                                     name="whatsapp">
                                             </div>
-
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6">
@@ -173,27 +172,25 @@
                                     </form>
                                 </div>
                             </div>
-
                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="container" >
                                     <form action="{{route('user.store1')}}" method="POST">
                                         {{csrf_field()}}
                                         <div class="form-group row">
-                                            
                                             <div class="col-sm-6">
                                                 <label>Nombre Empresa</label>
                                                 <input type="text" class="form-control" placeholder="Nombre Empresa"
-                                                    name="name">
+                                                    name="name" required>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Nit</label>
-                                                <input type="number" class="form-control" placeholder="Nit" name="nit">
+                                                <input type="number" class="form-control" placeholder="Nit" name="nit" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label>Pais</label>
-                                                <input type="text" class="form-control" placeholder="Pais" name="pais">
+                                                <input type="text" class="form-control" placeholder="Pais" name="pais" required>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Ciudad</label>
@@ -214,6 +211,13 @@
                                                     name="telefono" required>
                                             </div>
                                         </div><br>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Whatsapp</label>
+                                                <input type="number" class="form-control" placeholder="Whatsapp"
+                                                    name="whatsapp">
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label>Correo Electronico</label>
