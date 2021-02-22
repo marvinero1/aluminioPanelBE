@@ -33,7 +33,7 @@
                 <thead class="thead-dark">
                     <tr>
                         {{-- <th>Id</th>  --}}
-                        <th style="text-align:center;">Nombre</th>
+                        <th style="text-align:center;">Nombre Producto</th>
                         {{-- <th style="text-align:center;">id</th> --}}
                         <th style="text-align:center;">Acciones</th>
                     </tr>

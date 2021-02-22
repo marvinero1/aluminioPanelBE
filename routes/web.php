@@ -25,10 +25,16 @@ Route::resource('user', 'UserController');
 Route::middleware(['auth'])->group(function () {
 Route::put('user/{user}/updatepassword','UserController@updatepassword')->name('user.updatepassword');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('profile','UserController@index1')->name('profile');    
+Route::get('/importadoras', 'UserController@importadoras')->name('importadoras');
+Route::get('profile','UserController@index1')->name('profile'); 
+Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
+Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
 
 Route::resource('categoria', 'CategoriaController');
 Route::resource('sub-categoria', 'SubcategoriaController');
 Route::resource('favoritos', 'FavoritoController');
 Route::resource('productos', 'ProductoController');    
+Route::resource('novedad', 'NovedadController');
+Route::resource('suscripcion', 'SubscripcionController');
+Route::resource('pedido', 'PedidoController');
 });

@@ -20,8 +20,15 @@
                                 <div class="row" style="border: outset;">
                                     <div class="col-md-6 p-2">
                                         <div class="form-group">
+                                            <label for="nombre">Código Producto</label>
+                                            <input type="text" class="form-control" name="codigo"
+                                                placeholder="Código Artículo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-group">
                                             <label><strong>Categoria *</strong> </label>
-                                            <select name="categorias_id" class="form-control selectpicker"
+                                            <select name="categorias_id" class="form-control select2"
                                                 data-live-search="true" required>
                                                 @foreach ($categoria as $categorias)
                                                 <option value="{{ $categorias->id }}">{{$categorias->nombre}}
@@ -34,7 +41,7 @@
                                     <div class="col-md-6 p-2">
                                         <div class="form-group">
                                             <label><strong>Sub Categoria *</strong> </label>
-                                            <select name="subcategorias_id" class="form-control selectpicker"
+                                            <select name="subcategorias_id" class="form-control select2"
                                                 data-live-search="true" required>
                                                 @foreach ($subcategoria as $subcategorias)
                                                 <option value="{{ $subcategorias->id }}">{{$subcategorias->nombre}}
@@ -43,11 +50,34 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 p-2">
+                                        <div class="form-group">
+                                            <label>Seleccione en que ciudad esta disponible el producto</label>
+                                            <div class="select2-dark">
+                                                <select class="select2" multiple="multiple" 
+                                                data-dropdown-css-class="select2-dark"
+                                                data-placeholder="Seleccione ciudades" style="width: 100%;"
+                                                 name="disponibilidad[]">
+                                                    <option value="La-Paz">La Paz</option>
+                                                    <option value="Cochabamba">Cochabamba</option>
+                                                    <option value="Santa-Cruz">Santa Cruz</option>
+                                                    <option value="Oruro">Oruro</option>
+                                                    <option value="Potosi">Potosi</option>
+                                                    <option value="Chuquisaca">Chuquisaca</option>
+                                                    <option value="Tarija">Tarija</option>
+                                                    <option value="Pando">Pando</option>
+                                                    <option value="Beni">Beni</option>
+                                                </select>
+                                            </div>
+                                            
+                                          </div>
+                              
+                                    </div><br>
                                 </div><br>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="nombre">Nombre Producto</label>
+                                            <label for="nombre">Nombre Producto *</label>
                                             <input type="text" class="form-control" name="nombre"
                                                 placeholder="Nombre Artículo" required>
                                         </div>
@@ -67,9 +97,7 @@
                                     </div>
                                     
                                 </div>
-                                <div class="row">
-                                                                
-                                        
+                                <div class="row">                          
                                     <div class="col-md-4 text-center">
                                         <label class="text-center">Estado</label><br>
                                         <div class="form-check form-check-inline">
@@ -111,13 +139,34 @@
                                             </p>
                                         </div>
                                     </div>  
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
+                                        <p><strong>Imagen</strong></p>
+                                        <label for="file-upload" class="custom-file-upload" style="text-align: center;">
+                                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
+                                        <strong>Imagen</strong>
+                                        </label>
+                                        <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda
+                                        resolucion a partir de<strong> 1024 × 768 pixels</strong></p>
+                                        <input id="file-upload" type="file" name="imagen">
+                                    </div>   
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
                                        <div class="form-group">
-                                            <label>Medida</label>
-                                            <input type="text" class="form-control" placeholder="Medida" name="medida" required>
+                                            <label>Alto</label>
+                                            <input type="text" class="form-control" placeholder="Altura" name="alto">
+                                        </div> 
+                                         
+                                        <div class="form-group">
+                                            <label>Ancho</label>
+                                            <input type="text" class="form-control" placeholder="Ancho" name="ancho">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Color</label>
+                                            <input type="text" class="form-control" placeholder="Color" name="color">
                                         </div>   
                                     </div>
-                                    <div class="col-md-2">
+                                     <div class="col-md-3">
                                         <label>Tipo Medida</label>
                                         <select class="custom-select" id="inputGroupSelect01"  name="tipo_medida" required>
                                             <option selected>Selecciona...</option>
@@ -135,24 +184,11 @@
                                             <option value="mililitro">Mililitro</option>
                                         </select>  
                                     </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        
-                                        <p><strong>Imagen</strong></p>
-                                        <label for="file-upload" class="custom-file-upload" style="text-align: center;">
-                                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
-                                        <strong>Imagen</strong>
-                                        </label>
-                                        <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda
-                                        resolucion a partir de<strong> 1024 × 768 pixels</strong></p>
-                                        <input id="file-upload" type="file" name="imagen">
-                                    </div>
+                                    
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="descripcion">Descripción</label>
-                                            <textarea class="form-control" name="descripcion" rows="3"></textarea>
+                                            <textarea class="form-control" name="descripcion" rows="8"></textarea>
                                         </div>
                                     </div>
                                 </div>

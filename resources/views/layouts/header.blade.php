@@ -206,43 +206,40 @@
               </p>
             </a>
           </li> --}}
-
-          <li class="nav-item has-treeview">
-            <a href="/categoria" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Categorias
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/categoria" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Categoria</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/sub-categoria" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sub-Categorias</p>
-                </a>
-              </li>
-              
-              
-            </ul>
-          </li>
-
-
-          
+          @if(Auth::user()->role == 'admin')
+            <li class="nav-item has-treeview">
+              <a href="/categoria" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Categorias
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/categoria" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Categoria</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/sub-categoria" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Sub-Categorias</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
           <li class="nav-item">
             <a href="/favoritos" class="nav-link">
               <i class="nav-icon far fa-star"></i>
-              <p>Favoritos
-                <span class="badge badge-info right">2</span>
+              <p>Mis Favoritos
+                {{-- <span class="badge badge-info right">2</span> --}}
               </p>
             </a>
           </li>
+
           <li class="nav-item">
             <a href="/productos" class="nav-link">
               <i class="nav-icon far fa fa-archive" aria-hidden="true"></i>
@@ -251,6 +248,16 @@
               </p>
             </a>
           </li>
+          @if(Auth::user()->role == 'empresa')
+            <li class="nav-item">
+              <a href="/pedido" class="nav-link">
+                <i class="nav-icon far fa-plus-square" aria-hidden="true"></i>
+                <p>Pedido
+                  {{-- <span class="badge badge-info right">2</span> --}}
+                </p>
+              </a>
+            </li>
+          @endif
 
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
@@ -267,24 +274,50 @@
                   <p> Mi Perfil</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/favoritos" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mis Favoritos</p>
-                </a>
-              </li>
-              
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="/user" class="nav-link">
-              <i class="nav-icon far fa-user"></i>
-              <p>Usuarios
-                {{-- <span class="badge badge-info right">2</span> --}}
-              </p>
-            </a>
-          </li>
-         
+          @if(Auth::user()->role == 'admin')
+            <li class="nav-item">
+              <a href="/novedad" class="nav-link">
+                <i class="fa fa-gift nav-icon" aria-hidden="true"></i>
+                <p>Novedades
+                  {{-- <span class="badge badge-info right">2</span> --}}
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/suscripcion" class="nav-link">
+                <i class="fa fa-plus-square nav-icon" aria-hidden="true"></i>
+                <p>Suscripciones
+                  {{-- <span class="badge badge-info right">2</span> --}}
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview ">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-id-badge"></i>
+                <p>Usuarios
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/user" class="nav-link">
+                    <i class="nav-icon far fa-user"></i>
+                    <p>Usuarios
+                      {{-- <span class="badge badge-info right">2</span> --}}
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/importadoras" class="nav-link">
+                    <i class="far fa fa-truck nav-icon"></i>
+                    <p>Importadoras</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          @endif
           {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

@@ -18,6 +18,15 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function getProducto(){
+        return Producto::all();
+    }
+
+    public function showProducto($id){
+        return Producto::findOrFail($id);
+    }
+
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');
@@ -69,8 +78,13 @@ class ProductoController extends Controller
         // ]);
         
         DB::beginTransaction();
+        
         $requestData = $request->all();
-
+        $disponibilidad = $requestData['disponibilidad'];
+        $requestData['disponibilidad'] = implode(', ', $disponibilidad);
+     
+        //dd($disponibilidad);
+        
         if($request->imagen){
            
             $data = $request->imagen;
@@ -152,5 +166,21 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //
+    }
+
+    public function addNovedad(Request $request, $id){ 
+        
+        $producto = Producto::find($id);
+
+        $request->validate([
+            'novedad' => 'required',
+        ]);
+
+        $producto->novedad = $request->get('novedad');
+        
+        $producto->update(); 
+
+        Session::flash('message','Novedad Agregada Exisitosamente!');
+        return redirect()->route('novedad.index');
     }
 }

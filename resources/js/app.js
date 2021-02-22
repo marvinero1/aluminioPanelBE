@@ -22,6 +22,8 @@ require('../template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.j
 require('../template/dist/js/adminlte.js');
 require('../template/dist/js/pages/dashboard.js');
 require('../template/dist/js/demo.js');
+require('../js/select2/select2.full');
+
 
 window.Vue = require('vue');
 
@@ -46,4 +48,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+});
+
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
 });

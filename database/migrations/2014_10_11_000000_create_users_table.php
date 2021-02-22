@@ -25,11 +25,13 @@ class CreateUsersTable extends Migration
             // $table->string('nombre_empresa')->nullable();
             $table->string('nit')->nullable();
             $table->string('email')->unique();
+            $table->enum('subscripcion', ['true','false'])->nullable();
             $table->string('imagen')->nullable();
+            $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['user','admin','empresa'])->nullable();
-            $table->rememberToken();
+             $table->softDeletes();
             $table->timestamps();
         });
     }

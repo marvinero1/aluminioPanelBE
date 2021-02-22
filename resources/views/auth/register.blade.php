@@ -75,15 +75,8 @@
         </div>
     </div>
 </div> --}}
-<div class="site-section cta-big-image background" id="about-section">
-    <br><br><br>
+<div class="site-section cta-big-image background col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="about-section">
     <div class="container">
-        {{--  <div class="row mb-5 justify-content-center">
-        <div class="col-md-8 text-center">
-          <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">About Us</h2>
-          <p class="lead" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
-        </div>
-      </div>  --}}
         <div class="row">
             <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
                 @if (Session::has('message'))
@@ -166,6 +159,7 @@
                                                     name="password" required>
                                             </div>
                                             <input type="hidden" name="role" value="user">
+                                            <input type="hidden" name="subscripcion" value="false">
                                         </div>
                                         <button type="submit" class="btn btn-primary px-4 float-right">
                                           <span class="icon-save"></span>&nbsp;Guardar</button>
@@ -197,7 +191,6 @@
                                                 <input type="text" class="form-control" placeholder="Ciudad"
                                                     name="ciudad">
                                             </div>
-                                            
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6">
@@ -230,6 +223,7 @@
                                                     name="password" required>
                                             </div>
                                             <input type="hidden" name="role" value="empresa">
+                                            <input type="hidden" name="subscripcion" value="false">
                                         </div>
                                         <button type="submit" class="btn btn-primary px-4 float-right"><span class="icon-save"></span>&nbsp;
                                           Guardar</button>

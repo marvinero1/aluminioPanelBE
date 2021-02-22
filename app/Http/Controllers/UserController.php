@@ -9,6 +9,8 @@ use DB;
 use Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -21,7 +23,9 @@ class UserController extends Controller
     {
         $name = $request->get('buscarpor');
         
-        $user = User::where('name','like',"%$name%")->latest()->get();
+        $user = User::where('name','like',"%$name%")->where('role', 'user')
+        ->latest()
+        ->paginate(10);
         
         return view('user.index', compact('user'));
     }
@@ -29,6 +33,18 @@ class UserController extends Controller
     public function index1(Request $request)
     {
         return view('user.profile');
+    }
+
+    public function importadoras(Request $request)
+    {
+        $name = $request->get('buscarpor');
+
+        $user = User::where('name','like',"%$name%")
+        ->where('role', 'empresa')
+        ->latest()
+        ->paginate(10);
+        
+        return view('user.importadoras', compact('user'));
     }
 
     /**
@@ -59,11 +75,13 @@ class UserController extends Controller
             'ciudad' => 'nullable',
             'whatsapp' => 'nullable',
             'email' => 'required',
+            'subscripcion' => 'required',
             'password' => 'required|string|min:6',
             'role'=>'required',
         ]);
 
         //dd($request);
+      
         User::create([
             'name' => $request->name,
             'apellido' => $request->apellido,
@@ -74,8 +92,10 @@ class UserController extends Controller
             'whatsapp' => $request->whatsapp,
             'email' => $request->email,
             'role' => $request->role,
+            'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
-        ]);
+            
+        ]); 
         
         session::flash('message','Usuario Registrado Exisitosamente!');
         return redirect('/login')->with("message", "Usuario creado exitosamente!");  
@@ -95,6 +115,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
             'role'=>'required',
         ]);
+      
 
         User::create([
             'name' => $request->name,
@@ -107,7 +128,9 @@ class UserController extends Controller
             'nit' => $request->nit,
             'email' => $request->email,
             'role' => $request->role,
+            'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
+            
         ]);
         
         session::flash('message','Empresa Registrado Exisitosamente!');
@@ -120,8 +143,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user){
-       
+    public function show(Request $request, $id){
+       $user = User::findOrFail($id);
+       return view('user.show', compact('user'));
     }
 
     /**
@@ -194,6 +218,25 @@ class UserController extends Controller
     {
         //
     }
+
+    public function subscripcion(Request $request, $id){ 
+        $user = User::find($id);
+
+        $request->validate([
+            'subscripcion' => 'required',
+            
+        ]);
+
+        $user->subscripcion = $request->get('subscripcion');
+        
+        $user->fecha_inicio = $request->get('fecha_inicio');
+        $user->fecha_fin = $request->get('fecha_fin');
+        
+        $user->update(); 
+
+        Session::flash('message','Subscripcion Exisitosamente!');
+        return redirect()->route('user.index');
+    } 
 
     public function updatepassword(Request $request, $id){   
         $user = User::find($id);

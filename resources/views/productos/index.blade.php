@@ -28,19 +28,30 @@
                     <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Producto</button></a>
         </div><br><br><br>
         
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="thead-dark">
+            <div class="card-header border-0">
+              <h3 class="card-title">Productos</h3>
+              {{-- <div class="card-tools">
+                <a href="#" class="btn btn-tool btn-sm">
+                  <i class="fas fa-download"></i>
+                </a>
+                <a href="#" class="btn btn-tool btn-sm">
+                  <i class="fas fa-bars"></i>
+                </a>
+              </div> --}}
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-striped table-valign-middle">
+                <thead>
                     <tr>
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">Imagen</th>
                         <th style="text-align:center;">Nombre</th>
                         <th style="text-align:center;">Estado</th>
                         <th style="text-align:center;">Precio</th>
-                        <th style="text-align:center;">Medida</th>
-                        <th style="text-align:center;">Tipo de Medida</th>
+                        {{-- <th style="text-align:center;">Medida</th>
+                        <th style="text-align:center;">Tipo de Medida</th> --}}
                         {{-- <th style="text-align:center;">Puntuacion</th> --}}
-                        <th style="text-align:center;">Importadora</th>
+                        <th style="text-align:center;">Importadora / Usuario</th>
                         <th style="text-align:center;">Descripción</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
@@ -48,8 +59,8 @@
                 <tbody>
                     @foreach($producto as $productos)
                     <tr>
-                        
-                        <td> @if( $productos->imagen == '')
+                        <td style="text-align:center;"> 
+                        @if( $productos->imagen == '')
                             <img img src="images/default-person.jpg" class="img-thumbnail" alt="Producto" height="150px" width="150px">
                         @else
                             <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"
@@ -58,29 +69,44 @@
                         <td style="text-align:center;">{{ $productos->nombre }}</td>
                         <td style="text-align:center;">{{ $productos->estado }}</td>
                         <td style="text-align:center;">{{ $productos->precio }}</td>
-                        <td style="text-align:center;">{{ $productos->medida }}</td>
-                        <td style="text-align:center;">{{ $productos->tipo_medida }}</td>
+                        {{-- <td style="text-align:center;">{{ $productos->medida }}</td>
+                        <td style="text-align:center;">{{ $productos->tipo_medida }}</td> --}}
                         {{-- <td style="text-align:center;">{{ $productos->puntuacion }}</td> --}}
                         <td style="text-align:center;">{{ $productos->importadora }}</td>
                         <td style="text-align:center;">{{ $productos->descripcion }}</td>
                         {{-- <td style="text-align:center;">{{ $productos->categorias->nombre }}</td> --}}
+                        <td>
+                            <div class="card-body">
+                                <a class="btn btn-app" data-toggle="modal" data-target="#modalFavoritos{{$productos->id}}"
+                                    class="btn btn-danger btn-sm">
+                                  <i class="fas fa-heart"></i> Favoritos
+                                </a>
+                                
+                                <a class="btn btn-app " href="{{ route('productos.show',$productos->id ) }}">
+                                  <i class="fas fa-eye"></i> Ver
+                                </a>
+                                @if($productos->importadora != Auth::user()->name)
+                                    <form action="{{ route('productos.destroy',$productos->id ) }}" method="POST"
+                                        accept-charset="UTF-8" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a class="btn btn-app" type="submit" class="btn btn-danger btn-sm" title="Delete Image"
+                                        onclick="return confirm(&quot;¿Desea eliminar?&quot;)">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                        </a>
+                                    </form>
+                                @endif
+                                @if(Auth::user()->role == 'admin')
+                                <a class="btn btn-app" data-toggle="modal" data-target="#modalNovedades{{$productos->id}}"
+                                    class="btn btn-danger btn-sm">
+                                  <i class="fas fa-star"></i> Novedad
+                                </a>
+                                @endif
+                            </div>
 
+
+                        </td>
                         <td style="text-align:center;">
-                            <button data-toggle="modal" data-target="#modalFavoritos{{$productos->id}}"
-                                class="btn btn-danger btn-sm"><span class="icon-heart-o"></span>&nbsp;
-                                Agregar a Favoritos</button>
-                            <a href="{{ route('productos.show',$productos->id ) }}">
-                                <button class="btn btn-secondary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button>
-                            </a>
-                            <form action="{{ route('productos.destroy',$productos->id ) }}" method="POST"
-                                accept-charset="UTF-8" style="display:inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Image"
-                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fa-trash"
-                                        aria-hidden="true"></i> Eliminar</button>
-                            </form>
-
                             {{-- MODAL FAVORITOS --}}
                             <div class="modal fade" id="modalFavoritos{{$productos->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,7 +115,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Administración Favoritos</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <i class="icon-heart"></i>
+                                                <i class="icon-close"></i>
                                             </button>
                                         </div>
                                         <div class="modal-body">
@@ -104,6 +130,42 @@
                                                 <div class="row" style="display: block;">
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary" style="width: 100% !important; "><span
+                                                                class="icon-heart" ></span>&nbsp; Añadir</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </td>
+                        <td>
+                             {{-- MODAL Novedades --}}
+                             <div class="modal fade" id="modalNovedades{{$productos->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Administración Novedades</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i class="icon-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{route('producto.addNovedad', $productos->id)}}" method="POST"
+                                                enctype="multipart/form-data" style="margin-block-end:-1em !important;">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PUT') }}
+                                                <input type="hidden" name="novedad" value="true">
+
+                                                @if(Auth::user())
+                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                @endif
+                                                <h4>Agregar a Lista de Novedad</h4>
+                                                <div class="row" style="display: block;">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" style="width: 100% !important; "><span
                                                                 class="icon-star" ></span>&nbsp; Añadir</button>
                                                     </div>
                                             </form>
@@ -115,8 +177,12 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table><br><br>
-        </div>
+              </table>
+            </div>
+
+
+            
+      
     </div>
 </div>
 @endsection
