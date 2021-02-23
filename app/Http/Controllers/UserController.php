@@ -47,6 +47,13 @@ class UserController extends Controller
         return view('user.importadoras', compact('user'));
     }
 
+
+    public function getImportadora(){
+        return User::all()->where('role', 'empresa');
+
+         
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,6 +83,7 @@ class UserController extends Controller
             'whatsapp' => 'nullable',
             'email' => 'required',
             'subscripcion' => 'required',
+            'imagen' => 'nullable',
             'password' => 'required|string|min:6',
             'role'=>'required',
         ]);
@@ -92,6 +100,7 @@ class UserController extends Controller
             'whatsapp' => $request->whatsapp,
             'email' => $request->email,
             'role' => $request->role,
+            'imagen' => 'images/default-person.jpg',
             'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
             
@@ -113,6 +122,7 @@ class UserController extends Controller
             'nit' => 'required',
             'email' => 'required',
             'password' => 'required|string|min:6',
+            'imagen' => 'nullable',
             'role'=>'required',
         ]);
       
@@ -128,6 +138,7 @@ class UserController extends Controller
             'nit' => $request->nit,
             'email' => $request->email,
             'role' => $request->role,
+            'imagen' => 'images/default-person.jpg',
             'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
             

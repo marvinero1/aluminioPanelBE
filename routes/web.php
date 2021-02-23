@@ -22,6 +22,7 @@ Auth::routes();
 Route::post('store1','UserController@store1')->name('user.store1');
 Route::resource('user', 'UserController');
 
+
 Route::middleware(['auth'])->group(function () {
 Route::put('user/{user}/updatepassword','UserController@updatepassword')->name('user.updatepassword');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,4 +38,10 @@ Route::resource('productos', 'ProductoController');
 Route::resource('novedad', 'NovedadController');
 Route::resource('suscripcion', 'SubscripcionController');
 Route::resource('pedido', 'PedidoController');
+});
+
+Route::get('images/{filename}', function ($filename)
+{
+    $file = \Illuminate\Support\Facades\Storage::get($filename);
+    return response($file, 200)->header('Content-Type', 'image/jpeg');
 });
