@@ -27,6 +27,10 @@ class ProductoController extends Controller
         return Producto::findOrFail($id);
     }
 
+    public function getProductoNovedad(){
+        return Producto::all()->where('novedad', 'true');
+    }
+
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');

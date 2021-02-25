@@ -6,6 +6,7 @@ use App\Categoria;
 use App\Producto;
 use App\User;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\UserController;
 
 //use App\Http\Controllers\Api\LoginController;
@@ -34,14 +35,16 @@ Route::group(['middleware' => ['auth:api']], function(){
 // Route::group(['middleware' => ['auth:api','scope:root,admin,cliente']], function(){
    
     Route::get('productos',[ProductoController::class, 'getProducto']);
+    Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
 
+    Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
     Route::resource('subCategoria',SubcategoriaController::class);
 
     //Route::resource('producto',ProductoController::class);
 
-    Route::resource('favoritos',FavoritoController::class);
+    //Route::resource('favoritos',FavoritoController::class);
 
     
     //Route::resource("user", UserController::class);

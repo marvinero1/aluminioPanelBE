@@ -123,6 +123,14 @@
                                                 enctype="multipart/form-data" style="margin-block-end:-1em !important;">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="productos_id" value="{{$productos->id}}">
+                                                <input type="hidden" name="nombre" value="{{$productos->nombre}}">
+                                                <input type="hidden" name="codigo" value="{{$productos->codigo}}">
+                                                <input type="hidden" name="precio" value="{{$productos->precio}}">
+                                                <input type="hidden" name="color" value="{{$productos->color}}">
+                                                <input type="hidden" name="estado" value="{{$productos->estado}}">
+                                                <input type="hidden" name="importadora" value="{{$productos->importadora}}">
+                                                <input type="hidden" name="imagen" value="{{$productos->imagen}}">
+                                                
                                                 @if(Auth::user())
                                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                                 @endif

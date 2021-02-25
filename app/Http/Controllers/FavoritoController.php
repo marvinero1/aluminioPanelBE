@@ -13,6 +13,10 @@ class FavoritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getFavoritos(Request $request){
+        return Favorito::all();
+    }
+    
     public function index(Request $request){
 
         $buscar = $request->get('buscarpor');
@@ -64,6 +68,13 @@ class FavoritoController extends Controller
         ->get();
         if(count($exit) == 0){
             Favorito::create([
+                'nombre' => $request->nombre,
+                'estado' => $request->estado,
+                'imagen' => $request->imagen,
+                'precio' => $request->precio,
+                'color' => $request->color,
+                'codigo' => $request->codigo,
+                'importadora' => $request->importadora,
                 'productos_id' => $request->productos_id,
                 'user_id' => $request->user_id,
                 

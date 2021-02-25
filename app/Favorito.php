@@ -20,7 +20,15 @@ class Favorito extends Model
 
     protected $fillable = ['productos_id',
                         'user_id',
+                        'nombre',
+                        'estado',
+                        'imagen',
+                        'precio',
+                        'color',
+                        'codigo',
+                        'importadora',
                         ];
+
 
     public function productos(){
         return $this->belongsTo(Producto::class);
