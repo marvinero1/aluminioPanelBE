@@ -29,10 +29,8 @@ class CreateProductosTable extends Migration
             $table->unsignedBigInteger('categorias_id')->unsigned();
             $table->unsignedBigInteger('subcategorias_id')->unsigned();
             $table->unsignedBigInteger('favoritos_id')->nullable();
-            $table->enum('disponibilidad', 
-            ['La-Paz', 'Cochabamba','Santa-Cruz',
-            'Oruro', 'Potosi','Chuquisaca',
-            'Tarija', 'Pando','Beni']);
+            $table->string('disponibilidad')->nullable();
+
             $table->string('tipo_medida')->nullable();
             $table->foreign('categorias_id')->references('id')->on('categorias')
             ->onDelete('cascade');

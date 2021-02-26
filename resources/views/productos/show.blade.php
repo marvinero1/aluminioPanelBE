@@ -40,12 +40,12 @@
                                     
                                     <div class="col-md">
                                         <h4><strong>Categoria</strong></h4>
-                                        <h5> {{ $producto->categorias_id  }}</h5>
+                                        <h5> {{ $producto->categoria->nombre }}</h5>
                                     </div><hr>
                                     
                                     <div class="col-md">
                                         <h4><strong>Sub-Categoria</strong></h4>
-                                        <h5> {{ $producto->subcategorias_id }}</h5>
+                                        <h5> {{ $producto->subcategoria->nombre }}</h5>
                                     </div>
                                 </div>
                                 

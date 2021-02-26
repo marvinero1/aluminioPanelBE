@@ -38,6 +38,13 @@ class PedidoController extends Controller
         //
     }
 
+
+    public function guardarPedido(Request $request)
+    {
+        $pedido = Pedido::create($request->all());
+        return response()->json($pedido, 201);
+    }
+
     /**
      * Display the specified resource.
      *

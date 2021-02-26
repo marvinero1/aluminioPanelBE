@@ -14,7 +14,27 @@ class CreatePedidosTable extends Migration
     public function up()
     {
         Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
+            $table->string('imagen')->nullable();
+            $table->double('precio');
+            $table->string('color')->nullable();
+            $table->string('ancho')->nullable();
+            $table->string('codigo')->nullable();
+            $table->string('alto')->nullable();
+            $table->string('puntuacion')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('importadora')->nullable();
+            $table->enum('disponibilidad', 
+            ['La-Paz', 'Cochabamba','Santa-Cruz',
+            'Oruro', 'Potosi','Chuquisaca',
+            'Tarija', 'Pando','Beni']);
+            $table->string('tipo_medida')->nullable();
+            $table->string('categorias_id');
+            $table->string('subcategorias_id');
+            $table->string('cantidad_pedido');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

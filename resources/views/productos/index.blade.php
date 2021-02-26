@@ -85,7 +85,7 @@
                                 <a class="btn btn-app " href="{{ route('productos.show',$productos->id ) }}">
                                   <i class="fas fa-eye"></i> Ver
                                 </a>
-                                @if($productos->importadora != Auth::user()->name)
+                                @if($productos->importadora == Auth::user()->name)
                                     <form action="{{ route('productos.destroy',$productos->id ) }}" method="POST"
                                         accept-charset="UTF-8" style="display:inline">
                                         @csrf

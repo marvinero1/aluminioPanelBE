@@ -37,10 +37,12 @@ class Producto extends Model
                     ];
 
     public function categoria(){
-        return $this->hasOne(Categoria::class,'id');
+        return $this->hasOne(Categoria::class,'id','categorias_id');
     }
 
     public function subcategoria(){
-        return $this->hasMany(subcategoria::class,'id');
+        return $this->hasOne(subcategoria::class,
+            'id','subcategorias_id');
     }
+
 }

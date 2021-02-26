@@ -7,6 +7,7 @@ use App\Producto;
 use App\User;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\FavoritoController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
 
 //use App\Http\Controllers\Api\LoginController;
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 
     Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
+    Route::post('guardarPedido',[PedidoController::class, 'guardarPedido']);
     Route::resource('subCategoria',SubcategoriaController::class);
 
     //Route::resource('producto',ProductoController::class);
