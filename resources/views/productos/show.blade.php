@@ -7,7 +7,7 @@
             <div class="card p-3">
 
                 <div class="card__body">
-                    <div class="half container">
+                    <div class="half container-fluid">
                         <div class="row">
                           <div class="featured_text" style="padding-right: 700px;">
                             <h2>{{ $producto->nombre }}</h2><br>

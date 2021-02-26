@@ -18,7 +18,7 @@ class NovedadController extends Controller
         $nombre = $request->get('buscarpor');
         
         $producto = Producto::where('nombre','like',"%$nombre%")
-        ->where('novedad', true)
+        ->where('novedad', 'true')
         ->latest()
         ->get();
         

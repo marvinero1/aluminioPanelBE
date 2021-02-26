@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('apellido')->nullable();
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
+            $table->string('fecha_inicio')->nullable();
+            $table->string('fecha_fin')->nullable();
             $table->string('pais')->nullable();
             $table->string('ciudad')->nullable();
             $table->string('whatsapp')->nullable();
