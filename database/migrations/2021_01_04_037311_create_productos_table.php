@@ -23,6 +23,7 @@ class CreateProductosTable extends Migration
             $table->string('ancho')->nullable();
             $table->string('codigo')->nullable();
             $table->string('alto')->nullable();
+            $table->string('novedad')->nullable();
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('novedad')->nullable();

@@ -32,14 +32,27 @@ class SubscripcionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $mytime = Carbon::now();
-        echo $mytime->format('Y-m-d');
+    // public function create(Request $request){
+    // $name = $request->get('buscarpor');
+        
+    //     $user = User::where('name','like',"%$name%")
+    //     ->where('subscripcion', true);
+
+    //     $mytime = Carbon::now();
+    //     echo $mytime->format('Y-m-d');
+    //     $user->fecha_inicio;
+    //     $user->fecha_fin;
+
+    //     foreach ($fecha as $key => $$user->fecha_fin;) {
+    //         if ($fecha == $mytime) {
+    //             return true;
+    //         }
+    //     }
+        
 
 
-        //echo $mytime->toDateTimeString('Y-m-d');
-    }
+    //     //echo $mytime->toDateTimeString('Y-m-d');
+    // }
 
     /**
      * Store a newly created resource in storage.
