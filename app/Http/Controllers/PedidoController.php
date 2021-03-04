@@ -17,6 +17,11 @@ class PedidoController extends Controller
         //
     }
 
+     public function getPedido(){
+        return Pedido::all();
+     }
+   
+
     /**
      * Show the form for creating a new resource.
      *

@@ -17,7 +17,8 @@ class CategoriaController extends Controller
     {
         $nombre = $request->get('buscarpor');
         
-        $categoria = Categoria::where('nombre','like',"%$nombre%")->latest()->paginate(10);
+        $categoria = Categoria::where('nombre','like',"%$nombre%")
+        ->latest()->paginate(10);
         
         return view('categoria.index', ['categoria' => $categoria]);
     }

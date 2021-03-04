@@ -22,15 +22,16 @@ class CreateUsersTable extends Migration
             $table->string('pais')->nullable();
             $table->string('ciudad')->nullable();
             $table->string('whatsapp')->nullable();
-            // $table->string('nombre_empresa')->nullable();
             $table->string('nit')->nullable();
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();
             $table->string('email')->unique();
             $table->enum('subscripcion', ['true','false'])->nullable();
             $table->string('imagen')->nullable();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['user','admin','empresa'])->nullable();
+            $table->enum('role', ['user','admin','empresa','vendedor'])->nullable();
              $table->softDeletes();
             $table->timestamps();
         });

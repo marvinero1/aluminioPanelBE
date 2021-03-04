@@ -19,15 +19,26 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $name = $request->get('buscarpor');
         
-        $user = User::where('name','like',"%$name%")->where('role', 'user')
+        $user = User::where('name','like',"%$name%")->where('role', 'admin')
         ->latest()
         ->paginate(10);
         
         return view('user.index', compact('user'));
+    }
+
+    public function vendedores(Request $request)
+    {
+        $name = $request->get('buscarpor');
+
+        $user = User::where('name','like',"%$name%")
+        ->where('role', 'vendedor')
+        ->latest()
+        ->paginate(10);
+        
+        return view('user.vendedor', compact('user'));
     }
 
     public function index1(Request $request)
@@ -177,14 +188,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){   
-        $user = User::find($id);
-       
-        DB::beginTransaction();
 
+        $imagen = null;
+        $user = User::findOrFail($id);
+        $mensaje = 'Usuario Editado Exitosamente!!!';
+
+        DB::beginTransaction();
         $requestData = $request->all();
 
-        $mensaje = "Usuario Actualizado correctamente :3";
+        if($request->imagen == ''){
+            unset($requestData['imagen']);
+        }
 
+        $mensaje = "Usuario Actualizado correctamente :3";
         if($request->imagen){
             $data = $request->imagen;
             $file = file_get_contents($request->imagen);
@@ -208,15 +224,15 @@ class UserController extends Controller
                 $mensaje = "Error al guardar la imagen";
             }
         }
-       
-        if($user->update($request)){
+
+        if($user->update($requestData)){
             DB::commit();
         }else{
             DB::rollback();
         }
 
         Session::flash('message',$mensaje);
-             return redirect()->route('user.index');
+            return redirect()->route('user.index');
     }
 
     /**
@@ -228,6 +244,22 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function convertVendedor(Request $request, $id){ 
+        $user = User::find($id);
+
+        $request->validate([
+            'role' => 'required',
+            
+        ]);
+
+        $user->role = $request->get('role');
+        
+        $user->update(); 
+
+        Session::flash('message','Se dio permisos de Vendedor Exisitosamente!');
+        return redirect()->route('user.index');
     }
 
     public function subscripcion(Request $request, $id){ 
@@ -250,22 +282,19 @@ class UserController extends Controller
     } 
 
     public function updatepassword(Request $request, $id){   
-        $user = User::find($id);
-        
-        $request->validate([
-            
-            'email' => 'required',
-            'password' => 'required|string|min:6|confirmed',
-            
-        ]);
+        //$user = User::find($id);
 
         //dd($request);
-        User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required|min:6',
+            
         ]);
         
+        
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->password)]);
+        
         session::flash('message','Usuario Editado Exisitosamente!');
-        return redirect('/login')->with("message", "Usuario Editado exitosamente!"); 
+        return redirect()->route('user.index');
     }
 }

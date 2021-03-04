@@ -258,7 +258,7 @@
               </a>
             </li>
           @endif
-
+          
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-id-badge"></i>
@@ -275,8 +275,17 @@
                 </a>
               </li>
             </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/mis-productos" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Mis Productos</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          @if(Auth::user()->role == 'admin')
+          @if(Auth::user()->role == 'admin' || Auth::user()->role == 'vendedor')
             <li class="nav-item">
               <a href="/novedad" class="nav-link">
                 <i class="fa fa-gift nav-icon" aria-hidden="true"></i>
@@ -313,6 +322,12 @@
                   <a href="/importadoras" class="nav-link">
                     <i class="far fa fa-truck nav-icon"></i>
                     <p>Importadoras</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/vendedores" class="nav-link">
+                    <i class="far fa-user-circle nav-icon"></i>
+                    <p>Vendedores</p>
                   </a>
                 </li>
               </ul>

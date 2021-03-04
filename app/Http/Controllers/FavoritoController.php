@@ -135,4 +135,12 @@ class FavoritoController extends Controller
         Session::flash('message','Favorito eliminado exitosamente!');
         return redirect()->route('favoritos.index');  
     }
+
+     public function delete($id){
+        $favorito = Favorito::findOrFail($id);
+
+        $favorito->delete();
+
+        return response()->json($favorito, 200); 
+    }
 }

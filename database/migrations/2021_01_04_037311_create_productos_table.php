@@ -25,13 +25,18 @@ class CreateProductosTable extends Migration
             $table->string('alto')->nullable();
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();
+            $table->string('novedad')->nullable();
             $table->string('importadora')->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('categorias_id')->unsigned();
             $table->unsignedBigInteger('subcategorias_id')->unsigned();
             $table->unsignedBigInteger('favoritos_id')->nullable();
             $table->string('disponibilidad')->nullable();
-
             $table->string('tipo_medida')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+
             $table->foreign('categorias_id')->references('id')->on('categorias')
             ->onDelete('cascade');
 

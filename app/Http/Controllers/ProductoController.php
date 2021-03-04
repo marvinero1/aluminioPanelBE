@@ -6,6 +6,7 @@ use App\Producto;
 use App\Categoria;
 use App\subcategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use File;
 use DB;
 use Image;
@@ -31,13 +32,23 @@ class ProductoController extends Controller
         return Producto::all()->where('novedad', 'true');
     }
 
+    public function misProductos(Request $request){
+        $nombre = $request->get('buscarpor');
+
+        $producto = Producto::where('nombre','like',"%$nombre%")
+        ->where('productos.user_id', '=', Auth::user()->id)->get();
+         
+        //dd( $producto );
+        return view('mi-pedido.index', compact('producto'));
+    }
+
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');
         $categoria = Categoria::all();
         $subcategoria = subcategoria::all();
         
-        $producto = Producto::where('nombre','like',"%$nombre%")->latest()->get();
+        $producto = Producto::where('nombre','like',"%$nombre%")->latest()->paginate(10);
         
         return view('productos.index', compact('producto','categoria','subcategoria'));
     }

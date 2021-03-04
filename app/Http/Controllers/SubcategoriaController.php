@@ -18,7 +18,8 @@ class SubcategoriaController extends Controller
     {
         $nombre = $request->get('buscarpor');
         $categoria = Categoria::all();
-        $subcategoria = subcategoria::where('nombre','like',"%$nombre%")->latest()->get();
+        $subcategoria = subcategoria::where('nombre','like',"%$nombre%")
+        ->latest()->paginate(10);
         
         return view('sub-categoria.index', compact('categoria','subcategoria'));
     }

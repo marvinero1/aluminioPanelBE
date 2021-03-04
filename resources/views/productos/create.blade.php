@@ -163,12 +163,26 @@
                                         </div> 
                                         <div class="form-group">
                                             <label>Color</label>
-                                            <input type="text" class="form-control" placeholder="Color" name="color">
+                                            <select class="select2" placeholder="Color" name="color">
+                                                <option selected>Selecciona...</option>
+                                                <option value="Rojo">Rojo</option>
+                                                <option value="Verde">Verde</option>
+                                                <option value="Azul">Azul</option>
+                                                <option value="Amarillo">Amarillo</option>
+                                                <option value="Plomo">Plomo</option>
+                                                <option value="Rosado">Rosado</option>
+                                                <option value="Turquesa">Turquesa</option>
+                                                <option value="Cafe">Cafe</option>
+                                                <option value="Violeta">Violeta</option>
+                                                <option value="Naranja">Naranja</option>
+                                                <option value="Blanco">Blanco</option>
+                                                <option value="Negro">Negro</option>
+                                            </select>
                                         </div>   
                                     </div>
                                      <div class="col-md-3">
                                         <label>Tipo Medida</label>
-                                        <select class="custom-select" id="inputGroupSelect01"  name="tipo_medida" required>
+                                        <select class="select2" id="inputGroupSelect01"  name="tipo_medida" required>
                                             <option selected>Selecciona...</option>
                                             <option value="kilometro">Kilómetro</option>
                                             <option value="metro">Metro</option>
@@ -191,6 +205,8 @@
                                             <textarea class="form-control" name="descripcion" rows="8"></textarea>
                                         </div>
                                     </div>
+                                    <input hidden type="text" value="{{Auth::user()->id}}" name="user_id">
+                                    
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -205,6 +221,9 @@
 </div>
 
 <style>
+    .select2{
+        width: 100%;
+    }
     input[type="file"] {
         display: none;
     }
@@ -284,6 +303,7 @@
     ::ng-deep .mat-simple-snackbar-action {
         color: #02e896;
     }
+
 
 </style>
 @endsection

@@ -9,11 +9,11 @@
                     <div class="mb-4 text-center">
                         <div class="avatar-flip">
                             @if( Auth::user()->imagen == '')
-                            <img img src="/images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="250px"
-                                width="250px">
+                            <img img src="/images/default-person.jpg" alt="Usuario" style="height: 100%;
+                            width: 100%;">
                             @else
-                            <img src="/{{ Auth::user()->imagen }}" class="img-thumbnail" alt="Usuario" height="250px"
-                                width="250px" style="display: block;margin: 0 auto;">
+                            <img src="/{{ Auth::user()->imagen }}" alt="Usuario" style="display: block;margin: 0 auto;height: 100%;
+                            width: 100%;">
                             @endif
                         </div>
                         <h2 style="text-align: center;">{{ Auth::user()->name }}</h2>
@@ -83,7 +83,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    @if( Auth::user()->role == 'user')
+                                    @if( Auth::user()->role == 'user' || Auth::user()->role == 'admin')
                                     <div class="modal-body">
                                         <form action="{{route('user.update', Auth::user()->id)}}" method="POST"
                                             enctype="multipart/form-data">
@@ -145,17 +145,7 @@
                                                     <input type="number" class="form-control" placeholder="Whatsapp"
                                                         name="whatsapp" value="{{ Auth::user()->whatsapp }}">
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <p><strong>Imagen</strong></p>
-                                                    <label for="file-upload" class="custom-file-upload"
-                                                        style="text-align: center;">
-                                                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
-                                                        <strong>Imagen</strong>
-                                                    </label>
-                                                    <input id="file-upload" type="file" name="imagen">
-                                                </div>
                                             </div>
-
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"

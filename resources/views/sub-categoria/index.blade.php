@@ -64,6 +64,9 @@
                 </tbody>
             </table><br><br>
         </div>
+        <div style="text-align: center;">
+            {{ $subcategoria->links() }}
+        </div>
     </div>
 </div>
 @endsection

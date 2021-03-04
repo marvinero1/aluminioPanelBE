@@ -129,10 +129,9 @@
                 </tbody>
               </table>
             </div>
-
-
-            
-      
+            <div style="text-align: center;">
+                {{ $producto->links() }}
+            </div>
     </div>
 </div>
 @endsection

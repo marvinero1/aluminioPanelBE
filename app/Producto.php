@@ -32,6 +32,7 @@ class Producto extends Model
                         'importadora',
                         'categorias_id',
                         'disponibilidad',
+                        'user_id',
                         'subcategorias_id',
                         'favoritos_id',
                     ];

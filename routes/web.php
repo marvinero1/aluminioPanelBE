@@ -24,10 +24,13 @@ Route::resource('user', 'UserController');
 
 
 Route::middleware(['auth'])->group(function () {
+Route::put('user/{user}/convertVendedor','UserController@convertVendedor')->name('user.convertVendedor');
 Route::put('user/{user}/updatepassword','UserController@updatepassword')->name('user.updatepassword');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/importadoras', 'UserController@importadoras')->name('importadoras');
+Route::get('/vendedores', 'UserController@vendedores')->name('vendedores');
 Route::get('profile','UserController@index1')->name('profile'); 
+Route::get('mis-productos','ProductoController@misProductos')->name('mis-productos'); 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
 

@@ -21,7 +21,7 @@
                                     <div class="col-md-12 p-2" style="border: outset;">
                                         <div class="form-group">
                                             <label><strong>Categoria *</strong> </label>
-                                            <select name="categorias_id" class="form-control selectpicker"
+                                            <select name="categorias_id" class="select2" style="width: 100% !important"
                                                 data-live-search="true" required>
                                                 @foreach ($categoria as $categorias)
                                                 <option value="{{ $categorias->id }}">{{$categorias->nombre}}

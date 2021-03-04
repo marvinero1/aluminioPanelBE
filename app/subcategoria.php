@@ -24,6 +24,6 @@ class subcategoria extends Model
                         'categorias_id'];
 
     public function categoria(){
-        return $this->hasOne(Categoria::class,'id');
+        return $this->hasOne(Categoria::class,'id','categorias_id');
     }
 }

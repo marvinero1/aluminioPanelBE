@@ -26,16 +26,20 @@ class CreatePedidosTable extends Migration
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('importadora')->nullable();
-            $table->enum('disponibilidad', 
-            ['La-Paz', 'Cochabamba','Santa-Cruz',
-            'Oruro', 'Potosi','Chuquisaca',
-            'Tarija', 'Pando','Beni']);
+            $table->string('disponibilidad');
+            $table->string('tipo_medida')->nullable();
             $table->string('tipo_medida')->nullable();
             $table->string('categorias_id');
             $table->string('subcategorias_id');
             $table->string('cantidad_pedido');
+            $table->string('user_id')->unsigned();
+            $table->string('categorias_id')->unsigned();
+            $table->string('subcategorias_id')->unsigned();
+            $table->string('favoritos_id')->nullable();
+            
             $table->softDeletes();
             $table->timestamps();
+            
         });
     }
 
