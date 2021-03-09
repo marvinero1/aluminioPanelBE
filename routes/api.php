@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('importadoras',[UserController::class, 'getImportadora']);
     Route::get('getPedido',[PedidoController::class, 'getPedido']);
     Route::post('guardarPedido',[PedidoController::class, 'guardarPedido']);
+    Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
     Route::resource('subCategoria',SubcategoriaController::class);
 
     //Route::resource('producto',ProductoController::class);

@@ -29,6 +29,47 @@ class FavoritoController extends Controller
         return view('favoritos.index', ['favorito' => $favorito]);
     }
 
+    public function guardarFavorito(Request $request){
+        
+        $favorito = Favorito::create($request->all());
+        $exit = Favorito::where(function($q1)use($request){
+            if($request->productos_id){
+                $q1->where('user_id',$request->user_id)->where('productos_id',$request->productos_id);
+            }
+        })
+        // ->orWhere(function($q1)use($request){
+        //     if($request->bono_id){
+        //     $q1->where('user_id',$request->user_id)->where('bono_id',$request->bono_id);
+        //     }
+            
+        // })
+        // ->orWhere(function($q1)use($request){
+        //     if($request->titulo_id){
+        //     $q1->where('user_id',$request->user_id)->where('titulo_id',$request->titulo_id);
+        //     }
+        //})
+        ->get();
+        if(count($exit) == 0){
+            Favorito::create([
+                'nombre' => $request->nombre,
+                'estado' => $request->estado,
+                'imagen' => $request->imagen,
+                'precio' => $request->precio,
+                'color' => $request->color,
+                'codigo' => $request->codigo,
+                'importadora' => $request->importadora,
+                'productos_id' => $request->id,
+                'user_id' => $request->user_id,
+                
+            ]);  
+            Session::flash('message','Agregado a Favoritos!');
+        }else{
+            Session::flash('message','Ya esta agregado a Favoritos!');
+        }
+        //return redirect()->route('productos.index');
+        return response()->json($favorito, 201);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
