@@ -154,11 +154,13 @@
                                     <div class="col-md-3">
                                        <div class="form-group">
                                             <label>Alto</label>
+                                            <div>* Solo para vidrio</div>
                                             <input type="text" class="form-control" placeholder="Altura" name="alto">
                                         </div> 
                                          
                                         <div class="form-group">
                                             <label>Ancho</label>
+                                            <div>* Solo para vidrio</div>
                                             <input type="text" class="form-control" placeholder="Ancho" name="ancho">
                                         </div> 
                                         <div class="form-group">
