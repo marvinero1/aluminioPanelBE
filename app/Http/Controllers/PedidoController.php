@@ -18,7 +18,7 @@ class PedidoController extends Controller
     }
 
      public function getPedido(){
-        return Pedido::all();
+        return Pedido::orderBy('importadora', 'asc')->get();
      }
    
 
@@ -93,5 +93,13 @@ class PedidoController extends Controller
     public function destroy(Pedido $pedido)
     {
         //
+    }
+
+    public function delete($id){
+        $pedido = Pedido::findOrFail($id);
+
+        $pedido->delete();
+
+        return response()->json($pedido, 200); 
     }
 }

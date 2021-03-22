@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
+    Route::delete('pedidoDelete/{id}/', [PedidoController::class, 'delete']);
 
 
     Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
