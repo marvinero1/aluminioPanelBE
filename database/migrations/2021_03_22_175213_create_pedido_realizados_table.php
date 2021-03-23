@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePedidosTable extends Migration
+class CreatePedidoRealizadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pedido_realizados', function (Blueprint $table) {
+           $table->bigIncrements('id');
             $table->string('nombre');
             $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
             $table->string('imagen')->nullable();
@@ -36,7 +36,6 @@ class CreatePedidosTable extends Migration
             
             $table->softDeletes();
             $table->timestamps();
-            
         });
     }
 
@@ -47,6 +46,6 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('pedido_realizados');
     }
 }

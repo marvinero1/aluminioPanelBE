@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Pedido;
+use App\Carrito;
 use Illuminate\Http\Request;
 
-class PedidoController extends Controller
+class CarritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,15 @@ class PedidoController extends Controller
         //
     }
 
-     
-   
+    public function guardarPedido(Request $request)
+    {
+        $carrito = Carrito::create($request->all());
+        return response()->json($carrito, 201);
+    }
+
+    public function getPedido(){
+        return Carrito::orderBy('importadora', 'asc')->get();
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -41,14 +48,13 @@ class PedidoController extends Controller
         //
     }
 
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pedido  $pedido
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido)
+    public function show(Carrito $carrito)
     {
         //
     }
@@ -56,10 +62,10 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pedido  $pedido
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit(Carrito $carrito)
     {
         //
     }
@@ -68,10 +74,10 @@ class PedidoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pedido  $pedido
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request, Carrito $carrito)
     {
         //
     }
@@ -79,13 +85,19 @@ class PedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pedido  $pedido
+     * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy(Carrito $carrito)
     {
         //
     }
 
-    
+    public function delete($id){
+        $carrito = Carrito::findOrFail($id);
+
+        $carrito->delete();
+
+        return response()->json($carrito, 200); 
+    }
 }

@@ -41,6 +41,7 @@ Route::resource('productos', 'ProductoController');
 Route::resource('novedad', 'NovedadController');
 Route::resource('suscripcion', 'SubscripcionController');
 Route::resource('pedido', 'PedidoController');
+Route::resource('pedidoRealizado', 'PedidoRealizadoController');
 });
 
 Route::get('images/{filename}', function ($filename)

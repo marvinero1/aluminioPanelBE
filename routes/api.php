@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PedidoRealizadoController;
 
 //use App\Http\Controllers\Api\LoginController;
 /*
@@ -39,13 +41,17 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
-    Route::delete('pedidoDelete/{id}/', [PedidoController::class, 'delete']);
+    Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
 
 
     Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
-    Route::get('getPedido',[PedidoController::class, 'getPedido']);
+    Route::get('getPedido',[CarritoController::class, 'getPedido']);
     Route::post('guardarPedido',[PedidoController::class, 'guardarPedido']);
+    Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
+    Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
+
+    
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
     Route::resource('subCategoria',SubcategoriaController::class);
 

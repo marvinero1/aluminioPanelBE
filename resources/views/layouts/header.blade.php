@@ -250,9 +250,9 @@
           </li>
           @if(Auth::user()->role == 'empresa')
             <li class="nav-item">
-              <a href="/pedido" class="nav-link">
-                <i class="nav-icon far fa-plus-square" aria-hidden="true"></i>
-                <p>Pedido
+              <a href="/pedidoRealizado" class="nav-link">
+                <i class="nav-icon far fa fa-first-order" aria-hidden="true"></i>
+                <p>Cotizaciones
                   {{-- <span class="badge badge-info right">2</span> --}}
                 </p>
               </a>
