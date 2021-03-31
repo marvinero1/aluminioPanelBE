@@ -18,10 +18,10 @@ class PedidoRealizadoController extends Controller
         $nombre = $request->get('buscarpor');
 
         $pedidoRealizado = PedidoRealizado::where('nombre','like',"%$nombre%")
-        ->where('pedido_realizados.importadora', '=', Auth::user()->name)->get();
+        ->where('pedido_realizados.importadora', '=', Auth::user()->name)->paginate(10);
          
         //dd( $producto );
-        return view('pedidosRealizados.index', compact('pedidoRealizado'));
+        return view('pedidoRealizado.index', compact('pedidoRealizado'));
     }
 
     /**
@@ -57,9 +57,10 @@ class PedidoRealizadoController extends Controller
      * @param  \App\PedidoRealizado  $pedidoRealizado
      * @return \Illuminate\Http\Response
      */
-    public function show(PedidoRealizado $pedidoRealizado)
+    public function show($id)
     {
-        //
+        $pedidoRealizado = PedidoRealizado::findOrFail($id);
+        return view('pedidoRealizado.reporte', compact('pedidoRealizado')); 
     }
 
     /**
