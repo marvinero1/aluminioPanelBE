@@ -25,6 +25,7 @@ class Carrito extends Model
                         'precio',
                         'alto',
                         'color',
+                        'confirmacion',
                         'ancho',
                         'tipo_medida',
                         'puntuacion',

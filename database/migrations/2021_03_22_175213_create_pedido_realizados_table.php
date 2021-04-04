@@ -17,6 +17,7 @@ class CreatePedidoRealizadosTable extends Migration
            $table->bigIncrements('id');
             $table->string('nombre');
             $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
+            $table->enum('confirmacion', ['true','false']);
             $table->string('imagen')->nullable();
             $table->double('precio');
             $table->string('color')->nullable();

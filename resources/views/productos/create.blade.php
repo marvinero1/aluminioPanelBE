@@ -208,6 +208,8 @@
                                         </div>
                                     </div>
                                     <input hidden type="text" value="{{Auth::user()->id}}" name="user_id">
+
+                                     <input hidden type="text" value="false" name="confirmacion">
                                     
                                 </div>
                             </div>

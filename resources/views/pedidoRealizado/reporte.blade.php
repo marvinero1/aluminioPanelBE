@@ -20,10 +20,6 @@
                 <table id="meta1">
                     <tr>
                         <td style="text-align: center;" class="meta-head">Cotizacion para Usuario</td>
-                        <td>
-                            <input style="text-align: center;" disabled="true" type="text" name="asignacion_id" class="input" 
-                            value="{{ pedidoRealizado }}">
-                        </td>
                     </tr>
                     {{-- <tr>
                         <td style="text-align: center;" class="meta-head">Fecha Inicio Clases</td>

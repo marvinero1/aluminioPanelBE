@@ -2,30 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Carrito;
+use App\calculadora;
 use Illuminate\Http\Request;
 
-class CarritoController extends Controller
+class CalculadoraController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function calculos()
+    {
+        return calculadora::orderBy('nombre', 'asc')->get();
+    }
+
     public function index()
     {
         //
     }
-
-    public function guardarPedido(Request $request)
-    {
-        $carrito = Carrito::create($request->all());
-        return response()->json($carrito, 201);
-    }
-
-    public function getPedido(){
-        return Carrito::orderBy('importadora', 'asc')->where('confirmacion','false')->get();
-     }
 
     /**
      * Show the form for creating a new resource.
@@ -47,14 +42,17 @@ class CarritoController extends Controller
     {
         //
     }
+    
+
+    
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Carrito  $carrito
+     * @param  \App\calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrito $carrito)
+    public function show(calculadora $calculadora)
     {
         //
     }
@@ -62,10 +60,10 @@ class CarritoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Carrito  $carrito
+     * @param  \App\calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carrito $carrito)
+    public function edit(calculadora $calculadora)
     {
         //
     }
@@ -74,10 +72,10 @@ class CarritoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Carrito  $carrito
+     * @param  \App\calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrito $carrito)
+    public function update(Request $request, calculadora $calculadora)
     {
         //
     }
@@ -85,25 +83,18 @@ class CarritoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Carrito  $carrito
+     * @param  \App\calculadora  $calculadora
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carrito $carrito)
+    public function destroy(calculadora $calculadora)
     {
         //
     }
 
-    public function delete($id){
-        $carrito = Carrito::findOrFail($id);
-
-        $carrito->delete();
-
-        return response()->json($carrito, 200); 
-    }
-
-    public function carritoDelete($id){
-        $carrito = Carrito::findOrFail($id);
-        $carrito->delete();
-        return response()->json($carrito, 200); 
+    public function guardarCalculadora(Request $request)
+    {
+        
+        $calculadora = calculadora::create($request->all());
+        return response()->json($calculadora, 201);
     }
 }

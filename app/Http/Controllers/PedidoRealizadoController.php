@@ -13,6 +13,13 @@ class PedidoRealizadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function getPedidoRealizado(Request $request)
+    {
+        return PedidoRealizado::latest()->get();
+      
+    }
+
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');

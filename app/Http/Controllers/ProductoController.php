@@ -21,7 +21,7 @@ class ProductoController extends Controller
      */
 
     public function getProducto(){
-        return Producto::all();
+        return Producto::latest()->get();
     }
 
     public function showProducto($id){

@@ -29,6 +29,7 @@ class Producto extends Model
                         'tipo_medida',
                         'puntuacion',
                         'descripcion',
+                        'confirmacion',
                         'importadora',
                         'categorias_id',
                         'disponibilidad',

@@ -30,6 +30,7 @@ class Pedido extends Model
                         'puntuacion',
                         'descripcion',
                         'importadora',
+                        'confirmacion',
                         'categorias_id',
                         'disponibilidad',
                         'subcategorias_id',
