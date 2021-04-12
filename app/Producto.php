@@ -20,7 +20,6 @@ class Producto extends Model
     
     protected $fillable = ['nombre',
                         'codigo',
-                        'estado',
                         'imagen',
                         'precio',
                         'alto',
@@ -32,7 +31,6 @@ class Producto extends Model
                         'confirmacion',
                         'importadora',
                         'categorias_id',
-                        'disponibilidad',
                         'user_id',
                         'subcategorias_id',
                         'favoritos_id',

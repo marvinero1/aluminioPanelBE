@@ -24,6 +24,21 @@ class ProductoController extends Controller
         return Producto::latest()->get();
     }
 
+    // public function getProductoImportadora(){
+    //     $nombre = $request->get('buscarpor');
+
+    //     $producto = Producto::where('nombre','like',"%$nombre%")
+    //     ->where('productos.importadora', '=', '')->get();
+    //     $producto = Producto::where('nombre','like',"%$nombre%")
+    //     ->join('contacts', 'productos.importadora', '=', 'contacts.user_id')
+    //     ->join('orders', 'productos.id', '=', 'orders.user_id')
+    //     ->select('productos.*', 'contacts.phone', 'orders.price')
+    //     ->get();
+         
+    //     dd( $producto );
+    //     return view('mi-pedido.index', compact('producto'));
+    // }
+
     public function showProducto($id){
         return Producto::findOrFail($id);
     }
@@ -95,8 +110,11 @@ class ProductoController extends Controller
         DB::beginTransaction();
         
         $requestData = $request->all();
+        $color = $requestData['color'];
         $disponibilidad = $requestData['disponibilidad'];
         $requestData['disponibilidad'] = implode(', ', $disponibilidad);
+        $requestData['color'] = implode(', ', $color);
+
      
         //dd($disponibilidad);
         
@@ -178,9 +196,14 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
-        //
+        $producto = Producto::find($id);
+
+        $producto->delete();
+
+        Session::flash('message','Producto eliminado exitosamente!');
+        return redirect()->route('productos.index'); 
     }
 
     public function addNovedad(Request $request, $id){ 

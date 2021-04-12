@@ -32,7 +32,6 @@ class Carrito extends Model
                         'descripcion',
                         'importadora',
                         'categorias_id',
-                        'disponibilidad',
                         'subcategorias_id',
                         'favoritos_id',
                         'cantidad_pedido',

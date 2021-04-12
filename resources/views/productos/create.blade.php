@@ -85,20 +85,38 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Precio</label>
-                                            <input type="number" class="form-control" placeholder="Precio" name="precio">
+                                            <input type="number" step="0.01" class="form-control" placeholder="Precio" name="precio">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                        <div class="form-group">
-                                            <label>Importadora</label>
-                                            <input type="text" class="form-control" name="importadora" readonly
-                                            value="{{Auth::user()->name}}">
+                                                                   
+                                            <label>Color</label>
+                                            <div class="select2-dark">
+                                                 <select class="select2" multiple="multiple" 
+                                                    data-dropdown-css-class="select2-dark"
+                                                    data-placeholder="Seleccione Colores" style="width: 100%;"
+                                                     name="color[]">                                                
+                                                    <option value="Rojo">Rojo</option>
+                                                    <option value="Verde">Verde</option>
+                                                    <option value="Azul">Azul</option>
+                                                    <option value="Amarillo">Amarillo</option>
+                                                    <option value="Plomo">Plomo</option>
+                                                    <option value="Rosado">Rosado</option>
+                                                    <option value="Turquesa">Turquesa</option>
+                                                    <option value="Cafe">Cafe</option>
+                                                    <option value="Violeta">Violeta</option>
+                                                    <option value="Naranja">Naranja</option>
+                                                    <option value="Blanco">Blanco</option>
+                                                    <option value="Negro">Negro</option>
+                                                </select>
+                                            </div> 
                                         </div> 
                                     </div>
                                     
                                 </div>
                                 <div class="row">                          
-                                    <div class="col-md-4 text-center">
+                                    <!-- <div class="col-md-4 text-center">
                                         <label class="text-center">Estado</label><br>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
@@ -115,9 +133,11 @@
                                                 value="Pendiente" name="estado">
                                             <label class="form-check-label" for="inlineCheckbox3">Pendiente</label>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="col-md-4">
+                                   
+
+                                    <div class="col-md-6">
                                         <div class="col-sm text-center">
                                             <label>Calificacion del Producto</label>
                                             <p class="clasificacion">
@@ -139,7 +159,7 @@
                                             </p>
                                         </div>
                                     </div>  
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <p><strong>Imagen</strong></p>
                                         <label for="file-upload" class="custom-file-upload" style="text-align: center;">
                                         <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
@@ -155,32 +175,15 @@
                                        <div class="form-group">
                                             <label>Alto</label>
                                             <div>* Solo para vidrio</div>
-                                            <input type="text" class="form-control" placeholder="Altura" name="alto">
+                                            <input type="number" step="0.01" class="form-control" placeholder="Altura" name="alto">
                                         </div> 
                                          
                                         <div class="form-group">
                                             <label>Ancho</label>
                                             <div>* Solo para vidrio</div>
-                                            <input type="text" class="form-control" placeholder="Ancho" name="ancho">
+                                            <input type="number" step="0.01" class="form-control" placeholder="Ancho" name="ancho">
                                         </div> 
-                                        <div class="form-group">
-                                            <label>Color</label>
-                                            <select class="select2" placeholder="Color" name="color">
-                                                <option selected>Selecciona...</option>
-                                                <option value="Rojo">Rojo</option>
-                                                <option value="Verde">Verde</option>
-                                                <option value="Azul">Azul</option>
-                                                <option value="Amarillo">Amarillo</option>
-                                                <option value="Plomo">Plomo</option>
-                                                <option value="Rosado">Rosado</option>
-                                                <option value="Turquesa">Turquesa</option>
-                                                <option value="Cafe">Cafe</option>
-                                                <option value="Violeta">Violeta</option>
-                                                <option value="Naranja">Naranja</option>
-                                                <option value="Blanco">Blanco</option>
-                                                <option value="Negro">Negro</option>
-                                            </select>
-                                        </div>   
+                                         
                                     </div>
                                      <div class="col-md-3">
                                         <label>Tipo Medida</label>
@@ -210,6 +213,9 @@
                                     <input hidden type="text" value="{{Auth::user()->id}}" name="user_id">
 
                                      <input hidden type="text" value="false" name="confirmacion">
+
+                                      <input type="text" class="form-control" name="importadora" readonly hidden="true" 
+                                            value="{{Auth::user()->name}}">
                                     
                                 </div>
                             </div>

@@ -29,9 +29,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
+Auth::routes();
 
 Route::group(['middleware' => ['auth:api']], function(){
     Route::post('login', [App\Http\Controllers\Api\Auth\LoginController::class,'login']); 
+
 
 });
     
@@ -52,8 +54,11 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getPedido',[CarritoController::class, 'getPedido']);
     Route::get('getPedidoRealizado',[PedidoRealizadoController::class, 'getPedidoRealizado']);
 
-    Route::post('guardarPedido',[PedidoController::class, 'guardarPedido']);
+
     Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
+
+
+
     Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
     

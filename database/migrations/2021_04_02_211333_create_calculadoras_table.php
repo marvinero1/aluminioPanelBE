@@ -15,10 +15,11 @@ class CreateCalculadorasTable extends Migration
     {
         Schema::create('calculadoras', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->string('nombre');
-            $table->int('numero1')->nullable();;
-            $table->int('numero2')->nullable();;
-            $table->int('resultado');
+            $table->double('numero1', 8,2)->nullable();;
+            $table->double('numero2', 8,2)->nullable();;
+            $table->double('resultado');
 
             $table->softDeletes();
             $table->timestamps();

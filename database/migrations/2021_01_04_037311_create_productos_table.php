@@ -16,24 +16,25 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
+            $table->enum('confirmacion', ['true', 'false']);
             $table->string('imagen')->nullable();
-            $table->double('precio');
+            $table->double('precio', 8, 2);
             $table->string('color')->nullable();
-            $table->string('ancho')->nullable();
+            $table->double('ancho', 8, 2)->nullable();
             $table->string('codigo')->nullable();
-            $table->string('alto')->nullable();
+            $table->double('alto', 8, 2)->nullable();
             $table->string('novedad')->nullable();
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('importadora')->nullable();
+            $table->string('disponibilidad')->nullable();
+            $table->string('tipo_medida')->nullable();
+
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('categorias_id')->unsigned();
             $table->unsignedBigInteger('subcategorias_id')->unsigned();
             $table->unsignedBigInteger('favoritos_id')->nullable();
-            $table->string('disponibilidad')->nullable();
-            $table->string('tipo_medida')->nullable();
-
+            
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade');
 

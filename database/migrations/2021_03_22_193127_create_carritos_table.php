@@ -16,17 +16,17 @@ class CreateCarritosTable extends Migration
         Schema::create('carritos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
+            // $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
+            $table->enum('confirmacion', ['true', 'false']);
             $table->string('imagen')->nullable();
-            $table->double('precio');
+            $table->double('precio', 8, 2);
             $table->string('color')->nullable();
-            $table->string('ancho')->nullable();
+            $table->double('ancho', 8, 2);
+            $table->double('alto', 8, 2);
             $table->string('codigo')->nullable();
-            $table->string('alto')->nullable();
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('importadora')->nullable();
-            $table->string('disponibilidad');
             $table->string('tipo_medida')->nullable();
             $table->string('cantidad_pedido');
             $table->string('user_id')->nullable();

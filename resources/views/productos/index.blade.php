@@ -50,7 +50,7 @@
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">Imagen</th>
                         <th style="text-align:center;">Nombre</th>
-                        <th style="text-align:center;">Estado</th>
+                      
                         <th style="text-align:center;">Precio</th>
                         {{-- <th style="text-align:center;">Medida</th>
                         <th style="text-align:center;">Tipo de Medida</th> --}}
@@ -73,7 +73,7 @@
                             @endif
                         </td>
                         <td style="text-align:center;">{{ $productos->nombre }}</td>
-                        <td style="text-align:center;">{{ $productos->estado }}</td>
+                        
                         <td style="text-align:center;">{{ $productos->precio }}</td>
                         {{-- <td style="text-align:center;">{{ $productos->medida }}</td>
                         <td style="text-align:center;">{{ $productos->tipo_medida }}</td> --}}
@@ -81,7 +81,7 @@
                         <td style="text-align:center;">{{ $productos->importadora }}</td>
                         <td style="text-align:center;">{{ $productos->descripcion }}</td>
                         {{-- <td style="text-align:center;">{{ $productos->categorias->nombre }}</td> --}}
-                        <td>
+                        <td style="text-align: center;">
                             <div class="card-body">
                                 <a class="btn btn-app" data-toggle="modal"
                                     data-target="#modalFavoritos{{$productos->id}}" class="btn btn-danger btn-sm">
@@ -92,15 +92,16 @@
                                     <i class="fas fa-eye"></i> Ver
                                 </a>
                                 @if($productos->importadora == Auth::user()->name)
-                                <form action="{{ route('productos.destroy',$productos->id ) }}" method="POST"
-                                    accept-charset="UTF-8" style="display:inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a class="btn btn-app" type="submit" class="btn btn-danger btn-sm"
-                                        title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)">
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </a>
-                                </form>
+
+                                    <form action="{{ route('productos.destroy',$productos->id ) }}" method="POST"
+                                        accept-charset="UTF-8" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-app" title="Delete Image"
+                                        class="btn btn-danger btn-sm"
+                                        title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
+                                                aria-hidden="true"></i> Eliminar</button>
+                                    </form>
                                 @endif
                                 @if(Auth::user()->role == 'admin')
                                 <a class="btn btn-app" data-toggle="modal"

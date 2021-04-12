@@ -16,7 +16,6 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->enum('estado', ['disponible', 'no-disponible','Pendiente']);
             $table->string('imagen')->nullable();
             $table->double('precio');
             $table->string('color')->nullable();
