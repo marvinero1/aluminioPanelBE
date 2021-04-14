@@ -24,6 +24,17 @@ class ProductoController extends Controller
         return Producto::latest()->get();
     }
 
+    public function getProductoImportadora(Request $request)
+    {
+        $nombre = $request->get('buscarpor');
+
+        $producto = Producto::where('nombre','like',"%$nombre%")
+        ->where('producto.importadora', '=', Auth::user()->name)->paginate(10);
+         
+        //dd( $producto );
+        return view('pedidoRealizado.index', compact('pedidoRealizado'));
+    }
+
     // public function getProductoImportadora(){
     //     $nombre = $request->get('buscarpor');
 
@@ -48,6 +59,11 @@ class ProductoController extends Controller
     }
 
     public function misProductos(Request $request){
+        
+        // $user = Auth::user();
+       
+        // dd($user);
+
         $nombre = $request->get('buscarpor');
 
         $producto = Producto::where('nombre','like',"%$nombre%")
@@ -55,6 +71,9 @@ class ProductoController extends Controller
          
         //dd( $producto );
         return view('mi-pedido.index', compact('producto'));
+        
+
+
     }
 
     public function index(Request $request)

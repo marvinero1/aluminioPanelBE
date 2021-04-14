@@ -35,9 +35,9 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::routes();
 
-        Passport::personalAccessClientId(3);
+        Passport::personalAccessClientId(4);
 
-        Passport::personalAccessClientSecret('XJrxBjPth3VuGPMS1WwvzaBDuxT2Fcjof0N6ZK65');
+        Passport::personalAccessClientSecret('hEkfn9h6VOrdUJM25tvtVCRjnJTHDedlXyFhx22J');
 
         Passport::tokensExpireIn(now()->addDays(15));
 

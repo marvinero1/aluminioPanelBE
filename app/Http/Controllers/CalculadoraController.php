@@ -14,7 +14,7 @@ class CalculadoraController extends Controller
      */
     public function calculos()
     {
-        return calculadora::orderBy('nombre', 'asc')->get();
+        return calculadora::get();
     }
 
     public function index()
@@ -88,7 +88,16 @@ class CalculadoraController extends Controller
      */
     public function destroy(calculadora $calculadora)
     {
-        //
+         
+    }
+
+
+    public function calculadoraDelete($id){
+        $calculadora = calculadora::findOrFail($id);
+
+        $calculadora->delete();
+
+        return response()->json($calculadora, 200); 
     }
 
     public function guardarCalculadora(Request $request)

@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoRealizadoController;
 use App\Http\Controllers\CalculadoraController;
+//use App\Http\Controllers\Api\Auth\LoginController;
 
 //use App\Http\Controllers\Api\LoginController;
 /*
@@ -24,57 +25,50 @@ use App\Http\Controllers\CalculadoraController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
+ 
 });
+
 Auth::routes();
 
+Route::post('login', 'UserController@login'); //ESTE FUNCIONA
+Route::get("logout", 'UserController@logout');
+
+
 Route::group(['middleware' => ['auth:api']], function(){
-    Route::post('login', [App\Http\Controllers\Api\Auth\LoginController::class,'login']); 
+  
+//  Route::post('login', [App\Http\Controllers\Api\Auth\LoginController::class,'login']);
+
 
 
 });
-    
 
-// Route::group(['middleware' => ['auth:api','scope:root,admin,cliente']], function(){
-   
+    Route::get('/userdata', 'UserController@userdata');
+
+    Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('calculos',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
-    Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
-    Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
-    Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
-    Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
-
-
     Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
     Route::get('getPedido',[CarritoController::class, 'getPedido']);
     Route::get('getPedidoRealizado',[PedidoRealizadoController::class, 'getPedidoRealizado']);
-
-
+    Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
+    Route::get('misProductos/',[ProductoController::class, 'misProductos']);
+   
+    
+    Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
+    Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
+    Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
+    Route::delete('calculadoraDelete/{id}/', [CalculadoraController::class, 'calculadoraDelete']);
     Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
-
-
-
     Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
-    
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
-    Route::resource('subCategoria',SubcategoriaController::class);
+  
 
-    //Route::resource('producto',ProductoController::class);
-
-    //Route::resource('favoritos',FavoritoController::class);
-
-    
-    //Route::resource("user", UserController::class);
-    //Route::get('user/{id}',[UserController::class, 'show']);
-
-    //Route::get("logout", LoginController::class,'logout');
-//});
 
 Route::get('images/{filename}', function ($filename)
 {

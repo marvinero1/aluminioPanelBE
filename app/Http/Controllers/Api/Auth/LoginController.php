@@ -30,21 +30,31 @@ class LoginController extends Controller
             // 'username' => 'required|exists:users,username',
     		'password' => 'required'
     	]);
-        $user = User::where('email', $request->email)->whereIn('rol', ['user','empresa'])->first();;
+
+        $user = User::where('email', $request->email)->first();
         //dd($user);
         if($user){
-            $token = $user->createToken('laravel')->accessToken;
+            $token = $user->createToken('personal')->accessToken;
             $request->email = $user->email;
             $request->remember_token = $token;
+
+            return response()->json([
+                'res' => true,
+                'token' => $token,
+                'message' => "Bienvenidos al sistema", 200
+            ]);
             
             // if ($user->email_verified_at) {
-                return $this->issueToken($request, 'password');
+            //return $this->issueToken($request, 'password');
 
             // }else{
             //     return response(['code' => 403, 'message' => 'Su dirección de correo electrónico no está verificada.'], 403);
             // }    
         }else{
-            return response(['code' => 403, 'message' => 'Error credenciales no válidas.'], 403);
+            return response(['code' => 403, 
+                             
+                             'message' => 
+                             'Error credenciales no válidas.'], 403);
         }
         
     }
@@ -55,7 +65,6 @@ class LoginController extends Controller
     	]);
 
     	return $this->issueToken($request, 'refresh_token');
-
     }
 
 

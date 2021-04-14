@@ -21,7 +21,9 @@
                         @if (Session::has('message'))
                             <div class="alert alert-info">{{ Session::get('message') }}</div>
                         @endif
-                        <img src="images/logoAl.png" alt="Logo" class="img-fluid">
+                        <img src="images/fondos/logo.png" alt="Logo" style="    width: 225px;
+                                margin: auto;
+                                display: block;"><br>
 
                         <p class="login-box-msg">Complete sus datos para Iniciar Sesion</p>
                 

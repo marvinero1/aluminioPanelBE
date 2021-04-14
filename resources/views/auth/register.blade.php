@@ -236,7 +236,10 @@
             </div>
             <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
                 <figure class="circle-bg">
-                    <img src="images/Untitled.png" alt="Logo" class="img-fluid">
+                    <img src="images/fondos/logo.png" alt="Logo" style="    width: 325px;
+                        margin: auto;
+                        display: block;
+                        padding-block-start: 154px;">
                 </figure>
             </div>
         </div>

@@ -137,8 +137,8 @@
                     <td>
                         <div class="modal fade" id="modalVendedor{{$users->id}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" style="max-width: 410px !important;" role="document">
-                                <div class="modal-content">
+                            <div class="modal-dialog" style="max-width: 450px !important;" role="document">
+                                <div class="modal-content" style="height: 166px;">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Administración Subscripción</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -162,7 +162,7 @@
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                             @endif --}}
 
-                                            <div class="row" style="display: block;">                                              
+                                            <button type="submit" class="btn btn-primary" style="float: right;">Guardar</button>  <br>                                     
                                         </form>
                                     </div>
                                 </div>

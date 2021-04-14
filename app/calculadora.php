@@ -18,7 +18,7 @@ class calculadora extends Model
         'updated'
     ];
 
-    protected $fillable = ['nombre',
+    protected $fillable = ['user_id',
     					   'numero1',
     					   'numero2',
                         'resultado',

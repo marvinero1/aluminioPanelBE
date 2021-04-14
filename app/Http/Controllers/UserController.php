@@ -10,7 +10,7 @@ use Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index(Request $request){
         $name = $request->get('buscarpor');
         
-        $user = User::where('name','like',"%$name%")->where('role', 'admin')
+        $user = User::where('name','like',"%$name%")->where('role', 'user')
         ->latest()
         ->paginate(10);
         
@@ -74,6 +74,39 @@ class UserController extends Controller
     {
         //
     }
+
+    public function login(Request $request){
+        
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+            // 'username' => 'required|exists:users,username',
+            'password' => 'required'
+        ]);
+
+
+        $user = User::whereEmail($request->email)->first();
+     
+        if (!is_null($user)) {
+            if(Hash::check($request->password, $user->password)){
+              $token = $user->createToken('personal')->accessToken;
+           
+            return response()->json(['res' => true, 'token' => $token, 'message' => "Bienvenido al sistema"]);  
+            }
+
+        } else
+            return response()->json(['res' => false, 'message' => "Cuenta o password incorrectos"]);
+    }
+
+    public function logout(){
+        $user = auth()->user();
+        $user->tokens->each(function ($token, $key){
+            $token->delete();
+        });
+        return response()->json(['res' => true, 'message' => "Adios"]);
+    }
+    // public function userdata(Request $request){
+    //      return response()->json($request->user());
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -247,6 +280,7 @@ class UserController extends Controller
     }
 
     public function convertVendedor(Request $request, $id){ 
+
         $user = User::find($id);
 
         $request->validate([
@@ -296,5 +330,26 @@ class UserController extends Controller
         
         session::flash('message','Usuario Editado Exisitosamente!');
         return redirect()->route('user.index');
+    }
+
+    public function userdata(){
+
+        $data = Auth::user();
+        dd($data);
+        // $data->usertable->ciudad;
+        // if ($data->usertable->imagen) {
+        //     $data->usertable->imagen = asset($data->usertable->imagen);
+        // }
+
+        // if ($data->rol == 'cliente') {
+        //     $data->usertable['categoria_id'] = 0;
+        //     if(count($data->usertable->categoria)>0){
+        //         $data->usertable['categoria_id'] = $data->usertable->categoria[0]['id'];
+        //     }
+        // }
+        
+        // unset($data->usertable->categoria);
+        return response()->success(compact('data'));  
+
     }
 }
