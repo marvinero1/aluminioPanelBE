@@ -48,7 +48,6 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('/userdata', 'UserController@userdata');
 
     Route::get('productos',[ProductoController::class, 'getProducto']);
-    Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('calculos',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);

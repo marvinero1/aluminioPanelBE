@@ -26,6 +26,7 @@ class Favorito extends Model
                         'color',
                         'codigo',
                         'importadora',
+                        'articulos_id',
                         ];
 
 

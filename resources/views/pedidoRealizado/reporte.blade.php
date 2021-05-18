@@ -10,8 +10,11 @@
                 <div id="address">
                     <h5><strong>Dirección</strong>{{Auth::user()->direccion}}</h5>
                     <h5><strong>Teléfono:</strong> {{ Auth::user()->telefono }}</h5>
-                    <h5><strong>Celular:</strong> {{ Auth::user()->whatsapp }}</h5>
+                    <h5><strong>Whatsapp:</strong> {{ Auth::user()->whatsapp }}</h5>
                     <h5><strong>Email:</strong> {{ Auth::user()->email }}</h5>
+                    <h5><strong>Pais:</strong> {{ Auth::user()->pais }} </h5>
+                    <h5><strong>Ciudad:</strong>{{ Auth::user()->ciudad }}</h5>
+
                 </div>
             </div>
         </div>
@@ -27,14 +30,14 @@
                     </tr> --}}
                 </table>
                 <table id="meta">
-                    <tr>
+                    <!-- <tr>
                         <td class="meta-head">Comprobante*</td>
                         <td><input type="text" value="" class="input" disabled="true"></td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td class="meta-head">Fecha *</td>
+                        <td class="meta-head">Fecha</td>
                         <td>
-                            <input type="date" disabled="true" value="" max="3000-12-31" min="1000-01-01" class="form-control"
+                            <input type="date" max="3000-12-31" min="1000-01-01" class="form-control"
                                 required>
                         </td>
                     </tr>
@@ -49,48 +52,48 @@
             </div>
             <table id="items">
                 <tr>
-                    <th style="text-align: center;">Placa Vehiculo</th>
-                    <th style="text-align: center;">Detalle *</th>
-                    <th style="text-align: center;">Alquiler por clase</th>
-                    <th style="text-align: center;">Numero de clases</th>
-                    <th style="text-align: center;">Sub-Total</th>
+                    <th style="text-align: center;">Nombre Producto</th>
+                    <th style="text-align: center;">Descripcion</th>
+                    <th style="text-align: center;">Codigo</th>
+                    <th style="text-align: center;">Cantidad de pedido</th>
+                    <th style="text-align: center;">Total</th>
                 </tr>
                 <tr class="item-row">
                     <td class="item-name">
                         <div class="delete-wpr">
-                            <input class="input" type="text" value=""  
+                            <input class="input" type="text" value="{{$pedidoRealizado->nombre}}"  
                                 style="text-align: center;" disabled="true">
                         </div>
                     </td>
-                    <td class="description"><input name="detalle" value="" disabled="true"></td>
+                    <td class="description"><textarea ></textarea> </td>
 
-                    <td><input class="input" class="cost" value="" 
-                            style="text-align: center; width: 100%;" disabled="true"></td>
-                    <td><input class="input" class="cost" value="" 
-                             style="text-align: center;width: 100%;" disabled="true"></td>
+                    <td><input class="input" class="cost" 
+                            style="text-align: center; width: 100%;" disabled="true" value="{{$pedidoRealizado->codigo}}"></td>
+                    <td><input class="input" class="cost" 
+                             style="text-align: center;width: 100%;" disabled="true" value="{{$pedidoRealizado->cantidad_pedido}}"></td>
                     <td><input class="input" style="text-align: center;" type="text" name="total"
-                            value=" Bs." disabled="true"></td>
+                            value="{{$pedidoRealizado->precio}} Bs." disabled="true" ></td>
                 </tr>
-                <tr>
+              <!--   <tr>
                     <td colspan="2" class="blank"> </td>
                     <td colspan="2" class="total-line balance">Total:</td>
                     <td class="total-value">
                         <div id="total">
                         </div>
                     </td>
-                </tr>
+                </tr> -->
             </table>
-            <h6 style="text-align: left;">*Campos Obligatorios</h6>
+            <!-- <h6 style="text-align: left;">*Campos Obligatorios</h6> -->
            
-        <div style="clear:both">
+        <!-- <div style="clear:both">
             <br>
             <br>
             <p style="text-align: center;">-----------------------</p>
             <h4 style="text-align: center;">Recibido Conforme</h4>
-        </div>
+        </div> -->
         <div id="terms">
             <h5>SUGERENCIA</h5>
-            <textarea>No valido para credito Fiscal.</textarea>
+            <div>No valido para credito Fiscal.</div>
         </div>
     </div>
 </div>

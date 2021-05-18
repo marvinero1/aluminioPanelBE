@@ -59,8 +59,8 @@ class FavoritoController extends Controller
                 'codigo' => $request->codigo,
                 'importadora' => $request->importadora,
                 'productos_id' => $request->id,
-                'user_id' => $request->user_id,
-                
+                'articulos_id' => $request->articulos_id,
+                'user_id' => $request->user_id,              
             ]);  
             Session::flash('message','Agregado a Favoritos!');
         }else{

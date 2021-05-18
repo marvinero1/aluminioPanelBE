@@ -44,7 +44,7 @@ class PedidoRealizadoController extends Controller
     public function guardarPedidoRealizado(Request $request)
     {
         $pedidoRealizado = PedidoRealizado::create($request->all());
-        return response()->json($pedidoRealizado, 201);
+        return response()->json($pedidoRealizado, 200);
     }
 
     /**

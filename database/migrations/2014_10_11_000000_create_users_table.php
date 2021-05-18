@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['user','admin','empresa','vendedor'])->nullable();
-             $table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
