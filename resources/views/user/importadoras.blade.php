@@ -32,6 +32,7 @@
                         <th style="text-align:center;">Telefono</th>
                         <th style="text-align:center;">Whatsapp</th>
                         <th style="text-align:center;">Role</th>
+                        <th style="text-align:center;">Registrado</th>
                         <th style="text-align:center;">Subscripción</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
@@ -52,6 +53,8 @@
                         <td style="text-align:center;">{{ $users->telefono }}</td>
                         <td style="text-align:center;">{{ $users->whatsapp }}</td>
                         <td style="text-align:center;">{{ $users->role }}</td>
+                        <td style="text-align:center;">{{ $users->registrado }}</td>
+
                         @if($users->subscripcion == 'false' )
                         <td style="text-align:center; color:red;" >{{ $users->subscripcion }}</td>
                         @endif
@@ -63,10 +66,12 @@
                             <a href="{{ route('user.show',$users->id ) }}">
                                 <button class="btn btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver</button>
                             </a>
+                            @if(Auth::user()->role == 'admin' )
                             <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                                     class="btn btn-warning btn-sm"><i class="fa fa-star"
                                     aria-hidden="true"></i> Subscribir
                             </button>
+                            @endif
 
                             <div class="modal fade" id="modalFavoritos{{$users->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">

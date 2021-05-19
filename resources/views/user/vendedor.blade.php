@@ -32,6 +32,7 @@
                         <th style="text-align:center;">Telefono</th>
                         <th style="text-align:center;">Whatsapp</th>
                         <th style="text-align:center;">Role</th>
+                        <th style="text-align:center;">Registrado</th>
                         <th style="text-align:center;">Subscripción</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
@@ -52,6 +53,7 @@
                         <td style="text-align:center;">{{ $users->telefono }}</td>
                         <td style="text-align:center;">{{ $users->whatsapp }}</td>
                         <td style="text-align:center;">{{ $users->role }}</td>
+                        <td style="text-align:center;">{{ $users->registrado }}</td>
                         @if($users->subscripcion == 'false' )
                         <td style="text-align:center; color:red;" >{{ $users->subscripcion }}</td>
                         @endif

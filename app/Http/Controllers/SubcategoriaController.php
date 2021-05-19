@@ -46,14 +46,12 @@ class SubcategoriaController extends Controller
         $request->validate([
             'nombre' => 'required',
             'descripcion' => 'nullable',
-            'user' => 'nullable',
-        ]);
+                   ]);
         
         subcategoria::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'categorias_id' => $request->categorias_id,
-            'user' => $request->user,
         ]);
         
         Session::flash('message','Sub-Categoria creado exisitosamente!');

@@ -21,8 +21,8 @@ class CreateCarritosTable extends Migration
             $table->string('imagen')->nullable();
             $table->double('precio', 8, 2);
             $table->string('color')->nullable();
-            $table->double('ancho', 8, 2);
-            $table->double('alto', 8, 2);
+            $table->double('ancho', 8, 2)->nullable();
+            $table->double('alto', 8, 2)->nullable();
             $table->string('codigo')->nullable();
             $table->string('puntuacion')->nullable();
             $table->string('descripcion')->nullable();

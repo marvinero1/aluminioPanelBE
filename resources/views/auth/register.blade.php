@@ -161,9 +161,13 @@
                                             <input type="hidden" name="role" value="user">
                                             <input type="hidden" name="subscripcion" value="false">
                                         </div>
+                                        
+                                        <a href="/" class="btn btn-secondary px-4 ml-3 pl-3 float-right"><span class="icon-close"></span>&nbsp;Atras</a>
+                                          
                                         <button type="submit" class="btn btn-primary px-4 float-right">
                                           <span class="icon-save"></span>&nbsp;Guardar</button>
                                     </form>
+
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -225,7 +229,8 @@
                                             <input type="hidden" name="role" value="empresa">
                                             <input type="hidden" name="subscripcion" value="false">
                                         </div>
-                                        <button type="submit" class="btn btn-primary px-4 float-right"><span class="icon-save"></span>&nbsp;
+                                        <a href="/" class="btn btn-secondary px-4 ml-3 float-right"><span class="icon-close"></span>&nbsp;Atras</a>
+                                        <button type="submit" class="btn btn-primary px-4 ml-2 float-right"><span class="icon-save"></span>&nbsp;
                                           Guardar</button>
                                     </form>
                                 </div>

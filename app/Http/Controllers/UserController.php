@@ -127,6 +127,7 @@ class UserController extends Controller
             'whatsapp' => 'nullable',
             'email' => 'required',
             'subscripcion' => 'required',
+            'registrado' => 'nullable',
             'imagen' => 'nullable',
             'password' => 'required|string|min:6',
             'role'=>'required',
@@ -144,6 +145,7 @@ class UserController extends Controller
             'whatsapp' => $request->whatsapp,
             'email' => $request->email,
             'role' => $request->role,
+            'registrado' => $request->registrado,
             'imagen' => 'images/default-person.jpg',
             'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
@@ -164,6 +166,7 @@ class UserController extends Controller
             'ciudad' => 'nullable',
             'whatsapp' => 'nullable',
             'nit' => 'required',
+            'registrado' => 'nullable',
             'email' => 'required',
             'password' => 'required|string|min:6',
             'imagen' => 'nullable',
@@ -183,6 +186,7 @@ class UserController extends Controller
             'email' => $request->email,
             'role' => $request->role,
             'imagen' => 'images/default-person.jpg',
+            'registrado' => $request->registrado,
             'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
             
@@ -351,5 +355,17 @@ class UserController extends Controller
         // unset($data->usertable->categoria);
         return response()->success(compact('data'));  
 
+    }
+
+    public function viewRegisUsuario(){
+        return view('user.register_usuario');
+    }
+
+    public function viewRegisEmpresa(){
+        return view('user.register_empresa');
+    }
+
+    public function viewRegisVendedor(){
+        return view('user.register_vendedor');
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoRealizadoController;
 use App\Http\Controllers\CalculadoraController;
+use App\Http\Controllers\CalculadoraHistorialController;
 //use App\Http\Controllers\Api\Auth\LoginController;
 
 //use App\Http\Controllers\Api\LoginController;
@@ -55,16 +56,20 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getPedido',[CarritoController::class, 'getPedido']);
     Route::get('getPedidoRealizado',[PedidoRealizadoController::class, 'getPedidoRealizado']);
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
-    Route::get('misProductos/',[ProductoController::class, 'misProductos']);
-   
+    Route::get('misProductos',[ProductoController::class, 'misProductos']);
+    Route::get('historialCalculos',[CalculadoraHistorialController::class, 'historialCalculos']);
+    
     
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
     Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
     Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
     Route::delete('calculadoraDelete/{id}/', [CalculadoraController::class, 'calculadoraDelete']);
+    Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class, 'calculadoraHistorialDelete']);
+    
     Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
     Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
+    Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
   
 

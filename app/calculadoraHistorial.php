@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class subcategoria extends Model
+class calculadoraHistorial extends Model
 {
     protected $auditTimestamps = true;
     protected $auditStrict = true;
@@ -17,12 +17,12 @@ class subcategoria extends Model
         'restored',
         'updated'
     ];
-    
-    protected $fillable = ['nombre',
-                        'descripcion',
-                        'categorias_id'];
 
-    public function categoria(){
-        return $this->hasOne(Categoria::class,'id','categorias_id');
-    }
+    protected $fillable = ['total_suma',
+    					   'nombre_operacion',
+    					   'extra',
+                        	'total_extra',
+                        	'user_id',
+                        
+                    ];
 }

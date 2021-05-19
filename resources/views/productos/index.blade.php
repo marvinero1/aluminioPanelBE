@@ -44,7 +44,7 @@
               </div> --}}
         </div>
         <div class="card-body table-responsive">
-            <table class="table table-striped table-valign-middle">
+            <table class="table table-sm table-striped table-valign-middle ">
                 <thead>
                     <tr>
                         {{-- <th>Id</th>  --}}
@@ -65,11 +65,9 @@
                     <tr>
                         <td style="text-align:center;">
                             @if( $productos->imagen == '')
-                            <img img src="images/default-person.jpg" class="img-thumbnail" alt="Producto" height="150px"
-                                width="150px">
+                            <img img src="images/default-tool.png" class="img-thumbnail" alt="Producto" width="75px">
                             @else
-                            <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" height="150px"
-                                width="150px" style="display: block;margin: 0 auto;">
+                            <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" width="75px" style="display: block;margin: 0 auto;">
                             @endif
                         </td>
                         <td style="text-align:center;">{{ $productos->nombre }}</td>

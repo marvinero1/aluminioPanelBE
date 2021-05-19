@@ -31,6 +31,12 @@ Route::get('/importadoras', 'UserController@importadoras')->name('importadoras')
 Route::get('/vendedores', 'UserController@vendedores')->name('vendedores');
 Route::get('profile','UserController@index1')->name('profile'); 
 Route::get('mis-productos','ProductoController@misProductos')->name('mis-productos'); 
+
+#Registros para admin
+Route::get('viewRegisUsuario','UserController@viewRegisUsuario')->name('user.viewRegisUsuario'); 
+Route::get('viewRegisEmpresa','UserController@viewRegisEmpresa')->name('user.viewRegisEmpresa'); 
+Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.viewRegisVendedor'); 
+
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
 
