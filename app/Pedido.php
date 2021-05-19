@@ -27,6 +27,7 @@ class Pedido extends Model
                         'color',
                         'ancho',
                         'tipo_medida',
+                        'nombre_pedido',
                         'puntuacion',
                         'descripcion',
                         'importadora',

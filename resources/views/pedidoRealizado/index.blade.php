@@ -41,6 +41,7 @@
                     <tr>
                        <!-- <th>Id</th>   -->
                         <th style="text-align:center;">Nombre Usuario</th>
+                        <th style="text-align:center;">Nombre Pedido</th>
                         <th style="text-align:center;">Fecha Pedido</th>
                       
                     </tr>
@@ -48,16 +49,9 @@
                 <tbody>
                     @foreach($pedidoRealizado as $productos)
                     <tr>
-                        <!-- <td style="text-align:center;">
-                            @if( $productos->imagen == '')
-                            <img img src="images/default-person.jpg" class="img-thumbnail" alt="Producto" height="150px"
-                                width="150px">
-                            @else
-                            <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" height="150px"
-                                width="150px" style="display: block;margin: 0 auto;">
-                            @endif
-                        </td> -->
+                       
                         <td style="text-align:center;">{{ $productos->user_id }}</td>
+                        <td style="text-align:center;">{{ $productos->nombre_pedido }}</td>
                         <td style="text-align:center;">{{ $productos->created_at }}</td>
 
                   

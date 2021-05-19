@@ -25,7 +25,8 @@ class PedidoRealizadoController extends Controller
         $nombre = $request->get('buscarpor');
 
         $pedidoRealizado = PedidoRealizado::where('nombre','like',"%$nombre%")
-        ->where('pedido_realizados.importadora', '=', Auth::user()->name)->paginate(10);
+        ->where('pedido_realizados.importadora', '=', Auth::user()->name)
+        ->paginate(10);
          
         //dd( $producto );
         return view('pedidoRealizado.index', compact('pedidoRealizado'));
