@@ -72,6 +72,14 @@ class ProductoController extends Controller
 
         return response()->json($producto, 200);
     }
+
+     public function misProductos(Request $request){
+        $nombre = $request->get('buscarpor');
+         
+        $producto = Producto::where('nombre','like',"%$nombre%")->
+        where('user_id', '=' ,Auth::user()->id)->paginate(10);
+        return view('productos.my-products', compact('producto'));
+     }
    
 
     public function index(Request $request)
