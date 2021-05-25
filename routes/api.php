@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 
 
 });
-    Route::put('updateCalculo/{id}', [CalculadoraHistorialController::class,'updateCalculo']);  
+    Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     
     

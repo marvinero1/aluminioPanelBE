@@ -94,8 +94,7 @@ class CarritoController extends Controller
 
     public function updateStatusCart(Request $request, $id)
     {
-        $carrito = Carrito::find($id);
-
+        $carrito = Carrito::findOrFail($id);
         $carrito->update($request->all());
 
         return response()->json($carrito, 200);

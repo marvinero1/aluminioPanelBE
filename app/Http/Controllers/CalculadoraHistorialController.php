@@ -95,10 +95,9 @@ class CalculadoraHistorialController extends Controller
         //
     }
 
-    public function updateCalculo(Request $request, $id)
-    {
+    public function actualizarCalculo(Request $request, $id){
+        
         $calculadoraHistorial = calculadoraHistorial::findOrFail($id);
-
         $calculadoraHistorial->update($request->all());
 
         return response()->json($calculadoraHistorial, 200);
