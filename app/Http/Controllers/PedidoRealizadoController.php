@@ -23,7 +23,6 @@ class PedidoRealizadoController extends Controller
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');
-
         $pedidoRealizado = PedidoRealizado::where('nombre','like',"%$nombre%")
         ->where('pedido_realizados.importadora', '=', Auth::user()->name)
         ->paginate(10);
