@@ -47,7 +47,8 @@ class CalculadoraHistorialController extends Controller
     public function guardarCalculadoraHistorial(Request $request)
     {
         $calculadoraHistorial = calculadoraHistorial::create($request->all());
-        return response()->json($calculadoraHistorial, 201);    }
+        return response()->json($calculadoraHistorial, 201);   
+    }
 
     /**
      * Display the specified resource.
@@ -94,11 +95,31 @@ class CalculadoraHistorialController extends Controller
         //
     }
 
+    public function updateCalculo(Request $request, $id)
+    {
+        $calculadoraHistorial = calculadoraHistorial::findOrFail($id);
+
+        $calculadoraHistorial->update($request->all());
+
+        return response()->json($calculadoraHistorial, 200);
+    }
+
+
     public function calculadoraHistorialDelete($id)
     {
         $calculadoraHistorial = calculadoraHistorial::findOrFail($id);
 
         $calculadoraHistorial->delete();
 
-        return response()->json($calculadoraHistorial, 200);     }
+        return response()->json($calculadoraHistorial, 200);     
+    }
+
+    public function calculadoraHistorialUpdate($id){
+        $calculadoraHistorial = calculadoraHistorial::findOrFail($id);
+
+        $calculadoraHistorial->update();
+
+        return response()->json($calculadoraHistorial, 200); 
+    }
+    
 }

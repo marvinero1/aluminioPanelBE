@@ -16,15 +16,25 @@ class CarritoController extends Controller
     {
         //
     }
+    public function getCartAttribute(Request $request, $id){
+        $carrito = Carrito::where('estado','false')
+        ->where('carritos.user_id', '=', $id)
+        ->first();
 
-    public function guardarPedido(Request $request)
+        return response()->json($carrito, 201);
+
+    }
+    
+
+    public function guardarCarrito(Request $request)
     {
         $carrito = Carrito::create($request->all());
         return response()->json($carrito, 201);
     }
 
     public function getPedido(){
-        return Carrito::orderBy('importadora', 'asc')->where('confirmacion','false')->get();
+        $carrito = Carrito::orderBy('importadora', 'asc')->where('estado','false')->first();
+         return response()->json($carrito, 200);
      }
 
     /**
@@ -80,6 +90,15 @@ class CarritoController extends Controller
     public function update(Request $request, Carrito $carrito)
     {
         //
+    }
+
+    public function updateStatusCart(Request $request, $id)
+    {
+        $carrito = Carrito::find($id);
+
+        $carrito->update($request->all());
+
+        return response()->json($carrito, 200);
     }
 
     /**

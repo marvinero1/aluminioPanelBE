@@ -58,23 +58,21 @@ class ProductoController extends Controller
         return Producto::all()->where('novedad', 'true');
     }
 
-    public function misProductos(Request $request){
-        
-        // $user = Auth::user();
-       
-        // dd($user);
+    public function getMyProducts(Request $request, $id){
 
-        $nombre = $request->get('buscarpor');
+        $producto = Producto::findOrFail($id)->where('productos.user_id', '=', $id)->get();
 
-        $producto = Producto::where('nombre','like',"%$nombre%")
-        ->where('productos.user_id', '=', Auth::user()->id)->get();
-         
-        //dd( $producto );
-        return view('mi-pedido.index', compact('producto'));
-        
-
-
+        return response()->json($producto, 200);
     }
+
+
+    public function getMyProducto(Request $request, $id){
+
+        $producto = Producto::findOrFail($id);
+
+        return response()->json($producto, 200);
+    }
+   
 
     public function index(Request $request)
     {

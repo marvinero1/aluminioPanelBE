@@ -13,6 +13,9 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoRealizadoController;
 use App\Http\Controllers\CalculadoraController;
 use App\Http\Controllers\CalculadoraHistorialController;
+use App\Http\Controllers\CarritoDetalleController;
+
+
 //use App\Http\Controllers\Api\Auth\LoginController;
 
 //use App\Http\Controllers\Api\LoginController;
@@ -45,7 +48,10 @@ Route::group(['middleware' => ['auth:api']], function(){
 
 
 });
-
+    Route::put('updateCalculo/{id}', [CalculadoraHistorialController::class,'updateCalculo']);  
+    Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
+    
+    
     Route::get('/userdata', 'UserController@userdata');
 
     Route::get('productos',[ProductoController::class, 'getProducto']);
@@ -55,25 +61,37 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('importadoras',[UserController::class, 'getImportadora']);
     Route::get('getPedido',[CarritoController::class, 'getPedido']);
     Route::get('getPedidoRealizado',[PedidoRealizadoController::class, 'getPedidoRealizado']);
+    Route::get('carritoProductos',[CarritoDetalleController::class, 'carritoProductos']);
+    Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carritoProductosIonic']);
+
+
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
     Route::get('misProductos',[ProductoController::class, 'misProductos']);
     Route::get('historialCalculos',[CalculadoraHistorialController::class, 'historialCalculos']);
-    
-    
+    Route::get('getMyProducts/{id}', [ProductoController::class,'getMyProducts']); 
+    Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 
+    Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 
+    Route::get('getMisCotizaciones', [PedidoController::class,'getMisCotizaciones']); 
+
+
+
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
     Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
     Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
     Route::delete('calculadoraDelete/{id}/', [CalculadoraController::class, 'calculadoraDelete']);
-    Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class, 'calculadoraHistorialDelete']);
+    Route::delete('calculadoraDeleteAll', [CalculadoraController::class, 'calculadoraDeleteAll']);
+
+    Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class,'calculadoraHistorialDelete']);
+    Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
     
-    Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
+    Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
+    Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);
+    
     Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
     Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
   
-
-
 Route::get('images/{filename}', function ($filename)
 {
     $file = \Illuminate\Support\Facades\Storage::get($filename);

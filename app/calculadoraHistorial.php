@@ -18,11 +18,10 @@ class calculadoraHistorial extends Model
         'updated'
     ];
 
-    protected $fillable = ['total_suma',
-    					   'nombre_operacion',
-    					   'extra',
+    protected $fillable = [	'total_suma',
+    					   	'nombre_operacion',
+    					   	'extra',
                         	'total_extra',
-                        	'user_id',
-                        
-                    ];
+                        	'descripcion',
+                    		'user_id',];
 }

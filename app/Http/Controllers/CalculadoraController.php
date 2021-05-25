@@ -41,10 +41,7 @@ class CalculadoraController extends Controller
     public function store(Request $request)
     {
         //
-    }
-    
-
-    
+    }   
 
     /**
      * Display the specified resource.
@@ -90,7 +87,15 @@ class CalculadoraController extends Controller
     {
          
     }
+    
 
+    public function calculadoraDeleteAll(Request $request){
+        $calculadora = calculadora::truncate();
+
+       //$calculadora->truncate();
+
+        return response()->json($calculadora, 200); 
+    }
 
     public function calculadoraDelete($id){
         $calculadora = calculadora::findOrFail($id);

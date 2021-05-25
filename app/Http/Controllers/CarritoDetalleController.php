@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\carrito_detalle;
+use App\Carrito;
 use Illuminate\Http\Request;
 
 class CarritoDetalleController extends Controller
@@ -27,6 +28,12 @@ class CarritoDetalleController extends Controller
         //
     }
 
+    public function guardarPedido(Request $request)
+    {
+        $carrito_detalle = carrito_detalle::create($request->all());
+        return response()->json($carrito_detalle, 201);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,10 +51,34 @@ class CarritoDetalleController extends Controller
      * @param  \App\carrito_detalle  $carrito_detalle
      * @return \Illuminate\Http\Response
      */
-    public function show(carrito_detalle $carrito_detalle)
+    public function show(carrito_detalle $carrito_detalle, $id)
     {
-        //
+        $carrito = Carrito::find($id);
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+
+        //dd($carrito_detalle);
+        return view('pedidos.show', compact('carrito_detalle','carrito')); 
     }
+
+    public function carritoProductos(carrito_detalle $carrito_detalle, $id)
+    {
+        $carrito = Carrito::find($id)->first();
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+
+        //dd($carrito_detalle);
+        return view('pedidos.show', compact('carrito_detalle','carrito')); 
+    }
+
+    public function carritoProductosIonic(carrito_detalle $carrito_detalle, $id)
+    {
+        $carrito = Carrito::find($id)->first();
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+
+        //dd($carrito_detalle);
+        return response()->json($carrito_detalle, 201);
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -82,4 +113,12 @@ class CarritoDetalleController extends Controller
     {
         //
     }
+
+    public function deleteProductoCarrito($id)
+    {
+         $carrito_detalle = carrito_detalle::findOrFail($id);
+
+        $carrito_detalle->delete();
+
+        return response()->json($carrito_detalle, 200);    }
 }

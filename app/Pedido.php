@@ -18,25 +18,12 @@ class Pedido extends Model
         'updated'
     ];
     
-    protected $fillable = ['nombre',
-                        'codigo',
-                        'estado',
-                        'imagen',
-                        'precio',
-                        'alto',
-                        'color',
-                        'ancho',
-                        'tipo_medida',
-                        'nombre_pedido',
-                        'puntuacion',
-                        'descripcion',
+    protected $fillable = ['estado',
+                        'file',
                         'importadora',
-                        'confirmacion',
-                        'categorias_id',
-                        'disponibilidad',
-                        'subcategorias_id',
-                        'favoritos_id',
-                        'cantidad_pedido',
+                        'descripcion',
+                        'precio',
+                        'carrito_id',
                         'user_id',
                     ];
 }

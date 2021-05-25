@@ -35,6 +35,8 @@ Route::get('mis-productos','ProductoController@misProductos')->name('mis-product
 #Registros para admin
 Route::get('viewRegisUsuario','UserController@viewRegisUsuario')->name('user.viewRegisUsuario'); 
 Route::get('viewRegisEmpresa','UserController@viewRegisEmpresa')->name('user.viewRegisEmpresa'); 
+Route::get('index','PedidoController@index')->name('pedido'); 
+
 Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.viewRegisVendedor'); 
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
@@ -48,6 +50,8 @@ Route::resource('novedad', 'NovedadController');
 Route::resource('suscripcion', 'SubscripcionController');
 Route::resource('pedido', 'PedidoController');
 Route::resource('pedidoRealizado', 'PedidoRealizadoController');
+Route::resource('carritoDetalle', 'CarritoDetalleController');
+
 });
 
 Route::get('images/{filename}', function ($filename)

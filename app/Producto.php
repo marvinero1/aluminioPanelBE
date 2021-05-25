@@ -29,6 +29,7 @@ class Producto extends Model
                         'puntuacion',
                         'descripcion',
                         'confirmacion',
+                        'disponibilidad',
                         'importadora',
                         'categorias_id',
                         'user_id',
