@@ -29,7 +29,7 @@ class CarritoController extends Controller
     public function guardarCarrito(Request $request)
     {
         $carrito = Carrito::create($request->all());
-        return response()->json($carrito, 201);
+        return response()->json($carrito, 200);
     }
 
     public function getPedido(){
