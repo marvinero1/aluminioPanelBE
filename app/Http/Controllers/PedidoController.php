@@ -64,8 +64,8 @@ class PedidoController extends Controller
          $file = $request->file('file');
          $filename = time().'_'.$file->getClientOriginalName();
 
-         // File upload location
-         $location = 'files';
+        // File upload location
+        $location = 'files';
 
          // Upload file
         $img = $file->move($location,$filename);
@@ -74,15 +74,15 @@ class PedidoController extends Controller
         $pedido = Pedido::create($requestData);
 
 
-         Session::flash('message','Cotizacion Enviada Exitosamente');
-         Session::flash('alert-class', 'alert-success');
-      }else{
-         Session::flash('message','Cotizacion No Enviada.');
-         Session::flash('alert-class', 'alert-danger');
-      }
+        Session::flash('message','Cotizacion Enviada Exitosamente');
+        Session::flash('alert-class', 'alert-success');
 
-      
-            return redirect()->route('pedido.index');
+      }else{
+
+        Session::flash('message','Cotizacion No Enviada.');
+        Session::flash('alert-class', 'alert-danger');
+      }
+        return redirect()->route('pedido.index');
    }
 
     
