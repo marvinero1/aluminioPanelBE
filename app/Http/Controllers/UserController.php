@@ -65,6 +65,12 @@ class UserController extends Controller
          
     }
 
+    public function usuariosStorage(Request $request, $id){
+        $user = User::where('email', '=', $id)->first();
+
+        return response()->json($user, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

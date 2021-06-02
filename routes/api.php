@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getPedidoRealizado',[PedidoRealizadoController::class, 'getPedidoRealizado']);
     Route::get('carritoProductos',[CarritoDetalleController::class, 'carritoProductos']);
     Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carritoProductosIonic']);
+    Route::get('usuariosStorage/{id}',[UserController::class, 'usuariosStorage']);
 
 
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
