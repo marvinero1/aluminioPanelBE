@@ -175,6 +175,29 @@
                                         <input id="file-upload" type="file" name="imagen">
                                     </div>   
                                 </div>
+                                 <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripción</label>
+                                            <textarea class="form-control" name="descripcion" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                    <input hidden type="text" value="{{Auth::user()->id}}" name="user_id">
+
+                                    <input hidden type="text" value="false" name="confirmacion">
+
+                                    <input type="text" class="form-control" name="importadora" readonly hidden="true" 
+                                            value="{{Auth::user()->name}}">
+                                    
+                            </div>
+                            <p>
+  
+                              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-glass" aria-hidden="true"></i>
+                                Vidrio
+                              </button>
+                              <p>* Este formulario es exclusivamente para vidrios y afines.</p>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                              <div class="card card-body">
                                 <div class="row">
                                     <div class="col-md-3">
                                        <div class="form-group">
@@ -209,21 +232,11 @@
                                         </select>  
                                     </div>
                                     
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="descripcion">Descripción</label>
-                                            <textarea class="form-control" name="descripcion" rows="8"></textarea>
-                                        </div>
-                                    </div>
-                                    <input hidden type="text" value="{{Auth::user()->id}}" name="user_id">
-
-                                     <input hidden type="text" value="false" name="confirmacion">
-
-                                      <input type="text" class="form-control" name="importadora" readonly hidden="true" 
-                                            value="{{Auth::user()->name}}">
-                                    
+                                   
                                 </div>
-                            </div>
+    
+  </div>
+</div>
                             <div class="card-footer">
                                 <a type="button" class="btn btn-secondary float-right"
                                     href="{{url('/productos')}}">Cerrar</a>

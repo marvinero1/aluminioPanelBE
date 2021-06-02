@@ -89,9 +89,12 @@
 	           	        <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
 	                    <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label>
 	                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
-	                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</td></label>
-	                    <td class="text-center"><label>{{$carrito_detalles->precio}} Bs.</td></label>
-	                    <td class="text-center"><label>{{ number_format($carrito_detalles->cantidad_pedido  * $carrito_detalles->precio , 2) }} Bs.</td>
+	                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}
+                            <input disabled="true" hidden="true" name="cantidad" id="cantidadjs"
+                            value="{{$carrito_detalles->cantidad_pedido}}"></td>
+                             </label>
+	                    <td class="text-center"><input type="number" id="precio"><label><p id="valueInput"></p>Bs.</label> 
+	                    <td class="text-center"><label><p id="valueInput1"></p>Bs.</td>
 	                    </label>
 	                </tr>
                 @endforeach 
@@ -104,7 +107,7 @@
   </div>
 </div>
 <div class="modal-footer">
-    <a type="button" class="btn btn-default" href="{{url('/pedidoRealizado')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar</a>
+    <a type="button" class="btn btn-default" href="{{url('/pedido')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar</a>
     <a href="javascript:pruebaDivAPdf()" class="button btn-light"><strong><label><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  &nbsp; Pasar a PDF</label> </strong> </a> &nbsp;&nbsp;
     <!-- Button trigger modal -->
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -178,6 +181,17 @@
     }
 
     function pruebaDivAPdf() {
+        let precio = document.getElementById("precio").value;
+        let cantidadjs = document.getElementById("cantidadjs").value;
+        let resultado;
+
+        resultado = precio * cantidadjs;
+        console.log(resultado);
+
+        document.getElementById("valueInput").innerHTML = precio; 
+        document.getElementById("valueInput1").innerHTML = resultado; 
+
+        
        var doc = new jsPDF("p", "pt", "letter"),
         source = $("#template_invoice")[0],
         margins = {

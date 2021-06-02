@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-md-6">
                                 <h4><strong>Desde:</strong> </h4>
-                                <h5>{{ Auth::user()->created_at }}</h5>
+                                <h5>{{ Auth::user()->created_at->format('d/F/Y') }}</h5>
                             </div>
                         </div>
 

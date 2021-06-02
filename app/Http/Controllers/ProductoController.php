@@ -117,6 +117,8 @@ class ProductoController extends Controller
         $imagen = null;
         $mensaje= 'Producto Registrado correctamente';
         //dd($request);
+        // $data = $request->imagen;
+        // dd($data);
 
         // $request->validate([
         //     'nombre' => 'required',
@@ -143,10 +145,10 @@ class ProductoController extends Controller
      
         //dd($disponibilidad);
         
-        if($request->imagen){
+        if($request->imagen != null){
            
             $data = $request->imagen;
-            
+        
             $file = file_get_contents($request->imagen);
             $info = $data->getClientOriginalExtension(); 
             $extension = explode('images/productos', mime_content_type('images/productos'))[0];
@@ -157,14 +159,19 @@ class ProductoController extends Controller
                 mkdir($path, 0777, true);
             }
             $img = $path.'/'.$fileName; 
+             
             if($image->save($img)) {
                 $requestData['imagen'] = $img;
+               
                 $mensaje = "Producto Registrado correctamente";    
             }else{
                 $mensaje = "Error al guardar la imagen";
             }
+        }else{
+            $url = "GOASDS";
+            $requestData['imagen'] = $url;
+            $mensaje = "Producto Registrado Correctamente Sin Imagen";
         }
-
         $producto = Producto::create($requestData);
 
         if($producto){

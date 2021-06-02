@@ -10,7 +10,7 @@
                     <!-- general form elements -->
                     <div class="card card-dark">
                         <div class="card-header">
-                            <h3 class="card-title">Registro Categoria</h3>
+                            <h3 class="card-title">Editar Registro Sub Categoria {{ $subcategoria->nombre }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -22,10 +22,10 @@
                                     <div class="col-md-12 p-2" style="border: outset;">
                                         <div class="form-group">
                                             <label><strong>Categoria *</strong> </label>
-                                            <select name="categorias_id" class="form-control selectpicker"
+                                            <select name="nombre" class="form-control selectpicker"
                                                 data-live-search="true" required>
                                                 @foreach ($categoria as $categorias)
-                                                <option value="{{ $categorias->id }}">{{$categorias->nombre}}
+                                                <option value="{{ $categorias->nombre }}">{{$categorias->nombre}}
                                                 </option>
                                                 @endforeach
                                             </select>

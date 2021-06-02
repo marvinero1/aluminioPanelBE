@@ -46,10 +46,9 @@
                         <td style="text-align:center;">{{ $subcategorias->nombre }}</td>
                         <td style="text-align:center;">{{ $subcategorias->descripcion }}</td>
                         <td style="text-align:center;">
-                            {{-- <a href="{{ route('sub-categoria.edit',$subcategorias->id ) }}">
-                                <button class="btn btn-primary btn-sm"><i class="fa  fa-pencil-alt"
-                                        aria-hidden="true"></i> Editar
-                                </button></a> --}}
+                            <a href="{{ route('sub-categoria.edit',$subcategorias->id ) }}">
+                                <button class="btn btn-primary btn-sm"><i class="fa  fa-pencil" aria-hidden="true"></i> Editar
+                                </button></a> 
                             <form action="{{ route('sub-categoria.destroy',$subcategorias->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
