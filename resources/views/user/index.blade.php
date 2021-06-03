@@ -65,9 +65,19 @@
                     @endif
 
                     <td style="text-align:center;">
-                        <a href="{{ route('user.show',$users->id ) }}">
-                            <button class="btn btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver</button>
+                        <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
+                                    <i class="fas fa-eye"></i> Ver
                         </a>
+                        <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
+                                        accept-charset="UTF-8" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-app" title="Delete Image"
+                                        class="btn btn-danger btn-sm"
+                                        title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
+                                                aria-hidden="true"></i> Eliminar</button>
+                        </form>
+
                         <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                             class="btn btn-warning btn-sm"><i class="fa fa-star" aria-hidden="true"></i> Subscribir
                         </button>
@@ -75,6 +85,7 @@
                             class="btn btn-success btn-sm">Dar Permiso de
                             Vendedor
                         </button>
+                        
                         <div class="modal fade" id="modalFavoritos{{$users->id}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" style="max-width: 410px !important;" role="document">

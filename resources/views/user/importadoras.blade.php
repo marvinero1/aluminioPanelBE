@@ -28,7 +28,8 @@
                     <tr>
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">Imagen</th>
-                        <th style="text-align:center;">Nombre Empresa</th>
+                        <th style="text-align:center;">Nombre</th>
+                        <th style="text-align:center;">Email</th>
                         <th style="text-align:center;">Telefono</th>
                         <th style="text-align:center;">Whatsapp</th>
                         <th style="text-align:center;">Role</th>
@@ -43,13 +44,14 @@
                         <td style="text-align:center;">
 
                         @if( $users->imagen == '')
-                            <img img src="/images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="150px" width="150px">
+                            <img img src="/images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="75px" width="75px">
                         @else
-                            <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="150px" width="150px"
+                            <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="75px" width="75px"
                                 style="display: block;margin: 0 auto;">
                         @endif
                         </td>
                         <td style="text-align:center;">{{ $users->name }}</td>
+                        <td style="text-align:center;">{{ $users->email }}</td>
                         <td style="text-align:center;">{{ $users->telefono }}</td>
                         <td style="text-align:center;">{{ $users->whatsapp }}</td>
                         <td style="text-align:center;">{{ $users->role }}</td>
@@ -61,6 +63,7 @@
                         @if($users->subscripcion == 'true' )
                         <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
                         @endif
+
                        
                         <td style="text-align:center;">
                             <a href="{{ route('user.show',$users->id ) }}">
@@ -71,6 +74,16 @@
                                     class="btn btn-warning btn-sm"><i class="fa fa-star"
                                     aria-hidden="true"></i> Subscribir
                             </button>
+
+                            <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
+                                        accept-charset="UTF-8" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-app" title="Delete Image"
+                                        class="btn btn-danger btn-sm"
+                                        title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
+                                                aria-hidden="true"></i> Eliminar</button>
+                            </form>
                             @endif
 
                             <div class="modal fade" id="modalFavoritos{{$users->id}}" tabindex="-1" role="dialog"
