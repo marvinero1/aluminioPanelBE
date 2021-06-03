@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('/userdata', 'UserController@userdata');
 
     Route::get('productos',[ProductoController::class, 'getProducto']);
-    Route::get('calculos',[CalculadoraController::class, 'calculos']);
+    Route::get('calculos/{id}',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
     Route::get('misProductos',[ProductoController::class, 'misProductos']);
-    Route::get('historialCalculos',[CalculadoraHistorialController::class, 'historialCalculos']);
+    Route::get('historialCalculos/{id}',[CalculadoraHistorialController::class, 'historialCalculos']);
     Route::get('getMyProducts/{id}', [ProductoController::class,'getMyProducts']); 
     Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 
     Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 

@@ -12,9 +12,11 @@ class CalculadoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function calculos()
+    public function calculos(Request $request, $id)
     {
-        return calculadora::get();
+        $calculadora = calculadora::where('calculadoras.user_id', '=', $id)->get();
+
+        return response()->json($calculadora, 200);
     }
 
     public function index()
