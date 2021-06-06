@@ -41,28 +41,26 @@
                     <tr>
                        <!-- <th>Id</th>   -->
                         <th style="text-align:center;">Nombre Importadora</th>
-                        <th style="text-align:center;">Estado</th>
+                        <!-- <th style="text-align:center;">Estado</th> -->
                         <th style="text-align:center;">Descripcion</th>
                         <th style="text-align:center;">Cotizacion del Usuario</th>                   
                         <th style="text-align:center;">Enviado en Fecha</th>    
                         <th style="text-align:center;">Acciones</th>                      
-
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($carrito as $carritos)
                     <tr>
                         <td style="text-align:center;">{{ $carritos->importadora }}</td>
-                        <td style="text-align:center;">{{ $carritos->estado }}</td>
+                        <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
                         <td style="text-align:center;">{{ $carritos->descripcion }}</td>
-                        <td style="text-align:center;">{{ $carritos->user_id }}</td>
-                        <td style="text-align:center;">{{ $carritos->created_at }}</td>              
-                        <td>
+                        <td style="text-align:center;">{{ $carritos->user->name }}</td>
+                        <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td>              
+                        <td style="text-align:center;">
                             <div class="card-body">
-                                <a class="btn btn-app " href="{{ route('carritoDetalle.show',$carritos->id ) }}">
+                                <a class="btn btn-app" href="{{ route('carritoDetalle.show', $carritos->id )}}">
                                     <i class="fas fa-eye"></i> Ver Pedido
                                 </a>
-                              
                             </div>
                         </td>
                     </tr>

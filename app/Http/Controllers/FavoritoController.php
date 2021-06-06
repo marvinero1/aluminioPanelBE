@@ -13,8 +13,11 @@ class FavoritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getFavoritos(Request $request){
-        return Favorito::all();
+    public function getFavoritos(Request $request, $id){
+
+        $favorito = Favorito::where('favoritos.user_id', '=', $id)->get();
+
+        return response()->json($favorito, 200);
     }
     
     public function index(Request $request){

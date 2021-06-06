@@ -52,12 +52,10 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     
     
-    Route::get('/userdata', 'UserController@userdata');
-
     Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('calculos/{id}',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
-    Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
+    Route::get('favoritos/{id}',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
     Route::get('getPedido',[CarritoController::class, 'getPedido']);
     Route::get('getPedidoRealizado',[PedidoRealizadoController::class, 'getPedidoRealizado']);

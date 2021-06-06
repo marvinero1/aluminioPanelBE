@@ -26,4 +26,6 @@ class Pedido extends Model
                         'carrito_id',
                         'user_id',
                     ];
+
+    
 }

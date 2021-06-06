@@ -24,13 +24,14 @@ class PedidoController extends Controller
     public function index(Request $request)
     {
         $importadora = $request->get('buscarpor');
+        $user = User::all()->sortBy('name');
 
         $carrito = Carrito::where('importadora','like',"%$importadora%")
-        ->where('carritos.importadora', '=', Auth::user()->name)
+        ->where('carritos.importadora', '=', Auth::user()->name)->orderBy('created_at', 'desc')
         ->paginate(10);
          
         //dd( $producto );
-        return view('pedidos.index', compact('carrito'));
+        return view('pedidos.index', compact('carrito', 'user'));
     }
 
      

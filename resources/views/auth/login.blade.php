@@ -21,11 +21,11 @@
                         @if (Session::has('message'))
                             <div class="alert alert-info">{{ Session::get('message') }}</div>
                         @endif
-                        <img src="images/fondos/logo.png" alt="Logo" style="    width: 225px;
+                        <img src="images/fondos/logo.png" alt="Logo" style="width: 255px;
                                 margin: auto;
                                 display: block;"><br>
 
-                        <p class="login-box-msg">Complete sus datos para Iniciar Sesion</p>
+                        <p class="login-box-msg">Complete sus datos para Iniciar Sesión</p>
                 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

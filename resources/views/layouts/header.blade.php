@@ -168,12 +168,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="pt-3">
-      <img src="/images/fondos/logo.png" alt="Altools" class="brand-image img-circle elevation-3"
-           style="display: block;width: 38%;margin: auto;">
-           
-           
-      {{-- <span class="brand-text font-weight-light"></span> --}}
+    <a href="/home" class="pt-3">
+      <img src="/images/fondos/logo.png" alt="Altools" class="img-circle elevation-2"
+           style="display: block;width: 38%;margin: auto;">           
+       <span class="brand-text font-weight-light"></span> 
     </a>
 
     <!-- Sidebar -->

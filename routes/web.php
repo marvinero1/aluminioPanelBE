@@ -53,7 +53,6 @@ Route::resource('pedidoRealizado', 'PedidoRealizadoController');
 Route::resource('carritoDetalle', 'CarritoDetalleController');
 
 });
-
 Route::get('images/{filename}', function ($filename)
 {
     $file = \Illuminate\Support\Facades\Storage::get($filename);

@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-xs-6">
       <address>
-      	<img height="150px" width="150px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;">
+      	<img height="180px" width="175px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;">
       	<strong>Nombre Empresa: </strong>{{Auth::user()->name}}<br>
     		<strong>Dirección: </strong>{{Auth::user()->direccion}}<br>
     		<strong>Teléfono:</strong> {{ Auth::user()->telefono }}<br>
@@ -74,10 +74,10 @@
 			    </div> -->
                 <tr>
                   <td><strong>Codigo</strong></td>
-                  <td class="text-center"><strong>Nombre Producto</strong></td>
-                  <td class="text-center"><strong>Descripcion</strong></td>
+                  <td class="text-center"><strong>Nombre</strong></td>
+                  <!-- <td class="text-center"><strong>Descripcion</strong></td> -->
                   <td class="text-center"><strong>Color</strong></td>
-                  <td class="text-center"><strong>Cantidad de pedido</strong></td>
+                  <td class="text-center"><strong>Cantidad</strong></td>
                   <td class="text-center"><strong>Precio Unitario</strong></td>
                   <td class="text-center"><strong>Total</strong></td>
                 </tr>
@@ -87,14 +87,19 @@
 	                <tr class="item-row">
 	                    <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
 	           	        <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
-	                    <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label>
+	                    <!-- <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label> -->
 	                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
 	                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}
                             <input disabled="true" hidden="true" name="cantidad" id="cantidadjs"
                             value="{{$carrito_detalles->cantidad_pedido}}"></td>
                              </label>
+                        <!-- @for ($i = $tamanio ; $i <= $tamanio ; $i++)
+                         
+                        @endfor --> 
 	                    <td class="text-center"><input type="number" id="precio"><label><p id="valueInput"></p>Bs.</label> 
-	                    <td class="text-center"><label><p id="valueInput1"></p>Bs.</td>
+                        <td class="text-center"><label><p id="valueInput1"></p>Bs.</td>  
+                         
+                        
 	                    </label>
 	                </tr>
                 @endforeach 
@@ -109,6 +114,9 @@
 <div class="modal-footer">
     <a type="button" class="btn btn-default" href="{{url('/pedido')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar</a>
     <a href="javascript:pruebaDivAPdf()" class="button btn-light"><strong><label><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  &nbsp; Pasar a PDF</label> </strong> </a> &nbsp;&nbsp;
+
+    <a href="javascript:calcular()" class="button btn-light"><strong><label><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  &nbsp; calcular</label> </strong> </a> 
+
     <!-- Button trigger modal -->
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 	  <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Enviar Cotización
@@ -179,8 +187,9 @@
         window.print();
         document.body.innerHTML = contenidoOriginal;
     }
+    
+    function calcular() {
 
-    function pruebaDivAPdf() {
         let precio = document.getElementById("precio").value;
         let cantidadjs = document.getElementById("cantidadjs").value;
         let resultado;
@@ -190,8 +199,9 @@
 
         document.getElementById("valueInput").innerHTML = precio; 
         document.getElementById("valueInput1").innerHTML = resultado; 
+    }
 
-        
+    function pruebaDivAPdf() {        
        var doc = new jsPDF("p", "pt", "letter"),
         source = $("#template_invoice")[0],
         margins = {

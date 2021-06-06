@@ -97,23 +97,23 @@
                                                     data-dropdown-css-class="select2-dark"
                                                     data-placeholder="Seleccione Colores" style="width: 100%;"
                                                      name="color[]"> 
-                                                    <option value="natural">Natural</option>
-                                                   <option value="titanio">Titanio</option>                                         
-                                                    <option value="champagne">Champagne</option>                          
-                                                    <option value="bronce">Bronce</option>                                          
-                                                    <option value="negro">Negro</option>                                            
-                                                    <option value="blanco">Blanco</option>                                         
-                                                    <option value="madera">Madera</option>                                          
-                                                    <option value="rojo">Rojo</option>
-                                                    <option value="verde">Verde</option>
-                                                    <option value="azul">Azul</option>
-                                                    <option value="amarillo">Amarillo</option>
-                                                    <option value="plomo">Plomo</option>
-                                                    <option value="rosado">Rosado</option>
-                                                    <option value="turquesa">Turquesa</option>
-                                                    <option value="cafe">Cafe</option>
-                                                    <option value="violeta">Violeta</option>
-                                                    <option value="naranja">Naranja</option>
+                                                    <option value="Natural">Natural</option>
+                                                    <option value="Titanio">Titanio</option>                                         
+                                                    <option value="Champagne">Champagne</option>                          
+                                                    <option value="Bronce">Bronce</option>                                          
+                                                    <option value="Negro">Negro</option>                                            
+                                                    <option value="Blanco">Blanco</option>                                         
+                                                    <option value="Madera">Madera</option>                                          
+                                                    <option value="Rojo">Rojo</option>
+                                                    <option value="Verde">Verde</option>
+                                                    <option value="Azul">Azul</option>
+                                                    <option value="Amarillo">Amarillo</option>
+                                                    <option value="Plomo">Plomo</option>
+                                                    <option value="Rosado">Rosado</option>
+                                                    <option value="Turquesa">Turquesa</option>
+                                                    <option value="Cafe">Cafe</option>
+                                                    <option value="Violeta">Violeta</option>
+                                                    <option value="Naranja">Naranja</option>
                                                 </select>
                                             </div> 
                                         </div> 

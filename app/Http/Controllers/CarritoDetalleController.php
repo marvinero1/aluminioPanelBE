@@ -52,12 +52,14 @@ class CarritoDetalleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(carrito_detalle $carrito_detalle, $id)
-    {
+    {   
+        
         $carrito = Carrito::find($id);
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
 
-        //dd($carrito_detalle); 
-        return view('pedidos.show', compact('carrito_detalle','carrito')); 
+        $tamanio = count($carrito_detalle);
+        //dd($tamanio); 
+        return view('pedidos.show', compact('carrito_detalle','carrito','tamanio')); 
     }
 
     public function carritoProductos(carrito_detalle $carrito_detalle, $id)

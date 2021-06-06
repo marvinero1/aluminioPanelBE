@@ -23,4 +23,8 @@ class Carrito extends Model
                             'importadora',
                             'user_id',
                         ];
+
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }
