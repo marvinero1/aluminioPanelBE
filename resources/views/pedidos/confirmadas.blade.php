@@ -50,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($pedido as $carritos)
+                    @foreach($carrito as $carritos)
                     <tr>
                         <td style="text-align:center;">{{ $carritos->importadora }}</td>
                         <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
@@ -71,7 +71,7 @@
             </table>
         </div>
         <div style="text-align: center;">
-            {{ $pedido->links() }}
+            {{ $carrito->links() }}
         </div>
     </div>
 </div>
