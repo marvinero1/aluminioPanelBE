@@ -21,6 +21,7 @@ class Carrito extends Model
     protected $fillable = [ 'estado',
                             'descripcion',
                             'importadora',
+                            'confirmacion',
                             'user_id',
                         ];
 

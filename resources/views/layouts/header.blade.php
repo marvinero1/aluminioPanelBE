@@ -276,16 +276,34 @@
             </a>
           </li>
           @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
-            <li class="nav-item">
-              <a href="/pedido" class="nav-link">
-                <i class="nav-icon far fa fa-first-order" aria-hidden="true"></i>
+           
+             <li class="nav-item has-treeview ">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-id-badge"></i>
                 <p>Cotizaciones
+                  <i class="right fas fa-angle-left"></i>
                   {{-- <span class="badge badge-info right">2</span> --}}
                 </p>
               </a>
-            </li>
-          
-          
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/pedido" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Cotizaciones Pendientes</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/viewHistorialCotizaciones" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Cotizaciones Realizadas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
             <li class="nav-item">
               <a href="/novedad" class="nav-link">
                 <i class="fa fa-gift nav-icon" aria-hidden="true"></i>

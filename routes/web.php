@@ -21,7 +21,7 @@ Auth::routes();
 // Route::update('updatepassword','UserController@updatepassword');
 Route::post('store1','UserController@store1')->name('user.store1');
 Route::resource('user', 'UserController');
-
+Route::get('download/{file}','PedidoController@download')->name('download'); 
 
 Route::middleware(['auth'])->group(function () {
 Route::put('user/{user}/convertVendedor','UserController@convertVendedor')->name('user.convertVendedor');
@@ -31,13 +31,15 @@ Route::get('/importadoras', 'UserController@importadoras')->name('importadoras')
 Route::get('/vendedores', 'UserController@vendedores')->name('vendedores');
 Route::get('profile','UserController@index1')->name('profile'); 
 Route::get('mis-productos','ProductoController@misProductos')->name('mis-productos'); 
+Route::get('viewHistorialCotizaciones','PedidoController@getMisCotizacionesConfirmadas')->name('viewHistorialCotizaciones'); 
 
 #Registros para admin
 Route::get('viewRegisUsuario','UserController@viewRegisUsuario')->name('user.viewRegisUsuario'); 
 Route::get('viewRegisEmpresa','UserController@viewRegisEmpresa')->name('user.viewRegisEmpresa'); 
 Route::get('index','PedidoController@index')->name('pedido'); 
-
 Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.viewRegisVendedor'); 
+
+
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
@@ -51,6 +53,7 @@ Route::resource('suscripcion', 'SubscripcionController');
 Route::resource('pedido', 'PedidoController');
 Route::resource('pedidoRealizado', 'PedidoRealizadoController');
 Route::resource('carritoDetalle', 'CarritoDetalleController');
+Route::resource('carrito', 'CarritoController');
 
 });
 Route::get('images/{filename}', function ($filename)

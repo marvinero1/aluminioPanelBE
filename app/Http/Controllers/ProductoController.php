@@ -168,7 +168,7 @@ class ProductoController extends Controller
                 $mensaje = "Error al guardar la imagen";
             }
         }else{
-            $url = "GOASDS";
+            $url = "images/productoDefault.png";
             $requestData['imagen'] = $url;
             $mensaje = "Producto Registrado Correctamente Sin Imagen";
         }
@@ -181,7 +181,7 @@ class ProductoController extends Controller
         }
 
         Session::flash('message',$mensaje);
-            return redirect()->route('productos.index'); 
+        return redirect()->route('productos.index'); 
 
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Carrito;
+use DB;
+use Session;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -22,12 +24,10 @@ class CarritoController extends Controller
         ->first();
 
         return response()->json($carrito, 201);
-
     }
     
 
-    public function guardarCarrito(Request $request)
-    {
+    public function guardarCarrito(Request $request){
         $carrito = Carrito::create($request->all());
         return response()->json($carrito, 200);
     }
@@ -87,9 +87,22 @@ class CarritoController extends Controller
      * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrito $carrito)
+    public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+        $mensaje = "Cotizacion Confirmada Exitosamente!!!";
+
+        $carrito = Carrito::findOrFail($id);
+        $carrito->update($request->all());
+
+        if($carrito){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+        return redirect()->route('pedido.index'); 
     }
 
     public function updateStatusCart(Request $request, $id)

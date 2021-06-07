@@ -51,7 +51,6 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     
-    
     Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('calculos/{id}',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
@@ -63,16 +62,14 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carritoProductosIonic']);
     Route::get('usuariosStorage/{id}',[UserController::class, 'usuariosStorage']);
 
-
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
     Route::get('misProductos',[ProductoController::class, 'misProductos']);
     Route::get('historialCalculos/{id}',[CalculadoraHistorialController::class, 'historialCalculos']);
     Route::get('getMyProducts/{id}', [ProductoController::class,'getMyProducts']); 
     Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 
     Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 
-    Route::get('getMisCotizaciones', [PedidoController::class,'getMisCotizaciones']); 
-
-
+    Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
+    Route::get('download/{file}','PedidoController@download')->name('download'); 
 
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
     Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
@@ -90,6 +87,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
     Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
+
   
 Route::get('images/{filename}', function ($filename)
 {
