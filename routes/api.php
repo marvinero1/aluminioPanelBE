@@ -14,6 +14,7 @@ use App\Http\Controllers\PedidoRealizadoController;
 use App\Http\Controllers\CalculadoraController;
 use App\Http\Controllers\CalculadoraHistorialController;
 use App\Http\Controllers\CarritoDetalleController;
+use App\Http\Controllers\ContactanoController;
 
 
 //use App\Http\Controllers\Api\Auth\LoginController;
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['auth:api']], function(){
 
     Route::get('productos/{id}',[ProductoController::class, 'showProducto']);
     Route::get('misProductos',[ProductoController::class, 'misProductos']);
+    Route::get('getcontactos','ContactanoController@getContactosIonic')->name('contactos'); 
     Route::get('historialCalculos/{id}',[CalculadoraHistorialController::class, 'historialCalculos']);
     Route::get('getMyProducts/{id}', [ProductoController::class,'getMyProducts']); 
     Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 

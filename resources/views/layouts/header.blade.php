@@ -331,6 +331,7 @@
                 </a>
               </li>
             </ul>
+            @if(Auth::user()->role == 'admin')
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/viewRegisVendedor" class="nav-link ">
@@ -339,7 +340,7 @@
                 </a>
               </li>
             </ul>
-
+            @endif
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/viewRegisUsuario" class="nav-link ">
@@ -349,7 +350,14 @@
               </li>
             </ul>
           </li>
-         
+          @if(Auth::user()->role == 'admin')
+            <li class="nav-item has-treeview ">
+              <a href="/contacto" class="nav-link">
+                <i class="fa fa-address-book-o nav-icon"></i>
+                <p>Contactos</p>
+              </a>
+            </li>
+          @endif
           <li class="nav-item has-treeview ">
             <a class="nav-link">
               <i class="nav-icon fas fa-id-badge"></i>

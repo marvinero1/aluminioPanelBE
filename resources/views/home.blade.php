@@ -42,7 +42,7 @@
                     <div class="bottom" style="text-align: center;">
                         <button style="height: 65px;" class="btn"><a
                                 style="color: whitesmoke;font-size: 17px;" href="{{url('/productos')}}"><i
-                                    class="fa fa-address-card"></i>
+                                    class="fa fa-cog"></i>
                                 <span><br> Productos</span></a>
                         </button>
                     </div><br>
