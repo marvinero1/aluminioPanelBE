@@ -50,14 +50,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($carrito as $carritos)
+                    @foreach($pedido as $carritos)
                     <tr>
                         <td style="text-align:center;">{{ $carritos->importadora }}</td>
                         <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
                         <td style="text-align:center;">{{ $carritos->descripcion }}</td>
                         <td style="text-align:center;">{{ $carritos->user->name }}</td>
-                        <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td>  
-                        <td style="text-align:center;"> <a href="{{ route('download', $carritos->file ) }}" class="btn btn-primary">Descargar PDF</a></td>          
+                        <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td> 
+                        
+                         <td style="text-align:center;"> <a href="{{ route('download', $carritos->file ) }}" class="btn btn-primary">Descargar PDF</a></td>   
+                        
+                        <h1>Hola</h1> 
+                        
+                                 
                         <td style="text-align:center;">
                             <div class="card-body">
                                 <a class="btn btn-app" href="{{ route('carritoDetalle.show', $carritos->id )}}">
@@ -71,7 +76,7 @@
             </table>
         </div>
         <div style="text-align: center;">
-            {{ $carrito->links() }}
+            {{ $pedido->links() }}
         </div>
     </div>
 </div>

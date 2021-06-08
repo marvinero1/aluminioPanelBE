@@ -167,8 +167,12 @@ class PedidoController extends Controller
         // } 
 
         // return redirect('/404');
-        $path = public_path($request->file);
-        return response()->download($path);
+        if ($request->file) {
+            $path = public_path($request->file);
+            return response()->download($path);
+        
+        } 
+        
         
     }
 

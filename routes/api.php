@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
     Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
     Route::delete('calculadoraDelete/{id}/', [CalculadoraController::class, 'calculadoraDelete']);
-    Route::delete('calculadoraDeleteAll', [CalculadoraController::class, 'calculadoraDeleteAll']);
+    Route::delete('calculadoraDeleteAll/{id}', [CalculadoraController::class, 'calculadoraDeleteAll']);
 
     Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class,'calculadoraHistorialDelete']);
     Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);

@@ -121,7 +121,6 @@
         <a href="javascript:pruebaDivAPdf()" class="btn btn-danger"><strong>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Pasar a PDF</strong></a> &nbsp;
 
-        
          <!-- Button trigger Confirmacion -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalConfirmacion">
           <i class="fa fa-check" aria-hidden="true"></i>&nbsp; Confirmar Cotización
@@ -131,7 +130,6 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Enviar Cotización
         </button>
-
     </div>
     <!-- Modal postCotizacion-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

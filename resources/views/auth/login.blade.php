@@ -11,13 +11,13 @@
       </div>  --}}
         <div class="row">
             <div class="content" class="hold-transition login-page" >
-                <div class="pt-5 contenido">
+                <div class="pt-3 contenido">
                     {{-- <div class="login-logo">
                     <b>Panel</b>ADMIN
                     </div> --}}
                     <!-- /.login-logo -->
                     <div class="card content row" >
-                    <div class="card-body login-card-body form-group">
+                    <div class="card-body login-card-body ">
                         @if (Session::has('message'))
                             <div class="alert alert-info">{{ Session::get('message') }}</div>
                         @endif
@@ -56,37 +56,40 @@
                             </div>
                             </div>
                         </div>
-                        <div class="row">
-                            {{-- <div class="col-8">
+                        <div class="col-4">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember">
-                                <label for="remember">
-                                Remember Me
-                                </label>
+                                <label for="remember">Recuerdame</label>
                             </div>
-                            </div> --}}
-                            <!-- /.col -->
-                            {{-- <div class="col-12 col-md-6 btncard"> --}}
-                            {{-- <button type="submit" class="btn btn-dark btn-block">Ingresar</button> --}}
-                            {{-- </div> --}}
-                            <div class="form-group row mb-0">
-                                <div class="col-12 col-md-6 btncard">
-                                    <button type="submit" class="btn btn-dark btn-block">
-                                        {{ __('Login') }}
-                                    </button> 
-                                </div>
-                                <div class="col-md-8 offset-md-4">
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                            <!-- /.col -->
                         </div>
+                            <div class="row">
+                                
+                                <!-- /.col -->
+                                {{-- <div class="col-12 col-md-6 btncard"> --}}
+                                {{-- <button type="submit" class="btn btn-dark btn-block">Ingresar</button> --}}
+                                {{-- </div> --}}
+                                <div class="form-group row mb-0">
+                                    <div class="col-12 col-md-6 btncard">
+                                        <button type="submit" class="btn btn-dark btn-block">
+                                            {{ __('Login') }}
+                                        </button> 
+                                    </div>
+
+                                    <div class="col-md-8 offset-md-4">
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
+                                    </div>
+
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+
                         </form>
-                
+                        
                         {{-- <div class="social-auth-links text-center mb-3">
                         <p>- OR -</p>
                         <a href="#" class="btn btn-block btn-primary">
@@ -99,11 +102,11 @@
                         <!-- /.social-auth-links -->
                 
                         {{-- <p class="mb-1">
-                        <a href="forgot-password.html">Olvide mi contrseña</a>
+                        <a href="forgot-password.html">Olvid</a>
                         </p> --}}
-                        <p class="mb-0">
+                        <!-- <p class="mb-0">
                         <a href="/register" class="text-center">¿Registrar como Empresa?</a>
-                        </p>
+                        </p> -->
                     </div>
                     <!-- /.login-card-body -->
                     </div>
@@ -186,7 +189,7 @@
 <style>
     .background{
         background-size: cover;
-        height: 93.5% !important;
+        height: 100% !important;
         background-image: url("images/background.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;

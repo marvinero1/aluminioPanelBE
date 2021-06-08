@@ -91,9 +91,9 @@ class CalculadoraController extends Controller
     }
     
 
-    public function calculadoraDeleteAll(Request $request){
-        $calculadora = calculadora::truncate();
+    public function calculadoraDeleteAll(Request $request, $id){
 
+       $calculadora = calculadora::where('calculadoras.user_id', '=', $id)->delete();
        //$calculadora->truncate();
 
         return response()->json($calculadora, 200); 
