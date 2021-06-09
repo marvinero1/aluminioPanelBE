@@ -74,17 +74,17 @@
     .card.hovercard1 .cardheader1 {
         background: url("/images/productoDefault.png");
         background-size: cover;
-        height: 160px;
+        height: 200px;
     }
     .card.hovercard2 .cardheader2 {
-        background: url("/images/");
+        background: url("/images/novedades.png");
         background-size: cover;
-        height: 160px;
+        height: 200px;
     }
     .card.hovercard3 .cardheader3 {
         background: url("/images/inscrip.jpg");
         background-size: cover;
-        height: 160px;
+        height: 200px;
     }
     .info{
         text-align: center;

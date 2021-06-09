@@ -256,15 +256,16 @@
                 </a>
               </li>
             </ul>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/mis-productos" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Mis Productos</p>
-                </a>
-              </li>
-            </ul>
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/mis-productos" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Mis Productos</p>
+                  </a>
+                </li>
+              </ul>
+            @endif
           </li>
 
            <li class="nav-item">

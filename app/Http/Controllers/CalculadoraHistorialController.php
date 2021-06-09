@@ -21,7 +21,9 @@ class CalculadoraHistorialController extends Controller
 
     public function historialCalculos(Request $request, $id)
     {
-        $calculadoraHistorial = calculadoraHistorial::where('calculadora_historials.user_id', '=', $id)->get();
+        $calculadoraHistorial = calculadoraHistorial::where('calculadora_historials.user_id', '=', $id)
+        ->orderBy('created_at','desc')
+        ->get();
 
         return response()->json($calculadoraHistorial, 200);
     }

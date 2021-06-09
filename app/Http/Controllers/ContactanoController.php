@@ -20,9 +20,7 @@ class ContactanoController extends Controller
     }
 
     public function getContactosIonic(){
-        
-        $contactano = Contactano::all();
-        return response()->json($contactano, 200);
+        return Contactano::all();
     }
 
     /**
