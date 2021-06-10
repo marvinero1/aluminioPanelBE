@@ -108,4 +108,53 @@ class ContactanoController extends Controller
         Session::flash('message','Contacto eliminado exitosamente!');
         return redirect()->route('contacto.index');
     }
+
+    public function contactgetLPZ(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'La-Paz')->get();
+
+        return response()->json($contactano, 200);
+    }
+
+    public function contactgetCBBA(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Cochabamba')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetSTCZ(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Santa-Cruz')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetOR(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Oruro')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetPOT(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Potosi')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetSUC(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Sucre')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetTAR(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Tarija')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetBENI(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Beni')->get();
+
+        return response()->json($contactano, 200);
+    }
+    public function contactgetPANDO(){
+        $contactano = Contactano::where('contactanos.ciudad', '=', 'Pando')->get();
+
+        return response()->json($contactano, 200);
+    }
+
+                                 
 }

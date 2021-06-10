@@ -90,6 +90,19 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
 
+
+
+    //Route get contactos
+    Route::get('contactgetLPZ',[ContactanoController::class, 'contactgetLPZ']);
+    Route::get('contactgetCBBA',[ContactanoController::class, 'contactgetCBBA']);
+    Route::get('contactgetSTCZ',[ContactanoController::class, 'contactgetSTCZ']);
+    Route::get('contactgetOR',[ContactanoController::class, 'contactgetOR']);
+    Route::get('contactgetPOT',[ContactanoController::class, 'contactgetPOT']);
+    Route::get('contactgetSUC',[ContactanoController::class, 'contactgetSUC']);
+    Route::get('contactgetTAR',[ContactanoController::class, 'contactgetTAR']);
+    Route::get('contactgetBENI',[ContactanoController::class, 'contactgetBENI']);
+    Route::get('contactgetPANDO',[ContactanoController::class, 'contactgetPANDO']);
+
   
 Route::get('images/{filename}', function ($filename)
 {
