@@ -23,5 +23,6 @@ class calculadoraHistorial extends Model
     					   	'descripcion',
                         	'precio',
                         	'total_suma',
+                            'suma_m2',
                     		'user_id',];
 }
