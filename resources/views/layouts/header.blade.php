@@ -318,9 +318,9 @@
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'vendedor')
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
-              <i class="fa fa-plus-square nav-icon"></i>
+              <i class="fa fa-pencil-square-o nav-icon"></i>
               <p>
-                Suscripciones
+                Registrar
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

@@ -23,7 +23,7 @@ Route::post('store1','UserController@store1')->name('user.store1');
 Route::resource('user', 'UserController');
 Route::get('download/{file}','PedidoController@download')->name('download'); 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'] )->group(function () {
 Route::put('user/{user}/convertVendedor','UserController@convertVendedor')->name('user.convertVendedor');
 Route::put('user/{user}/updatepassword','UserController@updatepassword')->name('user.updatepassword');
 Route::get('/home', 'HomeController@index')->name('home');

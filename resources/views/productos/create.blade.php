@@ -20,9 +20,9 @@
                                 <div class="row" style="border: outset;">
                                     <div class="col-md-6 p-2">
                                         <div class="form-group">
-                                            <label for="nombre">Código Producto</label>
+                                            <label for="nombre">Código Producto *</label>
                                             <input type="text" class="form-control" name="codigo"
-                                                placeholder="Código Artículo">
+                                                placeholder="Código Artículo" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 p-2">
@@ -69,10 +69,9 @@
                                                     <option value="Beni">Beni</option>
                                                 </select>
                                             </div>
-                                            
                                           </div>
-                              
-                                    </div><br>
+                                        </div>
+                                    &nbsp;&nbsp;&nbsp;<lable>Los campos marcados con (*) son requeridos</lable><br>
                                 </div><br>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -175,7 +174,7 @@
                                         <input id="file-upload" type="file" name="imagen">
                                     </div>   
                                 </div>
-                                 <div class="col-md-6">
+                                <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="descripcion">Descripción</label>
                                             <textarea class="form-control" name="descripcion" rows="5"></textarea>
@@ -187,8 +186,7 @@
 
                                     <input type="text" class="form-control" name="importadora" readonly hidden="true" 
                                             value="{{Auth::user()->name}}">
-                                    
-                            </div>
+                                </div>
                             <p>
   
                               <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-glass" aria-hidden="true"></i>
@@ -197,46 +195,41 @@
                               <p>* Este formulario es exclusivamente para vidrios y afines.</p>
                             </p>
                             <div class="collapse" id="collapseExample">
-                              <div class="card card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                       <div class="form-group">
-                                            <label>Alto</label>
-                                            <div>* Solo para vidrio</div>
-                                            <input type="number" step="0.01" class="form-control" placeholder="Altura" name="alto">
+                                <div class="card card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                           <div class="form-group">
+                                                <label>Alto</label>
+                                                <div>* Solo para vidrio</div>
+                                                <input type="number" step="0.01" class="form-control" placeholder="Altura" name="alto">
+                                            </div> 
+                                            <div class="form-group">
+                                                <label>Ancho</label>
+                                                <div>* Solo para vidrio</div>
+                                                <input type="number" step="0.01" class="form-control" placeholder="Ancho" name="ancho">
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Tipo Medida</label>
+                                            <select class="select2" id="inputGroupSelect01"  name="tipo_medida" required>
+                                                <option selected>Selecciona...</option>
+                                                <option value="kilometro">Kilómetro</option>
+                                                <option value="metro">Metro</option>
+                                                <option value="centímetro">Centímetro</option>
+                                                <option value="pulgada">Pulgadas</option>
+                                                <option value="gramo">Gramo</option>
+                                                <option value="kilogramo">Kilogramo</option>
+                                                <option value="centigramo">Centigramo</option>
+                                                <option value="miligramo">Miligramo</option>
+                                                <option value="litro">Litro</option>
+                                                <option value="decalitro">Decalitro</option>
+                                                <option value="centilitro">Centilitro</option>
+                                                <option value="mililitro">Mililitro</option>
+                                            </select>  
                                         </div> 
-                                         
-                                        <div class="form-group">
-                                            <label>Ancho</label>
-                                            <div>* Solo para vidrio</div>
-                                            <input type="number" step="0.01" class="form-control" placeholder="Ancho" name="ancho">
-                                        </div> 
-                                         
                                     </div>
-                                     <div class="col-md-3">
-                                        <label>Tipo Medida</label>
-                                        <select class="select2" id="inputGroupSelect01"  name="tipo_medida" required>
-                                            <option selected>Selecciona...</option>
-                                            <option value="kilometro">Kilómetro</option>
-                                            <option value="metro">Metro</option>
-                                            <option value="centímetro">Centímetro</option>
-                                            <option value="pulgada">Pulgadas</option>
-                                            <option value="gramo">Gramo</option>
-                                            <option value="kilogramo">Kilogramo</option>
-                                            <option value="centigramo">Centigramo</option>
-                                            <option value="miligramo">Miligramo</option>
-                                            <option value="litro">Litro</option>
-                                            <option value="decalitro">Decalitro</option>
-                                            <option value="centilitro">Centilitro</option>
-                                            <option value="mililitro">Mililitro</option>
-                                        </select>  
-                                    </div>
-                                    
-                                   
                                 </div>
-    
-  </div>
-</div>
+                            </div>
                             <div class="card-footer">
                                 <a type="button" class="btn btn-secondary float-right"
                                     href="{{url('/productos')}}">Cerrar</a>
@@ -245,7 +238,6 @@
                         </form>
                     </div>
     </section>
-    
 </div>
 
 <style>

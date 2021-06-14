@@ -34,8 +34,9 @@
                     <th style="text-align:center;">Whatsapp</th>
                     <th style="text-align:center;">Role</th>
                     <th style="text-align:center;">Registrado</th>
-                    <th style="text-align:center;">Subscripción</th>
+                   <!--  <th style="text-align:center;">Subscripción</th> -->
                     <th style="text-align:center;">Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -57,12 +58,12 @@
                     <td style="text-align:center;">{{ $users->whatsapp }}</td>
                     <td style="text-align:center;">{{ $users->role }}</td>
                     <td style="text-align:center;">{{ $users->registrado }}</td>
-                    @if($users->subscripcion == 'false' )
+                  <!--   @if($users->subscripcion == 'false' )
                     <td style="text-align:center; color:red;">{{ $users->subscripcion }}</td>
                     @endif
                     @if($users->subscripcion == 'true' )
                     <td style="text-align:center; color:green;">{{ $users->subscripcion }}</td>
-                    @endif
+                    @endif -->
 
                     <td style="text-align:center;">
                         <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
@@ -78,14 +79,17 @@
                                                 aria-hidden="true"></i> Eliminar</button>
                         </form>
 
-                        <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
+                        <!-- <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                             class="btn btn-warning btn-sm"><i class="fa fa-star" aria-hidden="true"></i> Subscribir
-                        </button>
+                        </button> -->
+
+                        @if( Auth::user()->role == 'admin' )
                         <button data-toggle="modal" data-target="#modalVendedor{{$users->id}}"
                             class="btn btn-success btn-sm">Dar Permiso de
                             Vendedor
                         </button>
-                        
+                        @endif
+
                         <div class="modal fade" id="modalFavoritos{{$users->id}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" style="max-width: 410px !important;" role="document">

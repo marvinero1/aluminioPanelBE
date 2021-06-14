@@ -64,12 +64,13 @@
                         @endif
                        
                         <td style="text-align:center;">
-                                                       
-                            <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
-                                    class="btn btn-warning btn-sm"><i class="fa fa-star"
-                                    aria-hidden="true"></i> Subscribir
-                            </button>
-
+                            
+                            @if(Auth::user()->role == 'admin')                        
+                                <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
+                                        class="btn btn-warning btn-sm"><i class="fa fa-star"
+                                        aria-hidden="true"></i> Subscribir
+                                </button>
+                            @endif
                             <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
                                         accept-charset="UTF-8" style="display:inline">
                                         @csrf
