@@ -66,9 +66,9 @@
 
                        
                         <td style="text-align:center;">
-                            <a href="{{ route('user.show',$users->id ) }}">
-                                <button class="btn btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver</button>
-                            </a>
+                            <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
+                                <i class="fas fa-eye"></i> Ver
+                    </a>
                             @if(Auth::user()->role == 'admin' )
                             <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                                     class="btn btn-warning btn-sm"><i class="fa fa-star"

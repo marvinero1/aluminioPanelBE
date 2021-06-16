@@ -12,61 +12,64 @@
                     <hr> Altools</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card hovercard2">
-                    <div class="cardheader2">
-                    </div>
-                    <div class="info">
-                        <div class="title">
-                            <h2 target="_blank">Novedades</h2>
+        @if(Auth::user()->role == 'admin')
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card hovercard2">
+                        <div class="cardheader2">
                         </div>
+                        <div class="info">
+                            <div class="title">
+                                <h2 target="_blank">Novedades</h2>
+                            </div>
+                        </div>
+                        <div class="bottom" style="text-align: center;">
+                            <button style="height: 65px;" class="btn "><a
+                                    style="color: whitesmoke;font-size: 17px;" href="{{url('/novedad')}}"><i
+                                        class="fa fa-bar-chart"></i>
+                                    <span><br> Novedades</span></a></button>
+                        </div><br>
                     </div>
-                    <div class="bottom" style="text-align: center;">
-                        <button style="height: 65px;" class="btn "><a
-                                style="color: whitesmoke;font-size: 17px;" href="{{url('/novedad')}}"><i
-                                    class="fa fa-bar-chart"></i>
-                                <span><br> Novedades</span></a></button>
-                    </div><br>
                 </div>
+                <div class="col-md-4">
+                    <div class="card hovercard1">
+                        <div class="cardheader1">
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                <h2 target="_blank">Productos</h2>
+                            </div>
+                        </div>
+                        <div class="bottom" style="text-align: center;">
+                            <button style="height: 65px;" class="btn"><a
+                                    style="color: whitesmoke;font-size: 17px;" href="{{url('/productos')}}"><i
+                                        class="fa fa-cog"></i>
+                                    <span><br> Productos</span></a>
+                            </button>
+                        </div><br>
+                    </div>                 
+                </div>           
+                <div class="col-md-4">               
+                    <div class="card hovercard3">
+                        <div class="cardheader3">
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                <h2 target="_blank">Cotizaciones</h2>
+                            </div>
+                        </div>
+                        <div class="bottom" style="text-align: center;">
+                            <button style="height: 65px;" class="btn"><a
+                                    style="color: whitesmoke;font-size: 17px;" href="{{url('/pedido')}}">
+                                    <i class="fa fa-hand-o-right"></i>
+                                    <span><br> Cotizaciones</span></a>
+                            </button>
+                        </div><br>
+                    </div>
+                </div>    
             </div>
-            <div class="col-md-4">
-                <div class="card hovercard1">
-                    <div class="cardheader1">
-                    </div>
-                    <div class="info">
-                        <div class="title">
-                            <h2 target="_blank">Productos</h2>
-                        </div>
-                    </div>
-                    <div class="bottom" style="text-align: center;">
-                        <button style="height: 65px;" class="btn"><a
-                                style="color: whitesmoke;font-size: 17px;" href="{{url('/productos')}}"><i
-                                    class="fa fa-cog"></i>
-                                <span><br> Productos</span></a>
-                        </button>
-                    </div><br>
-                </div>                 
-            </div>           
-            <div class="col-md-4">               
-                <div class="card hovercard3">
-                    <div class="cardheader3">
-                    </div>
-                    <div class="info">
-                        <div class="title">
-                            <h2 target="_blank">Cotizaciones</h2>
-                        </div>
-                    </div>
-                    <div class="bottom" style="text-align: center;">
-                        <button style="height: 65px;" class="btn"><a
-                                style="color: whitesmoke;font-size: 17px;" href="{{url('/pedido')}}">
-                                <i class="fa fa-hand-o-right"></i>
-                                <span><br> Cotizaciones</span></a>
-                        </button>
-                    </div><br>
-                </div>
-            </div>    
-        </div>
+        @endif
+        
     </div>
 </div>
 @endsection

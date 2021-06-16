@@ -32,10 +32,13 @@
                         <th style="text-align:center;">Email</th>
                         <th style="text-align:center;">Telefono</th>
                         <th style="text-align:center;">Whatsapp</th>
-                        <th style="text-align:center;">Role</th>
+                        <th style="text-align:center;">Pais</th>
+                        <th style="text-align:center;">Ciudad</th>
+                        <th></th>
+                        {{-- <th style="text-align:center;">Role</th>
                         <th style="text-align:center;">Registrado</th>
-                        <th style="text-align:center;">Subscripción</th>
-                        <th style="text-align:center;">Acciones</th>
+                        <th style="text-align:center;">Subscripción</th> --}}
+                        {{-- <th style="text-align:center;">Acciones</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -54,23 +57,28 @@
                         <td style="text-align:center;">{{ $users->email }}</td>
                         <td style="text-align:center;">{{ $users->telefono }}</td>
                         <td style="text-align:center;">{{ $users->whatsapp }}</td>
-                        <td style="text-align:center;">{{ $users->role }}</td>
+                        <td style="text-align:center;">{{ $users->pais }}</td>
+                        <td style="text-align:center;">{{ $users->ciudad }}</td>
+
+                        {{-- <td style="text-align:center;">{{ $users->role }}</td>
                         <td style="text-align:center;">{{ $users->registrado }}</td>
                         @if($users->subscripcion == 'false' )
                         <td style="text-align:center; color:red;" >{{ $users->subscripcion }}</td>
                         @endif
                         @if($users->subscripcion == 'true' )
                         <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
-                        @endif
+                        @endif --}}
                        
                         <td style="text-align:center;">
-                            
+                            {{-- <a class="btn btn-app " href="{{ route('user.show', $users->id  ) }}">
+                                <i class="fas fa-eye"></i> Ver
+                            </a>  --}}
                             @if(Auth::user()->role == 'admin')                        
                                 <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                                         class="btn btn-warning btn-sm"><i class="fa fa-star"
                                         aria-hidden="true"></i> Subscribir
                                 </button>
-                            @endif
+                            
                             <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
                                         accept-charset="UTF-8" style="display:inline">
                                         @csrf
@@ -80,9 +88,8 @@
                                         title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
                                                 aria-hidden="true"></i> Eliminar</button>
                             </form>
-                           <!--  <a href="{{ route('user.show',$users->id ) }}">
-                                <button class="btn btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver</button>
-                            </a>  --> 
+                            @endif
+                             
                             <div class="modal fade" id="modalFavoritos{{$users->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" style="max-width: 410px !important;" role="document">

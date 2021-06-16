@@ -71,7 +71,7 @@
                                             <input type="hidden" name="subscripcion" value="false">
                                         </div>
                                         <button type="submit" class="btn btn-primary px-4 float-right"><span class="icon-save"></span>&nbsp;
-                                          Guardar</button>
+                                          Guardar</button><br>
                                     </form>
                                 </div>
 					</div>
