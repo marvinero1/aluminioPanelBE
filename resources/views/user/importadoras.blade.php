@@ -43,8 +43,8 @@
                     <tr>
                         <td style="text-align:center;">
 
-                        @if( $users->imagen == '')
-                            <img img src="/images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="75px" width="75px">
+                        @if( $users->imagen == "images/default-person.jpg")
+                            <img src="images/system/default-person.jpg" class="img-thumbnail" alt="Usuario" height="75px" width="75px">
                         @else
                             <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="75px" width="75px"
                                 style="display: block;margin: 0 auto;">

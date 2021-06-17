@@ -83,7 +83,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    @if( Auth::user()->role == 'user' || Auth::user()->role == 'admin')
+                                    @if( Auth::user()->role == 'user' || Auth::user()->role == 'admin' || Auth::user()->role == 'vendedor')
                                     <div class="modal-body">
                                         <form action="{{route('user.update', Auth::user()->id)}}" method="POST"
                                             enctype="multipart/form-data">
@@ -390,6 +390,6 @@
         font-size: 16px;
         line-height: 26px;
         margin-bottom: 20px;
-        color: #666;
+        
     }
 </style>

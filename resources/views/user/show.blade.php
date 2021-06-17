@@ -246,7 +246,6 @@
         font-size: 16px;
         line-height: 26px;
         margin-bottom: 20px;
-        color: #666;
     }
 
 </style>
