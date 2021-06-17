@@ -24,5 +24,6 @@ class calculadoraHistorial extends Model
                         	'precio',
                         	'total_suma',
                             'suma_m2',
+                            'hoja_calculo_id',
                     		'user_id',];
 }

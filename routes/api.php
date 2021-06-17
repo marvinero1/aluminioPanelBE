@@ -15,7 +15,7 @@ use App\Http\Controllers\CalculadoraController;
 use App\Http\Controllers\CalculadoraHistorialController;
 use App\Http\Controllers\CarritoDetalleController;
 use App\Http\Controllers\ContactanoController;
-
+use App\Http\Controllers\HojaCalculoController;
 
 //use App\Http\Controllers\Api\Auth\LoginController;
 
@@ -51,9 +51,10 @@ Route::group(['middleware' => ['auth:api']], function(){
 });
     Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
+    Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);  
     
     Route::get('productos',[ProductoController::class, 'getProducto']);
-    Route::get('calculos/{id}',[CalculadoraController::class, 'calculos']);
+    Route::get('calculos/{id}/{hoja_id}',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('favoritos/{id}',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getMyProducts/{id}', [ProductoController::class,'getMyProducts']); 
     Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 
     Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 
+    Route::get('getHojaCalculo/{id}', [HojaCalculoController::class,'getHojaCalculo']); 
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
     Route::get('download/{file}','PedidoController@download')->name('download'); 
 
@@ -78,18 +80,16 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
     Route::delete('calculadoraDelete/{id}/', [CalculadoraController::class, 'calculadoraDelete']);
     Route::delete('calculadoraDeleteAll/{id}', [CalculadoraController::class, 'calculadoraDeleteAll']);
-
     Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class,'calculadoraHistorialDelete']);
     Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
     
     Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
     Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);
-    
     Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
     Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
-
+    Route::post('guardarHoja',[HojaCalculoController::class, 'guardarHoja']);
 
 
     //Route get contactos

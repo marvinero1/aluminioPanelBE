@@ -33,18 +33,20 @@
                     <th style="text-align:center;">Telefono</th>
                     <th style="text-align:center;">Whatsapp</th>
                     <th style="text-align:center;">Role</th>
-                    <th style="text-align:center;">Registrado</th>
+                    <th style="text-align:center;">Pais</th>
+                    <th style="text-align:center;">Ciudad</th>
+
+                   <!--  <th style="text-align:center;">Registrado</th> -->
                    <!--  <th style="text-align:center;">Subscripción</th> -->
                     <th style="text-align:center;">Acciones</th>
                     <th></th>
-                    <th></th>
+                    
                 </tr>
             </thead>
             <tbody>
                 @foreach($user as $users)
                 <tr>
                     <td style="text-align:center;">
-
                         @if( $users->imagen == '')
                         <img img src="/images/default-person.jpg" class="img-thumbnail" alt="Usuario" height="150px"
                             width="150px">
@@ -58,13 +60,16 @@
                     <td style="text-align:center;">{{ $users->telefono }}</td>
                     <td style="text-align:center;">{{ $users->whatsapp }}</td>
                     <td style="text-align:center;">{{ $users->role }}</td>
-                    <td style="text-align:center;">{{ $users->registrado }}</td>
+                    <td style="text-align:center;">{{ $users->pais }}</td>
+                    <td style="text-align:center;">{{ $users->ciudad }}</td>
+
+                   <!--  <td style="text-align:center;">{{ $users->registrado }}</td>
                     @if($users->subscripcion == 'false' )
                     <td style="text-align:center; color:red;">{{ $users->subscripcion }}</td>
                     @endif
                     @if($users->subscripcion == 'true' )
                     <td style="text-align:center; color:green;">{{ $users->subscripcion }}</td>
-                    @endif 
+                    @endif  -->
 
                     <td style="text-align:center;">
                         <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
@@ -81,9 +86,9 @@
                                                 aria-hidden="true"></i> Eliminar</button>
                         </form>
                         @endif
-                        <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
+                        <!-- <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                             class="btn btn-warning btn-sm"><i class="fa fa-star" aria-hidden="true"></i> Subscribir
-                        </button> 
+                        </button>  -->
 
                         {{-- @if( Auth::user()->role == 'admin' )
                         <button data-toggle="modal" data-target="#modalVendedor{{$users->id}}"

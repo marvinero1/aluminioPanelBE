@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class calculadora extends Model
+class Hoja_calculo extends Model
 {
     protected $auditTimestamps = true;
     protected $auditStrict = true;
@@ -19,9 +19,6 @@ class calculadora extends Model
     ];
 
     protected $fillable = ['user_id',
-    					   'numero1',
-    					   'numero2',
-                        'resultado',
-                        'hoja_calculo_id',
-                    ];
+                           'estado',
+                        ];
 }

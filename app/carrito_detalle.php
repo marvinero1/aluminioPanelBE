@@ -32,7 +32,6 @@ class carrito_detalle extends Model
                             'carro_id',
                             'categorias_id',
                             'subcategorias_id',
-
                         ];
 
 }
