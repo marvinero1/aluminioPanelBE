@@ -180,12 +180,12 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            @if( Auth::user()->imagen == '')
-              <img img src="images/default-person.jpg" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px">
+            @if( $users->imagen == "images/default-person.jpg")
+                <img src="images/system/default-person.jpg" class="img-thumbnail" alt="Usuario" height="75px" width="75px">
             @else
-              <img src="/{{ Auth::user()->imagen }}" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px"
-                  style="display: block;margin: 0 auto;">
-            @endif
+                <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="75px" width="75px"
+                    style="display: block;margin: 0 auto;">
+            @endif         
           </div>
           <div class="info">
             <a href="{{ route('user.index')}}" class="d-block">{{ Auth::user()->name }}</a>

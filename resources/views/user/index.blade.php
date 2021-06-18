@@ -46,12 +46,16 @@
             <tbody>
                 @foreach($user as $users)
                 <tr>
-                    @if( $users->imagen == "images/default-person.jpg")
+                    <td style="text-align:center;">
+
+                        @if( $users->imagen == "images/default-person.jpg")
                             <img src="images/system/default-person.jpg" class="img-thumbnail" alt="Usuario" height="75px" width="75px">
                         @else
                             <img src="/{{$users->imagen }}" class="img-thumbnail" alt="Usuario" height="75px" width="75px"
                                 style="display: block;margin: 0 auto;">
                         @endif
+                        </td>
+                        
                     <td style="text-align:center;">{{ $users->name }}</td>
                     <td style="text-align:center;">{{ $users->apellido }}</td>
                     <td style="text-align:center;">{{ $users->telefono }}</td>
