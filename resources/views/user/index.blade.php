@@ -35,6 +35,7 @@
                     <th style="text-align:center;">Role</th>
                     <th style="text-align:center;">Pais</th>
                     <th style="text-align:center;">Ciudad</th>
+                    <th style="text-align:center;">Subscripción</th>
 
                    <!--  <th style="text-align:center;">Registrado</th> -->
                    <!--  <th style="text-align:center;">Subscripción</th> -->
@@ -71,12 +72,18 @@
                     @if($users->subscripcion == 'true' )
                     <td style="text-align:center; color:green;">{{ $users->subscripcion }}</td>
                     @endif  -->
-
+                     @if($users->subscripcion == 'false' )
+                        <td style="text-align:center; color:red;" >{{ $users->subscripcion }}</td>
+                        @endif
+                        @if($users->subscripcion == 'true' )
+                        <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
+                        @endif
                     <td style="text-align:center;">
                         <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
                                     <i class="fas fa-eye"></i> Ver
                         </a>
                         @if( Auth::user()->role == 'admin' )
+
                         <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
                                         accept-charset="UTF-8" style="display:inline">
                                         @csrf
@@ -86,6 +93,10 @@
                                         title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
                                                 aria-hidden="true"></i> Eliminar</button>
                         </form>
+                        <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
+                                        class="btn btn-warning btn-sm"><i class="fa fa-star"
+                                        aria-hidden="true"></i> Subscribir
+                        </button>
                         @endif
                         <!-- <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                             class="btn btn-warning btn-sm"><i class="fa fa-star" aria-hidden="true"></i> Subscribir
