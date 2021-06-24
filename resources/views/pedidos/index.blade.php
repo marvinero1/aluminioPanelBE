@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content-wrapper pt-3">
-    <h1 style="text-align: center" class="mb-4">Pedidos Pendientes</h1>
+    <h1 style="text-align: center" class="mb-4">Cotizaciones Pendientes</h1>
     <div class="content">
         @if (Session::has('message'))
         <div class="alert alert-success">{{ Session::get('message') }}</div>

@@ -26,17 +26,12 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-      @include('layouts.header')
-    
-        @yield('content')
-    
-      @include('layouts.footer')
-      
-    </div>
-    {{-- <script src="{{ asset("css/fullcalendar/moment.main.js") }}"></script>  --}}
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <body class="hold-transition sidebar-mini layout-fixed">
+      <div class="wrapper">
+        @include('layouts.header')
+          @yield('content')
+        @include('layouts.footer')
+      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
   </body>
 </html>

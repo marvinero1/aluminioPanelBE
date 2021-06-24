@@ -49788,7 +49788,40 @@ $(function () {
   $('.select2bs4').select2({
     theme: 'bootstrap4'
   });
-});
+}); // generamos un evento click y keyup para cada elemento input con la clase .input
+
+var input = document.querySelectorAll(".input");
+input.forEach(function (e) {
+  e.addEventListener("click", multiplica);
+  e.addEventListener("keyup", multiplica);
+}); // funcion que genera la multiplicacion
+
+function multiplica() {
+  // nos posicionamos en el tr del producto
+  var tr = this.closest("tr");
+  var total = 1; // recorremos todos los elementos del tr que tienen la clase .input
+
+  var inputs = tr.querySelectorAll(".input");
+  inputs.forEach(function (e) {
+    total *= e.value;
+  }); // mostramos el total con dos decimales
+
+  tr.querySelector(".total").value = total.toFixed(2); // indicamos que calcule el total
+
+  calcularTotal(this.closest("table"));
+} // funcion que calcula la suma total de los productos
+
+
+function calcularTotal(e) {
+  var total = 0; // obtenemos todos los totales y los sumamos
+
+  var totales = e.querySelectorAll(".total");
+  totales.forEach(function (e) {
+    total += parseFloat(e.value);
+  }); // mostramos la suma total con dos decimales
+
+  e.getElementsByClassName("totales")[0].value = total.toFixed(2);
+}
 
 function pruebaDivAPdf() {
   var pdf = new jsPDF('p', 'pt', 'letter');

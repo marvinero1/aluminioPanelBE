@@ -2,7 +2,7 @@
 
 @section('content')
 <br><br>
-<div class="content-wrapper" id="imprimir">
+<div class="content-wrapper"  id="contenedor">
 <div class="container" id="template_invoice">
   <div class="row">
     <div class="col-xs-4">
@@ -56,22 +56,24 @@
     	</address>
     </div>
   </div> -->
-
+  <br>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title"><strong>Codigo Carrito: {{ $carrito->id}}</strong></h3>
           <h3 class="panel-title"><strong>Descripción: </strong></h3>
-		<h5>{{ $carrito->descripcion}}</h5>	
+		      <h5>{{ $carrito->descripcion}}</h5>	
         </div>
         <div class="panel-body">
           <div class="table-responsive">
-            <table class="table table-condensed">
+            
+                      
+            {{-- <table class="table table-condensed">
               <thead>
               	<!-- <div class="col-xs-4">
-			      <p class="lead">Order # {{12345}}</p>
-			    </div> -->
+			          <p class="lead">Order # {{12345}}</p>
+			           </div> -->
                 <tr>
                   <td><strong>Codigo</strong></td>
                   <td class="text-center"><strong>Nombre</strong></td>
@@ -89,24 +91,73 @@
 	           	        <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
 	                    <!-- <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label> -->
 	                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
-	                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}
-                            <input disabled="true" hidden="true" name="cantidad" id="cantidadjs"
-                            value="{{$carrito_detalles->cantidad_pedido}}"></td>
-                             </label>
+	                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
+                            <input disabled="true" name="cantidad" id="cantidadjs"
+                            value="{{$carrito_detalles->cantidad_pedido}}"> </td>
+                             
                         <!-- @for ($i = $tamanio ; $i <= $tamanio ; $i++)
                          
                         @endfor --> 
-	                    <td class="text-center"><input type="number" id="precio"><label><p id="valueInput"></p>Bs.</label> 
+	                    <td class="text-center"><input type="number" id="precio"><label><p id="valueInput"></p>Bs.</label> </td>
                         <td class="text-center"><label><p id="valueInput1"></p>Bs.</td>  
 	                    </label>
 	                </tr>
                 @endforeach 
+               
               </tbody>
-            </table>
-            <a href="javascript:calcular()" class="btn btn-light" style="float: right;">
+            </table> --}}
+
+            <table class="table table-condensed">
+              <thead>
+                  <tr>
+                      <th><strong>Codigo</strong></th>
+                      <th><strong>Nombre</strong></th>
+                      <th><strong>Color</strong></th>
+                      <th><strong>Cantidad</strong></th>
+                      <th><strong>Precio Unitario</strong></th>
+                      <th><strong>Total</strong></th>
+                  </tr>
+              </thead>
+              <tbody>
+                @foreach($carrito_detalle as $carrito_detalles)
+                  <tr class="item-row">
+                    <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
+                    <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
+                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
+                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
+                      <input disabled="true" class="monto input" hidden="true" 
+                      value="{{$carrito_detalles->cantidad_pedido}}"> </td>
+
+                    {{-- Precio unitario --}}
+                    <td class="text-center"><label >Bs.</label><input class="monto input" type="number" ><p id="valueInput1"></p> </td>
+                    
+
+                    <td>
+                      <input type="text" class="monto total" value="0" disabled> <p ></p>Bs.</td>
+                  </tr>                  
+                  @endforeach
+                  <tr>
+                      <td class="text-center">--**--</td>
+                      <td class="text-center">--**--</td>
+                      <td class="text-center">--**--</td>
+                      <td class="text-center">--**--</td>
+                      <td class="text-center">
+                          Total
+                      </td>
+                      <td class="text-center">
+                        <input type="text" class="monto totales" value="0" disabled>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+              
+           
+
+          
+            {{-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">
                 <strong><label><i class="fa fa-calculator" aria-hidden="true"></i>
                 &nbsp; Calcular</label></strong>
-            </a> 
+            </a>  --}}
           </div>
         </div>
       </div>
@@ -118,9 +169,9 @@
             <i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar
         </a>
 
-        <a href="javascript:pruebaDivAPdf()" class="btn btn-danger"><strong>
+        <a href="javascript:pruebaDivAPdf()" id="btnCapturar" class="btn btn-danger"><strong>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Pasar a PDF</strong></a> &nbsp;
-
+           
          <!-- Button trigger Confirmacion -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalConfirmacion">
           <i class="fa fa-check" aria-hidden="true"></i>&nbsp; Confirmar Cotización
@@ -211,55 +262,61 @@
       </div>
     </div>
 </div>
-@endsection
+
 <script>
-    function printDiv(nombreDiv) {
-        var contenido = document.getElementById(nombreDiv).innerHTML;
-        var contenidoOriginal = document.body.innerHTML;
-        document.body.innerHTML = contenido;
-        window.print();
-        document.body.innerHTML = contenidoOriginal;
-    }
-    
-    function calcular() {
+  function calcular() {
 
-        let precio = document.getElementById("precio").value;
-        let cantidadjs = document.getElementById("cantidadjs").value;
-        let resultado;
+      let precio = document.getElementById("precio").value;
+      let cantidadjs = document.getElementById("cantidadjs").value;
+      let resultado;
 
-        resultado = precio * cantidadjs;
-        console.log(resultado);
+      resultado = precio * cantidadjs;
+      console.log(resultado);
 
-        document.getElementById("valueInput").innerHTML = precio; 
-        document.getElementById("valueInput1").innerHTML = resultado; 
-    }
-
-    function pruebaDivAPdf() {        
-       var doc = new jsPDF("p", "pt", "letter"),
-        source = $("#template_invoice")[0],
-        margins = {
-          top: 10,
-          bottom: 60,
-          left: 40,
-          width: 522
-        };
-    doc.fromHTML(
-      source, // HTML string or DOM elem ref.
-      margins.left, // x coord
-      margins.top,
-      {
-        // y coord
-        width: margins.width // max width of content on PDF
-      },
-      function(dispose) {
-        // dispose: object with X, Y of the last line add to the PDF
-        //          this allow the insertion of new lines after html
-        doc.save("cotizacion_altools.pdf");
-      },
-      margins
-    );
+      document.getElementById("valueInput").innerHTML = precio; 
+      document.getElementById("valueInput1").innerHTML = resultado; 
   }
+  
+  function printDiv(nombreDiv) {
+      var contenido = document.getElementById(nombreDiv).innerHTML;
+      var contenidoOriginal = document.body.innerHTML;
+      document.body.innerHTML = contenido;
+      window.print();
+      document.body.innerHTML = contenidoOriginal;
+  }
+
+  function pruebaDivAPdf(){
+     var text = $.trim($("#precio_unitario").val());
+
+     var doc = new jsPDF("p", "pt", "letter"),
+     
+      source = $("#template_invoice")[0],
+      margins = {
+        top: 10,
+        bottom: 60,
+        left: 40,
+        width: 522
+      };
+   doc.text(text,10,10);   
+  doc.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top,
+    {
+      // y coord
+      width: margins.width // max width of content on PDF
+    },
+    function(dispose) {
+      // dispose: object with X, Y of the last line add to the PDF
+      //          this allow the insertion of new lines after html
+      doc.save("cotizacion_altools.pdf");
+    },
+    margins
+  );
+}
 </script>
+@endsection
+
 <style>
     .input {
         border: 0 !important;
