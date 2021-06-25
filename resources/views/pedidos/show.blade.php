@@ -110,30 +110,36 @@
             <table class="table table-condensed">
               <thead>
                   <tr>
-                      <th><strong>Codigo</strong></th>
-                      <th><strong>Nombre</strong></th>
-                      <th><strong>Color</strong></th>
-                      <th><strong>Cantidad</strong></th>
-                      <th><strong>Precio Unitario</strong></th>
-                      <th><strong>Total</strong></th>
+                      <th class="text-center"><strong>Codigo</strong></th>
+                      <th class="text-center"><strong>Nombre</strong></th>
+                      <th class="text-center"><strong>Color</strong></th>
+                      <th class="text-center"><strong>Cantidad</strong></th>
+                      <th class="text-center"><strong>Precio Unitario</strong></th>
+                      <th class="text-center"><strong>Total</strong></th>
                   </tr>
               </thead>
               <tbody>
                 @foreach($carrito_detalle as $carrito_detalles)
                   <tr class="item-row">
                     <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
-                    <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
+                    <td class="text-center"><label><a class="btn btn-app" data-toggle="modal"
+                      data-target="#modalFavoritos{{$carrito_detalles->id}}" class="btn btn-danger btn-sm">
+                     {{$carrito_detalles->nombre}}
+                  </a></label></td>
                     <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
                     <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
                       <input disabled="true" class="monto input" hidden="true" 
                       value="{{$carrito_detalles->cantidad_pedido}}"> </td>
 
                     {{-- Precio unitario --}}
-                    <td class="text-center"><label >Bs.</label><input class="monto input" type="number" ><p id="valueInput1"></p> </td>
+                    {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
+                     <td class="text-center"> 
+                      {{-- <input class="monto input" type="number" value="{{$carrito_detalles->precio}}" disabled> --}}
+                      <p >{{$carrito_detalles->precio}}Bs.</p> </td>
                     
-
+                      {{-- total --}}
                     <td>
-                      <input type="text" class="monto total" value="0" disabled> <p ></p>Bs.</td>
+                      <p>{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p> Bs.</td>
                   </tr>                  
                   @endforeach
                   <tr>
@@ -142,18 +148,15 @@
                       <td class="text-center">--**--</td>
                       <td class="text-center">--**--</td>
                       <td class="text-center">
-                          Total
+                          <strong>Total</strong> 
                       </td>
                       <td class="text-center">
-                        <input type="text" class="monto totales" value="0" disabled>
+                        <input type="text" class="monto totales" value="0" id="sumaTotal" hidden="true" disabled>
+                        <p id="sumaTotalview"></p>Bs.
                       </td>
                   </tr>
               </tbody>
           </table>
-              
-           
-
-          
             {{-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">
                 <strong><label><i class="fa fa-calculator" aria-hidden="true"></i>
                 &nbsp; Calcular</label></strong>

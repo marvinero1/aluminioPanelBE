@@ -61,6 +61,10 @@
                                 <a class="btn btn-app" href="{{ route('carritoDetalle.show', $carritos->id )}}">
                                     <i class="fas fa-eye"></i> Ver Pedido
                                 </a>
+
+                                <a class="btn btn-app" href="{{ route('carritoDetalle.edit', $carritos->id )}}">
+                                    <i class="fas fa-pen"></i> Realizar Cotizacion del Pedido
+                                </a>
                             </div>
                         </td>
                     </tr>

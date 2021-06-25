@@ -18,7 +18,7 @@
                 <form style="display: contents !important;margin-top: 0em !important;margin-block-end: 0em !important">
                     <input type="text" aria-describedby="basic-addon1" name="buscarpor" class="form-control "
                         type="search" placeholder="Buscador Nombre Importadora" aria-label="Search"
-                        style="width: 55% !important;">&nbsp;&nbsp;
+                        style="width: 65% !important;">&nbsp;&nbsp;
                     <button class="btn btn-outline-success " type="submit" style="border: 1px #3097D1 solid;">
                         <span class="search"></span>&nbsp;Buscar</button>
                 </form>
@@ -46,7 +46,7 @@
                         <th style="text-align:center;">Cotizacion del Usuario</th>                   
                         <th style="text-align:center;">Enviado en Fecha</th>
                         <th style="text-align:center;">Cotizacion PDF</th>   
-                        <th style="text-align:center;">Acciones</th>                      
+                        {{-- <th style="text-align:center;">Acciones</th>                       --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -57,19 +57,19 @@
                         <td style="text-align:center;">{{ $carritos->descripcion }}</td>
                         <td style="text-align:center;">{{ $carritos->user->name }}</td>
                         <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td> 
-                        
-                         <td style="text-align:center;"> <a href="{{ route('download', $carritos->file ) }}" class="btn btn-primary">Descargar PDF</a></td>   
-                        
-                        <h1>Hola</h1> 
-                        
-                                 
                         <td style="text-align:center;">
+                            <a href="{{ route('download', $carritos->file ) }}" class="btn btn-primary">
+                                  <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF
+                            </a>
+                        </td>                       
+                                 
+                        {{-- <td style="text-align:center;">
                             <div class="card-body">
                                 <a class="btn btn-app" href="{{ route('carritoDetalle.show', $carritos->id )}}">
                                     <i class="fas fa-eye"></i> Ver Pedido
                                 </a>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

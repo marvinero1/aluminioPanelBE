@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\carrito_detalle;
 use App\Carrito;
+use DB;
+use Session;
 use Illuminate\Http\Request;
 
 class CarritoDetalleController extends Controller
@@ -88,9 +90,12 @@ class CarritoDetalleController extends Controller
      * @param  \App\carrito_detalle  $carrito_detalle
      * @return \Illuminate\Http\Response
      */
-    public function edit(carrito_detalle $carrito_detalle)
-    {
-        //
+    public function edit($id){
+
+        $carrito = Carrito::find($id);
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+
+        return view('pedidos.edit', compact('carrito_detalle','carrito')); 
     }
 
     /**
@@ -100,9 +105,22 @@ class CarritoDetalleController extends Controller
      * @param  \App\carrito_detalle  $carrito_detalle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, carrito_detalle $carrito_detalle)
+    public function update(Request $request, $id)
     {
-        //
+        //  dd($request);
+        $mensaje = "Precio Unitario Editado Exitosamente!!!";
+
+        $carrito_detalle = carrito_detalle::findOrFail($id);
+        $carrito_detalle->update($request->all());
+
+        if($carrito_detalle){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+        return redirect()->route('pedido.index'); 
     }
 
     /**

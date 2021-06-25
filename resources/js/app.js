@@ -63,13 +63,24 @@ $(function () {
 // generamos un evento click y keyup para cada elemento input con la clase .input
 var input=document.querySelectorAll(".input");
 input.forEach(function(e) {
-    e.addEventListener("click",multiplica);
-    e.addEventListener("keyup",multiplica);
+    // e.addEventListener("mousedown ",multiplica);
+
+     e.addEventListener("click",multiplica);
+     e.addEventListener("keyup",multiplica);
 });
+
+
+
+// document.getElementById("valueInput1").innerHTML = resultado;
  
 // funcion que genera la multiplicacion
 function multiplica() {
- 
+    // leemos el dato del input
+    var total = document.getElementById("total").value;
+    console.log(total);
+    // mandamos el valor al div
+    document.getElementById("totalview").innerHTML = total; 
+    
     // nos posicionamos en el tr del producto
     var tr=this.closest("tr");
  
@@ -100,6 +111,13 @@ function calcularTotal(e) {
  
     // mostramos la suma total con dos decimales
     e.getElementsByClassName("totales")[0].value=total.toFixed(2);
+
+    var sumaTotal = document.getElementById("sumaTotal").value;
+    
+    document.getElementById("sumaTotalview").innerHTML = sumaTotal; 
+}
+function verResultado(e) {
+
 }
 
 function pruebaDivAPdf() {
