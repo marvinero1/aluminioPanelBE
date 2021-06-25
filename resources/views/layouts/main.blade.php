@@ -20,7 +20,7 @@
   
   {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
 
-  <link href="images/favicon.ico" rel="icon">
+  <link href="favicon.ico" rel="icon">
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
