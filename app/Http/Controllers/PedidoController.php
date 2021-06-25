@@ -86,7 +86,7 @@ class PedidoController extends Controller
          $filename = time().'_'.$file->getClientOriginalName();
 
         // File upload location
-        $location = 'files';
+        $location = 'files/';
 
          // Upload file
         $img = $file->move($location,$filename);

@@ -18,7 +18,7 @@
                 <form style="display: contents !important;margin-top: 0em !important;margin-block-end: 0em !important">
                     <input type="text" aria-describedby="basic-addon1" name="buscarpor" class="form-control "
                         type="search" placeholder="Buscador Nombre Importadora" aria-label="Search"
-                        style="width: 55% !important;">&nbsp;&nbsp;
+                        style="width: 65% !important;">&nbsp;&nbsp;
                     <button class="btn btn-outline-success " type="submit" style="border: 1px #3097D1 solid;">
                         <span class="search"></span>&nbsp;Buscar</button>
                 </form>

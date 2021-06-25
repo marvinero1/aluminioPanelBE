@@ -45,7 +45,7 @@
                         <td style="text-align:center;">{{ $categorias->descripcion }}</td>
                         <td style="text-align:center;">
                             <a href="{{ route('categoria.edit',$categorias->id ) }}">
-                                <button class="btn btn-primary btn-sm"><i class="fa  fa-pencil-alt"
+                                <button class="btn btn-primary btn-sm"><i class="fa  fa-pencil"
                                         aria-hidden="true"></i> Editar
                                 </button></a>
                             <form action="{{ route('categoria.destroy',$categorias->id ) }}" method="POST"
