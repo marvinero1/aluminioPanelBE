@@ -166,14 +166,15 @@ class PedidoController extends Controller
         //     ]);
         // } 
 
-        // return redirect('/404');
+        // return redirect('/404'); 
         if ($request->file) {
-            $path = public_path($request->file);
-            return response()->download($path);
+            $path = Storage::disk($request->file);
+            
+        } else{
+            echo("error");
+        }
         
-        } 
-        
-        
+        return response()->download($path);
     }
 
     

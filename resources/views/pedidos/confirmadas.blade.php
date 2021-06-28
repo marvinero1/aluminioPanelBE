@@ -58,6 +58,7 @@
                         <td style="text-align:center;">{{ $carritos->user->name }}</td>
                         <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td> 
                         <td style="text-align:center;">
+                            <p>download/{{$carritos->file}}</p>
                             <a href="{{ route('download', $carritos->file ) }}" class="btn btn-primary">
                                   <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF
                             </a>
