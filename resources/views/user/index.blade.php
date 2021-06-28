@@ -37,7 +37,7 @@
                     <th style="text-align:center;">Ciudad</th>
                     <th style="text-align:center;">Subscripción</th>
 
-                   <!--  <th style="text-align:center;">Registrado</th> -->
+                    <th style="text-align:center;">Registrado por</th>
                    <!--  <th style="text-align:center;">Subscripción</th> -->
                     <th style="text-align:center;">Acciones</th>
                     <th></th>
@@ -64,8 +64,9 @@
                     <td style="text-align:center;">{{ $users->role }}</td>
                     <td style="text-align:center;">{{ $users->pais }}</td>
                     <td style="text-align:center;">{{ $users->ciudad }}</td>
+                    
 
-                   <!--  <td style="text-align:center;">{{ $users->registrado }}</td>
+                   <!--  
                     @if($users->subscripcion == 'false' )
                     <td style="text-align:center; color:red;">{{ $users->subscripcion }}</td>
                     @endif
@@ -77,7 +78,8 @@
                         @endif
                         @if($users->subscripcion == 'true' )
                         <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
-                        @endif
+                    @endif
+                    <td style="text-align:center;">{{ $users->registrado }}</td>
                     <td style="text-align:center;">
                         <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
                                     <i class="fas fa-eye"></i> Ver

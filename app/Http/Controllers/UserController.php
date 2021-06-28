@@ -91,16 +91,21 @@ class UserController extends Controller
 
 
         $user = User::whereEmail($request->email)->first();
-     
-        if (!is_null($user)) {
-            if(Hash::check($request->password, $user->password)){
-              $token = $user->createToken('personal')->accessToken;
-           
-            return response()->json(['res' => true, 'token' => $token, 'message' => "Bienvenido al sistema"]);  
-            }
 
+        $sub =$user->subscripcion;
+
+        if (!is_null($user)) {
+            if ($sub == 'true') {
+               if(Hash::check($request->password, $user->password)){
+                $token = $user->createToken('personal')->accessToken;
+           
+                return response()->json(['res' => true, 'token' => $token, 'message' => "Bienvenido al sistema"]);  
+                } 
+                return $msg = "No cuenta con Subscripción";
+            }
+            
         } else
-            return response()->json(['res' => false, 'message' => "Cuenta o password incorrectos"]);
+            return response()->json(['res' => false, 'message' => "No cuenta con Subscripción"]);
     }
 
     public function logout(){
@@ -345,27 +350,6 @@ class UserController extends Controller
         
         session::flash('message','Usuario Editado Exisitosamente!');
         return redirect()->route('user.index');
-    }
-
-    public function userdata(){
-
-        $data = Auth::user();
-        dd($data);
-        // $data->usertable->ciudad;
-        // if ($data->usertable->imagen) {
-        //     $data->usertable->imagen = asset($data->usertable->imagen);
-        // }
-
-        // if ($data->rol == 'cliente') {
-        //     $data->usertable['categoria_id'] = 0;
-        //     if(count($data->usertable->categoria)>0){
-        //         $data->usertable['categoria_id'] = $data->usertable->categoria[0]['id'];
-        //     }
-        // }
-        
-        // unset($data->usertable->categoria);
-        return response()->success(compact('data'));  
-
     }
 
     public function viewRegisUsuario(){

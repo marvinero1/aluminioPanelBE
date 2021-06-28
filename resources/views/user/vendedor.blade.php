@@ -27,18 +27,17 @@
                 <thead class="thead-dark">
                     <tr>
                         {{-- <th>Id</th>  --}}
-                        <th style="text-align:center;">Imagen</th>
-                        <th style="text-align:center;">Nombre</th>
-                        <th style="text-align:center;">Email</th>
-                        <th style="text-align:center;">Telefono</th>
-                        <th style="text-align:center;">Whatsapp</th>
-                        <th style="text-align:center;">Pais</th>
-                        <th style="text-align:center;">Ciudad</th>
-                        <th></th>
-                        {{-- <th style="text-align:center;">Role</th>
-                        <th style="text-align:center;">Registrado</th>
-                        <th style="text-align:center;">Subscripción</th> --}}
-                        {{-- <th style="text-align:center;">Acciones</th> --}}
+                        <th class="text-center">Imagen</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Telefono</th>
+                        <th class="text-center">Whatsapp</th>
+                        <th class="text-center">Pais</th>
+                        <th class="text-center">Ciudad</th>
+                        <th class="text-center">Registrado por</th>
+                        <th class="text-center">Acciones</th>                        
+                        {{--<th class="text-center">Role</th>
+                        <th class="text-center">Subscripción</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -61,14 +60,14 @@
                         <td style="text-align:center;">{{ $users->ciudad }}</td>
 
                         {{-- <td style="text-align:center;">{{ $users->role }}</td>
-                        <td style="text-align:center;">{{ $users->registrado }}</td>
+                        
                         @if($users->subscripcion == 'false' )
                         <td style="text-align:center; color:red;" >{{ $users->subscripcion }}</td>
                         @endif
                         @if($users->subscripcion == 'true' )
                         <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
                         @endif --}}
-                       
+                        <td style="text-align:center;">{{ $users->registrado }}</td>
                         <td style="text-align:center;">
                             {{-- <a class="btn btn-app " href="{{ route('user.show', $users->id  ) }}">
                                 <i class="fas fa-eye"></i> Ver
