@@ -53,8 +53,8 @@ class PedidoController extends Controller
 
      
    
-    public function getMisCotizaciones(Request $request, $id)
-    {
+    public function getMisCotizaciones(Request $request, $id){
+
         $pedido = Pedido::where('pedidos.user_id', '=', $id)
         ->orderBy('created_at', 'desc')
         ->get();
@@ -81,28 +81,19 @@ class PedidoController extends Controller
         
        $requestData = $request->all(); 
 
-      if($request->file('file')) {
-         $file = $request->file('file');
-         $filename = time().'_'.$file->getClientOriginalName();
+      if($request->hasFile('file')) {
 
-        // File upload location
-        $location = 'files/';
+        $file = $request->file('file');
+        $requestData['file'] = auth()->id() .'_'. time() .'_'. $request->file('file')->getClientOriginalName();
+        $request->file('file')->storeAs('files', $requestData['file']);
 
-         // Upload file
-        $img = $file->move($location,$filename);
-        $requestData['file'] = $img;
-
+      }
         $pedido = Pedido::create($requestData);
 
 
         Session::flash('message','Cotizacion Enviada Exitosamente');
         Session::flash('alert-class', 'alert-success');
 
-      }else{
-
-        Session::flash('message','Cotizacion No Enviada.');
-        Session::flash('alert-class', 'alert-danger');
-      }
         return redirect()->route('pedido.index');
    }
 
@@ -155,26 +146,17 @@ class PedidoController extends Controller
     }
 
     public function download(Request $request, $file){
-        //$requestData = $request->all();
+
+        //dd($request->all());
+       
         //dd(json_encode($request->file));
-        // if (Storage::disk('public')->exists("$request->file")) {
-        //     $path = Storage::disk('public')->exists("$request->file");
-        //     $content = file_get_contents($path);
+        $file = $request->file;
 
-        //     return response($content)->withHeader([
-        //         'Content-Type'->mime_content_type($path)
-        //     ]);
-        // } 
+        $path = storage_path("app/public/files/". $file);
 
-        // return redirect('/404'); 
-        if ($request->file) {
-            $path = Storage::disk($request->file);
-            
-        } else{
-            echo("error");
-        }
-        
         return response()->download($path);
+
+      
     }
 
     

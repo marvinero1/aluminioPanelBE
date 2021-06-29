@@ -4,19 +4,6 @@
 <br><br>
 <div class="content-wrapper"  id="contenedor">
 <div class="container" id="template_invoice">
-  <div class="row">
-    <div class="col-xs-4">
-      <div class="invoice-title">
-          	
-			<h2><img height="50px" width="50px" src="/images/fondos/logo.png" alt="Logo" >&nbsp; Cotización de Empresa {{Auth::user()->name}}</h2>
-      </div>
-    </div>
-    
-    <div class="col-xs-4">
-      <!-- <button class="btn btn-info pull-right">Download</button> -->
-      
-    </div>
-  </div>
   <hr>
   <div class="row">
     <div class="col-xs-6">
@@ -142,19 +129,7 @@
                       <p>{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p> Bs.</td>
                   </tr>                  
                   @endforeach
-                  <tr>
-                      <td class="text-center">--**--</td>
-                      <td class="text-center">--**--</td>
-                      <td class="text-center">--**--</td>
-                      <td class="text-center">--**--</td>
-                      <td class="text-center">
-                          <strong>Total</strong> 
-                      </td>
-                      <td class="text-center">
-                        <input type="text" class="monto totales" value="0" id="sumaTotal" hidden="true" disabled>
-                        <p id="sumaTotalview"></p>Bs.
-                      </td>
-                  </tr>
+                
               </tbody>
           </table>
             {{-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">
@@ -289,7 +264,7 @@
   }
 
   function pruebaDivAPdf(){
-     var text = $.trim($("#precio_unitario").val());
+  
 
      var doc = new jsPDF("p", "pt", "letter"),
      
@@ -300,7 +275,7 @@
         left: 40,
         width: 522
       };
-   doc.text(text,10,10);   
+  
   doc.fromHTML(
     source, // HTML string or DOM elem ref.
     margins.left, // x coord

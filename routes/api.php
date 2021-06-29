@@ -102,10 +102,3 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('contactgetTAR',[ContactanoController::class, 'contactgetTAR']);
     Route::get('contactgetBENI',[ContactanoController::class, 'contactgetBENI']);
     Route::get('contactgetPANDO',[ContactanoController::class, 'contactgetPANDO']);
-
-  
-Route::get('images/{filename}', function ($filename)
-{
-    $file = \Illuminate\Support\Facades\Storage::get($filename);
-    return response($file, 200)->header('Content-Type', 'image/jpeg');
-});

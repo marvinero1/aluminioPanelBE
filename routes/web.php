@@ -21,7 +21,8 @@ Auth::routes();
 // Route::update('updatepassword','UserController@updatepassword');
 Route::post('store1','UserController@store1')->name('user.store1');
 Route::resource('user', 'UserController');
-Route::get('download/{file}','PedidoController@download')->name('download'); 
+
+Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
 Route::middleware(['auth'] )->group(function () {
 Route::put('user/{user}/convertVendedor','UserController@convertVendedor')->name('user.convertVendedor');
