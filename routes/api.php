@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 
     Route::get('getHojaCalculo/{id}', [HojaCalculoController::class,'getHojaCalculo']); 
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
-    Route::get('download/{file}','PedidoController@download')->name('download'); 
+    Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
     Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
