@@ -24,6 +24,12 @@
                 </form>
             </div>
         </div>
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
+            <div class="float-right">
+                <a href="{{ route('productos.create')}}"><button class="btn btn-primary">
+                        <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Producto</button></a>
+            </div>
+        @endif
         <br><br><br>
 
         <div class="card-header border-0">

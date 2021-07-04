@@ -63,29 +63,26 @@
                         @if($users->subscripcion == 'true' )
                         <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
                         @endif
-
-                       
+                        
                         <td style="text-align:center;">
-                            <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
-                                <i class="fas fa-eye"></i> Ver
-                    </a>
-                            @if(Auth::user()->role == 'admin' )
                             <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                                     class="btn btn-warning btn-sm"><i class="fa fa-star"
                                     aria-hidden="true"></i> Subscribir
                             </button>
-
+                            <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
+                                <i class="fas fa-eye"></i> Ver
+                            </a>
+                            @if(Auth::user()->role == 'admin' )
                             <form action="{{ route('user.destroy',$users->id ) }}" method="POST"
-                                        accept-charset="UTF-8" style="display:inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-app" title="Delete Image"
-                                        class="btn btn-danger btn-sm"
-                                        title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
-                                                aria-hidden="true"></i> Eliminar</button>
+                                accept-charset="UTF-8" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-app" title="Delete Image"
+                                class="btn btn-danger btn-sm"
+                                title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
+                                        aria-hidden="true"></i> Eliminar</button>
                             </form>
                             @endif
-
                             <div class="modal fade" id="modalFavoritos{{$users->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" style="max-width: 410px !important;" role="document">
@@ -125,9 +122,7 @@
                                                 @endif --}}
                                                
                                                 <div class="row" style="display: block;">
-                                                    <div class="modal-footer">
-
-                                                        
+                                                    <div class="modal-footer">                                                       
                                                         @if($users->subscripcion == 'false' || $users->subscripcion == '')
                                                             <button type="submit" class="btn btn-primary"
                                                             style="width: 100% !important; "><span
@@ -159,7 +154,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 <style>
     .modal-dialog {

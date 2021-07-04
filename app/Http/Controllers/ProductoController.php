@@ -138,11 +138,10 @@ class ProductoController extends Controller
         
         $requestData = $request->all();
         $color = $requestData['color'];
-        $disponibilidad = $requestData['disponibilidad'];
-        $requestData['disponibilidad'] = implode(', ', $disponibilidad);
+        // $disponibilidad = $requestData['disponibilidad'];
+        // $requestData['disponibilidad'] = implode(', ', $disponibilidad);
         $requestData['color'] = implode(', ', $color);
 
-     
         //dd($disponibilidad);
         
         if($request->imagen != null){

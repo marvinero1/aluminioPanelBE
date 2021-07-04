@@ -39,11 +39,11 @@
             <table class="table table-striped table-sm table-valign-middle">
                 <thead>
                     <tr>
-                       <!-- <th>Id</th>   -->
-                        <th style="text-align:center;">Nombre Importadora</th>
+                        <th style="text-align:center;">Cotizacion del Usuario</th>
+                        <!-- <th>Id</th>   -->
+                        <!-- <th style="text-align:center;">Nombre Importadora</th> -->
                         <!-- <th style="text-align:center;">Estado</th> -->
-                        <th style="text-align:center;">Descripcion</th>
-                        <th style="text-align:center;">Cotizacion del Usuario</th>                   
+                        <th style="text-align:center;">Descripcion</th>              
                         <th style="text-align:center;">Enviado en Fecha</th>    
                         <th style="text-align:center;">Acciones</th>                      
                     </tr>
@@ -51,10 +51,10 @@
                 <tbody>
                     @foreach($carrito as $carritos)
                     <tr>
-                        <td style="text-align:center;">{{ $carritos->importadora }}</td>
+                        <td style="text-align:center;">{{ $carritos->user->name }}</td>
+                        <!-- <td style="text-align:center;">{{ $carritos->importadora }}</td> -->
                         <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
                         <td style="text-align:center;">{{ $carritos->descripcion }}</td>
-                        <td style="text-align:center;">{{ $carritos->user->name }}</td>
                         <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td>              
                         <td style="text-align:center;">
                             <div class="card-body">

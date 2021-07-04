@@ -205,7 +205,7 @@
                 </p>
               </a>
             </li> --}}
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
+            @if(Auth::user()->role == 'admin')
               <li class="nav-item has-treeview">
                 <a href="/categoria" class="nav-link">
                   <i class="nav-icon fas fa-cubes"></i>
@@ -257,18 +257,18 @@
                   </a>
                 </li>
               </ul>
-              @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
-                <ul class="nav nav-treeview">
+              
+                <!-- <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="/mis-productos" class="nav-link ">
                       <i class="far fa-circle nav-icon"></i>
                       <p> Mis Productos</p>
                     </a>
                   </li>
-                </ul>
-              @endif
+                </ul> -->
+           
             </li>
-          @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
+          @if(Auth::user()->role == 'admin')
             <li class="nav-item">
               <a href="/productos" class="nav-link">
                 <i class="nav-icon far fa fa-archive" aria-hidden="true"></i>
@@ -277,8 +277,26 @@
                 </p>
               </a>
             </li>
-
+             <li class="nav-item">
+                <a href="/novedad" class="nav-link">
+                  <i class="fa fa-gift nav-icon" aria-hidden="true"></i>
+                  <p>Novedades
+                    {{-- <span class="badge badge-info right">2</span> --}}
+                  </p>
+                </a>
+              </li>
+          @endif
+          @if(Auth::user()->role == 'admin' || Auth::user()->role == 'empresa')
             
+
+            <li class="nav-item">
+              <a href="/mis-productos" class="nav-link">
+                <i class="nav-icon far fa fa-archive" aria-hidden="true"></i>
+                <p>Mis Productos
+                  {{-- <span class="badge badge-info right">2</span> --}}
+                </p>
+              </a>
+            </li>
             
               <li class="nav-item has-treeview ">
                 <a class="nav-link">
@@ -307,14 +325,7 @@
               </ul>
             </li>
 
-              <li class="nav-item">
-                <a href="/novedad" class="nav-link">
-                  <i class="fa fa-gift nav-icon" aria-hidden="true"></i>
-                  <p>Novedades
-                    {{-- <span class="badge badge-info right">2</span> --}}
-                  </p>
-                </a>
-              </li>
+             
             @endif
 
           @if(Auth::user()->role == 'admin' || Auth::user()->role == 'vendedor')

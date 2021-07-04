@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-center">--**--</td>
                                     <td class="text-center">--**--</td>
                                     <td class="text-center">--**--</td>
@@ -211,7 +211,7 @@
                                             disabled>
                                         <p id="sumaTotalview"></p>Bs.
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                         {{-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">

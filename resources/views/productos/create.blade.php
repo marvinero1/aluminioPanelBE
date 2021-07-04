@@ -54,11 +54,11 @@
                                         <div class="form-group">
                                             <label>Seleccione en que ciudad esta disponible el producto</label>
                                             <div class="select2-dark">
-                                                <select class="select2" multiple="multiple" 
-                                                data-dropdown-css-class="select2-dark"
+                                                <select class="select2" data-dropdown-css-class="select2-dark"
                                                 data-placeholder="Seleccione ciudades" style="width: 100%;"
-                                                 name="disponibilidad[]">
+                                                 name="disponibilidad">
                                                     <option value="La-Paz">La Paz</option>
+                                                    <option value="El-Alto">El Alto</option>
                                                     <option value="Cochabamba">Cochabamba</option>
                                                     <option value="Santa-Cruz">Santa Cruz</option>
                                                     <option value="Oruro">Oruro</option>
