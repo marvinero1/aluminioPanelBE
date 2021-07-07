@@ -20,5 +20,6 @@ class Hoja_calculo extends Model
 
     protected $fillable = ['user_id',
                            'estado',
+                           'total',
                         ];
 }

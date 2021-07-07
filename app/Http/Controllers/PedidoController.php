@@ -79,26 +79,26 @@ class PedidoController extends Controller
      */
     public function store(Request $request){
         
-       $requestData = $request->all(); 
+        $id = $request->carrito_id;
+        
+        $carrito = Carrito::findOrFail($id);
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+        
+        $requestData = $request->all(); 
 
-      if($request->hasFile('file')) {
-
-        $file = $request->file('file');
-        $requestData['file'] = auth()->id() .'_'. time() .'_'. $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('files', $requestData['file']);
-
-      }
+        if($request->hasFile('file')) {
+            $file = $request->file('file');
+            $requestData['file'] = auth()->id() .'_'. time() .'_'. $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('files', $requestData['file']);
+        }
         $pedido = Pedido::create($requestData);
 
+        $mensaje= 'Cotizacion Enviada Exitosamente';
 
-        Session::flash('message','Cotizacion Enviada Exitosamente');
-        Session::flash('alert-class', 'alert-success');
+        Session::flash('message',$mensaje);
 
-        return redirect()->route('pedido.index');
+        return view('pedidos.show', compact('carrito_detalle','carrito')); 
    }
-
-    
-
 
     /**
      * Display the specified resource.
@@ -106,8 +106,7 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido, $id)
-    {
+    public function show(Pedido $pedido, $id){
        
     }
 

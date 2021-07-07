@@ -1,14 +1,25 @@
 @extends('layouts.main')
 
 @section('content')
+
 <br><br>
 <div class="content-wrapper"  id="contenedor">
+@if (Session::has('message'))
+  <div class="alert alert-success">{{ Session::get('message') }}</div>
+@endif
+@if (Session::has('error'))
+  <div class="alert alert-danger">{{ Session::get('error') }}</div>
+@endif  
 <div class="container" id="template_invoice">
   <hr>
   <div class="row">
+    <div style="float: right;"> 
+        <img src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px; width:55px !important;">
+      </div>
     <div class="col-xs-6">
+      
       <address>
-      	<img height="180px" width="175px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;">
+      	
       	<strong>Nombre Empresa: </strong>{{Auth::user()->name}}<br>
     		<strong>Dirección: </strong>{{Auth::user()->direccion}}<br>
     		<strong>Teléfono:</strong> {{ Auth::user()->telefono }}<br>
@@ -101,8 +112,8 @@
                       <th class="text-center"><strong>Nombre</strong></th>
                       <th class="text-center"><strong>Color</strong></th>
                       <th class="text-center"><strong>Cantidad</strong></th>
-                      <th class="text-center"><strong>Precio Unitario</strong></th>
-                      <th class="text-center"><strong>Total</strong></th>
+                      <th class="text-center"><strong>Precio Unitario Bs.</strong></th>
+                      <th class="text-center"><strong>Total Bs.</strong></th>
                   </tr>
               </thead>
               <tbody>
@@ -120,13 +131,11 @@
 
                     {{-- Precio unitario --}}
                     {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
-                     <td class="text-center"> 
-                      {{-- <input class="monto input" type="number" value="{{$carrito_detalles->precio}}" disabled> --}}
-                      <p >{{$carrito_detalles->precio}}Bs.</p> </td>
+                     <td class="text-center"><p>{{$carrito_detalles->precio}}</p></td>
                     
                       {{-- total --}}
-                    <td>
-                      <p>{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p> Bs.</td>
+                    <td class="text-center">
+                      <p>{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p></td>
                   </tr>                  
                   @endforeach
                 
@@ -266,7 +275,8 @@
   function pruebaDivAPdf(){
   
 
-     var doc = new jsPDF("p", "pt", "letter"),
+     var doc = new jsPDF('p', 'mm', 'b3'),
+
      
       source = $("#template_invoice")[0],
       margins = {
@@ -275,11 +285,13 @@
         left: 40,
         width: 522
       };
+   
   
   doc.fromHTML(
     source, // HTML string or DOM elem ref.
     margins.left, // x coord
     margins.top,
+    
     {
       // y coord
       width: margins.width // max width of content on PDF

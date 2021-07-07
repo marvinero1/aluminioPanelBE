@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Carrito;
+use App\carrito_detalle;
 use DB;
 use Session;
 use Illuminate\Http\Request;
@@ -87,9 +88,8 @@ class CarritoController extends Controller
      * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //dd($request);
+    public function update(Request $request, $id){
+   
         $mensaje = "Cotizacion Confirmada Exitosamente!!!";
 
         $carrito = Carrito::findOrFail($id);
