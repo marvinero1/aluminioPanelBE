@@ -77,7 +77,7 @@ class ProductoController extends Controller
         $nombre = $request->get('buscarpor');
          
         $producto = Producto::where('nombre','like',"%$nombre%")->
-        where('user_id', '=' ,Auth::user()->id)->paginate(10);
+        where('user_id', '=' ,Auth::user()->id)->latest()->paginate(10);
         return view('productos.my-products', compact('producto'));
      }
    
@@ -180,7 +180,8 @@ class ProductoController extends Controller
         }
 
         Session::flash('message',$mensaje);
-        return redirect()->route('productos.index'); 
+
+        return redirect()->route('mis-productos'); 
 
     }
 
