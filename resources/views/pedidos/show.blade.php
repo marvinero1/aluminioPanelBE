@@ -119,7 +119,8 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+</div>
+    <div class="modal-footer">
         <a type="button" class="btn btn-default" href="{{url('/pedido')}}" style="float-left;">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar
         </a>
@@ -215,11 +216,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>    
 </div>
-    
-</div>
-
 <script>
   // function calcular() {
 
