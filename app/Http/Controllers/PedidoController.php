@@ -80,7 +80,7 @@ class PedidoController extends Controller
     public function store(Request $request){
         
         $id = $request->carrito_id;
-        
+        $totalTotal = 0;
         $carrito = Carrito::findOrFail($id);
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
         
@@ -97,7 +97,7 @@ class PedidoController extends Controller
 
         Session::flash('message',$mensaje);
 
-        return view('pedidos.show', compact('carrito_detalle','carrito')); 
+        return back()->withInput();
    }
 
     /**

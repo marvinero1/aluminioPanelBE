@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);  
+    Route::put('updatepasswordIonic/{id}', [UserController::class,'updatepasswordIonic']);  
     
     Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('calculos/{id}/{hoja_id}',[CalculadoraController::class, 'calculos']);

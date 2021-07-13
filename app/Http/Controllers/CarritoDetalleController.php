@@ -60,18 +60,33 @@ class CarritoDetalleController extends Controller
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
 
         $tamanio = count($carrito_detalle);
+
+        $totalTotal = 0;
+        foreach($carrito_detalle as $carrito_detalles){
+
+            $total = $carrito_detalles->precio * $carrito_detalles->cantidad_pedido;
+
+            $totalTotal +=  $total;
+
+        }
         //dd($tamanio); 
-        return view('pedidos.show', compact('carrito_detalle','carrito','tamanio')); 
+        return view('pedidos.show', compact('carrito_detalle','carrito','tamanio', 'total','totalTotal')); 
     }
+
 
     public function carritoProductos(carrito_detalle $carrito_detalle, $id)
     {
         $carrito = Carrito::find($id)->first();
-        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get(); 
+
+        foreach($carrito_detalles as $carrito_detalle){
+        $total = $carrito_detalles->cantidad_pedido * $carrito_detalles->precio;
+        }
 
         //dd($carrito_detalle);
-        return view('pedidos.show', compact('carrito_detalle','carrito')); 
+        return view('pedidos.show', compact('carrito_detalle','carrito','total')); 
     }
+
 
     public function carritoProductosIonic(carrito_detalle $carrito_detalle, $id)
     {
@@ -120,7 +135,7 @@ class CarritoDetalleController extends Controller
         }
 
         Session::flash('message',$mensaje);
-        return redirect()->route('pedido.index'); 
+        return back()->withInput();
     }
 
     /**

@@ -60,7 +60,7 @@ class ProductoController extends Controller
 
     public function getMyProducts(Request $request, $id){
 
-        $producto = Producto::where('productos.user_id', '=', $id)->get();
+        $producto = Producto::where('productos.user_id', '=', $id)->orderBy('codigo','asc')->get();
 
         return response()->json($producto, 200);
     }

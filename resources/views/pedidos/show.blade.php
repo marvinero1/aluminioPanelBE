@@ -64,83 +64,52 @@
 		      <h5>{{ $carrito->descripcion}}</h5>	
         </div>
         <div class="panel-body">
-          <div class="table-responsive">
-            
-                      
-            {{-- <table class="table table-condensed">
-              <thead>
-              	<!-- <div class="col-xs-4">
-			          <p class="lead">Order # {{12345}}</p>
-			           </div> -->
-                <tr>
-                  <td><strong>Codigo</strong></td>
-                  <td class="text-center"><strong>Nombre</strong></td>
-                  <!-- <td class="text-center"><strong>Descripcion</strong></td> -->
-                  <td class="text-center"><strong>Color</strong></td>
-                  <td class="text-center"><strong>Cantidad</strong></td>
-                  <td class="text-center"><strong>Precio Unitario</strong></td>
-                  <td class="text-center"><strong>Total</strong></td>
-                </tr>
-              </thead>
-              <tbody>
-               @foreach($carrito_detalle as $carrito_detalles)
-	                <tr class="item-row">
-	                    <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
-	           	        <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
-	                    <!-- <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label> -->
-	                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
-	                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
-                            <input disabled="true" name="cantidad" id="cantidadjs"
-                            value="{{$carrito_detalles->cantidad_pedido}}"> </td>
-                             
-                        <!-- @for ($i = $tamanio ; $i <= $tamanio ; $i++)
-                         
-                        @endfor --> 
-	                    <td class="text-center"><input type="number" id="precio"><label><p id="valueInput"></p>Bs.</label> </td>
-                        <td class="text-center"><label><p id="valueInput1"></p>Bs.</td>  
-	                    </label>
-	                </tr>
-                @endforeach 
-               
-              </tbody>
-            </table> --}}
+            <div class="table-responsive">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-borderless ">
+                      <thead>
+                          <tr>
+                              <th class="text-center"><strong>Codigo</strong></th>
+                              <th class="text-center"><strong>Nombre</strong></th>
+                              <th class="text-center"><strong>Color</strong></th>
+                              <th class="text-center"><strong>Cantidad</strong></th>
+                              <th class="text-center"><strong>Precio Unitario Bs.</strong></th>
+                              <th class="text-center"><strong>Total Bs.</strong></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($carrito_detalle as $carrito_detalles)
+                          <tr class="item-row">
+                            <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
+                            <td class="text-center"><label>{{$carrito_detalles->nombre}}</td></label>
+                            <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
+                            <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
+                              <input disabled="true" class="monto input" hidden="true" 
+                              value="{{$carrito_detalles->cantidad_pedido}}"> </td>
 
-            <table class="table table-condensed">
-              <thead>
-                  <tr>
-                      <th class="text-center"><strong>Codigo</strong></th>
-                      <th class="text-center"><strong>Nombre</strong></th>
-                      <th class="text-center"><strong>Color</strong></th>
-                      <th class="text-center"><strong>Cantidad</strong></th>
-                      <th class="text-center"><strong>Precio Unitario Bs.</strong></th>
-                      <th class="text-center"><strong>Total Bs.</strong></th>
-                  </tr>
-              </thead>
-              <tbody>
-                @foreach($carrito_detalle as $carrito_detalles)
-                  <tr class="item-row">
-                    <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
-                    <td class="text-center"><label><a class="btn btn-app" data-toggle="modal"
-                      data-target="#modalFavoritos{{$carrito_detalles->id}}" class="btn btn-danger btn-sm">
-                     {{$carrito_detalles->nombre}}
-                  </a></label></td>
-                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
-                    <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
-                      <input disabled="true" class="monto input" hidden="true" 
-                      value="{{$carrito_detalles->cantidad_pedido}}"> </td>
+                            {{-- Precio unitario --}}
+                            {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
+                             <td class="text-center"><p>{{$carrito_detalles->precio}}</p></td>
+                            
+                              {{-- total --}}
+                            <td class="text-center">
+                              <p>{{  $carrito_detalles->precio * $carrito_detalles->cantidad_pedido }}</p></td>
+                          </tr>                  
+                        @endforeach
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                         <td class="text-center"></td>
+                        <td class="text-center">
+                            <strong>{{ $totalTotal }} Bs.</strong>
+                        </td>
+                      </tbody>
+                    </table>
+                </div>
 
-                    {{-- Precio unitario --}}
-                    {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
-                     <td class="text-center"><p>{{$carrito_detalles->precio}}</p></td>
-                    
-                      {{-- total --}}
-                    <td class="text-center">
-                      <p>{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p></td>
-                  </tr>                  
-                  @endforeach
                 
-              </tbody>
-          </table>
+
             {{-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">
                 <strong><label><i class="fa fa-calculator" aria-hidden="true"></i>
                 &nbsp; Calcular</label></strong>
@@ -150,8 +119,7 @@
       </div>
     </div>
   </div>
-</div>
-    <div class="modal-footer">
+  <div class="modal-footer">
         <a type="button" class="btn btn-default" href="{{url('/pedido')}}" style="float-left;">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar
         </a>
@@ -184,7 +152,7 @@
                 {{ csrf_field() }}             
                 <div class="col-md-12 p-2">
                     <div class="form-group">
-                    	  <div class="col-md-12">
+                          <div class="col-md-12">
                             <p><strong>PDF</strong></p>
                             <label for="file-upload" class="custom-file-upload" style="text-align: center;">
                             <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
@@ -192,13 +160,13 @@
                             </label>
                             <input id="file-upload" type="file" name="file">
                         </div> <br>
-    					 <div class="col-md-12">
-    					 	<div class="form-group">
-    					        <label for="descripcion">Descripción</label>
-    					        <textarea class="form-control" name="descripcion" rows="4" cols="4"></textarea>
-    					    </div>
-    					 </div>
-                    	<input type="text" class="form-control" name="estado"
+                         <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea class="form-control" name="descripcion" rows="4" cols="4"></textarea>
+                            </div>
+                         </div>
+                        <input type="text" class="form-control" name="estado"
                             value="{{ $carrito->estado }}" hidden="true">
                         <input type="text" class="form-control" name="importadora"
                         value="{{ $carrito->importadora}}" hidden="true">
@@ -210,11 +178,11 @@
                              value="{{ $carrito->id }}" hidden="true">
                     </div>
                 </div>
-             	<div class="modal-footer">
-             		<button type="button" class="btn btn-secondary" data-dismiss="modal">
-    		        	<i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-             		<button type="submit" class="btn btn-primary float-right mr-2"><i class="fa fas fa-save"></i> Enviar</button>
-          		</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
+                    <button type="submit" class="btn btn-primary float-right mr-2"><i class="fa fas fa-save"></i> Enviar</button>
+                </div>
             </form>
           </div>
         </div>
@@ -249,20 +217,22 @@
       </div>
     </div>
 </div>
+    
+</div>
 
 <script>
-  function calcular() {
+  // function calcular() {
 
-      let precio = document.getElementById("precio").value;
-      let cantidadjs = document.getElementById("cantidadjs").value;
-      let resultado;
+  //     let precio = document.getElementById("precio").value;
+  //     let cantidadjs = document.getElementById("cantidadjs").value;
+  //     let resultado;
 
-      resultado = precio * cantidadjs;
-      console.log(resultado);
+  //     resultado = precio * cantidadjs;
+  //     console.log(resultado);
 
-      document.getElementById("valueInput").innerHTML = precio; 
-      document.getElementById("valueInput1").innerHTML = resultado; 
-  }
+  //     document.getElementById("valueInput").innerHTML = precio; 
+  //     document.getElementById("valueInput1").innerHTML = resultado; 
+  // }
   
   function printDiv(nombreDiv) {
       var contenido = document.getElementById(nombreDiv).innerHTML;

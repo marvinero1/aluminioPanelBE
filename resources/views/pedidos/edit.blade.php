@@ -87,10 +87,10 @@
                         <tbody>
                             @foreach($carrito_detalle as $carrito_detalles)
                             <tr class="item-row">
-                                <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
+                                <td class="text-center"><label>{{$carrito_detalles->codigo}}</label></td>
                                 <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
                                 <!-- <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label> -->
-                                <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
+                                <td class="text-center"><label>{{$carrito_detalles->color}}</label></td>
                                 <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
                                     <input disabled="true" name="cantidad" id="cantidadjs"
                                         value="{{$carrito_detalles->cantidad_pedido}}"> </td>
@@ -105,6 +105,7 @@
                                         <p id="valueInput1"></p>Bs.</td>
                                 </label>
                             </tr>
+
                             @endforeach
 
                         </tbody>
@@ -117,21 +118,17 @@
                                     <th class="text-center"><strong>Nombre</strong></th>
                                     <th class="text-center"><strong>Color</strong></th>
                                     <th class="text-center"><strong>Cantidad</strong></th>
-                                    <th class="text-center"><strong>Precio Unitario</strong></th>
-                                    <th class="text-center"><strong>Total</strong></th>
+                                    <th class="text-center"><strong>Precio Unitario Bs</strong></th>
+                                    <th class="text-center"><strong>Total Bs.</strong></th>
                                     <th class="text-center"><strong>Accion</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($carrito_detalle as $carrito_detalles)
                                 <tr class="item-row">
-                                    <td class="text-center"><label>{{$carrito_detalles->codigo}}</td></label>
-                                    <td class="text-center"><label><a class="btn btn-app" data-toggle="modal"
-                                                data-target="#modalFavoritos{{$carrito_detalles->id}}"
-                                                class="btn btn-danger btn-sm">
-                                                {{$carrito_detalles->nombre}}
-                                            </a></label></td>
-                                    <td class="text-center"><label>{{$carrito_detalles->color}}</td></label>
+                                    <td class="text-center"><label>{{$carrito_detalles->codigo}}</label></td>
+                                    <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
+                                    <td class="text-center"><label>{{$carrito_detalles->color}}</label></td>
                                     <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</label>
                                         <input disabled="true" class="monto input" hidden="true"
                                             value="{{$carrito_detalles->cantidad_pedido}}"> </td>
@@ -143,13 +140,15 @@
                                     <td class="text-center">
                                         {{-- <input class="monto input" type="number" value="{{$carrito_detalles->precio}}"
                                         disabled> --}}
-                                        <p>{{$carrito_detalles->precio}}Bs.</p>
+                                        <p>{{$carrito_detalles->precio}}</p>
                                     </td>
 
                                     {{-- total --}}
                                     <td>
-                                        <p>{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p> Bs.
+                                        <p style="text-align:center;">{{ $carrito_detalles->precio * $carrito_detalles->cantidad_pedido}}</p>
                                     </td>
+
+                                    
                                     <td>
                                         <!-- Button trigger Confirmacion -->
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
@@ -157,7 +156,7 @@
                                             <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Editar Precio
                                         </button>
                                     </td>
-                                </tr>
+                                </tr> 
 
                                 <!-- Modal Confirmacion -->
                                 <div class="modal fade" id="exampleModalEditarPrecio{{$carrito_detalles->id}}" tabindex="-1" role="dialog"
@@ -180,7 +179,7 @@
                                                     {{ method_field('PUT') }}
                                                     <div class="col-md-12 p-2">
                                                         <div class="form-group">
-                                                            <label>Precio Unitario</label>
+                                                            <label>Precio Unitario</label> 
                                                             <input type="number" step="0.01" class="form-control" placeholder="Precio" name="precio">
                                                         </div>
                                                       
@@ -198,26 +197,13 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <!-- <tr>
-                                    <td class="text-center">--**--</td>
-                                    <td class="text-center">--**--</td>
-                                    <td class="text-center">--**--</td>
-                                    <td class="text-center">--**--</td>
-                                    <td class="text-center">
-                                        <strong>Total</strong>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="text" class="monto totales" value="0" id="sumaTotal" hidden="true"
-                                            disabled>
-                                        <p id="sumaTotalview"></p>Bs.
-                                    </td>
-                                </tr> -->
+                                
                             </tbody>
                         </table>
-                        {{-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">
-                <strong><label><i class="fa fa-calculator" aria-hidden="true"></i>
-                &nbsp; Calcular</label></strong>
-            </a>  --}}
+                        <!-- <a href="javascript:multiplica()" class="btn btn-light" style="float: right;">
+                            <strong><label><i class="fa fa-calculator" aria-hidden="true"></i>
+                            &nbsp; Calcular</label></strong>
+                        </a>   -->
                     </div>
                 </div>
             </div>
@@ -228,6 +214,8 @@
     <a type="button" class="btn btn-default" href="{{url('/pedido')}}" style="float-left;">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Cerrar
     </a>
+
+    
 </div>
 </div>
 @endsection

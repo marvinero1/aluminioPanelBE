@@ -283,16 +283,63 @@ class UserController extends Controller
             return redirect()->route('user.index');
     }
 
+
+    public function updateImagenIonic(Request $request, $id){
+        $imagen = null;
+        $user = User::findOrFail($id);
+        $mensaje = 'Usuario Editado Exitosamente!!!';
+
+        DB::beginTransaction();
+        $requestData = $request->all();
+
+        if($request->imagen == ''){
+            unset($requestData['imagen']);
+        }
+
+        $mensaje = "Usuario Actualizado correctamente :3";
+        if($request->imagen){
+            $data = $request->imagen;
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/user', mime_content_type('images/user'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/user';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $archivo_antiguo = $user->imagen;
+                $requestData['imagen'] = $img;
+                $mensaje = "Usuario Actualizado correctamente :3";
+                if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
+                    $mensaje = "Usuario Actualizado. error al eliminar la imagen";
+                }
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
+
+        if($user->update($requestData)){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+            return redirect()->route('user.index');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
+        
         $user = User::find($id);
-
         $user->delete();
 
         Session::flash('message','Usuario Eliminado Exitosamente!');
@@ -350,6 +397,24 @@ class UserController extends Controller
         
         session::flash('message','Usuario Editado Exisitosamente!');
         return redirect()->route('user.index');
+    }
+
+    public function updatepasswordIonic(Request $request, $id){  
+
+        $user = User::find($id);
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required|min:6', 
+        ]);
+
+        $user->password = $request->get('password');
+
+        $user->update(['password'=> Hash::make($request->password)]); 
+       
+        // User::find($id)->update(['password'=> Hash::make($request->password)]);
+
+        return response()->json(['res' => true, 'message' => "Password Actualizado"]);
     }
 
     public function viewRegisUsuario(){
