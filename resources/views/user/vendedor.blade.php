@@ -35,7 +35,8 @@
                         <th class="text-center">Pais</th>
                         <th class="text-center">Ciudad</th>
                         <th class="text-center">Registrado por</th>
-                        <th class="text-center">Acciones</th>                        
+                        <th></th>
+                        <!-- <th class="text-center">Acciones</th>  -->                       
                         {{--<th class="text-center">Role</th>
                         <th class="text-center">Subscripción</th> --}}
                     </tr>
@@ -68,10 +69,11 @@
                         <td style="text-align:center; color:green;" >{{ $users->subscripcion }}</td>
                         @endif --}}
                         <td style="text-align:center;">{{ $users->registrado }}</td>
+
                         <td style="text-align:center;">
-                            {{-- <a class="btn btn-app " href="{{ route('user.show', $users->id  ) }}">
+                            <!-- <a class="btn btn-app " href="{{ route('user.show', $users->id) }}">
                                 <i class="fas fa-eye"></i> Ver
-                            </a>  --}}
+                            </a>  -->
                             @if(Auth::user()->role == 'admin')                        
                                 <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                                         class="btn btn-warning btn-sm"><i class="fa fa-star"

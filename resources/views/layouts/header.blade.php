@@ -338,7 +338,7 @@
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-                 @if(Auth::user()->role == 'admin')
+                 
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="/viewRegisEmpresa" class="nav-link ">
@@ -347,7 +347,7 @@
                     </a>
                   </li>
                 </ul>
-               
+               @if(Auth::user()->role == 'admin')
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="/viewRegisVendedor" class="nav-link ">

@@ -48,8 +48,9 @@
                 <thead>
                     <tr>
                         {{-- <th>Id</th>  --}}
-                        <th class="text-center">Codigo</th>
+                        
                         <th style="text-align:center;">Imagen</th>
+                        <th class="text-center">Codigo</th>
                         <th style="text-align:center;">Nombre</th>
                       
                       <!--   <th style="text-align:center;">Precio</th> -->
@@ -64,8 +65,6 @@
                 <tbody>
                     @foreach($producto as $productos)
                     <tr>
-                        
-                        <td style="text-align:center;">{{ $productos->codigo }}</td>
                         <td style="text-align:center;">
                             @if( $productos->imagen == '')
                             <img img src="images/default-tool.png" class="img-thumbnail" alt="Producto" width="75px">
@@ -73,7 +72,7 @@
                             <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" width="75px" style="display: block;margin: 0 auto;">
                             @endif
                         </td>
-                        
+                        <td style="text-align:center;">{{ $productos->codigo }}</td>
                         <td style="text-align:center;">{{ $productos->nombre }}</td>
                       <!--   <td style="text-align:center;">{{ $productos->precio }}</td> -->
                         {{-- <td style="text-align:center;">{{ $productos->medida }}</td>

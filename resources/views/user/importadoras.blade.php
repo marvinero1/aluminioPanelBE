@@ -65,10 +65,13 @@
                         @endif
                         
                         <td style="text-align:center;">
+                            @if(Auth::user()->role == 'admin' )
                             <button data-toggle="modal" data-target="#modalFavoritos{{$users->id}}"
                                     class="btn btn-warning btn-sm"><i class="fa fa-star"
                                     aria-hidden="true"></i> Subscribir
                             </button>
+                            
+                            @endif
                             <a class="btn btn-app " href="{{ route('user.show',$users->id  ) }}">
                                 <i class="fas fa-eye"></i> Ver
                             </a>

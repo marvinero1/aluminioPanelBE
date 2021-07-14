@@ -232,7 +232,7 @@
                             </div>
                             <div class="card-footer">
                                 <a type="button" class="btn btn-secondary float-right"
-                                    href="{{url('/productos')}}">Cerrar</a>
+                                    href="{{url('/mis-productos')}}">Cerrar</a>
                                 <button type="submit" class="btn btn-primary float-right mr-2"><i class="fa fas fa-save"></i> Guardar</button>
                             </div>
                         </form>
