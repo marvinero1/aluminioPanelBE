@@ -207,6 +207,30 @@
                 </a>
               </li> --}}
               @if(Auth::user()->role == 'admin')
+              <li class="nav-item has-treeview">
+                <a href="/categoria" class="nav-link">
+                  <i class="nav-icon fas fa-cogs"></i>
+                  <p>
+                    Cortadoras
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/cortadora" class="nav-link ">
+                      <i class="far fa fa-scissors nav-icon"></i>
+                      <p>Cortadoras Plancha</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/cortadoraPerfil" class="nav-link ">
+                      <i class="far fa fa-scissors nav-icon"></i>
+                      <p>Cortadoras Perfil</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
                 <li class="nav-item has-treeview">
                   <a href="/categoria" class="nav-link">
                     <i class="nav-icon fas fa-cubes"></i>

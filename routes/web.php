@@ -38,6 +38,7 @@ Route::get('viewRegisUsuario','UserController@viewRegisUsuario')->name('user.vie
 Route::get('viewRegisEmpresa','UserController@viewRegisEmpresa')->name('user.viewRegisEmpresa'); 
 Route::get('index','PedidoController@index')->name('pedido'); 
 Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.viewRegisVendedor'); 
+Route::get('cortadoraPerfil','CortadoraController@cortadoraPerfil')->name('cortadora.cortadoraPerfil'); 
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
@@ -53,6 +54,8 @@ Route::resource('pedidoRealizado', 'PedidoRealizadoController');
 Route::resource('carritoDetalle', 'CarritoDetalleController');
 Route::resource('carrito', 'CarritoController');
 Route::resource('contacto', 'ContactanoController');
+Route::resource('cortadora', 'CortadoraController');
+
 
 });
 Route::get('images/{filename}', function ($filename)

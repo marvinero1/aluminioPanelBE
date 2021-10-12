@@ -125,8 +125,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request){   
         //dd($request);
         $request->validate([
             'name' => 'required',
@@ -166,6 +165,8 @@ class UserController extends Controller
         session::flash('message','Usuario Registrado Exisitosamente!');
         return redirect('/login')->with("message", "Usuario creado exitosamente!");  
     }
+
+    
     public function store1(Request $request){   
         //dd($request);
         $request->validate([

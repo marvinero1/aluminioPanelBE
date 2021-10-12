@@ -19,6 +19,7 @@ class CarritoController extends Controller
     {
         //
     }
+    
     public function getCartAttribute(Request $request, $id){
         $carrito = Carrito::where('estado','false')
         ->where('carritos.user_id', '=', $id)
@@ -26,7 +27,6 @@ class CarritoController extends Controller
 
         return response()->json($carrito, 201);
     }
-    
 
     public function guardarCarrito(Request $request){
         $carrito = Carrito::create($request->all());

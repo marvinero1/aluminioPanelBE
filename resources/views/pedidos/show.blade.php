@@ -128,7 +128,7 @@
         <a href="javascript:pruebaDivAPdf()" id="btnCapturar" class="btn btn-danger"><strong>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Pasar a PDF</strong></a> &nbsp;
            
-         <!-- Button trigger Confirmacion -->
+        <!-- Button trigger Confirmacion -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalConfirmacion">
           <i class="fa fa-check" aria-hidden="true"></i>&nbsp; Confirmar Cotización
         </button>
@@ -242,10 +242,8 @@
 
   function pruebaDivAPdf(){
   
-
      var doc = new jsPDF('p', 'mm', 'b3'),
 
-     
       source = $("#template_invoice")[0],
       margins = {
         top: 10,
@@ -253,7 +251,6 @@
         left: 40,
         width: 522
       };
-   
   
   doc.fromHTML(
     source, // HTML string or DOM elem ref.
@@ -492,5 +489,4 @@
         font-family: Verdana;
         font-size: 12px;
     }
-
 </style>

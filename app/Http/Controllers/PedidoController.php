@@ -146,17 +146,10 @@ class PedidoController extends Controller
 
     public function download(Request $request, $file){
 
-        //dd($request->all());
-       
-        //dd(json_encode($request->file));
         $file = $request->file;
 
         $path = storage_path("app/public/files/". $file);
 
         return response()->download($path);
-
-      
     }
-
-    
 }
