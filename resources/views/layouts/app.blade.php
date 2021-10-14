@@ -19,6 +19,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link href="cortadoraperfil/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
     <div id="app">
@@ -75,8 +78,11 @@
 
         <main class="">
             @yield('content')
+           
         </main>
         
     </div>   
+    
 </body>
+
 </html>

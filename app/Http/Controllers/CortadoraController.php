@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cortadora;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class CortadoraController extends Controller
@@ -17,8 +18,10 @@ class CortadoraController extends Controller
     }
 
     public function cortadoraPerfil()
-    {
-        //
+    {   
+        $categoria = Categoria::all();
+        return view('cortadoraperfil.index', compact('categoria'));
+
     }
 
     /**

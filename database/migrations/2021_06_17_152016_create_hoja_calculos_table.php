@@ -14,7 +14,20 @@ class CreateHojaCalculosTable extends Migration
     public function up()
     {
         Schema::create('hoja_calculos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('nombre')->nullable();
+            $table->double('total', 8,2);
+
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('categorias_id')->unsigned();
+
+            $table->foreign('categorias_id')->references('id')->on('categorias')
+            ->onDelete('cascade');
+           
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
