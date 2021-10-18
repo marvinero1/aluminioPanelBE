@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hoja_calculo;
+use App\hoja_calculo_perfil;
 use Illuminate\Http\Request;
 
 class HojaCalculoController extends Controller
@@ -17,13 +18,23 @@ class HojaCalculoController extends Controller
         //
     }
 
-     public function getHojaCalculo(Request $request, $id)
-    {
+    
+    public function getHojaCalculo(Request $request, $id){
+
         $hoja_calculo = Hoja_calculo::where('estado','false')
         ->where('hoja_calculos.user_id', '=', $id)
         ->first();
 
         return response()->json($hoja_calculo, 201);
+    }
+
+    public function getHojaCalculoPerfil(Request $request, $id){
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::where('estado','false')
+        ->where('hoja_calculo_perfils.user_id', '=', $id)
+        ->first();
+
+        return response()->json($hoja_calculo_perfil, 201);
     }
 
     /**
@@ -47,11 +58,16 @@ class HojaCalculoController extends Controller
         //
     }
 
-     public function guardarHoja(Request $request)
-    {
+    public function guardarHoja(Request $request){
         
         $hoja_calculo = Hoja_calculo::create($request->all());
         return response()->json($hoja_calculo, 201);
+    }
+
+    public function guardarHojaCortadoraPerfil(Request $request){
+        
+        $hoja_calculo_perfil = hoja_calculo_perfil::create($request->all());
+        return response()->json($hoja_calculo_perfil, 201);
     }
 
     /**

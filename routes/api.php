@@ -16,6 +16,9 @@ use App\Http\Controllers\CalculadoraHistorialController;
 use App\Http\Controllers\CarritoDetalleController;
 use App\Http\Controllers\ContactanoController;
 use App\Http\Controllers\HojaCalculoController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\SubcategoriaController;
+
 
 //use App\Http\Controllers\Api\Auth\LoginController;
 
@@ -55,6 +58,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::put('updatepasswordIonic/{id}', [UserController::class,'updatepasswordIonic']);  
     
     Route::get('productos',[ProductoController::class, 'getProducto']);
+    Route::get('getSubCategoria',[CategoriaController::class, 'getSubCategoria']);
     Route::get('calculos/{id}/{hoja_id}',[CalculadoraController::class, 'calculos']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('favoritos/{id}',[FavoritoController::class, 'getFavoritos']);
@@ -73,6 +77,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 
     Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 
     Route::get('getHojaCalculo/{id}', [HojaCalculoController::class,'getHojaCalculo']); 
+    Route::get('getHojaCalculoPerfil/{id}', [HojaCalculoController::class,'getHojaCalculoPerfil']);
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
     Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
@@ -91,7 +96,8 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
     Route::post('guardarHoja',[HojaCalculoController::class, 'guardarHoja']);
-
+    Route::post('guardarHojaCortadoraPerfil',[HojaCalculoController::class, 'guardarHojaCortadoraPerfil']);
+    
 
     //Route get contactos
     Route::get('contactgetLPZ',[ContactanoController::class, 'contactgetLPZ']);

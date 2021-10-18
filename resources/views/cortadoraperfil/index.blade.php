@@ -198,7 +198,7 @@
                     text: 'Cortadora de Perfiles de Aluminio'
                 },
                 xAxis: {
-                    categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                    categories: ['L-20', 'L-21'] //aca categorias
                 },
                 yAxis: {
                     min: 0,
@@ -219,13 +219,13 @@
                     data: [0]
                 }, {
                     name: 'Corte 1',
-                    data: [5]
+                    data: [5, 2]
                 }, {
                     name: 'Corte 2',
-                    data: [3]
+                    data: [3 ,1]
                 }, {
                     name: 'Corte 3',
-                    data: [2]
+                    data: [2,10]
                 }]
             });
         }

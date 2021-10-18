@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\subcategoria;
 use Illuminate\Http\Request;
 use Session;
 
@@ -22,6 +23,15 @@ class CategoriaController extends Controller
         
         return view('categoria.index', ['categoria' => $categoria]);
     }
+
+    public function getSubCategoria(){
+        $subcategoria = subcategoria::all();
+        return response()->json($subcategoria, 200);
+         
+    }
+        
+    
+
 
     /**
      * Show the form for creating a new resource.
