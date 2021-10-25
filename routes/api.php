@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
     Route::post('guardarHoja',[HojaCalculoController::class, 'guardarHoja']);
     Route::post('guardarHojaCortadoraPerfil',[HojaCalculoController::class, 'guardarHojaCortadoraPerfil']);
+    Route::post('guardarCombinacion',[HojaCalculoController::class, 'guardarCombinacion']);
     
 
     //Route get contactos

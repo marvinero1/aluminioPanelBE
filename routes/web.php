@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,7 +56,10 @@ Route::resource('carritoDetalle', 'CarritoDetalleController');
 Route::resource('carrito', 'CarritoController');
 Route::resource('contacto', 'ContactanoController');
 Route::resource('cortadora', 'CortadoraController');
-
+Route::resource('hojaCalculo', 'HojaCalculoController');
+Route::resource('perfil', 'PerfilController');
+Route::resource('barra', 'BarraController');
+Route::resource('corte', 'CorteController');
 
 });
 Route::get('images/{filename}', function ($filename)

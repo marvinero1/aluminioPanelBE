@@ -2,34 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Cortadora;
-use App\Categoria;
-use App\ hoja_calculo_perfil;
-use Illuminate\Support\Facades\Auth;
+use App\Corte;
 use Illuminate\Http\Request;
 
-class CortadoraController extends Controller
+class CorteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view('cortadora.index');
+    public function index()
+    {
+        //
     }
-
-    public function cortadoraPerfil(){
-
-        $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', Auth::user()->id)->get();
-
-        return view('cortadoraperfil.index', compact('hoja_calculo_perfil'));
-
-    }
-
-     public function getPerfiilCombinacion($id){
-        
-     }
 
     /**
      * Show the form for creating a new resource.
@@ -55,10 +41,10 @@ class CortadoraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cortadora  $cortadora
+     * @param  \App\Corte  $corte
      * @return \Illuminate\Http\Response
      */
-    public function show(Cortadora $cortadora)
+    public function show(Corte $corte)
     {
         //
     }
@@ -66,10 +52,10 @@ class CortadoraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cortadora  $cortadora
+     * @param  \App\Corte  $corte
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cortadora $cortadora)
+    public function edit(Corte $corte)
     {
         //
     }
@@ -78,10 +64,10 @@ class CortadoraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cortadora  $cortadora
+     * @param  \App\Corte  $corte
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cortadora $cortadora)
+    public function update(Request $request, Corte $corte)
     {
         //
     }
@@ -89,10 +75,10 @@ class CortadoraController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cortadora  $cortadora
+     * @param  \App\Corte  $corte
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cortadora $cortadora)
+    public function destroy(Corte $corte)
     {
         //
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hoja_calculo;
 use App\hoja_calculo_perfil;
+use App\Perfil;
 use Illuminate\Http\Request;
 
 class HojaCalculoController extends Controller
@@ -47,6 +48,40 @@ class HojaCalculoController extends Controller
         //
     }
 
+
+    public function guardarCombinacion(Request $request){
+
+       $request->validate([
+            'alto' => 'required',
+            'ancho' => 'required', 
+            'combinacion' => 'nullable',
+            'categoria' => 'required',
+            'user_id' => 'required',           
+        ]);
+
+        dd($request);
+      
+        // User::create([
+        //     'name' => $request->name,
+        //     'apellido' => $request->apellido,
+        //     'direccion' => $request->direccion,
+        //     'telefono' => $request->telefono,
+        //     'pais' => $request->pais,
+        //     'ciudad' => $request->ciudad,
+        //     'whatsapp' => $request->whatsapp,
+        //     'email' => $request->email,
+        //     'role' => $request->role,
+        //     'registrado' => $request->registrado,
+        //     'imagen' => 'images/default-person.jpg',
+        //     'subscripcion' => $request->subscripcion,
+        //     'password' => Hash::make($request->password),
+            
+        // ]); 
+        
+        // session::flash('message','Usuario Registrado Exisitosamente!');
+        // return redirect('/login')->with("message", "Usuario creado exitosamente!");  
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -76,9 +111,11 @@ class HojaCalculoController extends Controller
      * @param  \App\Hoja_calculo  $hoja_calculo
      * @return \Illuminate\Http\Response
      */
-    public function show(Hoja_calculo $hoja_calculo)
-    {
-        //
+    public function show(Hoja_calculo $hoja_calculo, $id){
+
+        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
+
+        return view('cortadoraperfil.show', compact('perfil'));
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content-wrapper pt-3">
-    <h1 style="text-align: center" class="mb-4">Hoja de Calculo para Corte</h1>
+    <h1 style="text-align: center" class="mb-4">Perfiles y Combinaciones</h1>
     <div class="content">
         @if (Session::has('message'))
         <div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -16,21 +16,25 @@
                     <tr>
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">Nombre</th>
+                        <th style="text-align:center;">Combinación</th>
+                        <th style="text-align:center;">Categoria</th>
                         <!-- <th style="text-align:center;">Descripción</th> -->
                         <th style="text-align:center;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($hoja_calculo_perfil as $hoja_calculo_perfils)
+                    @foreach($perfil as $perfils)
                     <tr>
-                        <td style="text-align:center;">{{ $hoja_calculo_perfils->id }}</td>
+                        <td style="text-align:center;">{{ $perfils->id }}</td>
+                        <td style="text-align:center;">{{ $perfils->combinacion }}</td>
+                        <td style="text-align:center;">{{ $perfils->categoria }}</td>
                        
                         <td style="text-align:center;">
-                            <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">
+                            <a href="{{ route('perfil.show',$perfils->id ) }}">
                                 <button class="btn btn-success btn-sm"><i class="fa fa-eye"
                                         aria-hidden="true"></i> Ver
                                 </button></a>
-                            <form action="{{ route('hojaCalculo.destroy',$hoja_calculo_perfils->id ) }}" method="POST"
+                            <form action="{{ route('perfil.destroy',$perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
                                 @method('DELETE')
