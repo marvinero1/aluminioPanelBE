@@ -35,17 +35,12 @@ class BarraController extends Controller
      */
     public function store(Request $request){
 
-        $request->validate([
-            'categoria' => 'required',
-            'lado' => 'required',
-            'largo' => 'required',
-            'nombre' => 'required',
-            'perfil_id' => 'required',
-
-        ]);
-        
+       
+        $request->all();
+       
         barra::create([
-            'categoria' => $request->categoria,
+            'linea' => $request->linea,
+            'fam_linea' => $request->fam_linea,
             'lado' => $request->lado,
             'largo' => $request->largo,
             'nombre' => $request->nombre,

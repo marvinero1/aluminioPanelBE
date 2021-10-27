@@ -18,7 +18,8 @@ class barra extends Model
         'updated'
     ];
     
-    protected $fillable = ['categoria',
+    protected $fillable = ['linea',
+                        'fam_linea',
                         'lado',
                         'largo',
                         'nombre',

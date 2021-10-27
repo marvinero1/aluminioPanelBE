@@ -23,6 +23,7 @@ class Perfil extends Model
                         'combinacion',
                         'categoria',
                         'hoja_id',
+                        'linea',
                         'repeticion',
                         'user_id',
                     ];

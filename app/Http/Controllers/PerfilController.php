@@ -56,10 +56,13 @@ class PerfilController extends Controller
         $barra = barra::where('barras.perfil_id', '=', $id)->get();
 
         $corte = Corte::get();
+
+        $linea20 = array("2001", "2002", "2005", "2009","2010","2011");
+
+        $linea25 = array("2501", "2502", "2504", "2505","2507", "2509","2510","5008");
+
        
         
-
-
         foreach($corte as $cortes){ //aca el elperfil (barra al)categorias junto a el corte
            
             $corte_1 = $cortes->corte_1;
@@ -73,7 +76,7 @@ class PerfilController extends Controller
             $repetecion = $perfils->repeticion;
             $ancho_barra = $perfils->ancho;
             $alto_barra = $perfils->alto;
-            $linea = $perfils->categoria;
+            $linea = $perfils->linea;
             $combinacion = $perfils->combinacion;
 
 
@@ -83,17 +86,22 @@ class PerfilController extends Controller
             $alto_barra;
             $linea;
             $combinacion;
+            $linea_familia;
+
+            if ($linea == "L-20") {
+                foreach($linea20 as $linea20s){
+                   $linea20s.',';
+                }
+            } else {
+                foreach($linea25 as $linea25s){
+                    $linea25s.',';
+                }
+            }
+            
         }
-
-        // foreach($barra as $barras){
-           
-        //     $categorias = $barras->categoria;
-        //     $cate_json = json_encode($categorias).",";
-        //     echo $cate_json;           
-        // }
-
+       
         return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte','repetecion','ancho_barra',
-            'alto_barra','linea','combinacion'));
+            'alto_barra','linea','combinacion','linea20','linea25'));
     }
 
     /**
@@ -114,9 +122,14 @@ class PerfilController extends Controller
      * @param  \App\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil)
-    {
-        //
+    public function update(Request $request, Perfil $perfil){
+
+        $request->all();
+        $barra = barra::find($id);
+
+        $barra::update();
+        
+        return back()->withInput();
     }
 
     /**

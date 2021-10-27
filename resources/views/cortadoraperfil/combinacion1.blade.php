@@ -130,9 +130,7 @@
       <!-- Barras y cortes -->
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
           <div  class="container">
-        
     <!-- modal para la  barra -->
-
     <div class="float-right">
         <div class="row">
             <div class="col-md-6">
@@ -147,7 +145,6 @@
             </div>
         </div>
         <!-- Button trigger modal -->
-        
     </div><br><br>
 
 
@@ -158,85 +155,107 @@
         <div class="modal-content text-center">
           <div class="modal-header" style="display: block;">
             <h5 class="modal-title" id="exampleModalLabel">Crear Barra</h5>
-            
           </div>
-          <form action="{{route('barra.store')}}" method="POST" >
-          {{ csrf_field() }}
-          <div class="modal-body">
-                <div class="col">
-                    <img src="/images/cortadora/corteCombi1.png" width="450px">
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                         <div class="input-group">
-                              <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Linea</label>
-                              </div>
-                              <select class="custom-select" id="inputGroupSelect01" name="categoria" required>
-                               <!--  <option selected>Choose...</option> -->
-                                <option value="2001">Linea 2001</option>
-                                <option value="2002">Linea 2002</option>
-                                <option value="2004">Linea 2004</option>
-                                <option value="2009">Linea 2009</option>
-                                <option value="2010">Linea 2010</option>
-                                <option value="2011">Linea 2011</option>
-                              </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                          <div class="input-group">
-                              <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Lado</label>
-                              </div>
-                              <select class="custom-select" id="inputGroupSelect01" name="lado" required>
-                                <!-- <option selected>Choose...</option> -->
-                                <option value="X1">X1</option>
-                                <option value="X2">X2</option>
-                                <option value="X3">X3</option>
-                                <option value="X4">X4</option>
-                                <option value="X5">X5</option>
-                                <option value="X6">X6</option>
-                                <option value="X7">X7</option>
-
-                              </select>
-                            </div>
-                        </div>
-                    </div><br>
-
-                    <div class="row pt-1">
-                        <div class="col">
-                         <div class="input-group">
-                              <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
-                              </div>
-                              <select class="custom-select" id="inputGroupSelect01" name="nombre" required>
-                               <!--  <option selected>Choose...</option> -->
-                                <option value="Riel_Inferior">Riel Inferior</option>
-                                <option value="Riel_Superior">Riel Superior</option>
-                                <option value="Zocalo">Zocalo</option>
-                                <option value="Jamba">Jamba</option>
-                                <option value="Pierna">Pierna</option>
-                                <option value="Enganche">Enganche</option>
-                              </select>
-                            </div>
-                        </div>
-
-
-                      
+            <form action="{{route('barra.store')}}" method="POST" >
+            {{ csrf_field() }}
+                <div class="modal-body">
+                    <div class="col">
+                        <img src="/images/cortadora/corteCombi1.png" width="450px">
                     </div>
-                    
-                    <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
-                    <input hidden type="number" value="6" name="largo">
-                    <p></p>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3 p-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Linea</span>
+                                    </div>
+                                    <input type="text" class="form-control" value="{{ $linea }}"  name="linea">
+                                </div>
+
+                                <div class="col">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Codigo</label>
+                                        </div>
+                                        @if ($linea == "L-20")
+                                            <select name="fam_linea" class="custom-select" required>
+                                                @foreach ($linea20 as $linea20s)
+                                                <option value="{{ $linea20s }}">{{$linea20s}}
+                                                </option>
+                                                @endforeach
+                                            </select> 
+                                </select>
+                                            </select> 
+                                        @else
+                                            <select name="fam_linea" class="custom-select" required>
+                                                @foreach ($linea25 as $linea25s)
+                                                <option value="{{ $linea25s }}">{{$linea25s}}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                        
+                                    </div>
+                                </div>                     
+                            </div>
+                                </div>                     
+                            </div>
+                        </div><br>
+
+                        {{-- <div class="input-group mb-3 p-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Largo</span>
+                            </div>
+                            <input type="text" class="form-control"  name="largo">
+                        </div> --}}
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Lado</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" name="lado" required>
+                                    <!-- <option selected>Choose...</option> -->
+                                    <option value="X1">X1</option>
+                                    <option value="X2">X2</option>
+                                    <option value="X3">X3</option>
+                                    <option value="X4">X4</option>
+                                    <option value="X5">X5</option>
+                                    <option value="X6">X6</option>
+                                    <option value="X7">X7</option>
+    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect01" name="nombre" required>
+                                <!--  <option selected>Choose...</option> -->
+                                    <option value="Riel_Inferior">Riel Inferior</option>
+                                    <option value="Riel_Superior">Riel Superior</option>
+                                    <option value="Zocalo">Zocalo</option>
+                                    <option value="Jamba">Jamba</option>
+                                    <option value="Pierna">Pierna</option>
+                                    <option value="Enganche">Enganche</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
+                        <input hidden type="text" value="{{ $ancho_barra }}" name="largo">                   
+                        <p></p>
+                    </div>
                 </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-          </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
       </div>
     </div>
@@ -348,7 +367,7 @@
                     categories: [ <?php 
                     foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
            
-                        $categorias = $barras->categoria;
+                        $categorias = $barras->fam_linea;
                         $nombre = $barras->nombre;
                         $cate_json = json_encode($categorias.', '.$nombre).",";
 
@@ -373,18 +392,22 @@
                 series: [
                 {
                     name: 'Total',
-                    data: [{{$ancho_barra}}]
+                    data: [4.5 ,4.5,4.5,4.5,4.5,4.5 ]
                 },
+                
                 {   
+                   
 
-                    name: 'Corte 1',
-                    data: [<?php 
-                     foreach($corte as $cortes){ //aca el perfil (barra al)categorias junto a el corte
-           
-                        $corte_1 = $cortes->corte_1;
-                      
-                        echo $corte_1;  
-                    } ?>]
+                    name: 'Corte ',
+                    data: [<?php
+                    
+                        foreach($barra as $barras){
+                            // $linea_barra = $barras->linea;
+                            $barras_largo = $barras->largo;
+                            $barras_json = json_encode($barras_largo);
+                            echo $barras_json.',';            
+                        }
+                    ?>]
                 }, 
                 ]
             });
