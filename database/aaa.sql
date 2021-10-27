@@ -16,6 +16,29 @@
 CREATE DATABASE IF NOT EXISTS `aluminiobd` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
 USE `aluminiobd`;
 
+-- Volcando estructura para tabla aluminiobd.barras
+CREATE TABLE IF NOT EXISTS `barras` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `lado` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `largo` int(11) NOT NULL DEFAULT '0',
+  `perfil_id` bigint(20) unsigned NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `perfil_id` (`perfil_id`),
+  CONSTRAINT `FK_barrs_perfils` FOREIGN KEY (`perfil_id`) REFERENCES `perfils` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Volcando datos para la tabla aluminiobd.barras: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `barras` DISABLE KEYS */;
+INSERT INTO `barras` (`id`, `categoria`, `lado`, `nombre`, `largo`, `perfil_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
+	(9, '2001', 'X1', 'Riel_Superior', 6, 3, '2021-10-26 06:01:20', '2021-10-26 06:01:20', NULL),
+	(10, '2002', 'X2', 'Zocalo', 6, 3, '2021-10-26 06:17:25', '2021-10-26 06:17:25', NULL);
+/*!40000 ALTER TABLE `barras` ENABLE KEYS */;
+
 -- Volcando estructura para tabla aluminiobd.calculadoras
 CREATE TABLE IF NOT EXISTS `calculadoras` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -593,6 +616,31 @@ INSERT INTO `contactanos` (`id`, `nombre`, `ciudad`, `telefono`, `whatsapp`, `cr
 	(14, 'Jose', 'Santa-Cruz', '75974530', NULL, '2021-07-28 20:13:24', '2021-07-28 20:13:24');
 /*!40000 ALTER TABLE `contactanos` ENABLE KEYS */;
 
+-- Volcando estructura para tabla aluminiobd.cortes
+CREATE TABLE IF NOT EXISTS `cortes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `barra_id` bigint(20) unsigned NOT NULL,
+  `corte_1` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_2` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_3` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_4` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_5` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_6` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_7` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_8` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_9` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_10` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_11` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  `corte_12` varchar(50) COLLATE utf8_spanish_ci DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `barra_id` (`barra_id`),
+  CONSTRAINT `FK_cortes_barras` FOREIGN KEY (`barra_id`) REFERENCES `barras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Volcando datos para la tabla aluminiobd.cortes: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `cortes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cortes` ENABLE KEYS */;
+
 -- Volcando estructura para tabla aluminiobd.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -628,7 +676,7 @@ CREATE TABLE IF NOT EXISTS `favoritos` (
   KEY `favoritos_productos_id_foreign` (`productos_id`),
   CONSTRAINT `favoritos_productos_id_foreign` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE,
   CONSTRAINT `favoritos_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla aluminiobd.favoritos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `favoritos` DISABLE KEYS */;
@@ -648,7 +696,7 @@ CREATE TABLE IF NOT EXISTS `hoja_calculos` (
   CONSTRAINT `FK_hoja_calculo_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla aluminiobd.hoja_calculos: ~74 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.hoja_calculos: ~73 rows (aproximadamente)
 /*!40000 ALTER TABLE `hoja_calculos` DISABLE KEYS */;
 INSERT INTO `hoja_calculos` (`id`, `estado`, `total`, `user_id`, `updated_at`, `created_at`, `delete_at`) VALUES
 	(49, 'true', NULL, 55, '2021-07-26 02:15:56', '2021-07-26 02:11:17', NULL),
@@ -738,12 +786,12 @@ CREATE TABLE IF NOT EXISTS `hoja_calculo_perfils` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK_hoja_calculo_perfils_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla aluminiobd.hoja_calculo_perfils: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `hoja_calculo_perfils` DISABLE KEYS */;
 INSERT INTO `hoja_calculo_perfils` (`id`, `estado`, `user_id`, `updated_at`, `created_at`, `delete_at`) VALUES
-	(1, 'false', 1, '2021-10-17 18:28:32', '2021-10-17 18:28:32', NULL);
+	(4, 'false', 1, '2021-10-26 02:55:16', '2021-10-26 02:55:16', NULL);
 /*!40000 ALTER TABLE `hoja_calculo_perfils` ENABLE KEYS */;
 
 -- Volcando estructura para tabla aluminiobd.migrations
@@ -807,12 +855,13 @@ CREATE TABLE IF NOT EXISTS `oauth_access_tokens` (
   KEY `oauth_access_tokens_user_id_index` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla aluminiobd.oauth_access_tokens: ~458 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.oauth_access_tokens: ~452 rows (aproximadamente)
 /*!40000 ALTER TABLE `oauth_access_tokens` DISABLE KEYS */;
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
 	('003bd813bf1f31cc5f0ff364546aa2388df34b83889e62e68562c6da4363b465071db7b4508e50b3', 1, 4, 'personal', '[]', 0, '2021-09-13 17:11:51', '2021-09-13 17:11:51', '2121-09-13 17:11:51'),
 	('0130d20f5f94432ea4f2ccb6b39d655be28fc1545a7f223a40c4bbc76416fa545766e4ee83b38e56', 1, 4, 'personal', '[]', 0, '2021-04-29 16:09:23', '2021-04-29 16:09:23', '2121-04-29 16:09:22'),
 	('024e1af2fc11263f1660e8be7bd6519ca87cb098b890d98620edd53e7565319cc659f2d3bc5adcaa', 2, 4, 'personal', '[]', 0, '2021-07-08 21:12:11', '2021-07-08 21:12:11', '2121-07-08 21:12:10'),
+	('027625e798c006dc66b93ed1bf79cb5203e5f09000c5d9a1826209224b2a1ee149a78434fff4de36', 1, 4, 'personal', '[]', 0, '2021-10-20 19:03:10', '2021-10-20 19:03:10', '2121-10-20 19:03:10'),
 	('03599a05da8e1ea49c424a43e70b20f1f78544702fc522258fb5be72391e3a3753663b4888baceb1', 87, 4, 'personal', '[]', 0, '2021-07-29 15:51:29', '2021-07-29 15:51:29', '2121-07-29 15:51:29'),
 	('03c3609feebf67d497e8f4215e31730b2c573c78bcc8a0d2c820ed6d1bfb86eb44930bc8923a344d', 59, 4, 'personal', '[]', 0, '2021-07-28 12:16:02', '2021-07-28 12:16:02', '2121-07-28 12:16:02'),
 	('05b29ea8d20cf9af5af02694cacc4462020e91699bd65bd80a5a3fffdbfb96ae7f22b08002a7a849', 2, 4, 'personal', '[]', 0, '2021-07-06 18:59:32', '2021-07-06 18:59:32', '2121-07-06 18:59:32'),
@@ -964,6 +1013,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 	('4d4b463303e32e514adc266ac2a9d3689588c4a1a102969518fdd4cec0ce5f41c79684cbdaf92e5f', 2, 4, 'personal', '[]', 0, '2021-07-01 01:02:26', '2021-07-01 01:02:26', '2121-07-01 01:02:25'),
 	('4dc3b46d4f0cb8ad0e69ae258ef7068aa36cb56681c354983963d1e211aed1a340f37c5fef236ea5', 55, 4, 'personal', '[]', 0, '2021-07-29 19:40:30', '2021-07-29 19:40:30', '2121-07-29 19:40:30'),
 	('4e060e55fd3361a96d95e46b93e30970b31c349d7686a184c510cceac50cbde14d1dda7d98e0f0c8', 52, 4, 'personal', '[]', 0, '2021-07-25 14:48:13', '2021-07-25 14:48:13', '2121-07-25 14:48:13'),
+	('4f881ff176de1efd66511c5d8abb2beab3075cfe76881db1a23b11aa27b82898bcd1d867e09bb4c6', 1, 4, 'personal', '[]', 0, '2021-10-26 01:45:39', '2021-10-26 01:45:39', '2121-10-26 01:45:39'),
 	('4ff262cb998670fb80d4d4daf16bfc676e0b12b3bc85aa0472576d063e27297794b6c2cb4493c3e3', 52, 4, 'personal', '[]', 0, '2021-07-20 21:03:34', '2021-07-20 21:03:34', '2121-07-20 21:03:34'),
 	('5072f6291d754167026f97214f7797142765bf848f13cd54304bc0236a75caff5049b55d1df31388', 2, 4, 'personal', '[]', 0, '2021-06-02 04:33:31', '2021-06-02 04:33:31', '2121-06-02 04:33:31'),
 	('51af636adef428a85ed6075f9978cb228797d65a1ff156113d7f0b90d58340658c65ce70fb43dd4b', 2, 4, 'personal', '[]', 0, '2021-06-08 18:45:33', '2021-06-08 18:45:33', '2121-06-08 18:45:33'),
@@ -1078,6 +1128,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 	('8f682a828151cdd8fb2bdee5a88153ce7154f6de1d3ee26db6a8182de75d1e1bc2921a31dd18d4fa', 59, 4, 'personal', '[]', 0, '2021-08-12 19:37:21', '2021-08-12 19:37:21', '2121-08-12 19:37:21'),
 	('8fa7e55bee97627a1237834898283a0b63188fb60a7f90b0e85515d3257ea224c38dad9fd598b341', 45, 4, 'personal', '[]', 0, '2021-07-08 08:42:53', '2021-07-08 08:42:53', '2121-07-08 08:42:53'),
 	('90414911c9e88dc9c34f2da5c5c87947057a4b88fabcaca576e94874a9f2dcfb6ca7415c88caebb3', 59, 4, 'personal', '[]', 0, '2021-08-04 17:36:25', '2021-08-04 17:36:25', '2121-08-04 17:36:24'),
+	('9062f389cdabaabf70d5bfca5e0d872fc397d4ee51b76984290e25882ebac30564d191388c4f2768', 1, 4, 'personal', '[]', 0, '2021-10-26 02:04:18', '2021-10-26 02:04:18', '2121-10-26 02:04:18'),
 	('90d6db63c05cda88fdb4a580352dbce7fcd443fa7b41639f58617e7dccdf4b1b68be44b6a7d661a6', 122, 4, 'personal', '[]', 0, '2021-08-05 20:06:55', '2021-08-05 20:06:55', '2121-08-05 20:06:55'),
 	('9194dd22fe846250d6a3b49e18e169859ddf04e50b1e0bb1c5e576d26f4e424bf8869e4ff583c8da', 55, 4, 'personal', '[]', 0, '2021-07-29 22:51:41', '2021-07-29 22:51:41', '2121-07-29 22:51:41'),
 	('91dff17e416628f96ae687267a2b6aba1e3cd59d4e5318b0b2a8328aa8091abf3dd003b806b82cda', 27, 4, 'personal', '[]', 0, '2021-06-29 20:07:56', '2021-06-29 20:07:56', '2121-06-29 20:07:56'),
@@ -1430,6 +1481,31 @@ INSERT INTO `pedidos` (`id`, `estado`, `file`, `importadora`, `descripcion`, `us
 	(76, 'true', '130_1628711677_cotizacion_altools.pdf', 'TRENDY HOME', NULL, 130, 79, NULL, '2021-08-11 19:54:37', '2021-08-11 19:54:37'),
 	(77, 'true', '130_1628711992_cotizacion_altools (1).pdf', 'TRENDY HOME', NULL, 59, 80, NULL, '2021-08-11 19:59:52', '2021-08-11 19:59:52');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+
+-- Volcando estructura para tabla aluminiobd.perfils
+CREATE TABLE IF NOT EXISTS `perfils` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `alto` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `ancho` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `repeticion` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `combinacion` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `categoria` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `hoja_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `hoja_id` (`hoja_id`),
+  CONSTRAINT `FK_perfils_hoja_calculo_perfils` FOREIGN KEY (`hoja_id`) REFERENCES `hoja_calculo_perfils` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_perfils_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Volcando datos para la tabla aluminiobd.perfils: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `perfils` DISABLE KEYS */;
+INSERT INTO `perfils` (`id`, `alto`, `ancho`, `repeticion`, `combinacion`, `categoria`, `updated_at`, `created_at`, `user_id`, `hoja_id`) VALUES
+	(3, '52', '12', '10', 'combinacion1', 'L-20', '2021-10-26 02:59:06', '2021-10-26 02:59:06', 1, 4);
+/*!40000 ALTER TABLE `perfils` ENABLE KEYS */;
 
 -- Volcando estructura para tabla aluminiobd.productos
 CREATE TABLE IF NOT EXISTS `productos` (

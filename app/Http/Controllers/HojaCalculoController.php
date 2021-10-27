@@ -51,35 +51,8 @@ class HojaCalculoController extends Controller
 
     public function guardarCombinacion(Request $request){
 
-       $request->validate([
-            'alto' => 'required',
-            'ancho' => 'required', 
-            'combinacion' => 'nullable',
-            'categoria' => 'required',
-            'user_id' => 'required',           
-        ]);
-
-        dd($request);
-      
-        // User::create([
-        //     'name' => $request->name,
-        //     'apellido' => $request->apellido,
-        //     'direccion' => $request->direccion,
-        //     'telefono' => $request->telefono,
-        //     'pais' => $request->pais,
-        //     'ciudad' => $request->ciudad,
-        //     'whatsapp' => $request->whatsapp,
-        //     'email' => $request->email,
-        //     'role' => $request->role,
-        //     'registrado' => $request->registrado,
-        //     'imagen' => 'images/default-person.jpg',
-        //     'subscripcion' => $request->subscripcion,
-        //     'password' => Hash::make($request->password),
-            
-        // ]); 
-        
-        // session::flash('message','Usuario Registrado Exisitosamente!');
-        // return redirect('/login')->with("message", "Usuario creado exitosamente!");  
+        $perfil = Perfil::create($request->all());
+        return response()->json($perfil, 201); 
     }
 
     /**

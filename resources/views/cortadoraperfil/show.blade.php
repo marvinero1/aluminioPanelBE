@@ -17,7 +17,7 @@
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">Nombre</th>
                         <th style="text-align:center;">Combinación</th>
-                        <th style="text-align:center;">Categoria</th>
+                        <th style="text-align:center;">Linea</th>
                         <!-- <th style="text-align:center;">Descripción</th> -->
                         <th style="text-align:center;">Acciones</th>
                     </tr>

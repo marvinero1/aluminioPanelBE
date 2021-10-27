@@ -39,6 +39,7 @@ class BarraController extends Controller
             'categoria' => 'required',
             'lado' => 'required',
             'largo' => 'required',
+            'nombre' => 'required',
             'perfil_id' => 'required',
 
         ]);
@@ -47,6 +48,7 @@ class BarraController extends Controller
             'categoria' => $request->categoria,
             'lado' => $request->lado,
             'largo' => $request->largo,
+            'nombre' => $request->nombre,
             'perfil_id' => $request->perfil_id,
 
         ]);

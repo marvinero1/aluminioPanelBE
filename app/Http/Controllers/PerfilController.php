@@ -57,12 +57,32 @@ class PerfilController extends Controller
 
         $corte = Corte::get();
        
+        
+
 
         foreach($corte as $cortes){ //aca el elperfil (barra al)categorias junto a el corte
            
             $corte_1 = $cortes->corte_1;
+            
             // $cortes_json = json_encode($corte_1);
-            echo $cortes;  
+            // echo $;  
+        }
+
+        foreach($perfil as $perfils){ //aca el elperfil (barra al)categorias junto a el corte
+           
+            $repetecion = $perfils->repeticion;
+            $ancho_barra = $perfils->ancho;
+            $alto_barra = $perfils->alto;
+            $linea = $perfils->categoria;
+            $combinacion = $perfils->combinacion;
+
+
+            // $cortes_json = json_encode($corte_1);
+            // echo $ancho_barra;  
+            $ancho_barra; 
+            $alto_barra;
+            $linea;
+            $combinacion;
         }
 
         // foreach($barra as $barras){
@@ -72,7 +92,8 @@ class PerfilController extends Controller
         //     echo $cate_json;           
         // }
 
-        return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte'));
+        return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte','repetecion','ancho_barra',
+            'alto_barra','linea','combinacion'));
     }
 
     /**

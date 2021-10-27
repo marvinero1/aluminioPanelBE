@@ -21,5 +21,6 @@ class barra extends Model
     protected $fillable = ['categoria',
                         'lado',
                         'largo',
+                        'nombre',
                         'perfil_id'];
 }
