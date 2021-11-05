@@ -92,11 +92,7 @@ class PerfilController extends Controller
             $division = $numberRepeteat / $largo_predeterminado;
 
             $totalmtsbarra = $division * $largo_predeterminado;
-
-            // echo $division;
-
-            // $cortes_json = json_encode($corte_1);
-            // echo $ancho_barra;  
+ 
             $ancho_barra; 
             $alto_barra;
             $linea;
@@ -112,26 +108,27 @@ class PerfilController extends Controller
                     $linea25s.',';
                 }
             }
-
-           
-
-            
          }
 
-        if ($totalmtsbarra > $largo_predeterminado) {
-            
-        }
-        
+                
         $barraArray = [];
+
         foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
            
             $categorias = $barras->fam_linea;
+            $recorte_resta = $barras->resta;
             $linea = $barras->linea;
             $nombre = $barras->nombre;
             $largos =  $barras->largo;  
             $cate_json = json_encode($categorias.'-'.$nombre).",";
 
+        
             $largosArray= array($largos);
+
+             
+        
+            
+            
 
              // echo $barras;
 
@@ -152,41 +149,15 @@ class PerfilController extends Controller
             $data = json_encode($barraArray);
             $dataCortes = json_encode($barraArrayLargo);
 
-            // print_r($dataCortes);
-
-
-
-
             // echo $cate_json;           
         }
 
-        // for ($i=0; $i <= $division; $i++) {
-        //     foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
+        $anchoDivido = $ancho_barra * 1000; 
+        
+        $resta = $anchoDivido - $recorte_resta;
+        echo json_encode($resta);
 
-        //     $categorias = $barras->fam_linea;
-        //     $nombre = $barras->nombre;
-
-        //     $catess = $categorias.', '.$nombre.",";
-            
-        //     $cate_json = json_encode($categorias.', '.$nombre).",";
-
-        //     $a = array($categorias,);
-
-            
-
-        //     rsort($a);
-
-        //     // $catessjson = json_encode($catessArray);                        
-
-        //     echo json_encode($a);                
-
-        //     // $a = [$categorias.', '.$nombre];
-
-        //     // sort($a,);
-                   
-        //     }
-        // }
-
+       
          // $place = ['name' => $barra, 'data' =>$totalmtsbarra];
          //        $obj = (object) $place;
          //        //var_dump($obj);
@@ -196,7 +167,7 @@ class PerfilController extends Controller
        
         return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte','repetecion','ancho_barra',
             'alto_barra','linea','combinacion','linea20','linea25','largo_predeterminado','cate_json','largos','resumen',
-            'division','totalmtsbarra','data','barraArray','cortesName','barraArrayLargo','dataCortes','linea'));
+            'division','totalmtsbarra','data','barraArray','cortesName','barraArrayLargo','dataCortes','resta'));
     }
 
     /**

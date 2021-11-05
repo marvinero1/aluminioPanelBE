@@ -83,22 +83,10 @@
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hoja 3</a>
         <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help" aria-selected="false">Hoja 4</a>
+        <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Hoja 5</a>
       </div>
     </nav>
-       <div class="float-right">
-        <div class="row">
-            <div class="col-md-6">
-               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                Añadir Barra 
-            </button> 
-        </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCorte">
-                    Añadir Corte 
-                </button>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="tab-content p-4" id="nav-tabContent">
         <!-- Hoja 1 Combinacion mas el for a la imagen  * la repeticion-->
@@ -147,6 +135,20 @@
     
     <!-- SEGUNDA HOJA -->
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="float-right">
+            <div class="row">
+                <div class="col-md-6">
+                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                    Añadir Barra 
+                    </button> 
+                </div>
+                <!-- <div class="col-md-6">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCorte">
+                        Añadir Corte 
+                    </button>
+                </div> -->
+            </div>
+         </div><br><br>
         <div  class="container">
             <figure class="highcharts-figure">
                 <div id="container"></div>
@@ -168,8 +170,6 @@
                       <th scope="col" class="text-center">#Barras a Usar</th>
                       <th scope="col" class="text-center">Cortes</th>
                       <th scope="col" class="text-center">Tamaño del Corte</th>
-                      <th scope="col" class="text-center">Acciones</th>
-
                     </tr>
                   </thead>
                   <tbody>
@@ -186,7 +186,7 @@
                         <th scope="row" class="text-center"><?php
                             echo($ancho_barra).' Metros';
                         ?></th>
-                        <th><button type="submit" class="button btn btn-primary">Restar</button></th>
+                   
                     </tr>
                     @endforeach
                    
@@ -195,6 +195,7 @@
 
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <p><?php 
@@ -216,10 +217,14 @@
         </div>
     </div> 
 
+    <!-- Cuarta Hoja -->
      <div class="tab-pane fade show active" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
         <p><strong>Cotización</strong></p>
-         <table class="table table-bordered">
+            <table class="table table-bordered">
                   <thead>
+                    <td colspan="2" class="text-center">Linea: <strong><?php 
+                        echo($linea);
+                    ?></strong> </td>
                     <tr>
                       <th scope="col" class="text-center">Linea</th>
                       <th scope="col" class="text-center">#Barras a Usar</th>
@@ -227,9 +232,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <td colspan="2" class="text-center">Linea: <strong><?php 
-                        echo($linea);
-                    ?></strong> </td>
+                    
                    @foreach($barra as $barras)
                    
                     <tr>
@@ -245,74 +248,177 @@
                     @endforeach
                    
                   </tbody>
-                </table>
+            </table>
+    </div>
 
+    <!-- Quinta Hoja -->
+     <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+        <p><strong>Resumen</strong></p>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+                 <p><strong>Original</strong></p>
+               <table class="table table-bordered">
+                  <thead>
+                    <td colspan="3" class="text-center">Linea: <strong><?php 
+                        echo($linea);
+                    ?></strong> </td>
+                    <tr>
+                      <th scope="col" class="text-center">Linea</th>
+                      <th scope="col" class="text-center">#Barras a Usar</th>
+                      <th scope="col" class="text-center">Ancho - Recorte</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   @foreach($barra as $barras)
+                   
+                    <tr>
+                      <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
+                      
+                        <th scope="row" class="text-center"><?php
+                            $numBarras = ceil($division);
+                            echo($numBarras);
+                        ?></th>
+                         <th scope="row" class="text-center"><?php
+                            echo($ancho_barra." Metros");
+                        ?></th>
+                      
+                    </tr>
+                     
+                    @endforeach
+                   
+                  </tbody>
+            </table>
+            </div>
+                
+
+            <div class="col">
+                <p><strong>Con Resta</strong></p>
+              <table class="table table-bordered">
+                  <thead>
+                    <td colspan="3" class="text-center">Linea: <strong><?php 
+                        echo($linea);
+                    ?></strong> </td>
+                    <tr>
+                      <th scope="col" class="text-center">Linea</th>
+                      <th scope="col" class="text-center">#Barras a Usar</th>
+                      <th scope="col" class="text-center">Ancho - Recorte</th>
+                      <th scope="col" class="text-center">#Piezas</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                   @foreach($barra as $barras)
+                   
+                    <tr>
+                      <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
+                      
+                        <th scope="row" class="text-center"><?php
+                            $numBarras = ceil($division);
+                            echo($numBarras);
+                        ?></th>
+                        @if($barras->fam_linea == '2001' || $barras->fam_linea == '2002')
+                        <th scope="row" class="text-center"><?php
+                            
+
+                                $anchoDivido = $ancho_barra * 1000;
+                                $recorte_resta = $barras->resta;
+
+                                $resta = $anchoDivido - $recorte_resta;
+                                echo json_encode($resta.' Metros');
+                            
+                            
+                        ?></th>
+                        @else
+                        <th scope="row" class="text-center">0</th>
+                        @endif
+
+                        <th scope="row" class="text-center">{{ $barras->piezas }}</th>
+                      
+                    </tr>
+                     
+                    @endforeach
+                   
+                  </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+
+           
      </div>
-
+ 
 
     </div>
-    <!-- modal aneadir corte -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content text-center">
-          <div class="modal-header" style="display: block;">
-            <h5 class="modal-title" id="exampleModalLabel">Crear Barra</h5>
-          </div>
-            <form action="{{route('barra.store')}}" method="POST" >
-            {{ csrf_field() }}
-                <div class="modal-body">
-                    <div class="col">
-                        <img src="/images/cortadora/corteCombi1.png" width="450px">
-                    </div>
-
-                    <div class="container">
-                        <div class="row">
+        <!-- modal aneadir corte -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content text-center">
+              <div class="modal-header" style="display: block;">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Barra</h5>
+              </div>
+                <form action="{{route('barra.store')}}" method="POST" >
+                {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="col">
+                            <img src="/images/cortadora/corteCombi1.png" width="350px">
+                        </div>
+                        <div class="container">
+                          <div class="row">
                             <div class="col">
-                                <div class="input-group mb-3 p-3">
+                                <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Linea</span>
+                                        <span class="input-group-text" id="basic-addon1">Linea</span>
                                     </div>
-                                    <input type="text" class="form-control" value="{{ $linea }}"  name="linea">
+                                        <input type="text" class="form-control" value="{{ $linea }}"  name="linea">
                                 </div>
-
-                                <div class="col">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Codigo</label>
-                                        </div>
-                                        @if ($linea == "L-20")
-                                            <select name="fam_linea" class="custom-select" required>
-                                                @foreach ($linea20 as $linea20s)
-                                                <option value="{{ $linea20s }}">{{$linea20s}}
-                                                </option>
-                                                @endforeach
-                                            </select> 
-                                </select>
-                                            </select> 
-                                        @else
-                                            <select name="fam_linea" class="custom-select" required>
-                                                @foreach ($linea25 as $linea25s)
-                                                <option value="{{ $linea25s }}">{{$linea25s}}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        @endif
-                                        
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Codigo</label>
                                     </div>
-                                </div>                     
+                                    @if ($linea == "L-20")
+                                        <select name="fam_linea" class="custom-select" required>
+                                            @foreach ($linea20 as $linea20s)
+                                            <option value="{{ $linea20s }}">{{$linea20s}}
+                                            </option>
+                                            @endforeach
+                                        </select> 
+                                    @else
+                                        <select name="fam_linea" class="custom-select" required>
+                                            @foreach ($linea25 as $linea25s)
+                                            <option value="{{ $linea25s }}">{{$linea25s}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    @endif
+                                </div>
                             </div>
-                                </div>                     
-                            </div>
-                        </div><br>
+                          </div><br>
 
-                        {{-- <div class="input-group mb-3 p-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Largo</span>
+                          <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Restar</span>
+                                    </div>
+                                        <input type="number" class="form-control" name="resta">
+                                </div>
                             </div>
-                            <input type="text" class="form-control"  name="largo">
-                        </div> --}}
+                         
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Piezas</span>
+                                    </div>
+                                        <input type="number" class="form-control" name="piezas">
+                                </div>
+                            </div>
+                           
+                          </div><br>
 
-                        <div class="row">
+                          <div class="row">
                             <div class="col">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -327,120 +433,51 @@
                                     <option value="X5">X5</option>
                                     <option value="X6">X6</option>
                                     <option value="X7">X7</option>
-    
+
+                                    </select>
+                                </div> 
+                            </div>
+                            <div class="col">
+                              <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" name="nombre" required>
+                                    <!--  <option selected>Choose...</option> -->
+                                        <option value="Riel_Inferior">Riel Inferior</option>
+                                        <option value="Riel_Superior">Riel Superior</option>
+                                        <option value="Zocalo">Zocalo</option>
+                                        <option value="Jamba">Jamba</option>
+                                        <option value="Pierna">Pierna</option>
+                                        <option value="Enganche">Enganche</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelect01" name="nombre" required>
-                                <!--  <option selected>Choose...</option> -->
-                                    <option value="Riel_Inferior">Riel Inferior</option>
-                                    <option value="Riel_Superior">Riel Superior</option>
-                                    <option value="Zocalo">Zocalo</option>
-                                    <option value="Jamba">Jamba</option>
-                                    <option value="Pierna">Pierna</option>
-                                    <option value="Enganche">Enganche</option>
-                                </select>
-                                </div>
-                            </div>
-                        </div>
-                        <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
-                        <input hidden type="text" value="{{ $ancho_barra }}" name="largo">                   
-                        <p></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- modal corte -->
-
-    <div class="modal fade" id="exampleModalCorte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content text-center">
-          <div class="modal-header" style="display: block;">
-            <h5 class="modal-title " id="exampleModalLabel">Crear Corte</h5>
-          </div>
-          <form action="{{route('barra.store')}}" method="POST" >
-                        {{ csrf_field() }}
-          <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <img src="/images/cortadora/corteCombi1.png" width="450px">
-                    </div>
-
-                    <div class="col">
-                        <div class="input-group mb-3">
-                             <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Barra</label>
                           </div>
-                            <select name="categorias_id" class="custom-select" data-live-search="true" required>
-                                @foreach ($barra as $barras)
-                                <option value="{{ $barras->id }}">{{$barras->categoria }} - {{$barras->lado}}
-                                </option>
-                                @endforeach
-                            </select>
+
+                          <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
+                        <input hidden type="text" value="{{ $ancho_barra }}" name="largo">  
+
                         </div>
+
                     </div>
-                    <!-- <div class="col">
-                        <div class="input-group mb-3">
-                              <div class="input-group-prepend ">
-                                <label class="input-group-text " for="inputGroupSelect01">Corte #</label>
-                              </div>
-                              <select class="custom-select" id="inputGroupSelect01" name="lado" required>
-                                <option value="corte_1">1</option>
-                                <option value="corte_2">2</option>
-                                <option value="corte_3">3</option>
-                                <option value="corte_4">4</option>
-                                <option value="corte_5">5</option>
-                                <option value="corte_6">6</option>
-                                <option value="corte_7">7</option>
-                                <option value="corte_8">8</option>
-                                <option value="corte_9">9</option>
-                                <option value="corte_10">10</option>
-                                <option value="corte_11">11</option>
-                                <option value="corte_12">12</option>
-                              </select>
-                        </div>
-                    </div> -->
-                                    
-                    <div class="input-group mb-3 p-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Corte #1</span>
-                      </div>
-                      <input type="text" class="form-control" name="corte_1">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
-                    
-                    <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">               
-                </div>
+                </form>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-warning">Cortar</button>
-          </div>
-        </form>
         </div>
+     
+     
       </div>
     </div>
 
-   
-
     </div>
 
       </div>
-
-    
-	
-    
+	    
     <script>
         window.onload = function Onit() {
             this.getValueCut();
@@ -458,10 +495,10 @@
                 type: 'bar'
               },
               title: {
-                text: 'Historic World Population by Region'
+                text: 'Cortadora para perfiles de Aluminio'
               },
               subtitle: {
-                text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+                text: 'Source: <a href="https://altools.es">Altools.es</a>'
               },
               xAxis: {
                 categories: [ <?php 

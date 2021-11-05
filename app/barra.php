@@ -23,5 +23,7 @@ class barra extends Model
                         'lado',
                         'largo',
                         'nombre',
+                        'resta',
+                        'piezas',
                         'perfil_id'];
 }

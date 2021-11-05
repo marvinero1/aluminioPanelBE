@@ -44,6 +44,8 @@ class BarraController extends Controller
             'lado' => $request->lado,
             'largo' => $request->largo,
             'nombre' => $request->nombre,
+            'resta' => $request->resta,
+            'piezas' => $request->piezas,
             'perfil_id' => $request->perfil_id,
 
         ]);
