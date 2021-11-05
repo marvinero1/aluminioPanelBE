@@ -53,6 +53,8 @@ class PerfilController extends Controller
         $perfil = Perfil::where('perfils.id', '=', $id)->get();
         $perfil_id = $id;
 
+        $numberRepeteat;
+
         $barra = barra::where('barras.perfil_id', '=', $id)->get();
 
         $corte = Corte::get();
@@ -60,6 +62,10 @@ class PerfilController extends Controller
         $linea20 = array("2001", "2002", "2005", "2009","2010","2011");
 
         $linea25 = array("2501", "2502", "2504", "2505","2507", "2509","2510","5008");
+
+        $cortesName = array("Corte 1", "Corte 2", "Corte 3", "Corte 4","Corte 5", "Corte 6","Corte 7","Corte 8","Corte 9",
+        "Corte 10","Corte 11","Corte 12");
+
 
        
         
@@ -79,6 +85,15 @@ class PerfilController extends Controller
             $linea = $perfils->linea;
             $combinacion = $perfils->combinacion;
 
+            $largo_predeterminado = 6;
+
+            $numberRepeteat = $ancho_barra * $repetecion;
+
+            $division = $numberRepeteat / $largo_predeterminado;
+
+            $totalmtsbarra = $division * $largo_predeterminado;
+
+            // echo $division;
 
             // $cortes_json = json_encode($corte_1);
             // echo $ancho_barra;  
@@ -97,11 +112,91 @@ class PerfilController extends Controller
                     $linea25s.',';
                 }
             }
+
+           
+
+            
+         }
+
+        if ($totalmtsbarra > $largo_predeterminado) {
             
         }
+        
+        $barraArray = [];
+        foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
+           
+            $categorias = $barras->fam_linea;
+            $linea = $barras->linea;
+            $nombre = $barras->nombre;
+            $largos =  $barras->largo;  
+            $cate_json = json_encode($categorias.'-'.$nombre).",";
+
+            $largosArray= array($largos);
+
+             // echo $barras;
+
+            $resumen = ""."\n"."Para la barra ".$cate_json."Se necesitara la cantidad de ".$division." barras de ".$largo_predeterminado." metros.\n";
+
+            // echo $resumen;
+
+            for ($i=0; $i < 4; $i++) { 
+                $b = json_encode($largosArray);
+                // echo ($b.',');   
+            }
+            
+
+            $barraArray = ['name' => [$categorias],'data' => [intval($largo_predeterminado)]]; 
+
+            $barraArrayLargo = ['data' => [$largosArray]];
+
+            $data = json_encode($barraArray);
+            $dataCortes = json_encode($barraArrayLargo);
+
+            // print_r($dataCortes);
+
+
+
+
+            // echo $cate_json;           
+        }
+
+        // for ($i=0; $i <= $division; $i++) {
+        //     foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
+
+        //     $categorias = $barras->fam_linea;
+        //     $nombre = $barras->nombre;
+
+        //     $catess = $categorias.', '.$nombre.",";
+            
+        //     $cate_json = json_encode($categorias.', '.$nombre).",";
+
+        //     $a = array($categorias,);
+
+            
+
+        //     rsort($a);
+
+        //     // $catessjson = json_encode($catessArray);                        
+
+        //     echo json_encode($a);                
+
+        //     // $a = [$categorias.', '.$nombre];
+
+        //     // sort($a,);
+                   
+        //     }
+        // }
+
+         // $place = ['name' => $barra, 'data' =>$totalmtsbarra];
+         //        $obj = (object) $place;
+         //        //var_dump($obj);
+         //        $er = json_encode($obj);
+         //        echo $er;
+
        
         return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte','repetecion','ancho_barra',
-            'alto_barra','linea','combinacion','linea20','linea25'));
+            'alto_barra','linea','combinacion','linea20','linea25','largo_predeterminado','cate_json','largos','resumen',
+            'division','totalmtsbarra','data','barraArray','cortesName','barraArrayLargo','dataCortes','linea'));
     }
 
     /**

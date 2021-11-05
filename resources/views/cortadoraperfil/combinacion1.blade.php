@@ -82,8 +82,23 @@
         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hoja 1</a>
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hoja 3</a>
+        <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help" aria-selected="false">Hoja 4</a>
       </div>
     </nav>
+       <div class="float-right">
+        <div class="row">
+            <div class="col-md-6">
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Añadir Barra 
+            </button> 
+        </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCorte">
+                    Añadir Corte 
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div class="tab-content p-4" id="nav-tabContent">
         <!-- Hoja 1 Combinacion mas el for a la imagen  * la repeticion-->
@@ -112,6 +127,7 @@
 
          <div class="row">           
             <!-- foreach a la imagen -->
+            <p>V</p>
             <?php  
                 foreach($perfil as $perfils){ //aca el elperfil (barra al)categorias junto a el corte
                
@@ -120,35 +136,121 @@
                 // $cortes_json = json_encode($corte_1);
                 // echo $repetecion;  
 
-                    for ($x = 1; $x <= $repetecion; $x++ ) {
-                        echo '<img src="/images/cortadora/corteCombi1.png" width="450px">';
+                    for ($x = 1; $x <= $repetecion; $x++){
+
+                        echo '<img src="/images/cortadora/corteCombi1.png" width="350px">';
                     }  
                 } 
             ?>
         </div>
       </div>
-      <!-- Barras y cortes -->
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <div  class="container">
-    <!-- modal para la  barra -->
-    <div class="float-right">
-        <div class="row">
-            <div class="col-md-6">
-               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                Añadir Barra 
-            </button> 
+    
+    <!-- SEGUNDA HOJA -->
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div  class="container">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+            </figure>   
         </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCorte">
-                    Añadir Corte 
-                </button>
+    </div> 
+
+
+    <!-- TERCERA HOJA -->    
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="row">
+            <div class="class">
+                <p><strong>Resumen</strong></p>   
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center">Linea y Familia</th>
+                      <th scope="col" class="text-center">#Barras a Usar</th>
+                      <th scope="col" class="text-center">Cortes</th>
+                      <th scope="col" class="text-center">Tamaño del Corte</th>
+                      <th scope="col" class="text-center">Acciones</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                   @foreach($barra as $barras)
+                    <tr>
+                      <th scope="row" class="text-center">{{ $barras->fam_linea}}, {{ $barras->nombre}} </th>
+                        <th scope="row" class="text-center"><?php
+                            $numBarras = ceil($division);
+                            echo($numBarras);
+                        ?></th>
+                        <th scope="row" class="text-center"><?php
+                            echo($repetecion);
+                        ?></th>
+                        <th scope="row" class="text-center"><?php
+                            echo($ancho_barra).' Metros';
+                        ?></th>
+                        <th><button type="submit" class="button btn btn-primary">Restar</button></th>
+                    </tr>
+                    @endforeach
+                   
+                  </tbody>
+                </table>
+
             </div>
         </div>
-        <!-- Button trigger modal -->
-    </div><br><br>
+        <div class="row">
+            <div class="col">
+                <p><?php 
+                    //aca el elperfil (barra al)categorias junto a el corte
+                    foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
+               
+                    $categorias = $barras->fam_linea;
+                    $nombre = $barras->nombre;
+                    $largos =  $barras->largo;  
+                    $cate_json = json_encode($categorias.'-'.$nombre).",";
+
+                    $resumen = ""."\n"."Para la barra ".$cate_json." Se necesitara la cantidad de ".$division." barras de ".$largo_predeterminado." Metros.\n";
+                    
+                        echo nl2br($resumen);                     
+                    }
+                        
+                ?></p>
+            </div>
+        </div>
+    </div> 
+
+     <div class="tab-pane fade show active" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
+        <p><strong>Cotización</strong></p>
+         <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center">Linea</th>
+                      <th scope="col" class="text-center">#Barras a Usar</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <td colspan="2" class="text-center">Linea: <strong><?php 
+                        echo($linea);
+                    ?></strong> </td>
+                   @foreach($barra as $barras)
+                   
+                    <tr>
+                      <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
+                      
+                        <th scope="row" class="text-center"><?php
+                            $numBarras = ceil($division);
+                            echo($numBarras);
+                        ?></th>
+                      
+                    </tr>
+                     
+                    @endforeach
+                   
+                  </tbody>
+                </table>
+
+     </div>
 
 
-    
+    </div>
     <!-- modal aneadir corte -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -330,18 +432,13 @@
       </div>
     </div>
 
+   
 
-
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-    </figure>   
     </div>
+
       </div>
 
-      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-          
-      </div>
-    </div>
+    
 	
     
     <script>
@@ -357,74 +454,126 @@
         function dibujar() {
 
             Highcharts.chart('container', {
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Cortadora de Perfiles de Aluminio'
-                },
-                xAxis: {
-                    categories: [ <?php 
-                    foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
+              chart: {
+                type: 'bar'
+              },
+              title: {
+                text: 'Historic World Population by Region'
+              },
+              subtitle: {
+                text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+              },
+              xAxis: {
+                categories: [ <?php 
+
+
+                    for ($i=0; $i <= $division; $i++) {
+                        foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
            
                         $categorias = $barras->fam_linea;
                         $nombre = $barras->nombre;
+                        
                         $cate_json = json_encode($categorias.', '.$nombre).",";
+                        echo $cate_json;
 
-                        echo $cate_json;           
-                    }?>
-                ] 
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Total Metros'
-                    }
-                },
-                legend: {
-                    reversed: true
-                },
-                plotOptions: {
-                    series: {
-                        stacking: 'normal'
-                    }
-                },
-                series: [
-                {
-                    name: 'Total',
-                    data: [4.5 ,4.5,4.5,4.5,4.5,4.5 ]
-                },
-                
-                {   
-                   
+                        // $a = [$categorias.', '.$nombre];
 
-                    name: 'Corte ',
-                    data: [<?php
-                    
+                        // sort($a,);
+                               
+                        }
+                    }
+                    ?>],
+                title: {
+                  text: null
+                }
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: 'Metros',
+                  align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                }
+              },
+              tooltip: {
+                valueSuffix: ' metros'
+              },
+              plotOptions: {
+                bar: {
+                  dataLabels: {
+                    enabled: true
+                  }
+                }
+              },
+              // legend: {
+              //   layout: 'vertical',
+              //   align: 'right',
+              //   verticalAlign: 'top',
+              //   x: -40,
+              //   y: 80,
+              //   floating: true,
+              //   borderWidth: 1,
+              //   backgroundColor:
+              //     Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+              //   shadow: true
+              // },
+              credits: {
+                enabled: true
+              },
+              series: [
+              {
+                name: 'Barra ',
+                data: [<?php
+                    // for ($i=0; $i <= $division; $i++) {
+
                         foreach($barra as $barras){
                             // $linea_barra = $barras->linea;
-                            $barras_largo = $barras->largo;
-                            $barras_json = json_encode($barras_largo);
-                            echo $barras_json.',';            
-                        }
-                    ?>]
+                            $barras_largo = $largo_predeterminado * 3;
+                            echo $barras_largo.",";
+                        }                              
+                    // }                               
+                ?>]
                 }, 
-                ]
+
+                <?php
+                    for ($i=0; $i < 10; $i++) { 
+                        
+
+                    echo($dataCortes.",");
+                    
+                }
+                // foreach($barra as $barras){
+                            
+                //     echo($dataCortes.",");
+                // }
+
+                
+                ?>
+                
+                                
+              ],
+
+              
+             
+                    
+            
+              
             });
         }
 
     </script>
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-</body>
-
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
+    </body>
 </html>
