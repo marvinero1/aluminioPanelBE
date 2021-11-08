@@ -256,40 +256,7 @@
         <p><strong>Resumen</strong></p>
         <div class="container">
           <div class="row">
-            <div class="col">
-                 <p><strong>Original</strong></p>
-               <table class="table table-bordered">
-                  <thead>
-                    <td colspan="3" class="text-center">Linea: <strong><?php 
-                        echo($linea);
-                    ?></strong> </td>
-                    <tr>
-                      <th scope="col" class="text-center">Linea</th>
-                      <th scope="col" class="text-center">#Barras a Usar</th>
-                      <th scope="col" class="text-center">Ancho - Recorte</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   @foreach($barra as $barras)
-                   
-                    <tr>
-                      <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
-                      
-                        <th scope="row" class="text-center"><?php
-                            $numBarras = ceil($division);
-                            echo($numBarras);
-                        ?></th>
-                         <th scope="row" class="text-center"><?php
-                            echo($ancho_barra." Metros");
-                        ?></th>
-                      
-                    </tr>
-                     
-                    @endforeach
-                   
-                  </tbody>
-            </table>
-            </div>
+            
                 
 
             <div class="col">
@@ -304,6 +271,8 @@
                       <th scope="col" class="text-center">#Barras a Usar</th>
                       <th scope="col" class="text-center">Ancho - Recorte</th>
                       <th scope="col" class="text-center">#Piezas</th>
+                      <th scope="col" class="text-center">#Repeticiones</th>
+
 
                     </tr>
                   </thead>
@@ -325,15 +294,18 @@
                                 $recorte_resta = $barras->resta;
 
                                 $resta = $anchoDivido - $recorte_resta;
-                                echo json_encode($resta.' Metros');
+                                echo json_encode($resta);
                             
                             
                         ?></th>
                         @else
                         <th scope="row" class="text-center">0</th>
                         @endif
-
                         <th scope="row" class="text-center">{{ $barras->piezas }}</th>
+
+                        <th scope="row" class="text-center"><?php
+                            echo  $repetecion
+                        ?></th>
                       
                     </tr>
                      
@@ -573,23 +545,7 @@
                     // }                               
                 ?>]
                 }, 
-
-                <?php
-                    for ($i=0; $i < 10; $i++) { 
-                        
-
-                    echo($dataCortes.",");
-                    
-                }
-                // foreach($barra as $barras){
-                            
-                //     echo($dataCortes.",");
-                // }
-
-                
-                ?>
-                
-                                
+               
               ],
 
               

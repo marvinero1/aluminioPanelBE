@@ -154,8 +154,8 @@ class PerfilController extends Controller
 
         $anchoDivido = $ancho_barra * 1000; 
         
-        $resta = $anchoDivido - $recorte_resta;
-        echo json_encode($resta);
+        // $resta = $anchoDivido - $recorte_resta;
+        // echo json_encode($resta);
 
        
          // $place = ['name' => $barra, 'data' =>$totalmtsbarra];
