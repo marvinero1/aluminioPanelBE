@@ -34,21 +34,49 @@ class BarraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-
        
         $request->all();
-       
-        barra::create([
-            'linea' => $request->linea,
-            'fam_linea' => $request->fam_linea,
-            'lado' => $request->lado,
-            'largo' => $request->largo,
-            'nombre' => $request->nombre,
-            'resta' => $request->resta,
-            'piezas' => $request->piezas,
-            'perfil_id' => $request->perfil_id,
+        $largo = $request->largo;
+        $perfil_id = $request->perfil_id;
+        $hoja_id = $request->hoja_id;
+        
 
-        ]);
+       $data = [
+                ["linea"=>"L-20", "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Inferior","resta"=>"12","piezas"=>"1",
+                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>"L-20", "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Superior","resta"=>"12","piezas"=>"1",
+                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>"L-20", "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","piezas"=>"2",
+                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>"L-20", "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","piezas"=>"2",
+                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>"L-20", "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","piezas"=>"1",
+                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+        ];
+
+
+        // $data = json_encode($data);
+
+        // dd($data);
+
+         barra::insert($data);
+       
+        // barra::create([
+        //     'linea' => $request->linea,
+        //     'fam_linea' => $request->fam_linea,
+        //     'lado' => $request->lado,
+        //     'largo' => $request->largo,
+        //     'nombre' => $request->nombre,
+        //     'resta' => $request->resta,
+        //     'piezas' => $request->piezas,
+        //     'hoja_id'=> $request->hoja_id,
+        //     'perfil_id' => $request->perfil_id,
+
+        // ]);
         return back()->withInput();
         // Session::flash('message','Categoria creado exisitosamente!');
         // return redirect()->route('categoria.index');

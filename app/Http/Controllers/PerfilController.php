@@ -57,6 +57,12 @@ class PerfilController extends Controller
 
         $barra = barra::where('barras.perfil_id', '=', $id)->get();
 
+        
+
+        // $data = json_encode($data);
+
+        // echo($data);
+
         $corte = Corte::get();
 
         $linea20 = array("2001", "2002", "2005", "2009","2010","2011");
@@ -84,6 +90,9 @@ class PerfilController extends Controller
             $alto_barra = $perfils->alto;
             $linea = $perfils->linea;
             $combinacion = $perfils->combinacion;
+
+            $hoja_id = $perfils->hoja_id;
+            // echo($hoja_id);
 
             $largo_predeterminado = 6;
 
@@ -120,14 +129,14 @@ class PerfilController extends Controller
             $linea = $barras->linea;
             $nombre = $barras->nombre;
             $largos =  $barras->largo;  
+            $piezas = $barras->piezas;
             $cate_json = json_encode($categorias.'-'.$nombre).",";
-
-        
-            $largosArray= array($largos);
-
-             
-        
+            $piezas_repeticiones = $piezas * $repetecion;
+            $piezas_div = $piezas_repeticiones / 10;
+            // echo $piezas_div;
             
+
+            $largosArray= array($largos);
             
 
              // echo $barras;
@@ -167,7 +176,8 @@ class PerfilController extends Controller
        
         return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte','repetecion','ancho_barra',
             'alto_barra','linea','combinacion','linea20','linea25','largo_predeterminado','cate_json','largos','resumen',
-            'division','totalmtsbarra','data','barraArray','cortesName','barraArrayLargo','dataCortes','resta'));
+            'division','totalmtsbarra','data','barraArray','cortesName','barraArrayLargo','dataCortes','resta',
+            'piezas_repeticiones','piezas_div','piezas','hoja_id'));
     }
 
     /**

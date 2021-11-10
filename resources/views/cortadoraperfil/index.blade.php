@@ -27,9 +27,18 @@
                        
                         <td style="text-align:center;">
                             <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">
-                                <button class="btn btn-success btn-sm"><i class="fa fa-eye"
+                                <button class="btn btn-primary btn-sm"><i class="fa fa-eye"
                                         aria-hidden="true"></i> Ver
                                 </button></a>
+
+                             <a href="{{ route('cortadora.cortadoraInfoGeneral',$hoja_calculo_perfils->id ) }}">
+                                <button class="btn btn-info btn-sm"><i class="fa fa-eye"
+                                        aria-hidden="true"></i> Info General
+                                </button></a>
+                             <a href="{{ route('cortadora.cortadoraInfoVentanas',$hoja_calculo_perfils->id ) }}">
+                                <button class="btn btn-primary btn-sm"><i class="fa fa-window-restore" aria-hidden="true"></i> Ventanas
+                                </button></a>
+                            
                             <form action="{{ route('hojaCalculo.destroy',$hoja_calculo_perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
@@ -38,6 +47,8 @@
                                     onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
                                         aria-hidden="true"></i> Eliminar</button>
                             </form>
+
+
                         </td>
                     </tr>
                     @endforeach

@@ -25,5 +25,6 @@ class barra extends Model
                         'nombre',
                         'resta',
                         'piezas',
-                        'perfil_id'];
+                        'perfil_id',
+                        'hoja_id'];
 }

@@ -22,6 +22,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://use.fontawesome.com/43b1b9da3e.js"></script>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
         <div class="container">
@@ -91,14 +92,14 @@
     <div class="tab-content p-4" id="nav-tabContent">
         <!-- Hoja 1 Combinacion mas el for a la imagen  * la repeticion-->
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="row" style="border: 2px gray solid;">
+       <!--  <div class="row" style="border: 2px gray solid;">
           <div class="col" style="border: 2px gray solid;"><strong>Linea: </strong> {{$linea}}</div>
           <div class="col" style="border: 2px gray solid;"><strong>Combinación: </strong>{{$combinacion}}</div>
           <div class="col" style="border: 2px gray solid;"><strong>Alto: </strong>{{$alto_barra}} Mts.</div>
           <div class="col" style="border: 2px gray solid;"><strong>Ancho: </strong>{{ $ancho_barra }} Mts.</div>
           <div class="col" style="border: 2px gray solid;"><strong>Repeticion: </strong>{{$repetecion}}</div>
-        </div>
-        <div class="row">
+        </div> -->
+     <!--    <div class="row">
             <div class="col">
               <img src="/images/cortadora/combinacion1.png" width="250px" style="display:block;margin: auto;">
             </div>
@@ -111,7 +112,7 @@
                     </div>
                 </p>
             </div>
-        </div><br><br>
+        </div> -->
 
          <div class="row">           
             <!-- foreach a la imagen -->
@@ -139,7 +140,7 @@
             <div class="row">
                 <div class="col-md-6">
                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                    Añadir Barra 
+                    <i class="fa fa-bars" aria-hidden="true"></i> Crear Conjunto de Barras 
                     </button> 
                 </div>
                 <!-- <div class="col-md-6">
@@ -163,6 +164,7 @@
             <div class="class">
                 <p><strong>Resumen</strong></p>   
 
+
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -174,12 +176,26 @@
                   </thead>
                   <tbody>
                    @foreach($barra as $barras)
+
                     <tr>
                       <th scope="row" class="text-center">{{ $barras->fam_linea}}, {{ $barras->nombre}} </th>
-                        <th scope="row" class="text-center"><?php
-                            $numBarras = ceil($division);
-                            echo($numBarras);
-                        ?></th>
+                        <th scope="row" class="text-center">
+                            <?php
+                                $piezas = $barras->piezas;
+
+                                $piezas_repeticiones = $piezas * $repetecion;
+                                $piezas_div = $piezas_repeticiones / 10;
+
+                                // echo  $piezas_div."---";
+
+                                $numBarras = ceil($division);
+                                 // echo($numBarras."---");
+
+                                $piezas_div1 = $piezas_div * $numBarras;
+                                
+                                 echo($piezas_div1);
+                            ?>
+                        </th>
                         <th scope="row" class="text-center"><?php
                             echo($repetecion);
                         ?></th>
@@ -283,10 +299,22 @@
                       <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
                       
                         <th scope="row" class="text-center"><?php
-                            $numBarras = ceil($division);
-                            echo($numBarras);
+                            $piezas = $barras->piezas;
+
+                            $piezas_repeticiones = $piezas * $repetecion;
+                            $piezas_div = $piezas_repeticiones / 10;
+
+                            // echo  $piezas_div."---";
+
+                            // $numBarras = ceil($division);
+                             // echo($numBarras."---");
+
+                            $piezas_div1 = $piezas_div * $division;
+                            $piezas_div1 = ceil($piezas_div1);
+                            
+                             echo($piezas_div1);                          
                         ?></th>
-                        @if($barras->fam_linea == '2001' || $barras->fam_linea == '2002')
+                        @if($barras->fam_linea != '2009' )
                         <th scope="row" class="text-center"><?php
                             
 
@@ -299,17 +327,26 @@
                             
                         ?></th>
                         @else
-                        <th scope="row" class="text-center">0</th>
+                        <th scope="row" class="text-center"><?php
+                            $anchoBarra = $ancho_barra * 1000;
+                           
+                            echo json_encode($anchoBarra);
+                            
+                        ?></th>
                         @endif
                         <th scope="row" class="text-center">{{ $barras->piezas }}</th>
 
                         <th scope="row" class="text-center"><?php
-                            echo  $repetecion
+                            $piezas = $barras->piezas;
+
+                            $piezas_repeticiones = $piezas * $repetecion;
+                            echo  $piezas_repeticiones;
                         ?></th>
                       
                     </tr>
                      
                     @endforeach
+
                    
                   </tbody>
             </table>
@@ -337,7 +374,7 @@
                         </div>
                         <div class="container">
                           <div class="row">
-                            <div class="col">
+                            <div class="col-md-12">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Linea</span>
@@ -345,7 +382,7 @@
                                         <input type="text" class="form-control" value="{{ $linea }}"  name="linea">
                                 </div>
                             </div>
-                            <div class="col">
+                            <!-- <div class="col">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Codigo</label>
@@ -366,10 +403,10 @@
                                         </select>
                                     @endif
                                 </div>
-                            </div>
+                            </div> -->
                           </div><br>
 
-                          <div class="row">
+                          <!-- <div class="row">
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -388,16 +425,15 @@
                                 </div>
                             </div>
                            
-                          </div><br>
+                          </div><br> -->
 
-                          <div class="row">
+                          <!-- <div class="row">
                             <div class="col">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect01">Lado</label>
                                     </div>
                                     <select class="custom-select" id="inputGroupSelect01" name="lado" required>
-                                    <!-- <option selected>Choose...</option> -->
                                     <option value="X1">X1</option>
                                     <option value="X2">X2</option>
                                     <option value="X3">X3</option>
@@ -414,8 +450,7 @@
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
                                     </div>
-                                    <select class="custom-select" id="inputGroupSelect01" name="nombre" required>
-                                    <!--  <option selected>Choose...</option> -->
+                                    <select class="custom-select" id="inputGroupSelect01" name="nombre" required> 
                                         <option value="Riel_Inferior">Riel Inferior</option>
                                         <option value="Riel_Superior">Riel Superior</option>
                                         <option value="Zocalo">Zocalo</option>
@@ -425,13 +460,12 @@
                                     </select>
                                 </div>
                             </div>
-                          </div>
+                          </div> -->
 
-                          <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
-                        <input hidden type="text" value="{{ $ancho_barra }}" name="largo">  
-
+                            <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
+                            <input hidden type="text" value="{{ $ancho_barra }}" name="largo">  
+                            <input hidden type="text" value="{{ $hoja_id }}" name="hoja_id">  
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -539,8 +573,8 @@
 
                         foreach($barra as $barras){
                             // $linea_barra = $barras->linea;
-                            $barras_largo = $largo_predeterminado * 3;
-                            echo $barras_largo.",";
+                            $ancho = $barras->largo;
+                            echo $ancho.",";
                         }                              
                     // }                               
                 ?>]

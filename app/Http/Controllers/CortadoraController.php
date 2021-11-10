@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cortadora;
 use App\Categoria;
-use App\ hoja_calculo_perfil;
+use App\barra;
+use App\hoja_calculo_perfil;
+use App\Perfil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -25,6 +27,41 @@ class CortadoraController extends Controller
 
         return view('cortadoraperfil.index', compact('hoja_calculo_perfil'));
 
+    }
+
+    public function cortadoraInfoGeneral($id){
+        $barra = barra::where('barras.hoja_id', '=', $id)->get();
+     
+
+        return view('cortadoraperfil.info', compact('barra','barra_perfil_id'));
+
+    }
+
+    public function cortadoraInfoVentanas($id){
+
+        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
+        $perfil_id = $id;
+
+        $barra = barra::where('barras.hoja_id', '=', $id)->get();
+
+
+       foreach($perfil as $perfils){
+        $repeteciones = $perfils->repeticion;
+        // echo($repeteciones);
+       }       
+        
+         foreach($barra as $barras){
+            $nombre = $barras->nombre; 
+            $linea = $barras->linea; 
+            $fam_linea = $barras->fam_linea; 
+
+            $ancho_barra = $barras->largo;
+
+            $nombre = json_encode($nombre);
+            echo($nombre);
+         }
+     
+        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre' ));
     }
 
      public function getPerfiilCombinacion($id){

@@ -1,3 +1,17 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             10.2.0.5599
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
 -- Volcando estructura de base de datos para aluminiobd
 CREATE DATABASE IF NOT EXISTS `aluminiobd` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
 USE `aluminiobd`;
@@ -5,24 +19,38 @@ USE `aluminiobd`;
 -- Volcando estructura para tabla aluminiobd.barras
 CREATE TABLE IF NOT EXISTS `barras` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `linea` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `fam_linea` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
   `lado` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
-  `largo` int(11) NOT NULL DEFAULT '0',
+  `resta` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `piezas` bigint(20) NOT NULL DEFAULT '0',
+  `largo` double NOT NULL DEFAULT '0',
   `perfil_id` bigint(20) unsigned NOT NULL,
+  `hoja_id` bigint(20) unsigned NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `perfil_id` (`perfil_id`),
+  KEY `hoja_id` (`hoja_id`),
+  CONSTRAINT `FK_barras_hoja_calculo_perfils` FOREIGN KEY (`hoja_id`) REFERENCES `hoja_calculo_perfils` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_barrs_perfils` FOREIGN KEY (`perfil_id`) REFERENCES `perfils` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla aluminiobd.barras: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.barras: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `barras` DISABLE KEYS */;
-INSERT INTO `barras` (`id`, `categoria`, `lado`, `nombre`, `largo`, `perfil_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-	(9, '2001', 'X1', 'Riel_Superior', 6, 3, '2021-10-26 06:01:20', '2021-10-26 06:01:20', NULL),
-	(10, '2002', 'X2', 'Zocalo', 6, 3, '2021-10-26 06:17:25', '2021-10-26 06:17:25', NULL);
+INSERT INTO `barras` (`id`, `linea`, `fam_linea`, `lado`, `nombre`, `resta`, `piezas`, `largo`, `perfil_id`, `hoja_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
+	(54, 'L-20', '2001', 'X1', 'Riel_Inferior', '12', 1, 1.5, 3, 4, NULL, NULL, NULL),
+	(55, 'L-20', '2002', 'X2', 'Riel_Superior', '12', 1, 1.5, 3, 4, NULL, NULL, NULL),
+	(56, 'L-20', '2009', 'X3', 'Jamba', '0', 2, 1.5, 3, 4, NULL, NULL, NULL),
+	(57, 'L-20', '2010', 'X5', 'Pierna', '28', 2, 1.5, 3, 4, NULL, NULL, NULL),
+	(58, 'L-20', '2011', 'X6', 'Enganche', '28', 1, 1.5, 3, 4, NULL, NULL, NULL),
+	(59, 'L-20', '2001', 'X1', 'Riel_Inferior', '12', 1, 1.8, 7, 4, NULL, NULL, NULL),
+	(60, 'L-20', '2002', 'X2', 'Riel_Superior', '12', 1, 1.8, 7, 4, NULL, NULL, NULL),
+	(61, 'L-20', '2009', 'X3', 'Jamba', '0', 2, 1.8, 7, 4, NULL, NULL, NULL),
+	(62, 'L-20', '2010', 'X5', 'Pierna', '28', 2, 1.8, 7, 4, NULL, NULL, NULL),
+	(63, 'L-20', '2011', 'X6', 'Enganche', '28', 1, 1.8, 7, 4, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `barras` ENABLE KEYS */;
 
 -- Volcando estructura para tabla aluminiobd.calculadoras
@@ -623,7 +651,7 @@ CREATE TABLE IF NOT EXISTS `cortes` (
   CONSTRAINT `FK_cortes_barras` FOREIGN KEY (`barra_id`) REFERENCES `barras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla aluminiobd.cortes: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.cortes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cortes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cortes` ENABLE KEYS */;
 
@@ -682,7 +710,7 @@ CREATE TABLE IF NOT EXISTS `hoja_calculos` (
   CONSTRAINT `FK_hoja_calculo_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla aluminiobd.hoja_calculos: ~73 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.hoja_calculos: ~74 rows (aproximadamente)
 /*!40000 ALTER TABLE `hoja_calculos` DISABLE KEYS */;
 INSERT INTO `hoja_calculos` (`id`, `estado`, `total`, `user_id`, `updated_at`, `created_at`, `delete_at`) VALUES
 	(49, 'true', NULL, 55, '2021-07-26 02:15:56', '2021-07-26 02:11:17', NULL),
@@ -772,12 +800,13 @@ CREATE TABLE IF NOT EXISTS `hoja_calculo_perfils` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK_hoja_calculo_perfils_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla aluminiobd.hoja_calculo_perfils: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.hoja_calculo_perfils: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `hoja_calculo_perfils` DISABLE KEYS */;
 INSERT INTO `hoja_calculo_perfils` (`id`, `estado`, `user_id`, `updated_at`, `created_at`, `delete_at`) VALUES
-	(4, 'false', 1, '2021-10-26 02:55:16', '2021-10-26 02:55:16', NULL);
+	(4, 'false', 1, '2021-10-26 02:55:16', '2021-10-26 02:55:16', NULL),
+	(5, 'false', 1, '2021-10-26 02:55:16', '2021-10-26 02:55:16', NULL);
 /*!40000 ALTER TABLE `hoja_calculo_perfils` ENABLE KEYS */;
 
 -- Volcando estructura para tabla aluminiobd.migrations
@@ -841,7 +870,7 @@ CREATE TABLE IF NOT EXISTS `oauth_access_tokens` (
   KEY `oauth_access_tokens_user_id_index` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla aluminiobd.oauth_access_tokens: ~452 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.oauth_access_tokens: ~466 rows (aproximadamente)
 /*!40000 ALTER TABLE `oauth_access_tokens` DISABLE KEYS */;
 INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
 	('003bd813bf1f31cc5f0ff364546aa2388df34b83889e62e68562c6da4363b465071db7b4508e50b3', 1, 4, 'personal', '[]', 0, '2021-09-13 17:11:51', '2021-09-13 17:11:51', '2121-09-13 17:11:51'),
@@ -1022,6 +1051,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 	('5adfc4ee2b0b34fdad0b22aa81b6bb483a764f57dd04393c81f6142b3017459646b4be4152b8b726', 59, 4, 'personal', '[]', 0, '2021-08-12 01:05:20', '2021-08-12 01:05:20', '2121-08-12 01:05:18'),
 	('5bf02591873613d5ee7bc44909c8507264ff4dfa34f180a526404c11cab5b6d0a7b5d1d30d44cd8b', 2, 4, 'personal', '[]', 0, '2021-06-04 18:36:18', '2021-06-04 18:36:18', '2121-06-04 18:36:18'),
 	('5c0b1531de3832874c8e71a9c72b24fc0f27260683937a2202957e0fc01890037065f813cf443e0a', 1, 4, 'personal', '[]', 0, '2021-04-14 17:52:28', '2021-04-14 17:52:28', '2121-04-14 17:52:28'),
+	('5d8dcefa10d7a2f49061425e474505852586b884f7c3e447dd667398880c8cdbdd5cc627d014d218', 1, 4, 'personal', '[]', 0, '2021-11-08 16:34:18', '2021-11-08 16:34:18', '2121-11-08 16:34:18'),
 	('5e2ed6b284717af52b3f1a195793e0efc697956f2ced80fed6f21ec76acbb4f71ff847c3e660e137', 2, 4, 'personal', '[]', 0, '2021-06-18 00:51:57', '2021-06-18 00:51:57', '2121-06-18 00:51:57'),
 	('5e9186fc12d28dbf6b1328846c458a7164e3d56e5f9e583a36c40fc78eea80ab956ab977512fc065', 27, 4, 'personal', '[]', 0, '2021-06-23 18:25:05', '2021-06-23 18:25:05', '2121-06-23 18:25:05'),
 	('5e967155c3d36a8c33ca5777f7d8c8938334fd4d1cffa6d973f2bc75cdd5a4c1bda1707d631356b9', 2, 4, 'personal', '[]', 0, '2021-06-29 20:17:42', '2021-06-29 20:17:42', '2121-06-29 20:17:42'),
@@ -1030,6 +1060,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 	('5f804beea2e33c3b10a41e11c9b177545fa6553e18b6743fdc7a62bd7dcc36a62c57bf29f3d4b9ef', 2, 4, 'personal', '[]', 0, '2021-06-06 19:06:05', '2021-06-06 19:06:05', '2121-06-06 19:06:05'),
 	('5fdda4c763dbece5eaf4cc46c3013c5fd5f088120e5f3e63f6ca18c91ed556bddf846f30f31e00a5', 81, 4, 'personal', '[]', 0, '2021-07-28 02:53:19', '2021-07-28 02:53:19', '2121-07-28 02:53:19'),
 	('6083a8182de9f83cc5611c10c840569068f2457694642e7f7e8ae1201c2f554e61a50b448f3f7a65', 51, 4, 'personal', '[]', 0, '2021-07-08 23:32:26', '2021-07-08 23:32:26', '2121-07-08 23:32:26'),
+	('614dbc325e2ab3cbb7f412baa854021c7f669cf10683d256649a6e2de48a09dee4ca3333e555e919', 1, 4, 'personal', '[]', 0, '2021-11-08 20:39:40', '2021-11-08 20:39:40', '2121-11-08 20:39:40'),
 	('618582ac4705f2a10cc4b8e5ef78aaa6bb2ed60a3f120ac473dd2605da11f78ae505dfa8a62ce4d2', 1, 4, 'personal', '[]', 0, '2021-04-14 18:08:31', '2021-04-14 18:08:31', '2121-04-14 18:08:30'),
 	('6237bdd9d948b8ba908a1a13b0896251ab33603713e82fc7492ca5cba635be04bcc09d5afd07a5ba', 1, 4, 'personal', '[]', 0, '2021-10-18 04:25:51', '2021-10-18 04:25:51', '2121-10-18 04:25:51'),
 	('6543c2939d9f6a609d38e7d24341aec1f893e48653f8eaa1bc0f3e2c8df77db1c9a738ba912d6048', 59, 4, 'personal', '[]', 0, '2021-07-30 12:56:45', '2021-07-30 12:56:45', '2121-07-30 12:56:44'),
@@ -1475,7 +1506,7 @@ CREATE TABLE IF NOT EXISTS `perfils` (
   `ancho` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
   `repeticion` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
   `combinacion` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
-  `categoria` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
+  `linea` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '0',
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `user_id` bigint(20) unsigned NOT NULL,
@@ -1485,12 +1516,13 @@ CREATE TABLE IF NOT EXISTS `perfils` (
   KEY `hoja_id` (`hoja_id`),
   CONSTRAINT `FK_perfils_hoja_calculo_perfils` FOREIGN KEY (`hoja_id`) REFERENCES `hoja_calculo_perfils` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_perfils_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla aluminiobd.perfils: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla aluminiobd.perfils: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfils` DISABLE KEYS */;
-INSERT INTO `perfils` (`id`, `alto`, `ancho`, `repeticion`, `combinacion`, `categoria`, `updated_at`, `created_at`, `user_id`, `hoja_id`) VALUES
-	(3, '52', '12', '10', 'combinacion1', 'L-20', '2021-10-26 02:59:06', '2021-10-26 02:59:06', 1, 4);
+INSERT INTO `perfils` (`id`, `alto`, `ancho`, `repeticion`, `combinacion`, `linea`, `updated_at`, `created_at`, `user_id`, `hoja_id`) VALUES
+	(3, '1.5', '1.5', '10', 'combinacion1', 'L-20', '2021-10-26 02:59:06', '2021-10-26 02:59:06', 1, 4),
+	(7, '1.8', '1.8', '1', 'combinacion1', 'L-20', '2021-11-08 23:39:54', '2021-11-08 23:39:54', 1, 4);
 /*!40000 ALTER TABLE `perfils` ENABLE KEYS */;
 
 -- Volcando estructura para tabla aluminiobd.productos

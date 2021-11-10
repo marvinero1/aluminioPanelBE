@@ -75,91 +75,77 @@
     </nav>
 </head>
 
-<body onload="script();">
-    <div class="col-12">
-        <div class="p-4">
-            <form action="{{route('categoria.store')}}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="card-body">
+    <body >
+    
 
+        <div class=" tab-content p-4">
+            <div class="col">
+                <div class="class">
+                <p><strong>Resumen</strong></p>   
                     
+
+
+                    <table class="table-responsive-sm" border="1">
+                      <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Ventanas</th>
+                            <th scope="col" class="text-center">Informacion</th>
+                         <!-- <th scope="col">Handle</th> -->
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        @foreach($perfil as $perfils)
+                        
+                        <tr>
+                            <td scope="row">{{ $perfils->repeticion }}</td>
+                            <td style="display:block;">
+                            <?php  
+                                 //aca el elperfil (barra al)categorias junto a el corte
+                                $repetecion = $perfils->repeticion;
+                                $familia = $perfils->linea;
+                                $cadena = "V";
+                                $ancho = $perfils->ancho;
+
+                                $alto = $perfils->alto;
+                                // $cortes_json = json_encode($corte_1);
+                                    for ($x = 1; $x <= $repetecion; $x++){
+                                        echo $cadena.$x."\n";
+                                        
+                                        echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                        // echo "\n".$ancho;
+
+
+                                    } 
+                                    
+                                    
+                            ?>
+                            
+                            </td>
+                            <td>
+                               
+                 
+                            <?php
+                                echo($fam_linea.'-'.$nombre);
+                                echo($repetecion);
+                                echo($ancho_barra).' Metros';
+                            ?> 
+                          
+                    
+                   
+                            </td>
+                           
+                        </tr>
+                        @endforeach
+
+                         
+                    
+                      </tbody>
+                    </table>
+
                 </div>
-            </form>
-        </div><br>
-    </div>
-
-
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-        <p class="highcharts-description">
-            Chart showing stacked horizontal bars. This type of visualization is
-            great for comparing data that accumulates up to a sum.
-        </p>
-    </figure>
-    <script>
-        window.onload = function Onit() {
-            this.getValueCut();
-            this.dibujar();
-        }
-
-        function getValueCut() {
-            return console.log("Hola");
-        }
-
-        function dibujar() {
-
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Cortadora de Perfiles de Aluminio'
-                },
-                xAxis: {
-                    categories: ['L-20', 'L-21'] //aca el elperfil (barra al)categorias junto a el corte
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Total M'
-                    }
-                },
-                legend: {
-                    reversed: true
-                },
-                plotOptions: {
-                    series: {
-                        stacking: 'normal'
-                    }
-                },
-                series: [
-                {
-                    name: 'Total',
-                    data: [0]
-                }, {
-                    name: 'Corte 1',
-                    data: [5, 2]
-                }, {
-                    name: 'Corte 2',
-                    data: [3 ,1]
-                }, {
-                    name: 'Corte 3',
-                    data: [2,10]
-                }]
-            });
-        }
-
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-</body>
-
+            </div>
+        </div>
+    </body>
 </html>

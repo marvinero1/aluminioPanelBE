@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Hoja_calculo;
 use App\hoja_calculo_perfil;
 use App\Perfil;
+use App\barra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HojaCalculoController extends Controller
 {
@@ -88,7 +90,8 @@ class HojaCalculoController extends Controller
 
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
 
-        return view('cortadoraperfil.show', compact('perfil'));
+        $perfil_id = $id;
+        return view('cortadoraperfil.show', compact('perfil','barra'));
     }
 
     /**

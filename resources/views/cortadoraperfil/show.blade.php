@@ -10,7 +10,9 @@
         @if (Session::has('error'))
         <div class="alert alert-danger">{{ Session::get('error') }}</div>
         @endif
-        <div class="table-responsive">
+       
+    
+        <div class="table-responsive"><br>
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
@@ -34,6 +36,7 @@
                                 <button class="btn btn-success btn-sm"><i class="fa fa-eye"
                                         aria-hidden="true"></i> Ver
                                 </button></a>
+                          
                             <form action="{{ route('perfil.destroy',$perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
@@ -48,9 +51,7 @@
                 </tbody>
             </table><br><br>
         </div>
-            <div style="text-align: center !important;" class="justify-content-center">
-                
-            </div>
+
     </div>
 </div>
 @endsection

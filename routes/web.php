@@ -27,6 +27,7 @@ Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 Route::middleware(['auth'] )->group(function () {
 Route::put('user/{user}/convertVendedor','UserController@convertVendedor')->name('user.convertVendedor');
 Route::put('user/{user}/updatepassword','UserController@updatepassword')->name('user.updatepassword');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/importadoras', 'UserController@importadoras')->name('importadoras');
 Route::get('/vendedores', 'UserController@vendedores')->name('vendedores');
@@ -40,6 +41,9 @@ Route::get('viewRegisEmpresa','UserController@viewRegisEmpresa')->name('user.vie
 Route::get('index','PedidoController@index')->name('pedido'); 
 Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.viewRegisVendedor'); 
 Route::get('cortadoraPerfil','CortadoraController@cortadoraPerfil')->name('cortadora.cortadoraPerfil'); 
+Route::get('cortadoraInfoGeneral/{id}','CortadoraController@cortadoraInfoGeneral')->name('cortadora.cortadoraInfoGeneral'); 
+Route::get('cortadoraInfoVentanas/{id}','CortadoraController@cortadoraInfoVentanas')->name('cortadora.cortadoraInfoVentanas'); 
+
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
