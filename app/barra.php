@@ -27,4 +27,8 @@ class barra extends Model
                         'piezas',
                         'perfil_id',
                         'hoja_id'];
+
+    public function perfil(){
+        return $this->hasMany(Perfil::class);
+    }
 }

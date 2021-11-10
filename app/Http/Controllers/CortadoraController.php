@@ -47,21 +47,18 @@ class CortadoraController extends Controller
 
        foreach($perfil as $perfils){
         $repeteciones = $perfils->repeticion;
-        // echo($repeteciones);
+        $ancho_barra = $perfils->ancho;
+        $largo_predeterminado = 6;
+
+        $numberRepeteat = $ancho_barra * $repeteciones;
+
+        $division = $numberRepeteat / $largo_predeterminado;
+        // echo($ancho_barra);
        }       
         
-         foreach($barra as $barras){
-            $nombre = $barras->nombre; 
-            $linea = $barras->linea; 
-            $fam_linea = $barras->fam_linea; 
-
-            $ancho_barra = $barras->largo;
-
-            $nombre = json_encode($nombre);
-            echo($nombre);
-         }
+        
      
-        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre' ));
+        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division'));
     }
 
      public function getPerfiilCombinacion($id){

@@ -27,4 +27,10 @@ class Perfil extends Model
                         'repeticion',
                         'user_id',
                     ];
+
+    public function barra(){
+        return $this->belongsTo(barra::class,'id','perfil_id');
+    }
+
+     
 }

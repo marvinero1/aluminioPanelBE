@@ -75,10 +75,14 @@
     </nav>
 </head>
 
-    <body >
-    
+    <body>
+        <div class="float-right">
+            <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
+        <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
+        </div>
+        
 
-        <div class=" tab-content p-4">
+        <div class="tab-content p-4" id="areaImprimir">
             <div class="col">
                 <div class="class">
                 <p><strong>Resumen</strong></p>   
@@ -100,8 +104,7 @@
                         
                         <tr>
                             <td scope="row">{{ $perfils->repeticion }}</td>
-                            <td style="display:block;">
-                            <?php  
+                            <td style="display:block;"><?php  
                                  //aca el elperfil (barra al)categorias junto a el corte
                                 $repetecion = $perfils->repeticion;
                                 $familia = $perfils->linea;
@@ -115,37 +118,36 @@
                                         
                                         echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                         // echo "\n".$ancho;
-
-
                                     } 
-                                    
-                                    
-                            ?>
+                            ?></td>
                             
-                            </td>
                             <td>
-                               
-                 
-                            <?php
-                                echo($fam_linea.'-'.$nombre);
-                                echo($repetecion);
-                                echo($ancho_barra).' Metros';
-                            ?> 
-                          
-                    
-                   
-                            </td>
-                           
-                        </tr>
-                        @endforeach
+                                {{ $perfils->barra->nombre }}
+                            </td>                            
+                    </tr>
+                    @endforeach  
 
-                         
+                    @foreach($barra as $barras)
+                        <p>asdasdsad</p>
+                    @endforeach  
+
                     
                       </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
+         
+
+        <script>
+            function printDiv(nombreDiv) {
+                console.log("asdsadasdad");
+                var contenido = document.getElementById(nombreDiv).innerHTML;
+                var contenidoOriginal = document.body.innerHTML;
+                document.body.innerHTML = contenido;
+                window.print();
+                document.body.innerHTML = contenidoOriginal;
+            }
+        </script>
     </body>
 </html>

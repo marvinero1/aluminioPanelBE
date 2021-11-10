@@ -161,7 +161,7 @@ class PerfilController extends Controller
             // echo $cate_json;           
         }
 
-        $anchoDivido = $ancho_barra * 1000; 
+        // $anchoDivido = $ancho_barra * 1000; 
         
         // $resta = $anchoDivido - $recorte_resta;
         // echo json_encode($resta);
