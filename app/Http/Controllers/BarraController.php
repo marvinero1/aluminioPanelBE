@@ -39,13 +39,20 @@ class BarraController extends Controller
         $largo = $request->largo;
         $perfil_id = $request->perfil_id;
         $hoja_id = $request->hoja_id;
-        
+
+      
+        // 1er ancho primero dividir entre 2,
+        // 2da a cada pieza restarle 8, 
+        // del total de 4 piezas. el total seria 
 
        $data = [
                 ["linea"=>"L-20", "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Inferior","resta"=>"12","piezas"=>"1",
                 "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>"L-20", "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Superior","resta"=>"12","piezas"=>"1",
+                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>"L-20", "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Riel_Superior","resta"=>"8","piezas"=>"4",
                 "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>"L-20", "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","piezas"=>"2",

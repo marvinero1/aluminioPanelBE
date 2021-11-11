@@ -86,52 +86,144 @@
             <div class="col">
                 <div class="class">
                 <p><strong>Resumen</strong></p>   
-                    
-
-
                     <table class="table-responsive-sm" border="1">
                       <thead>
                         <tr>
                             <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">#Ventas</th>
                             <th scope="col" class="text-center">Ventanas</th>
-                            <th scope="col" class="text-center">Informacion</th>
+                            <th scope="col" class="text-center">Codigo</th>
+                            <th scope="col" class="text-center">Nombre</th>
+                            <th scope="col" class="text-center">Medida Descuento</th>
+                            <th scope="col" class="text-center">Piezas Cortar</th>
                          <!-- <th scope="col">Handle</th> -->
                         </tr>
                       </thead>
 
                       <tbody>
                         @foreach($perfil as $perfils)
-                        
-                        <tr>
-                            <td scope="row">{{ $perfils->repeticion }}</td>
-                            <td style="display:block;"><?php  
-                                 //aca el elperfil (barra al)categorias junto a el corte
-                                $repetecion = $perfils->repeticion;
-                                $familia = $perfils->linea;
-                                $cadena = "V";
-                                $ancho = $perfils->ancho;
+                            <tr>
+                                <td scope="row">{{ $perfils->repeticion }}</td>
+                                <td scope="row"><?php
+                                   
+                                    
+                                ?></td>
+                                <td style="display:block;"><?php  
+                                     //aca el elperfil (barra al)categorias junto a el corte
+                                    $id_perfil =  $perfils->id;
+                                    $repetecion = $perfils->repeticion;
+                                    $familia = $perfils->linea;
+                                    $cadena = "V";
+                                    $ancho = $perfils->ancho * 1000;
+                                    $alto = $perfils->alto * 1000;
 
-                                $alto = $perfils->alto;
-                                // $cortes_json = json_encode($corte_1);
-                                    for ($x = 1; $x <= $repetecion; $x++){
-                                        echo $cadena.$x."\n";
-                                        
-                                        echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
-                                        // echo "\n".$ancho;
-                                    } 
-                            ?></td>
-                            
-                            <td>
-                                {{ $perfils->barra->nombre }}
-                            </td>                            
-                    </tr>
-                    @endforeach  
+                                    
 
-                    @foreach($barra as $barras)
-                        <p>asdasdsad</p>
-                    @endforeach  
+                                    // $cortes_json = json_encode($corte_1);
+                                        for ($x = 1; $x <= $repetecion; $x++){
 
-                    
+                                            echo "<div class='float-right pr-2' style='padding-top:100px;'>$alto</div>";
+
+                                            // for ($j=1; $j < $l; $j++){ 
+                                            //     echo $j;
+                                            // }
+                                            // echo $cadena.$j."\n";
+                                            // echo $x;
+                                            
+                                            echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+
+                                            // echo "\n".$ancho;
+                                        } 
+                                ?></td>
+                                
+                                <td class="text-center">
+                                    <?php
+                                    foreach ($barra as $barras){
+                                    $barra_perfil_id = $barras->perfil_id;
+                                        if($id_perfil == $barra_perfil_id){
+                                            $fam_linea = $barras->fam_linea;
+                                            $nombre = $barras->nombre;
+                                            $ancho = $barras->largo;
+                                            $resta = $barras->resta;
+                                            $piezas = $barras->piezas;
+
+                                            $anchoMilesima = $ancho * 1000;
+
+                                            $restaRecorte =  $anchoMilesima - $resta;
+
+                                             
+                                            echo "<p>$fam_linea</p>";
+                                                   
+                                        }
+                                    }?>
+                                </td>   
+                                <td class="text-center">
+                                    <?php
+                                    foreach ($barra as $barras){
+                                    $barra_perfil_id = $barras->perfil_id;
+                                        if($id_perfil == $barra_perfil_id){
+                                            $fam_linea = $barras->fam_linea;
+                                            $nombre = $barras->nombre;
+                                            $ancho = $barras->largo;
+                                            $resta = $barras->resta;
+                                            $piezas = $barras->piezas;
+
+                                            $anchoMilesima = $ancho * 1000;
+
+                                            $restaRecorte =  $anchoMilesima - $resta;
+
+                                             
+                                            echo "<p>$nombre</p>";
+                                                   
+                                        }
+                                    }?>
+                                </td> 
+                                <td class="text-center">
+                                    <?php
+                                    foreach ($barra as $barras){
+                                    $barra_perfil_id = $barras->perfil_id;
+                                        if($id_perfil == $barra_perfil_id){
+                                            $fam_linea = $barras->fam_linea;
+                                            $nombre = $barras->nombre;
+                                            $ancho = $barras->largo;
+                                            $resta = $barras->resta;
+                                            $piezas = $barras->piezas;
+
+                                            $anchoMilesima = $ancho * 1000;
+
+                                            $restaRecorte =  $anchoMilesima - $resta;
+
+                                             
+                                            echo "<p>$restaRecorte</p>";
+                                                   
+                                        }
+                                    }?>
+                                </td> 
+                                <td class="text-center">
+                                    <?php
+                                    foreach ($barra as $barras){
+                                    $barra_perfil_id = $barras->perfil_id;
+                                        if($id_perfil == $barra_perfil_id){
+                                            $fam_linea = $barras->fam_linea;
+                                            $nombre = $barras->nombre;
+                                            $ancho = $barras->largo;
+                                            $resta = $barras->resta;
+                                            $piezas = $barras->piezas;
+
+                                            $anchoMilesima = $ancho * 1000;
+
+                                            $restaRecorte =  $anchoMilesima - $resta;
+
+                                             
+                                            echo "<p>$piezas</p>";
+                                                   
+                                        }
+                                    }?>
+                                </td> 
+
+
+                            </tr>
+                        @endforeach                      
                       </tbody>
                     </table>
                 </div>

@@ -317,14 +317,11 @@
                         @if($barras->fam_linea != '2009' )
                         <th scope="row" class="text-center"><?php
                             
-
                                 $anchoDivido = $ancho_barra * 1000;
                                 $recorte_resta = $barras->resta;
 
                                 $resta = $anchoDivido - $recorte_resta;
                                 echo json_encode($resta);
-                            
-                            
                         ?></th>
                         @else
                         <th scope="row" class="text-center"><?php
@@ -342,19 +339,13 @@
                             $piezas_repeticiones = $piezas * $repetecion;
                             echo  $piezas_repeticiones;
                         ?></th>
-                      
                     </tr>
-                     
                     @endforeach
-
-                   
                   </tbody>
             </table>
             </div>
           </div>
         </div>
-
-           
      </div>
  
 
