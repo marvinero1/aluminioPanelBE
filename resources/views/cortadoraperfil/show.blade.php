@@ -17,20 +17,26 @@
                 <thead class="thead-dark">
                     <tr>
                         {{-- <th>Id</th>  --}}
-                        <th style="text-align:center;">Nombre</th>
+                        
                         <th style="text-align:center;">Combinación</th>
                         <th style="text-align:center;">Linea</th>
+                        <th style="text-align:center;">Alto</th>
+                        <th style="text-align:center;">Ancho</th>
+                        <th style="text-align:center;">#Repeticion</th>
+                        
                         <!-- <th style="text-align:center;">Descripción</th> -->
                         <th style="text-align:center;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($perfil as $perfils)
-                    <tr>
-                        <td style="text-align:center;">{{ $perfils->id }}</td>
+                    <tr> 
                         <td style="text-align:center;">{{ $perfils->combinacion }}</td>
-                        <td style="text-align:center;">{{ $perfils->categoria }}</td>
-                       
+                        <td style="text-align:center;">{{ $perfils->linea }}</td>
+                        <td style="text-align:center;">{{ $perfils->alto }}</td>
+                        <td style="text-align:center;">{{ $perfils->ancho }}</td>
+                        <td style="text-align:center;">{{ $perfils->repeticion }}</td>
+
                         <td style="text-align:center;">
                             <a href="{{ route('perfil.show',$perfils->id ) }}">
                                 <button class="btn btn-success btn-sm"><i class="fa fa-eye"

@@ -10,6 +10,7 @@ use App\Perfil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Session;
 
 class CortadoraController extends Controller
 {
@@ -28,6 +29,14 @@ class CortadoraController extends Controller
 
         return view('cortadoraperfil.index', compact('hoja_calculo_perfil'));
 
+    }
+
+    public function updateStatusHojaCortadora(Request $request, $id){
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
+        $hoja_calculo_perfil->update($request->all());
+
+        return response()->json($hoja_calculo_perfil, 200);
     }
 
     public function cortadoraInfoGeneral($id){
@@ -91,7 +100,7 @@ class CortadoraController extends Controller
        $repeteciones = +$repeteciones;
 
         $l = $perfils->sum('repeticion');
-         echo $l;
+         // echo $l;
 
        foreach ($barra as $barras){
             $barra_perfil_id = $barras->perfil_id;
@@ -189,5 +198,14 @@ class CortadoraController extends Controller
     public function destroy(Cortadora $cortadora)
     {
         //
+    }
+
+    public function destroyHojaPerfil($id){
+        $hoja_calculo_perfil = hoja_calculo_perfil::find($id);
+
+        $hoja_calculo_perfil->delete();
+
+        Session::flash('message','Hoja de Calculo para Perfil de Aluminio eliminado exitosamente!');
+        return back()->withInput();
     }
 }

@@ -39,7 +39,14 @@ class BarraController extends Controller
         $largo = $request->largo;
         $perfil_id = $request->perfil_id;
         $hoja_id = $request->hoja_id;
+        $largoMilesima = $largo * 1000;
+        $piezas2005= 4;
+        $division = $largoMilesima / 2;
 
+        $piezaResta = $division - 8;
+        $piezaResta1 = $piezaResta * 2;
+
+        // dd($piezaResta1);
       
         // 1er ancho primero dividir entre 2,
         // 2da a cada pieza restarle 8, 
@@ -52,7 +59,7 @@ class BarraController extends Controller
                 ["linea"=>"L-20", "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Superior","resta"=>"12","piezas"=>"1",
                 "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>"L-20", "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Riel_Superior","resta"=>"8","piezas"=>"4",
+                ["linea"=>"L-20", "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"8","piezas"=>$piezas2005,
                 "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>"L-20", "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","piezas"=>"2",

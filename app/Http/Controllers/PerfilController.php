@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Perfil;
 use App\barra;
 use App\Corte;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -214,8 +215,12 @@ class PerfilController extends Controller
      * @param  \App\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfil $perfil)
-    {
-        //
+    public function destroy($id){
+        $perfil = Perfil::find($id);
+
+        $perfil->delete();
+
+        Session::flash('message','Combinacion Eliminado Exitosamente!');
+        return back()->withInput();
     }
 }

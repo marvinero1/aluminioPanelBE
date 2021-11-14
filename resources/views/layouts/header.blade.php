@@ -216,12 +216,12 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  <li class="nav-item">
+                 <!--  <li class="nav-item">
                     <a href="/cortadora" class="nav-link ">
                       <i class="far fa fa-scissors nav-icon"></i>
                       <p>Cortadoras Plancha</p>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="/cortadoraPerfil" class="nav-link ">
                       <i class="far fa fa-scissors nav-icon"></i>

@@ -15,8 +15,8 @@
                 <thead class="thead-dark">
                     <tr>
                         {{-- <th>Id</th>  --}}
-                        <th style="text-align:center;">Nombre</th>
-                        <!-- <th style="text-align:center;">Descripción</th> -->
+                        <th style="text-align:center;">ID</th>
+                        <th style="text-align:center;">Estado</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
                 </thead>
@@ -24,6 +24,7 @@
                     @foreach($hoja_calculo_perfil as $hoja_calculo_perfils)
                     <tr>
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->id }}</td>
+                        <td style="text-align:center;">{{ $hoja_calculo_perfils->estado }}</td>
                        
                         <td style="text-align:center;">
                             <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">
@@ -39,7 +40,7 @@
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-window-restore" aria-hidden="true"></i> Ventanas
                                 </button></a>
                             
-                            <form action="{{ route('hojaCalculo.destroy',$hoja_calculo_perfils->id ) }}" method="POST"
+                            <form action="{{ route('cortadora.destroyHojaPerfil',$hoja_calculo_perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
                                 @method('DELETE')
@@ -47,17 +48,12 @@
                                     onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
                                         aria-hidden="true"></i> Eliminar</button>
                             </form>
-
-
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table><br><br>
         </div>
-            <div style="text-align: center !important;" class="justify-content-center">
-                
-            </div>
     </div>
 </div>
 @endsection

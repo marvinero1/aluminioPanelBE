@@ -78,12 +78,12 @@
 <body >
     
 
-        <div class="row tab-content p-4">
-            <div class="class">
+        <div class="row tab-content ">
+            <div class="class p-4">
                 <p><strong>Resumen</strong></p>   
 
 
-                <table class="table table-bordered">
+                <table class="table table-bordered ">
 
                         
                       <thead>

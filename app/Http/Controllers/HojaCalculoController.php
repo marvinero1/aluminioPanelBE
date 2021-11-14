@@ -131,8 +131,7 @@ class HojaCalculoController extends Controller
      * @param  \App\Hoja_calculo  $hoja_calculo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hoja_calculo $hoja_calculo)
-    {
-        //
+    public function destroy($id){
+         
     }
 }

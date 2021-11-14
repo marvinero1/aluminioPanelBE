@@ -78,6 +78,16 @@
 </head>
 
 <body onload="script();">
+    <div class="float-right">
+        <button class="btn btn-warning" onclick="goBack()">Atras</button>
+    </div>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
+
+
     <nav class="p-3"> 
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hoja 1</a>
@@ -114,23 +124,39 @@
             </div>
         </div> -->
 
-         <div class="row">           
-            <!-- foreach a la imagen -->
-            <p>V</p>
-            <?php  
-                foreach($perfil as $perfils){ //aca el elperfil (barra al)categorias junto a el corte
-               
-                $repetecion = $perfils->repeticion;
-                $alto = $perfils->alto;
-                // $cortes_json = json_encode($corte_1);
-                // echo $repetecion;  
+         <div class="row"> 
+            <table>
+                <tr>
+                    <?php  
+                    foreach($perfil as $perfils){
+                        //aca el elperfil (barra al)categorias junto a el corte
+                        $id_perfil =  $perfils->id;
+                        $repetecion = $perfils->repeticion;
+                        $familia = $perfils->linea;
+                        $cadena = "V";
+                        $ancho = $perfils->ancho * 1000;
+                        $alto = $perfils->alto * 1000;
 
-                    for ($x = 1; $x <= $repetecion; $x++){
+                        // $cortes_json = json_encode($corte_1);
+                            for ($x = 1; $x <= $repetecion; $x++){
 
-                        echo '<img src="/images/cortadora/corteCombi1.png" width="350px">';
-                    }  
-                } 
-            ?>
+                                echo "<div class='float-right pr-2' style='padding-top:100px;'>$alto</div>";
+
+                                // for ($j=1; $j < $l; $j++){ 
+                                //     echo $j;
+                                // }
+                                // echo $cadena.$j."\n";
+                                // echo $x;
+                                
+                                echo '<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+
+                                // echo "\n".$ancho;
+                            } 
+                        }
+                                                 
+                        ?>
+                </tr>  
+            </table>
         </div>
       </div>
     
@@ -331,6 +357,7 @@
                             
                         ?></th>
                         @endif
+                     
                         <th scope="row" class="text-center">{{ $barras->piezas }}</th>
 
                         <th scope="row" class="text-center"><?php

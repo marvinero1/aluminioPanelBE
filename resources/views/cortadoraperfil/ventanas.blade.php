@@ -16,7 +16,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-
+    
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -76,10 +76,13 @@
 </head>
 
     <body>
-        <div class="float-right">
+        <div class="float-right p-3">
+            <a href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
+        </div>
+        <div class="float-left p-3">
             <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
         <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
-        </div>
+        </div><br><br>
         
 
         <div class="tab-content p-4" id="areaImprimir">
@@ -90,7 +93,7 @@
                       <thead>
                         <tr>
                             <th scope="col" class="text-center">#</th>
-                            <th scope="col" class="text-center">#Ventas</th>
+                            <!-- <th scope="col" class="text-center">#Ventas</th> -->
                             <th scope="col" class="text-center">Ventanas</th>
                             <th scope="col" class="text-center">Codigo</th>
                             <th scope="col" class="text-center">Nombre</th>
@@ -104,10 +107,10 @@
                         @foreach($perfil as $perfils)
                             <tr>
                                 <td scope="row">{{ $perfils->repeticion }}</td>
-                                <td scope="row"><?php
+                               <!--  <td scope="row"><?php
                                    
                                     
-                                ?></td>
+                                ?></td> -->
                                 <td style="display:block;"><?php  
                                      //aca el elperfil (barra al)categorias junto a el corte
                                     $id_perfil =  $perfils->id;

@@ -18,7 +18,7 @@ use App\Http\Controllers\ContactanoController;
 use App\Http\Controllers\HojaCalculoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\SubcategoriaController;
-
+use App\Http\Controllers\CortadoraController;
 
 //use App\Http\Controllers\Api\Auth\LoginController;
 
@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);  
+    Route::put('updateStatusHojaCortadora/{id}', [CortadoraController::class,'updateStatusHojaCortadora']);  
     Route::put('updatepasswordIonic/{id}', [UserController::class,'updatepasswordIonic']);  
     
     Route::get('productos',[ProductoController::class, 'getProducto']);

@@ -46,7 +46,9 @@ Route::get('cortadoraInfoVentanas/{id}','CortadoraController@cortadoraInfoVentan
 
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
-Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad'); 
+Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad');
+Route::delete('destroyHojaPerfil/{id}','CortadoraController@destroyHojaPerfil')->name('cortadora.destroyHojaPerfil');
+
 
 Route::resource('categoria', 'CategoriaController');
 Route::resource('sub-categoria', 'SubcategoriaController');
