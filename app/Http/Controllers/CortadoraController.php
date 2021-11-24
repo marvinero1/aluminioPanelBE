@@ -56,7 +56,6 @@ class CortadoraController extends Controller
             ->get();
 
 
-
         foreach($perfilBarras as $perfilBarrass){
             $nombre = $perfilBarrass->nombre;
             $resta = $perfilBarrass->resta;
@@ -67,14 +66,10 @@ class CortadoraController extends Controller
 
             $fam_linea = $perfilBarrass->fam_linea;
             $perfil_id = $perfilBarrass->perfil_id;
-            
-                                        
+                                  
                 $data = [["Codigo"=>$fam_linea],["Nombre"=>$nombre],["Medida Descuento"=>$restaRecorte],["Piezas Cortar"=>$piezas]];
-        
                 // echo json_encode($perfilBarrass);
-                
         }
-
 
 
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
@@ -83,20 +78,16 @@ class CortadoraController extends Controller
         $barra = barra::where('barras.hoja_id', '=', $id)->get();
 
 
-
        foreach($perfil as $perfils){
         $id_perfil =  $perfils->id;
-      
         $repeteciones = $perfils->repeticion;
         $ancho_barra = $perfils->ancho;
         $largo_predeterminado = 6;
-
         $numberRepeteat = $ancho_barra * $repeteciones;
-
         $division = $numberRepeteat / $largo_predeterminado;
 
-        
        }      
+
        $repeteciones = +$repeteciones;
 
         $l = $perfils->sum('repeticion');
@@ -110,18 +101,11 @@ class CortadoraController extends Controller
                     $ancho = $barras->largo;
                     $resta = $barras->resta;
                     $piezas = $barras->piezas;
-
                     $anchoMilesima = $ancho * 1000;
-
                     $restaRecorte =  $anchoMilesima - $resta;
 
-                    
                     // echo count($barra);
-                     
-                    // echo "<p>$fam_linea => $nombre => $restaRecorte => $piezas</p>";
-                    
-                    
-                           
+                    // echo "<p>$fam_linea => $nombre => $restaRecorte => $piezas</p>";            
                 }
         }  
         

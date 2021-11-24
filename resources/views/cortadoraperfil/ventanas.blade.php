@@ -231,9 +231,11 @@
                                             }if($rsta >= $seis){
                                                 echo '<p>Se necesitara mas de 2 barra</p>';
 
+                                            }if($rsta > '12000'){
+                                                echo '<p>Se necesitara mas de 3 barra</p>';
+
                                             }
-                                            
-                                               
+                                                                                           
                                             echo "<p>resultado: $a</p>
                                             <p>Barra: $seis</p>
                                             <p>$rsta</p>
