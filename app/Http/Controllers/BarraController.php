@@ -36,62 +36,327 @@ class BarraController extends Controller
     public function store(Request $request){
        
         $request->all();
-        $largo = $request->largo;
+        $ancho = $request->ancho;
+        $alto = $request->alto;
+        $linea = $request->linea;
         $perfil_id = $request->perfil_id;
         $hoja_id = $request->hoja_id;
-        $largoMilesima = $largo * 1000;
-        $piezas2005= 4;
-        $division = $largoMilesima / 2;
+        $combinacion = $request->combinacion;
+       
 
-        $piezaResta = $division - 8;
-        $piezaResta1 = $piezaResta * 2;
-
-        // dd($piezaResta1);
+        // dd($combinacion);
       
         // 1er ancho primero dividir entre 2,
         // 2da a cada pieza restarle 8, 
         // del total de 4 piezas. el total seria 
 
-       $data = [
-                ["linea"=>"L-20", "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Inferior","resta"=>"12","piezas"=>"1",
-                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>"L-20", "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Superior","resta"=>"12","piezas"=>"1",
-                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+        // PARA 20
 
-                ["linea"=>"L-20", "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"8","piezas"=>$piezas2005,
-                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+        if ($combinacion == 'combinacion1' and  $linea == 'L-20') {
 
-                ["linea"=>"L-20", "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","piezas"=>"2",
-                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+            $largoMilesima = $ancho * 1000;
+            $altoMilesima = $alto * 1000;
+            $piezas2005= 4;
+            $division = $largoMilesima / 2;
+            $restaJamba = 0;
 
-                ["linea"=>"L-20", "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","piezas"=>"2",
-                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+            $piezaResta = $division - 8;
+            $piezaResta1 = $piezaResta * 2;
+            $piezaResta2 = $altoMilesima - 28;
+            $piezaResta3 = $largoMilesima - 12;
 
-                ["linea"=>"L-20", "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","piezas"=>"1",
-                "largo"=>$largo, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
-        ];
+            // PARA LINEA 20
+            // DOS HOJAS 
+            // RESTAR 79, DESPUES DIVIDIR ENTRE 2
+
+            $restaZocalo = $largoMilesima - 79;
+            $restaZocalo = $restaZocalo / 2;
+
+            $data = [
+                ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"79","restado"=>$restaZocalo,"piezas"=>$piezas2005,
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$altoMilesima,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+            ];
+
+             barra::insert($data);
+
+        }elseif($combinacion == 'combinacion4' and  $linea == 'L-20'){
+            //Tres Hojas
+            $largoMilesima = $ancho * 1000;
+            $altoMilesima = $alto * 1000;
+            $piezas2005 = 6;
+            $division = $largoMilesima / 3;
+
+            $piezaResta = $division - 8;
+            $piezaResta1 = $piezaResta * 3;
+            $piezaResta2 = $altoMilesima - 28;
+            $piezaResta3 = $largoMilesima - 12;
+
+            // PARA LINEA 20
+            // TRES HOJAS
+            // RESTAR 80, DIVIDO ENTRE 3,
+
+            $restaZocalo = $largoMilesima - 80;
+            $restaZocalo = $restaZocalo / 3;
+
+             $data = [
+                ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,
+                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"80","restado"=>$restaZocalo,"piezas"=>$piezas2005,
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$altoMilesima,"piezas"=>"2",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+            ];
+
+            barra::insert($data);
+        }if($combinacion == 'combinacion5' and  $linea == 'L-20') {
+            // Cuatro Hojas
+            $largoMilesima = $ancho * 1000;
+            $altoMilesima = $alto * 1000;
+            $piezas2005= 6;
+            $division = $largoMilesima / 4;
+
+            $piezaResta = $division - 8;
+            $piezaResta1 = $piezaResta * 3;
+            $piezaResta2 = $altoMilesima - 28;
+            $piezaResta3 = $largoMilesima - 12;
+
+            // PARA LINEA 20
+            // CUATRO HOJAS
+            // RESTAR 147, DIVIDO ENTRE 4,
+            $restaZocalo = $largoMilesima - 147;
+            $restaZocalo = $restaZocalo / 4;
 
 
-        // $data = json_encode($data);
+             $data = [
+                ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-        // dd($data);
+                ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-         barra::insert($data);
-       
-        // barra::create([
-        //     'linea' => $request->linea,
-        //     'fam_linea' => $request->fam_linea,
-        //     'lado' => $request->lado,
-        //     'largo' => $request->largo,
-        //     'nombre' => $request->nombre,
-        //     'resta' => $request->resta,
-        //     'piezas' => $request->piezas,
-        //     'hoja_id'=> $request->hoja_id,
-        //     'perfil_id' => $request->perfil_id,
+                ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"8","restado"=>$restaZocalo,"piezas"=>"8",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-        // ]);
-        return back()->withInput();
+                ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$altoMilesima,"piezas"=>"2",
+                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+            ];
+
+            barra::insert($data);// PARA 25
+        }if ($combinacion == 'combinacion1' and  $linea == 'L-25') {
+
+            $largoMilesima = $ancho * 1000;
+            $largoMilesimaAlto = $alto * 1000;
+            $piezas2005= 4;
+            $division = $largoMilesima / 2;
+            $restaJamba = 0;
+
+            $piezaResta = $division - 8;
+            $piezaResta1 = $piezaResta * 2;
+            $piezaResta2 = $largoMilesimaAlto - 31;
+            $piezaResta3 = $largoMilesima - 16;
+
+           // PARA LA LINEA 25 SOLO ZOCALO
+            // PARA EL DE DOS HOJAS 106 LUEGO DIVIR EN DOS ZOCALO
+
+            $restaZocalo = $largoMilesima - 106;
+            $restaZocalo = $restaZocalo / 2;
+
+            $restaEnganche = $largoMilesimaAlto - 31;
+            $restaEnganche = $restaEnganche / 2;
+
+
+
+            $data = [
+                ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"106","restado"=>$restaZocalo,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$largoMilesimaAlto,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"106","restado"=>$restaZocalo, "piezas"=>"2",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
+            ];
+
+             barra::insert($data);
+
+        }if ($combinacion == 'combinacion4' and  $linea == 'L-25') {
+
+             //Tres Hojas
+            $largoMilesima = $ancho * 1000;
+            $altoMilesima = $alto * 1000;
+            $piezas2005 = 6;
+            $division = $largoMilesima / 3;
+
+            $piezaResta = $division - 8;
+            $piezaResta1 = $piezaResta * 3;
+            $piezaResta2 = $altoMilesima - 31;
+            $piezaResta3 = $largoMilesima - 16;
+
+            // PARA LINEA 25
+            // TRES HOJAS
+            // RESTAR 118, DIVIDO ENTRE 3 a zocalo,
+
+            $restaZocalo = $largoMilesima - 118;
+            $restaZocalo = $restaZocalo / 3;
+
+             $data = [
+                ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,
+                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"118","restado"=>$restaZocalo,"piezas"=>"3",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$altoMilesima,"piezas"=>"2",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"118","restado"=>$restaZocalo, "piezas"=>"3",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
+            ];
+
+             barra::insert($data);
+
+        }if($combinacion == 'combinacion5' and  $linea == 'L-25') {
+            // Cuatro Hojas
+            $largoMilesima = $ancho * 1000;
+            $altoMilesima = $alto * 1000;
+            $piezas2005= 6;
+            $division = $largoMilesima / 4;
+
+            $piezaResta = $division - 8;
+            $piezaResta1 = $piezaResta * 3;
+            $piezaResta2 = $altoMilesima - 31;
+            $piezaResta3 = $largoMilesima - 16;
+
+            // PARA LINEA 20
+            // CUATRO HOJAS
+            // RESTAR 147, DIVIDO ENTRE 4,
+            $restaZocalo = $largoMilesima - 200;
+            $restaZocalo = $restaZocalo / 4;
+
+
+             $data = [
+                ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3, "piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3, "piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"200","restado"=>$restaZocalo,"piezas"=>"4",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$altoMilesima,"piezas"=>"2",
+                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+
+                ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"200","restado"=>$restaZocalo, "piezas"=>"4",
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+            ];
+
+            barra::insert($data);
+        }
+        
+
+      return back()->withInput();
+
+        // PARA LINEA 20
+        // DOS HOJAS 
+        // -79, DESPUES DIVIDIR ENTRE 2
+        // TRES HOJAS -80, DIVIDO ENTRE 3,
+        // CUATRO HOJAS 147, DIVIDIO ENTRE 4.
+
+        // PARA LA LINEA 25 SOLO ZOCALO
+        // PARA EL DE DOS HOJAS 106 LUEGO DIVIR EN DOS ZOCALO
+        // TRES HOJAS 118 LUEGO DIVIDIR EN 3
+        // CUATRO HOJAS 200 DIVIDIR ENTRE 4
+
+
+        // TRES HOJAS
+        // copiar lo mismo 
+        // lo que cambia es el numero de piezas,
+        // Riel inferiro = 1,
+        // Riel_Superior = 1,
+        // zocalo = 6 dividir entre 3, -8 formula arriba
+        // jamba = sin restar nada sigue 2,
+        // pierna = 2 piezas se conserva,
+        // enganche = 4 piezas resta 28,
+        // PRIMERO SE RESTA LUEGO SE DIVIDE
+        // CUATRO HOJAS
+        // Riel inferiro = 1,
+        // Riel_Superior = 1,
+        // zocalo = 6 dividir entre 4, -8 formula arriba
+        // jamba = sin restar nada sigue 2,
+        // pierna = 4 piezas se conserva,
+        // enganche = 4 piezas resta 28,
+        // 5008=union 4 hojas recorte=-28,piezas 1, descontar a la altura 
+        // pierna y enganche igual a altura 
+
+        // $data = json_encode($data);    
+               
         // Session::flash('message','Categoria creado exisitosamente!');
         // return redirect()->route('categoria.index');
     }

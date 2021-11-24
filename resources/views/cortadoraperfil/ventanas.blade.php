@@ -97,8 +97,10 @@
                             <th scope="col" class="text-center">Ventanas</th>
                             <th scope="col" class="text-center">Codigo</th>
                             <th scope="col" class="text-center">Nombre</th>
-                            <th scope="col" class="text-center">Medida Descuento</th>
-                            <th scope="col" class="text-center">Piezas Cortar</th>
+                            <th scope="col" class="text-center">Descuento</th>
+                            <th scope="col" class="text-center">Piezas</th>
+                            <th scope="col" class="text-center">Referencia</th>
+
                          <!-- <th scope="col">Handle</th> -->
                         </tr>
                       </thead>
@@ -109,7 +111,6 @@
                                 <td scope="row">{{ $perfils->repeticion }}</td>
                                <!--  <td scope="row"><?php
                                    
-                                    
                                 ?></td> -->
                                 <td style="display:block;"><?php  
                                      //aca el elperfil (barra al)categorias junto a el corte
@@ -119,21 +120,28 @@
                                     $cadena = "V";
                                     $ancho = $perfils->ancho * 1000;
                                     $alto = $perfils->alto * 1000;
-
+                                    $combinacion = $perfils->combinacion;
                                     
 
                                     // $cortes_json = json_encode($corte_1);
                                         for ($x = 1; $x <= $repetecion; $x++){
+                                             if ($combinacion == 'combinacion1') {
+                                                echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                            echo "<div class='float-right pr-2' style='padding-top:100px;'>$alto</div>";
+                                                echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                            } elseif ($combinacion == 'combinacion4') {
+                                                echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                            // for ($j=1; $j < $l; $j++){ 
-                                            //     echo $j;
-                                            // }
-                                            // echo $cadena.$j."\n";
-                                            // echo $x;
-                                            
-                                            echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                                echo $familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                            } else {
+                                                echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
+
+                                                echo $familia."\n".'<img src="/images/cortadora/combinacion5_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                            }
+
+
+                                         
+                                            // echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
 
                                             // echo "\n".$ancho;
                                         } 
@@ -145,16 +153,7 @@
                                     $barra_perfil_id = $barras->perfil_id;
                                         if($id_perfil == $barra_perfil_id){
                                             $fam_linea = $barras->fam_linea;
-                                            $nombre = $barras->nombre;
-                                            $ancho = $barras->largo;
-                                            $resta = $barras->resta;
-                                            $piezas = $barras->piezas;
-
-                                            $anchoMilesima = $ancho * 1000;
-
-                                            $restaRecorte =  $anchoMilesima - $resta;
-
-                                             
+                                                                                   
                                             echo "<p>$fam_linea</p>";
                                                    
                                         }
@@ -167,17 +166,20 @@
                                         if($id_perfil == $barra_perfil_id){
                                             $fam_linea = $barras->fam_linea;
                                             $nombre = $barras->nombre;
-                                            $ancho = $barras->largo;
-                                            $resta = $barras->resta;
-                                            $piezas = $barras->piezas;
-
-                                            $anchoMilesima = $ancho * 1000;
-
-                                            $restaRecorte =  $anchoMilesima - $resta;
-
-                                             
+                                                                                                           
                                             echo "<p>$nombre</p>";
-                                                   
+                                        }
+                                    }?>
+                                </td> 
+                                <td class="text-center">
+                                    <?php
+                                    foreach ($barra as $barras){
+                                    $barra_perfil_id = $barras->perfil_id;
+                                        if($id_perfil == $barra_perfil_id){
+                                            $restado = $barras->restado;
+                                            $round = round($restado);
+                                            echo "<p>$round</p>";   
+                                                                                                    
                                         }
                                     }?>
                                 </td> 
@@ -191,14 +193,13 @@
                                             $ancho = $barras->largo;
                                             $resta = $barras->resta;
                                             $piezas = $barras->piezas;
-
                                             $anchoMilesima = $ancho * 1000;
-
                                             $restaRecorte =  $anchoMilesima - $resta;
 
-                                             
-                                            echo "<p>$restaRecorte</p>";
-                                                   
+                                            $piezas = $barras->piezas;
+
+                                            $piezas_repeticiones = $piezas * $repetecion;
+                                            echo  "<p>$piezas_repeticiones</p>";   
                                         }
                                     }?>
                                 </td> 
@@ -209,22 +210,37 @@
                                         if($id_perfil == $barra_perfil_id){
                                             $fam_linea = $barras->fam_linea;
                                             $nombre = $barras->nombre;
+                                            $repetecion = $perfils->repeticion;
                                             $ancho = $barras->largo;
                                             $resta = $barras->resta;
                                             $piezas = $barras->piezas;
-
                                             $anchoMilesima = $ancho * 1000;
-
                                             $restaRecorte =  $anchoMilesima - $resta;
 
-                                             
-                                            echo "<p>$piezas</p>";
-                                                   
+                                             $piezas_repeticiones = $piezas * $repetecion;
+
+                                            $piezas = $barras->piezas;
+                                            $restado = $barras->restado;
+                                            $round = round($restado);
+                                               
+                                            $a = ($round * $piezas_repeticiones);
+                                            $seis = '6000';
+                                            $rsta = $a - $seis;
+                                            if ($rsta > '0') {
+                                                echo "<p>Se necesitara 1 barra, mas $rsta</p>";
+                                            }if($rsta >= $seis){
+                                                echo '<p>Se necesitara mas de 2 barra</p>';
+
+                                            }
+                                            
+                                               
+                                            echo "<p>resultado: $a</p>
+                                            <p>Barra: $seis</p>
+                                            <p>$rsta</p>
+                                            ";   
                                         }
                                     }?>
                                 </td> 
-
-
                             </tr>
                         @endforeach                      
                       </tbody>
@@ -233,7 +249,6 @@
             </div>
         </div>
          
-
         <script>
             function printDiv(nombreDiv) {
                 console.log("asdsadasdad");

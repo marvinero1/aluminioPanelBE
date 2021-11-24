@@ -78,7 +78,7 @@
 </head>
 
 <body onload="script();">
-    <div class="float-right">
+    <div class="float-right p-2">
         <button class="btn btn-warning" onclick="goBack()">Atras</button>
     </div>
     <script>
@@ -94,7 +94,7 @@
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hoja 3</a>
         <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help" aria-selected="false">Hoja 4</a>
-        <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Hoja 5</a>
+        <a class="nav-item nav-link " id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Hoja 5</a>
       </div>
     </nav>
     
@@ -136,11 +136,12 @@
                         $cadena = "V";
                         $ancho = $perfils->ancho * 1000;
                         $alto = $perfils->alto * 1000;
+                        $combinacion = $perfils->combinacion;
 
                         // $cortes_json = json_encode($corte_1);
                             for ($x = 1; $x <= $repetecion; $x++){
 
-                                echo "<div class='float-right pr-2' style='padding-top:100px;'>$alto</div>";
+                                // echo "<div class='float-right pr-2' style='padding-top:100px;'>$alto</div>";
 
                                 // for ($j=1; $j < $l; $j++){ 
                                 //     echo $j;
@@ -148,13 +149,15 @@
                                 // echo $cadena.$j."\n";
                                 // echo $x;
                                 
-                                echo '<img src="/images/cortadora/corteCombi2.png" width="320px">'."\n".'<div class="text-center">'.$ancho.'</div>';
-
-                                // echo "\n".$ancho;
+                                if ($combinacion == 'combinacion1') {
+                                    echo '<img src="/images/cortadora/corteCombi2.png" width="220px">'."\n".'<div class="text-center"></div>';
+                                } elseif ($combinacion == 'combinacion4') {
+                                    echo '<img src="/images/cortadora/combinacion4_1.png" width="230px">'."\n".'<div class="text-center"></div>';
+                                } else {
+                                    echo '<img src="/images/cortadora/combinacion5_1.png" width="250px">'."\n".'<div class="text-center"></div>';
+                                }
                             } 
-                        }
-                                                 
-                        ?>
+                        }?>
                 </tr>  
             </table>
         </div>
@@ -260,7 +263,7 @@
     </div> 
 
     <!-- Cuarta Hoja -->
-     <div class="tab-pane fade show active" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
+     <div class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
         <p><strong>Cotización</strong></p>
             <table class="table table-bordered">
                   <thead>
@@ -276,9 +279,8 @@
                   <tbody>
                     
                    @foreach($barra as $barras)
-                   
                     <tr>
-                      <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
+                      <th scope="row" class="text-center">{{ $barras->linea}} </th>
                       
                         <th scope="row" class="text-center"><?php
                             $numBarras = ceil($division);
@@ -286,21 +288,16 @@
                         ?></th>
                       
                     </tr>
-                     
                     @endforeach
-                   
                   </tbody>
             </table>
-    </div>
+        </div>
 
     <!-- Quinta Hoja -->
-     <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+     <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
         <p><strong>Resumen</strong></p>
         <div class="container">
           <div class="row">
-            
-                
-
             <div class="col">
                 <p><strong>Con Resta</strong></p>
               <table class="table table-bordered">
@@ -314,52 +311,25 @@
                       <th scope="col" class="text-center">Ancho - Recorte</th>
                       <th scope="col" class="text-center">#Piezas</th>
                       <th scope="col" class="text-center">#Repeticiones</th>
-
-
                     </tr>
                   </thead>
                   <tbody>
-                   @foreach($barra as $barras)
-                   
+                    @foreach($barra as $barras)
                     <tr>
                       <th scope="row" class="text-center">{{ $barras->fam_linea}} </th>
-                      
                         <th scope="row" class="text-center"><?php
                             $piezas = $barras->piezas;
-
+                            $combinacion = $barras->combinacion;
                             $piezas_repeticiones = $piezas * $repetecion;
                             $piezas_div = $piezas_repeticiones / 10;
-
-                            // echo  $piezas_div."---";
-
-                            // $numBarras = ceil($division);
-                             // echo($numBarras."---");
-
                             $piezas_div1 = $piezas_div * $division;
                             $piezas_div1 = ceil($piezas_div1);
                             
                              echo($piezas_div1);                          
                         ?></th>
-                        @if($barras->fam_linea != '2009' )
-                        <th scope="row" class="text-center"><?php
-                            
-                                $anchoDivido = $ancho_barra * 1000;
-                                $recorte_resta = $barras->resta;
 
-                                $resta = $anchoDivido - $recorte_resta;
-                                echo json_encode($resta);
-                        ?></th>
-                        @else
-                        <th scope="row" class="text-center"><?php
-                            $anchoBarra = $ancho_barra * 1000;
-                           
-                            echo json_encode($anchoBarra);
-                            
-                        ?></th>
-                        @endif
-                     
+                        <th scope="row" class="text-center">{{ $barras->restado }}</th>                       
                         <th scope="row" class="text-center">{{ $barras->piezas }}</th>
-
                         <th scope="row" class="text-center"><?php
                             $piezas = $barras->piezas;
 
@@ -374,9 +344,8 @@
           </div>
         </div>
      </div>
- 
-
     </div>
+        
         <!-- modal aneadir corte -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -388,8 +357,28 @@
                 {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="col">
-                            <img src="/images/cortadora/corteCombi1.png" width="350px">
-                        </div>
+                            <?php  
+                                foreach($perfil as $perfils){
+                                    //aca el elperfil (barra al)categorias junto a el corte
+                                    $id_perfil =  $perfils->id;
+                                    $repetecion = $perfils->repeticion;
+                                    $familia = $perfils->linea;
+                                    $cadena = "V";
+                                    $ancho = $perfils->ancho * 1000;
+                                    $alto = $perfils->alto * 1000;
+                                    $combinacion = $perfils->combinacion;
+
+                                                                          
+                                        if ($combinacion == 'combinacion1') {
+                                            echo '<img src="/images/cortadora/corteCombi2.png" width="350px">'."\n".'<div class="text-center"></div>';
+                                        } elseif ($combinacion == 'combinacion4') {
+                                            echo '<img src="/images/cortadora/combinacion4_1.png" width="350px">'."\n".'<div class="text-center"></div>';
+                                        } else {
+                                            echo '<img src="/images/cortadora/combinacion5_1.png" width="350px">'."\n".'<div class="text-center"></div>';
+                                        }
+                                        
+                            }?>
+                        </div><br>
                         <div class="container">
                           <div class="row">
                             <div class="col-md-12">
@@ -397,31 +386,20 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Linea</span>
                                     </div>
-                                        <input type="text" class="form-control" value="{{ $linea }}"  name="linea">
+                                    <?php
+                                        foreach($perfil as $perfils){
+                                            $linea = $perfils->linea;
+                                        
+                                            if($linea != "L-20") {
+                                                echo "<input type='text' class='form-control' value='L-25' name='linea'>";
+                                            } else {
+                                                echo "<input type='text' class='form-control' value='L-20' name='linea'>";
+                                            } 
+                                        }   
+                                    ?>
                                 </div>
                             </div>
-                            <!-- <div class="col">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Codigo</label>
-                                    </div>
-                                    @if ($linea == "L-20")
-                                        <select name="fam_linea" class="custom-select" required>
-                                            @foreach ($linea20 as $linea20s)
-                                            <option value="{{ $linea20s }}">{{$linea20s}}
-                                            </option>
-                                            @endforeach
-                                        </select> 
-                                    @else
-                                        <select name="fam_linea" class="custom-select" required>
-                                            @foreach ($linea25 as $linea25s)
-                                            <option value="{{ $linea25s }}">{{$linea25s}}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                </div>
-                            </div> -->
+                       
                           </div><br>
 
                           <!-- <div class="row">
@@ -481,8 +459,12 @@
                           </div> -->
 
                             <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
-                            <input hidden type="text" value="{{ $ancho_barra }}" name="largo">  
-                            <input hidden type="text" value="{{ $hoja_id }}" name="hoja_id">  
+                            <input hidden type="text" value="{{ $ancho_barra }}" name="ancho">  
+                            <input hidden type="text" value="{{ $alto_barra }}" name="alto">  
+
+                            <input hidden type="text" value="{{ $hoja_id }}" name="hoja_id">
+                            <input hidden type="text" value="{{ $combinacion }}" name="combinacion">  
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -591,7 +573,7 @@
 
                         foreach($barra as $barras){
                             // $linea_barra = $barras->linea;
-                            $ancho = $barras->largo;
+                            $ancho = $barras->ancho;
                             echo $ancho.",";
                         }                              
                     // }                               

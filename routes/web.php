@@ -43,10 +43,12 @@ Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.v
 Route::get('cortadoraPerfil','CortadoraController@cortadoraPerfil')->name('cortadora.cortadoraPerfil'); 
 Route::get('cortadoraInfoGeneral/{id}','CortadoraController@cortadoraInfoGeneral')->name('cortadora.cortadoraInfoGeneral'); 
 Route::get('cortadoraInfoVentanas/{id}','CortadoraController@cortadoraInfoVentanas')->name('cortadora.cortadoraInfoVentanas'); 
+Route::get('cotizadorCortadoraPerfil/{id}','CortadoraController@cotizacion')->name('cotizacion.cotizacion'); 
 
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad');
+Route::put('updateHojaPerfil/{id}/','CortadoraController@updateHojaPerfil')->name('hojaPerfil.updateHojaPerfil');
 Route::delete('destroyHojaPerfil/{id}','CortadoraController@destroyHojaPerfil')->name('cortadora.destroyHojaPerfil');
 
 

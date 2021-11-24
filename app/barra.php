@@ -21,9 +21,11 @@ class barra extends Model
     protected $fillable = ['linea',
                         'fam_linea',
                         'lado',
-                        'largo',
+                        'ancho',
+                        'alto',
                         'nombre',
                         'resta',
+                        'restado',
                         'piezas',
                         'perfil_id',
                         'hoja_id'];

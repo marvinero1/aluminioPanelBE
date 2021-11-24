@@ -130,9 +130,67 @@ class CortadoraController extends Controller
         return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l'));
     }
 
-     public function getPerfiilCombinacion($id){
+
+    public function cotizacion($id){
+
+        $perfilBarras = DB::table('hoja_calculo_perfils')
+            ->join('perfils', 'hoja_calculo_perfils.id', '=', 'perfils.hoja_id')
+            ->join('barras', 'hoja_calculo_perfils.id', '=', 'barras.hoja_id')
+            ->select('hoja_calculo_perfils.*', 'perfils.*', 'barras.*')
+            ->get();
+
+        $id_hoja = $id;
+
+        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
+
+        foreach($perfilBarras as $perfilBarrass){
+            $id = $perfilBarrass->id; 
+            $nombre_cliente = $perfilBarrass->nombre_cliente;
+            $celular =$perfilBarrass->celular;
+            $descripcion = $perfilBarrass->descripcion;
+            $mt2 = $perfilBarrass->suma_m2;
+            $resta = $perfilBarrass->resta;
+            $piezas = $perfilBarrass->piezas;
+            $ancho = $perfilBarrass->ancho;
+            $alto = $perfilBarrass->alto;
+            $anchoMilesima = $ancho * 1000;
+            $restaRecorte =  $anchoMilesima - $resta;
+
+            $fam_linea = $perfilBarrass->fam_linea;
+            $perfil_id = $perfilBarrass->perfil_id;
+            $metros2 = $ancho * $alto;
+
+        }
+
+
+         return view('cortadoraperfil.cotizacion', compact('perfilBarras','id_hoja','metros2','nombre_cliente','celular',
+            'descripcion','mt2','perfil'));
+    }
+
+    public function getPerfiilCombinacion($id){
         
-     }
+    }
+
+
+    public function updateHojaPerfil(Request $request, $id){
+
+        $requestData = $request->all();
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
+
+        $hoja_calculo_perfil->nombre_cliente = $request->get('nombre_cliente');
+        $hoja_calculo_perfil->celular = $request->get('celular');
+        $hoja_calculo_perfil->precio = $request->get('precio');
+        $hoja_calculo_perfil->suma_m2 = $request->get('suma_m2');
+        $hoja_calculo_perfil->descripcion = $request->get('descripcion');
+
+
+        $hoja_calculo_perfil->update();
+        
+        Session::flash('message','Hoja de Calculo Para Cortadora de Perfil de Aluminio Editado Exisitosamente!');
+        return back()->withInput();
+        
+    }
 
     /**
      * Show the form for creating a new resource.

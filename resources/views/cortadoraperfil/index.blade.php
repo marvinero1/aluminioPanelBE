@@ -28,16 +28,19 @@
                        
                         <td style="text-align:center;">
                             <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">
-                                <button class="btn btn-primary btn-sm"><i class="fa fa-eye"
+                                <button class="btn btn-light btn-sm"><i class="fa fa-eye"
                                         aria-hidden="true"></i> Ver
                                 </button></a>
 
                              <a href="{{ route('cortadora.cortadoraInfoGeneral',$hoja_calculo_perfils->id ) }}">
-                                <button class="btn btn-info btn-sm"><i class="fa fa-eye"
-                                        aria-hidden="true"></i> Info General
+                                <button class="btn btn-info btn-sm"><i class="fa fa-files-o" aria-hidden="true"></i> Info General
                                 </button></a>
                              <a href="{{ route('cortadora.cortadoraInfoVentanas',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-window-restore" aria-hidden="true"></i> Ventanas
+                                </button></a>
+
+                             <a href="{{ route('cotizacion.cotizacion',$hoja_calculo_perfils->id ) }}">
+                                <button class="btn btn-success btn-sm"><i class="fa fa-file-text-o" aria-hidden="true"></i> Cotización
                                 </button></a>
                             
                             <form action="{{ route('cortadora.destroyHojaPerfil',$hoja_calculo_perfils->id ) }}" method="POST"
