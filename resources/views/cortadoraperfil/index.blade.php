@@ -16,7 +16,11 @@
                     <tr>
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">ID</th>
-                        <th style="text-align:center;">Estado</th>
+                       <!--  <th style="text-align:center;">Estado</th> -->
+                        <th style="text-align:center;">Nombre Cliente</th>
+                        <th style="text-align:center;">Celular</th>
+                        <th style="text-align:center;">M2</th>
+                        <th style="text-align:center;">Descripcion</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
                 </thead>
@@ -24,8 +28,12 @@
                     @foreach($hoja_calculo_perfil as $hoja_calculo_perfils)
                     <tr>
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->id }}</td>
-                        <td style="text-align:center;">{{ $hoja_calculo_perfils->estado }}</td>
-                       
+                        <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->estado }}</td> -->
+                        <td style="text-align:center;">{{ $hoja_calculo_perfils->nombre_cliente }}</td>
+                        <td style="text-align:center;">{{ $hoja_calculo_perfils->celular }}</td>
+                        <td style="text-align:center;">{{ $hoja_calculo_perfils->suma_m2 }}</td>
+                        <td style="text-align:center;">{{ $hoja_calculo_perfils->descripcion }}</td>
+                        
                         <td style="text-align:center;">
                             <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-light btn-sm"><i class="fa fa-eye"
@@ -39,10 +47,11 @@
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-window-restore" aria-hidden="true"></i> Ventanas
                                 </button></a>
 
+                            @if($hoja_calculo_perfils->estado != 'false')
                              <a href="{{ route('cotizacion.cotizacion',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-success btn-sm"><i class="fa fa-file-text-o" aria-hidden="true"></i> Cotización
                                 </button></a>
-                            
+                            @endif
                             <form action="{{ route('cortadora.destroyHojaPerfil',$hoja_calculo_perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf

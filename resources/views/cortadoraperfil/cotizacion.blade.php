@@ -10,16 +10,16 @@
         <div class="alert alert-danger">{{ Session::get('error') }}</div>
         @endif
     </div>
-     
-    <div id="page-wrap">
-        <h4 id="header">Cotización Altools</h4>
+    <div class="content pt-3">
+         <div id="page-wrap">
+        <h4 id="header">Cotización</h4>
         <div id="identity">
             <div style="padding: 6px 28px;">
-                <img height="150px" width="150px" src="{{url('/images/fondos/logo.png')}}" alt="Logo" style="float: left;">
+                <!-- <img height="150px" width="150px" src="{{url('/images/fondos/logo.png')}}" alt="Logo" style="float: left;"> -->
                 <div id="address">
-                    <h5><strong>Nombre Cliente:</strong> {{ $nombre_cliente }}</h5>
-                    <h5><strong>Celular:</strong> {{ $celular }}</h5>
-                    <h5><strong>Descripcion:</strong>{{ $descripcion }}</h5>
+                    <h5><strong>Nombre Cliente:</strong> {{ $hoja_calculo_perfil->nombre_cliente }}</h5>
+                    <h5><strong>Celular:</strong> {{ $hoja_calculo_perfil->celular }}</h5>
+                    <h5><strong>Descripcion:</strong>{{ $hoja_calculo_perfil->descripcion }}</h5>
                 </div>
             </div>
         </div>
@@ -63,143 +63,62 @@
             <table id="items">
                 <tr>
                     <th style="text-align: center;">Ventanas</th>
-                    <th style="text-align: center;">Linea</th>
-                    <th style="text-align: center;">Descripcion</th>
+                    <th style="text-align: center;"># Ventanas</th>
                     <th style="text-align: center;">MT2</th>
+                    <th style="text-align: center;">Precio</th>
                    <!--  <th style="text-align: center;">Precio</th> -->
-                  <!--   <th style="text-align: center;">Sub-Total</th> -->
+                    <th style="text-align: center;">Sub-Total</th>
                 </tr>
-                <tr class="item-row">
+                @foreach($perfil as $perfils)
+                <tr class="item-row">    
                     <td class="description">
                         <div class="delete-wpr">
-                            @foreach($perfil as $perfils)
-                            <input class="input" type="text" disabled="true" value="{{ $perfils->combinacion }}" style="text-align: center;">
-                            @endforeach
+                            <input class="input" type="text" disabled="true" style="text-align: center;" value="{{ $perfils->linea }}">
                         </div>
                     </td>
                     <td class="item-name">
                         <div class="delete-wpr">
-                            @foreach($perfil as $perfils)
-                                <input class="input" type="text" style="text-align: center;" disabled="true" value="{{ $perfils->linea }}">
-                            @endforeach
+                            <input class="input" type="text" style="text-align: center;" disabled="true" value="{{ $perfils->repeticion }}">
                         </div>
                     </td>
-                    <td>
-                        <input class="input" class="cost" disabled="true"value="{{ $descripcion }}" 
+                    <td><input class="input" class="cost" disabled="true"value="{{ $mt2  }}" 
                             style="text-align: center;width: 100%;"></td>
                         
-                    <td>
-                        @foreach($perfil as $perfils)
-                        <input class="input" class="cost" disabled="true" value="{{ $perfils->alto * $perfils->ancho }}" 
-                            style="text-align: center;width: 100%;">
-                        @endforeach
+                    <td><input class="input" class="cost" disabled="true" value="{{ $perfils->precio }}" 
+                            style="text-align: center;width: 100%;">                       
                     </td>
-
-                  <!--   <td ><input class="input" class="cost" value="" 
-                             style="text-align: center;width: 100%;" disabled="true"></td> -->
+                    <td ><input class="input" class="cost"style="text-align: center;width: 100%;" disabled="true"
+                    value="{{ $total }}"></td>
 
                    <!--  <td><input class="input" style="text-align: center;" disabled="true" type="text" name="total"
                             value=""></td> -->
+                         
                 </tr>
+                 @endforeach  
                 <tr>
                     <td colspan="2" class="blank"> </td>
                     <td colspan="2" class="total-line balance">Total:</td>
                     <td class="total-value">
-                        <div disabled="true" id="total">
-                          
+                        <div disabled="true" id="total" style="text-align: center;">
+                          {{ $totalTotal }}
                         </div>
                     </td>
                 </tr>
             </table>
-            <h6 style="text-align: left;">*Campos Obligatorios</h6>
+            <h6 style="text-align: left;padding: 5px;">*Campos Obligatorios</h6>
         <div style="clear:both">
             <br>
             <br>
             <p style="text-align: center;">-----------------------</p>
             <h4 style="text-align: center;">Recibido Conforme</h4>
         </div>
-      <!--   <div id="terms">
-            <h5>SUGERENCIA</h5>
-            <textarea>No valido para credito Fiscal.</textarea>
-        </div> -->
+    </div>
     </div>
 </div>
 <div class="modal-footer">
     <a type="button" class="btn btn-default float-left" href="{{url('/cortadoraPerfil')}}">Cerrar</a>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$id_hoja}}">
-      <i class="fa fa-pencil" aria-hidden="true"></i> Ingresar Datos
-    </button>
-
     <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
         <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal{{$id_hoja}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-            <form action="{{route('hojaPerfil.updateHojaPerfil', $id_hoja )}}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
-            <div class="row">
-                <div class="col-md-6">
-                   <div class="form-group">
-                        <label for="nombre">Nombre Completo Cliente</label>
-                        <input type="text" class="form-control" name="nombre_cliente"
-                            placeholder="Nombre Cliente" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                   <div class="form-group">
-                        <label for="nombre">Celular</label>
-                        <input type="phone" class="form-control" name="celular"
-                            placeholder="Celular" required>
-                    </div>
-                </div>
-            </div>
-             <div class="row">
-                <div class="col-md-6">
-                   <div class="form-group">
-                        <label for="nombre">Suma M2</label>
-                        <input type="text" class="form-control" name="suma_m2"
-                            placeholder="M2" value="{{ $metros2 }}">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                        <label for="nombre">Precio</label>
-                        <input type="text" class="form-control" name="precio"
-                            placeholder="Precio" required>
-                    </div>
-                </div>
-            </div>
-             <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="descripcion">Descripción</label>
-                        <textarea class="form-control" name="descripcion" rows="3"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-      </div>
-    </form>
-    </div>
-  </div>
 </div>
 @endsection
 <script>

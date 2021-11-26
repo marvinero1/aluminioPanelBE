@@ -20,5 +20,9 @@ class hoja_calculo_perfil extends Model
 
     protected $fillable = ['user_id',
                            'estado',
+                           'nombre_cliente',
+                           'celular',
+                           'suma_m2',
+                           'descripcion',
                             ];
 }

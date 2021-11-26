@@ -139,7 +139,9 @@ class CortadoraController extends Controller
             ->select('hoja_calculo_perfils.*', 'perfils.*', 'barras.*')
             ->get();
 
-        $id_hoja = $id;
+        $id_hoja = $id; 
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
 
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
 
@@ -160,11 +162,24 @@ class CortadoraController extends Controller
             $perfil_id = $perfilBarrass->perfil_id;
             $metros2 = $ancho * $alto;
 
+
+
         }
 
+          $totalTotal = 0;
+            
+            foreach($perfil as $perfils){
+                $mt2 = $perfils->alto * $perfils->ancho;
+                $precio = $perfils->precio;
+                $total = $mt2 * $precio;
 
-         return view('cortadoraperfil.cotizacion', compact('perfilBarras','id_hoja','metros2','nombre_cliente','celular',
-            'descripcion','mt2','perfil'));
+                 $totalTotal +=  $total;
+
+            }
+
+
+         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular',
+            'descripcion','mt2','perfil','totalTotal','mt2','total'));
     }
 
     public function getPerfiilCombinacion($id){

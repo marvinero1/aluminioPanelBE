@@ -26,6 +26,7 @@ class Perfil extends Model
                         'linea',
                         'repeticion',
                         'user_id',
+                        'precio',
                     ];
 
     public function barra(){

@@ -88,7 +88,7 @@
         <div class="tab-content p-4" id="areaImprimir">
             <div class="col">
                 <div class="class">
-                <p><strong>Resumen</strong></p>   
+                    <p><strong>Resumen</strong></p>   
                     <table class="table-responsive-sm" border="1">
                       <thead>
                         <tr>
@@ -99,7 +99,9 @@
                             <th scope="col" class="text-center">Nombre</th>
                             <th scope="col" class="text-center">Descuento</th>
                             <th scope="col" class="text-center">Piezas</th>
-                            <th scope="col" class="text-center">Referencia</th>
+                            <th scope="col" class="text-center"></th>
+                            <th scope="col" class="text-center"></th>
+                            <th scope="col" class="text-center">Referencia Global</th>
 
                          <!-- <th scope="col">Handle</th> -->
                         </tr>
@@ -122,25 +124,21 @@
                                     $alto = $perfils->alto * 1000;
                                     $combinacion = $perfils->combinacion;
                                     
-
                                     // $cortes_json = json_encode($corte_1);
                                         for ($x = 1; $x <= $repetecion; $x++){
                                              if ($combinacion == 'combinacion1') {
                                                 echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                                echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                                echo $cadena.$x."\n".$familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                             } elseif ($combinacion == 'combinacion4') {
                                                 echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                                echo $familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                                echo $cadena.$x."\n".$familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                             } else {
                                                 echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                                echo $familia."\n".'<img src="/images/cortadora/combinacion5_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                                echo $cadena.$x."\n".$familia."\n".'<img src="/images/cortadora/combinacion5_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                             }
-
-
-                                         
                                             // echo $familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
 
                                             // echo "\n".$ancho;
@@ -204,7 +202,7 @@
                                     }?>
                                 </td> 
                                 <td class="text-center">
-                                    <?php
+                                    <!-- <?php
                                     foreach ($barra as $barras){
                                     $barra_perfil_id = $barras->perfil_id;
                                         if($id_perfil == $barra_perfil_id){
@@ -239,8 +237,10 @@
                                             <p>$rsta</p>
                                             ";   
                                         }
-                                    }?>
+                                    }?> -->
                                 </td> 
+                                <td></td>
+                                <td>asdasdasd</td>
                             </tr>
                         @endforeach                      
                       </tbody>

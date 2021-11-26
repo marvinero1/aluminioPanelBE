@@ -166,9 +166,8 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @if(Auth::user()->role != 'user')
-    @if(Auth::user()->subscripcion != 'false')
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  @if(Auth::user()->subscripcion != 'false')
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="/home" class="pt-3">
           <img src="/images/fondos/logo.png" alt="Altools" class="img-circle elevation-2"
@@ -920,6 +919,5 @@
           <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
-      </aside>
-    @endif
+    </aside>
   @endif
