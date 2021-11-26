@@ -63,7 +63,6 @@ class CortadoraController extends Controller
             $ancho = $perfilBarrass->ancho;
             $anchoMilesima = $ancho * 1000;
             $restaRecorte =  $anchoMilesima - $resta;
-
             $fam_linea = $perfilBarrass->fam_linea;
             $perfil_id = $perfilBarrass->perfil_id;
                                   
@@ -77,6 +76,12 @@ class CortadoraController extends Controller
 
         $barra = barra::where('barras.hoja_id', '=', $id)->get();
 
+        $barra2001 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2001')->get();
+        $barra2002 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2002')->get();
+        $barra2005 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2005')->get();
+        $barra2009 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2009')->get();
+        $barra2010 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2010')->get();
+        $barra2011 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2011')->get();
 
        foreach($perfil as $perfils){
         $id_perfil =  $perfils->id;
@@ -85,7 +90,6 @@ class CortadoraController extends Controller
         $largo_predeterminado = 6;
         $numberRepeteat = $ancho_barra * $repeteciones;
         $division = $numberRepeteat / $largo_predeterminado;
-
        }      
 
        $repeteciones = +$repeteciones;
@@ -108,10 +112,8 @@ class CortadoraController extends Controller
                     // echo "<p>$fam_linea => $nombre => $restaRecorte => $piezas</p>";            
                 }
         }  
-        
-        
      
-        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l'));
+        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011'));
     }
 
 
@@ -145,9 +147,6 @@ class CortadoraController extends Controller
             $fam_linea = $perfilBarrass->fam_linea;
             $perfil_id = $perfilBarrass->perfil_id;
             $metros2 = $ancho * $alto;
-
-
-
         }
 
           $totalTotal = 0;
@@ -158,9 +157,7 @@ class CortadoraController extends Controller
                 $total = $mt2 * $precio;
 
                  $totalTotal +=  $total;
-
             }
-
 
          return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular',
             'descripcion','mt2','perfil','totalTotal','mt2','total'));
@@ -169,7 +166,6 @@ class CortadoraController extends Controller
     public function getPerfiilCombinacion($id){
         
     }
-
 
     public function updateHojaPerfil(Request $request, $id){
 
