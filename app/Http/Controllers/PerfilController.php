@@ -22,6 +22,12 @@ class PerfilController extends Controller
         //
     }
 
+     public function getHistorialCalculos($id){
+        $perfil = Perfil::where('perfils.user_id', '=', $id)->get();
+
+        return response()->json($perfil, 201);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,8 +64,6 @@ class PerfilController extends Controller
 
         $barra = barra::where('barras.perfil_id', '=', $id)->get();
 
-        $corte = Corte::get();
-
         $linea20 = array("2001", "2002", "2005", "2009","2010","2011");
 
         $linea25 = array("2501", "2502", "2504", "2505","2507", "2509","2510","5008");
@@ -67,14 +71,6 @@ class PerfilController extends Controller
         $cortesName = array("Corte 1", "Corte 2", "Corte 3", "Corte 4","Corte 5", "Corte 6","Corte 7","Corte 8","Corte 9",
         "Corte 10","Corte 11","Corte 12");
         
-        foreach($corte as $cortes){ //aca el elperfil (barra al)categorias junto a el corte
-           
-            $corte_1 = $cortes->corte_1;
-            
-            // $cortes_json = json_encode($corte_1);
-            // echo $;  
-        }
-
         foreach($perfil as $perfils){ //aca el elperfil (barra al)categorias junto a el corte
            
             $repetecion = $perfils->repeticion;

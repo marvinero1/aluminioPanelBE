@@ -19,6 +19,7 @@ use App\Http\Controllers\HojaCalculoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\CortadoraController;
+use App\Http\Controllers\PerfilController;
 
 //use App\Http\Controllers\Api\Auth\LoginController;
 
@@ -80,6 +81,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getHojaCalculo/{id}', [HojaCalculoController::class,'getHojaCalculo']); 
     Route::get('getHojaCalculoPerfil/{id}', [HojaCalculoController::class,'getHojaCalculoPerfil']);
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
+    Route::get('getHistorialCalculos/{id}', [PerfilController::class,'getHistorialCalculos']); 
     Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);

@@ -167,6 +167,8 @@ class CortadoraController extends Controller
         
     }
 
+   
+
     public function updateHojaPerfil(Request $request, $id){
 
         $requestData = $request->all();
