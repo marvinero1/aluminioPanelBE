@@ -31,9 +31,11 @@ class PedidoController extends Controller
         ->where('carritos.confirmacion', '=', 'false')
         ->orderBy('created_at', 'desc')
         ->paginate(10);
+
+        $carritoAll = Carrito::where('importadora','like',"%$importadora%")->paginate(10);
          
         //dd( $producto );
-        return view('pedidos.index', compact('carrito', 'user'));
+        return view('pedidos.index', compact('carrito', 'user','carritoAll'));
     }
 
     public function getMisCotizacionesConfirmadas(Request $request)

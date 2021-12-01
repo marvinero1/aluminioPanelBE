@@ -62,16 +62,17 @@
             </div>
             <table id="items">
                 <tr>
-                    <th style="text-align: center;">Ventanas</th>
-                    <th style="text-align: center;"># Ventanas</th>
+                    <th style="text-align: center;">Lineas o Series</th>
+                    <th style="text-align: center;">Cantidad Ventanas</th>
                     <th style="text-align: center;">MT2</th>
                     <th style="text-align: center;">Precio</th>
                    <!--  <th style="text-align: center;">Precio</th> -->
                     <th style="text-align: center;">Sub-Total</th>
+                    <!-- <th style="text-align: center;">Accion</th> -->
                 </tr>
                 @foreach($perfil as $perfils)
                 <tr class="item-row">    
-                    <td class="description">
+                    <td class="item-name">
                         <div class="delete-wpr">
                             <input class="input" type="text" disabled="true" style="text-align: center;" value="{{ $perfils->linea }}">
                         </div>
@@ -81,17 +82,63 @@
                             <input class="input" type="text" style="text-align: center;" disabled="true" value="{{ $perfils->repeticion }}">
                         </div>
                     </td>
-                    <td><input class="input" class="cost" disabled="true"value="{{ $mt2  }}" 
+                    <td><input class="input" class="cost" disabled="true"value="{{ $perfils->ancho * $perfils->alto }}" 
                             style="text-align: center;width: 100%;"></td>
                         
-                    <td><input class="input" class="cost" disabled="true" value="{{ $perfils->precio }}" 
-                            style="text-align: center;width: 100%;">                       
+                    <td> <!-- Button trigger Confirmacion -->
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#exampleModalEditarPrecio{{$perfils->id}}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Editar Precio
+                        </button>                     
                     </td>
                     <td ><input class="input" class="cost"style="text-align: center;width: 100%;" disabled="true"
                     value="{{ $total }}"></td>
 
-                   <!--  <td><input class="input" style="text-align: center;" disabled="true" type="text" name="total"
-                            value=""></td> -->
+                    <td>
+                        <!-- Button trigger Confirmacion -->
+                        <!-- <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#exampleModalEditarPrecio{{$perfils->id}}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Editar Precio
+                        </button> -->
+                    </td>
+                     <!-- Modal Confirmacion -->
+                                <div class="modal fade" id="exampleModalEditarPrecio{{$perfils->id}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="width:67%;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Precio Unitario
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('carritoDetalle.update', $perfils->id )}}" method="POST"
+                                                    enctype="multipart/form-data"
+                                                    style="margin-block-end:-1em !important;">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PUT') }}
+                                                    <div class="col-md-12 p-2">
+                                                        <div class="form-group">
+                                                            <label>Precio Unitario</label> 
+                                                            <input type="number" step="0.01" class="form-control" placeholder="Precio" name="precio">
+                                                        </div>
+                                                      
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">
+                                                                <i class="fa fa-close" aria-hidden="true"></i>
+                                                                Cancelar</button>
+                                                            <button type="submit" class="btn btn-success mr-2"><i
+                                                                    class="fa fas fa-save"></i> Guardar</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                          
                 </tr>
                  @endforeach  

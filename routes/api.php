@@ -49,11 +49,10 @@ Route::get("logout", 'UserController@logout');
 Route::group(['middleware' => ['auth:api']], function(){
   
 //  Route::post('login', [App\Http\Controllers\Api\Auth\LoginController::class,'login']);
-
-
-
 });
+
     Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
+    Route::put('actualizarPerfil/{id}', [PerfilController::class,'actualizarPerfil']);
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);  
     Route::put('updateStatusHojaCortadora/{id}', [CortadoraController::class,'updateStatusHojaCortadora']);  
@@ -91,6 +90,8 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::delete('calculadoraDeleteAll/{id}', [CalculadoraController::class, 'calculadoraDeleteAll']);
     Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class,'calculadoraHistorialDelete']);
     Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
+    Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
+    Route::delete('HistorialDelete/{id}/', [PerfilController::class,'HistorialDelete']);  
     
     Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
     Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);
@@ -102,7 +103,6 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('guardarHojaCortadoraPerfil',[HojaCalculoController::class, 'guardarHojaCortadoraPerfil']);
     Route::post('guardarCombinacion',[HojaCalculoController::class, 'guardarCombinacion']);
     
-
     //Route get contactos
     Route::get('contactgetLPZ',[ContactanoController::class, 'contactgetLPZ']);
     Route::get('contactgetCBBA',[ContactanoController::class, 'contactgetCBBA']);

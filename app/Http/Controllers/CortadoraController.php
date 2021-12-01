@@ -160,14 +160,14 @@ class CortadoraController extends Controller
             }
 
          return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular',
-            'descripcion','mt2','perfil','totalTotal','mt2','total'));
+            'descripcion','mt2','perfil','totalTotal','total'));
     }
 
     public function getPerfiilCombinacion($id){
         
     }
 
-   
+
 
     public function updateHojaPerfil(Request $request, $id){
 

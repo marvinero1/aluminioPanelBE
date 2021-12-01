@@ -183,4 +183,23 @@ class PerfilController extends Controller
         Session::flash('message','Combinacion Eliminado Exitosamente!');
         return back()->withInput();
     }
+
+
+    public function actualizarPerfil(Request $request, $id){
+        
+        $perfil = Perfil::findOrFail($id);
+        $perfil->update($request->all());
+
+        return response()->json($perfil, 200);
+    }
+
+    public function HistorialDelete($id){
+
+        $perfil = Perfil::findOrFail($id);
+        $perfil->delete();
+
+        return response()->json($perfil, 200);     
+    }
+
+
 }
