@@ -110,7 +110,7 @@ class CarritoDetalleController extends Controller
         $carrito = Carrito::find($id);
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
 
-        return view('pedidos.edit', compact('carrito_detalle','carrito')); 
+        return view('pedidos.edit', compact('carrito_detalle','carrito'));   
     }
 
     /**
