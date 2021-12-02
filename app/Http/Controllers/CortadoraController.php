@@ -131,8 +131,11 @@ class CortadoraController extends Controller
 
         $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
 
-        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
 
+        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
+        $barraL20 = barra::where('barras.perfil_id', '=', $id)->where('barras.linea', '==', 'L-20')->get();
+
+        
         foreach($perfilBarras as $perfilBarrass){
             $id = $perfilBarrass->id; 
             $nombre_cliente = $perfilBarrass->nombre_cliente;
@@ -161,8 +164,7 @@ class CortadoraController extends Controller
                  $totalTotal +=  $total;
             }
 
-         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular',
-            'descripcion','mt2','perfil','totalTotal','total'));
+         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','descripcion','mt2','perfil','totalTotal','total','barraL20'));
     }
 
     public function precioEditCortadora($id){

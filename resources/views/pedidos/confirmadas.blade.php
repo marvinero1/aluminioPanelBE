@@ -24,24 +24,11 @@
                 </form>
             </div>
         </div><br>
-        <!-- <div class="card-header border-0">
-            <h3 class="card-title">Productos</h3>
-             <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-sm">
-                  <i class="fas fa-download"></i>
-                </a>
-                <a href="#" class="btn btn-tool btn-sm">
-                  <i class="fas fa-bars"></i>
-                </a>
-              </div> 
-        </div> -->
         <div class="card-body table-responsive">
             <table class="table table-striped table-sm table-valign-middle">
                 <thead>
                     <tr>
-                       <!-- <th>Id</th>   -->
                         <th style="text-align:center;">Nombre Importadora</th>
-                        <!-- <th style="text-align:center;">Estado</th> -->
                         <th style="text-align:center;">Descripcion</th>
                         <th style="text-align:center;">Cotizacion del Usuario</th>                   
                         <th style="text-align:center;">Enviado en Fecha</th>
@@ -53,12 +40,11 @@
                     @foreach($pedido as $carritos)
                     <tr>
                         <td style="text-align:center;">{{ $carritos->importadora }}</td>
-                        <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
                         <td style="text-align:center;">{{ $carritos->descripcion }}</td>
                         <td style="text-align:center;">{{ $carritos->user->name }}</td>
                         <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y') }}</td> 
                         <td style="text-align:center;">
-                            <!-- <p>{{$carritos->file}}</p> -->
+
                             <a href="{{ route('downloads', $carritos->file ) }}" class="btn btn-primary">
                                   <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF
                             </a>

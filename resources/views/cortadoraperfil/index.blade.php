@@ -19,7 +19,7 @@
                        <!--  <th style="text-align:center;">Estado</th> -->
                         <th style="text-align:center;">Nombre Cliente</th>
                         <th style="text-align:center;">Celular</th>
-                        <th style="text-align:center;">M2</th>
+                      <!--   <th style="text-align:center;">M2</th> -->
                         <th style="text-align:center;">Descripcion</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
@@ -31,7 +31,7 @@
                         <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->estado }}</td> -->
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->nombre_cliente }}</td>
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->celular }}</td>
-                        <td style="text-align:center;">{{ $hoja_calculo_perfils->suma_m2 }}</td>
+                        <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->suma_m2 }}</td> -->
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->descripcion }}</td>
                         
                         <td style="text-align:center;">

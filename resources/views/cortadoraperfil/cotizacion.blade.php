@@ -1,153 +1,126 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="content-wrapper">
-    <section >
-        <div class="container-fluid">
-            <div id="areaImprimir">
-    <div class="p-3">
-        @if (Session::has('message'))
-        <div class="alert alert-success">{{ Session::get('message') }}</div>
-        @endif
-        @if (Session::has('error'))
-        <div class="alert alert-danger">{{ Session::get('error') }}</div>
-        @endif
-    </div>
-    <div class="content pt-3">
-         <div id="page-wrap">
-        <h4 id="header">Cotización</h4>
-        <div id="identity">
-            <div style="padding: 6px 28px;">
-                <div id="address">
-                    <h5><strong>Nombre Cliente:</strong> {{ $hoja_calculo_perfil->nombre_cliente }}</h5>
-                    <h5><strong>Celular:</strong> {{ $hoja_calculo_perfil->celular }}</h5>
-                    <h5><strong>Descripcion:</strong>{{ $hoja_calculo_perfil->descripcion }}</h5>
-                </div>
-            </div>
-        </div>
-            <div style="clear:both"></div>
-            <div id="customer">
-                <table id="meta1">
-                    <tr>
-                        <td style="text-align: center;" class="meta-head">ID Control</td>
-                        <td>
-                            <input style="text-align: center;" disabled="true" type="text" class="input" value="{{$id_hoja}}">
-                        </td>
-                    </tr>
-                </table>
-                <table id="meta">
-                    <tr>
-                        <td class="meta-head">Fecha *</td>
-                        <td>
-                            <input type="date"  max="3000-12-31" min="1000-01-01" class="form-control">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <table id="items">
-                <tr>
-                    <th style="text-align: center;">Lineas o Series</th>
-                    <th style="text-align: center;">Cantidad Ventanas</th>
-                    <th style="text-align: center;">MT2</th>
-                    <th style="text-align: center;">Precio</th>
-                    <th style="text-align: center;">Sub-Total</th>
-                </tr>
-                @foreach($perfil as $perfils)
-                <tr class="item-row">    
-                    <td class="item-name">
-                        <div class="delete-wpr">
-                            <input class="input" type="text" disabled="true" style="text-align: center;" value="{{ $perfils->linea }}">
-                        </div>
-                    </td>
-                    <td class="item-name">
-                        <div class="delete-wpr">
-                            <input class="input" type="text" style="text-align: center;" disabled="true" value="{{ $perfils->repeticion }}">
-                        </div>
-                    </td>
-                    <td>
-                        <input class="input" class="cost" disabled="true"value="{{ $perfils->ancho * $perfils->alto }}" 
-                            style="text-align: center;width: 100%;">
-                    </td>
-                        
-                    <td ><input class="input" class="cost"style="text-align: center;width: 100%;" disabled="true"
-                    value="{{ $perfils->precio }}"></td>
+<br><br>
+<div id="areaImprimir">
+    
 
-                    <div class="modal fade" id="exampleModalEditarPrecio{{$perfils->id}}" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="width:67%;">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Precio Unitario
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{route('carritoDetalle.update', $perfils->id )}}" method="POST"
-                                        enctype="multipart/form-data"
-                                        style="margin-block-end:-1em !important;">
-                                        {{ csrf_field() }}
-                                        {{ method_field('PUT') }}
-                                        <div class="col-md-12 p-2">
-                                            <div class="form-group">
-                                                <label>Precio Unitario</label> 
-                                                <input type="number" step="0.01" class="form-control" placeholder="Precio" name="precio">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">
-                                                    <i class="fa fa-close" aria-hidden="true"></i>
-                                                    Cancelar</button>
-                                                <button type="submit" class="btn btn-success mr-2"><i
-                                                        class="fa fas fa-save"></i> Guardar</button>
-                                            </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </tr>
-                 @endforeach  
-                <tr>
-                    <td colspan="2" class="blank"> </td>
-                    <td colspan="2" class="total-line balance">Total:</td>
-                    <td class="total-value">
-                        <div disabled="true" id="total" style="text-align: center;">
-                          {{ $totalTotal }}
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <h6 style="text-align: left;padding: 5px;">*Campos Obligatorios</h6>
-        <div style="clear:both">
-            <br>
-            <br>
-            <p style="text-align: center;">-----------------------</p>
-            <h4 style="text-align: center;">Recibido Conforme</h4>
+<div class="content-wrapper">
+@if (Session::has('message'))
+  <div class="alert alert-success">{{ Session::get('message') }}</div>
+@endif
+@if (Session::has('error'))
+  <div class="alert alert-danger">{{ Session::get('error') }}</div>
+@endif  
+<div class="container" id="template_invoice">
+    <div class="text-center">
+        <h3 id="header">Cotización</h4>
+    </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><br>
+            <h5 class="panel-title"><strong>ID Control:</strong>{{ $id_hoja }}</h5>
+            <h5 class="panel-title"><strong>Nombre Cliente:</strong>{{ $hoja_calculo_perfil->nombre_cliente }}</h5>
+            <h5 class="panel-title"><strong>Celular:</strong> {{ $hoja_calculo_perfil->celular }}</h5>
+            <h5 class="panel-title"><strong>Descripción: </strong>{{ $hoja_calculo_perfil->descripcion }}</h5>  
         </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-borderless ">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Lineas o Series</th>
+                                <th style="text-align: center;">Cantidad Ventanas</th>
+                                <th style="text-align: center;">MT2</th>
+                                <th style="text-align: center;">Precio</th>
+                                <th style="text-align: center;">Sub-Total</th>
+                            </tr>
+                       </thead>
+                      <tbody>
+                        @foreach($perfil as $perfils)
+                          <tr class="item-row">
+                            <td class="text-center"><label>{{$perfils->linea}}</td></label>
+                            <td class="text-center"><label>{{$perfils->repeticion}}</td></label>
+                            <td class="text-center"><label>{{$perfils->ancho * $perfils->alto}}</td></label>
+                            <td class="text-center"><label>{{$perfils->precio}}</label></td>
+
+
+                            {{-- Precio unitario --}}
+                            {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
+                             <td class="text-center"><p>{{ ($perfils->ancho * $perfils->alto) * $perfils->precio }}</p></td>
+                            
+                              {{-- total --}}
+                            <!-- <td class="text-center">
+                              <p>{{ $totalTotal }}</p></td> -->
+                          </tr>                  
+                        @endforeach
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                            <strong>{{ $totalTotal }} </strong>
+                        </td>
+                      </tbody>
+                    </table>
+                </div> 
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
+</div>
 </div>
     <div class="modal-footer">
-        <a type="button" class="btn btn-default float-left" href="{{url('/cortadoraPerfil')}}">Cerrar</a>
-        <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
+        <a type="button" class="btn btn-default float-left" href="{{url('/cortadoraPerfil')}}"> <i class="fa fa-close" aria-hidden="true"></i>
+        Cerrar</a>
+         <a href="javascript:pruebaDivAPdf()" id="btnCapturar" class="btn btn-danger"><strong>
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Pasar a PDF</strong></a>
+        <button type="button" class="btn btn-info" onclick="printDiv('areaImprimir')" value="imprimir div">
             <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
-    </div>
-        </div>
-    </section>
+    </div> 
 </div>
+<script> 
+  function printDiv(nombreDiv) {
+      var contenido = document.getElementById(nombreDiv).innerHTML;
+      var contenidoOriginal = document.body.innerHTML;
+      document.body.innerHTML = contenido;
+      window.print();
+      document.body.innerHTML = contenidoOriginal;
+  }
 
-@endsection
-<script>
-    function printDiv(nombreDiv){
-        var contenido = document.getElementById(nombreDiv).innerHTML;
-        var contenidoOriginal = document.body.innerHTML;
-        document.body.innerHTML = contenido;
-        window.print();
-        document.body.innerHTML = contenidoOriginal;
-    }
+  function pruebaDivAPdf(){
+  
+     var doc = new jsPDF('p', 'mm', 'b3'),
+
+      source = $("#template_invoice")[0],
+      margins = {
+        top: 10,
+        bottom: 60,
+        left: 40,
+        width: 522
+      };
+  
+  doc.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top,
+    
+    {
+      // y coord
+      width: margins.width // max width of content on PDF
+    },
+    function(dispose) {
+      // dispose: object with X, Y of the last line add to the PDF
+      //          this allow the insertion of new lines after html
+      doc.save("cotizacion_altools.pdf");
+    },
+    margins
+  );
+}
 </script>
 <style>
     .input {
@@ -177,11 +150,15 @@
     }
     table {
         border-collapse: collapse;
+        border: #b2b2b2 1
+px
+ solid;
     }
     table td,
     table th {
         border: 1px solid black;
         padding: 5px;
+
     }
     #header {
         width: 100%;
@@ -203,61 +180,8 @@
         overflow: hidden;
         padding: 27px;
     }
-    #logo {
-        text-align: right;
-        float: right;
-        position: relative;
-        margin-top: 25px;
-        border: 1px solid #fff;
-        max-width: 540px;
-        max-height: 100px;
-        overflow: hidden;
-    }
-    #logo:hover,
-    #logo.edit {
-        border: 1px solid #000;
-        margin-top: 0px;
-        max-height: 125px;
-    }
-    #logoctr {
-        display: none;
-    }
-    #logo:hover #logoctr,
-    #logo.edit #logoctr {
-        display: block;
-        text-align: right;
-        line-height: 25px;
-        background: #eee;
-        padding: 0 5px;
-    }
-    #logohelp {
-        text-align: left;
-        display: none;
-        font-style: italic;
-        padding: 10px 5px;
-    }
-    #logohelp input {
-        margin-bottom: 5px;
-    }
-    .edit #logohelp {
-        display: block;
-    }
-    .edit #save-logo,
-    .edit #cancel-logo {
-        display: inline;
-    }
-    .edit #image,
-    #save-logo,
-    #cancel-logo,
-    .edit #change-logo,
-    .edit #delete-logo {
-        display: none;
-    }
-    #customer-title {
-        font-size: 20px;
-        font-weight: bold;
-        float: left;
-    }
+   
+   
     #meta {
         margin-top: 1px;
         width: 300px;
@@ -341,28 +265,7 @@
         width: 100%;
         text-align: center;
     }
-    textarea:hover,
-    textarea:focus,
-    #items td.total-value textarea:hover,
-    #items td.total-value textarea:focus,
-    .delete:hover {
-        background-color: #EEFF88;
-    }
-    .delete-wpr {
-        position: relative;
-    }
-    .delete {
-        display: block;
-        color: #000;
-        text-decoration: none;
-        position: absolute;
-        background: #EEEEEE;
-        font-weight: bold;
-        padding: 0px 3px;
-        border: 1px solid;
-        top: -6px;
-        left: -22px;
-        font-family: Verdana;
-        font-size: 12px;
-    }
+
 </style>
+@endsection
+
