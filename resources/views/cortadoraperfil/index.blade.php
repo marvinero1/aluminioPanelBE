@@ -48,9 +48,14 @@
                                 </button></a>
 
                             @if($hoja_calculo_perfils->estado != 'false')
-                             <a href="{{ route('cotizacion.cotizacion',$hoja_calculo_perfils->id ) }}">
+                            <a href="{{ route('cotizacion.cotizacion',$hoja_calculo_perfils->id )}}">
                                 <button class="btn btn-success btn-sm"><i class="fa fa-file-text-o" aria-hidden="true"></i> Cotización
-                                </button></a>
+                                </button>
+                            </a>
+                            <a href="{{ route('precioEditCortadora.precioEditCortadora',$hoja_calculo_perfils->id )}}">
+                                <button class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Editar Cotización
+                                </button>
+                            </a>
                             @endif
                             <form action="{{ route('cortadora.destroyHojaPerfil',$hoja_calculo_perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">

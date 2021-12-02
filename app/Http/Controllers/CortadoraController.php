@@ -23,6 +23,8 @@ class CortadoraController extends Controller
         return view('cortadora.index');
     }
 
+
+
     public function cortadoraPerfil(){
 
         $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', Auth::user()->id)->get();
@@ -163,10 +165,50 @@ class CortadoraController extends Controller
             'descripcion','mt2','perfil','totalTotal','total'));
     }
 
-    public function getPerfiilCombinacion($id){
-        
-    }
+    public function precioEditCortadora($id){
+       $perfilBarras = DB::table('hoja_calculo_perfils')
+            ->join('perfils', 'hoja_calculo_perfils.id', '=', 'perfils.hoja_id')
+            ->join('barras', 'hoja_calculo_perfils.id', '=', 'barras.hoja_id')
+            ->select('hoja_calculo_perfils.*', 'perfils.*', 'barras.*')
+            ->get();
 
+        $id_hoja = $id; 
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
+
+        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
+
+        foreach($perfilBarras as $perfilBarrass){
+            $id = $perfilBarrass->id; 
+            $nombre_cliente = $perfilBarrass->nombre_cliente;
+            $celular =$perfilBarrass->celular;
+            $descripcion = $perfilBarrass->descripcion;
+            $mt2 = $perfilBarrass->suma_m2;
+            $resta = $perfilBarrass->resta;
+            $piezas = $perfilBarrass->piezas;
+            $ancho = $perfilBarrass->ancho;
+            $alto = $perfilBarrass->alto;
+            $anchoMilesima = $ancho * 1000;
+            $restaRecorte =  $anchoMilesima - $resta;
+
+            $fam_linea = $perfilBarrass->fam_linea;
+            $perfil_id = $perfilBarrass->perfil_id;
+            $metros2 = $ancho * $alto;
+        }
+
+          $totalTotal = 0;
+            
+            foreach($perfil as $perfils){
+                $mt2 = $perfils->alto * $perfils->ancho;
+                $precio = $perfils->precio;
+                $total = $mt2 * $precio;
+
+                 $totalTotal +=  $total;
+            }
+
+         return view('cortadoraperfil.precio', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular',
+            'descripcion','mt2','perfil','totalTotal','total'));
+    }
 
 
     public function updateHojaPerfil(Request $request, $id){

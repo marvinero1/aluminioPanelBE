@@ -44,6 +44,7 @@ Route::get('cortadoraPerfil','CortadoraController@cortadoraPerfil')->name('corta
 Route::get('cortadoraInfoGeneral/{id}','CortadoraController@cortadoraInfoGeneral')->name('cortadora.cortadoraInfoGeneral'); 
 Route::get('cortadoraInfoVentanas/{id}','CortadoraController@cortadoraInfoVentanas')->name('cortadora.cortadoraInfoVentanas'); 
 Route::get('cotizadorCortadoraPerfil/{id}','CortadoraController@cotizacion')->name('cotizacion.cotizacion'); 
+Route::get('precioEditCortadora/{id}','CortadoraController@precioEditCortadora')->name('precioEditCortadora.precioEditCortadora'); 
 
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 

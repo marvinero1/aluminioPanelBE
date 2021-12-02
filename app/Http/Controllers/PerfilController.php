@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Perfil;
 use App\barra;
 use App\Corte;
+use DB;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -159,14 +160,29 @@ class PerfilController extends Controller
      * @param  \App\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil){
+    public function update(Request $request, $id){
 
-        $request->all();
-        $barra = barra::find($id);
+        //  dd($request);
+        $mensaje = "Precio Unitario Editado Exitosamente!!!";
 
-        $barra::update();
-        
+        $perfil = Perfil::findOrFail($id);
+        $perfil->update($request->all());
+
+        if($perfil){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
         return back()->withInput();
+
+        // $request->all();
+        // $barra = barra::find($id);
+
+        // $barra::update();
+        
+        // return back()->withInput();
     }
 
     /**

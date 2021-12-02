@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<div id="areaImprimir">
+<div class="content-wrapper">
+    <section>
+        <div>
     <div class="p-3">
         @if (Session::has('message'))
         <div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -15,7 +17,6 @@
         <h4 id="header">Cotización</h4>
         <div id="identity">
             <div style="padding: 6px 28px;">
-                <!-- <img height="150px" width="150px" src="{{url('/images/fondos/logo.png')}}" alt="Logo" style="float: left;"> -->
                 <div id="address">
                     <h5><strong>Nombre Cliente:</strong> {{ $hoja_calculo_perfil->nombre_cliente }}</h5>
                     <h5><strong>Celular:</strong> {{ $hoja_calculo_perfil->celular }}</h5>
@@ -34,40 +35,22 @@
                     </tr>
                 </table>
                 <table id="meta">
-                   <!--  <tr>
-                        <td class="meta-head">Comprobante*</td>
-                        <td><input type="text" value="" class="input" disabled="true"></td>
-                    </tr> -->
                     <tr>
                         <td class="meta-head">Fecha *</td>
                         <td>
                             <input type="date"  max="3000-12-31" min="1000-01-01" class="form-control">
                         </td>
                     </tr>
-                   <!--  <tr>
-                        <td class="meta-head">Descuento *</td>
-                        <td>
-                            <div class="due">
-                                <input id="descuento" value="" type="text" class="input" required>
-                            </div>
-                        </td>
-                    </tr> -->
-                   <!--  <tr>
-                        <td class="meta-head">Copia</td>
-                        <td>
-                            <h5 style="letter-spacing: 23px;"><strong>COPIA</strong></h5>  
-                        </td>
-                    </tr> -->
                 </table>
             </div>
             <table id="items">
                 <tr>
-                    <th style="text-align: center;">Ventanas</th>
-                    <th style="text-align: center;"># Ventanas</th>
+                    <th style="text-align: center;">Lineas o Series</th>
+                    <th style="text-align: center;">Cantidad Ventanas</th>
                     <th style="text-align: center;">MT2</th>
                     <th style="text-align: center;">Precio</th>
-                   <!--  <th style="text-align: center;">Precio</th> -->
                     <th style="text-align: center;">Sub-Total</th>
+                     <th style="text-align: center;">Acción</th>
                 </tr>
                 @foreach($perfil as $perfils)
                 <tr class="item-row">    
@@ -82,16 +65,15 @@
                         </div>
                     </td>
                     <td><input class="input" class="cost" disabled="true"value="{{ $perfils->ancho * $perfils->alto }}" 
-                            style="text-align: center;width: 100%;"></td>
-                        
+                            style="text-align: center;width: 100%;">
+                    </td>    
                     <td><input class="input" class="cost" disabled="true" value="{{ $perfils->precio }}" 
                             style="text-align: center;width: 100%;">                       
                     </td>
-                    <td ><input class="input" class="cost"style="text-align: center;width: 100%;" disabled="true"
-                    value="{{ $total }}"></td>
-
-                   <!--  <td><input class="input" style="text-align: center;" disabled="true" type="text" name="total"
-                            value=""></td> -->
+                    <td >
+                        <input class="input" class="cost"style="text-align: center;width: 100%;" disabled="true"
+                        value="{{ $total }}">
+                    </td>
                     <td>
                         <!-- Button trigger Confirmacion -->
                         <button type="button" class="btn btn-warning" data-toggle="modal"
@@ -99,44 +81,44 @@
                             <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Editar Precio
                         </button>
                     </td>
-                     <!-- Modal Confirmacion -->
-                                <div class="modal fade" id="exampleModalEditarPrecio{{$perfils->id}}" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content" style="width:67%;">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Editar Precio Unitario
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                    <!-- Modal Confirmacion -->
+                    <div class="modal fade" id="exampleModalEditarPrecio{{$perfils->id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="width:67%;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Precio Unitario
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{route('perfil.update', $perfils->id )}}" method="POST"
+                                        enctype="multipart/form-data"
+                                        style="margin-block-end:-1em !important;">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+                                        <div class="col-md-12 p-2">
+                                            <div class="form-group">
+                                                <label>Precio Unitario</label> 
+                                                <input type="number" step="0.01" class="form-control" placeholder="Precio" name="precio">
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="{{route('carritoDetalle.update', $perfils->id )}}" method="POST"
-                                                    enctype="multipart/form-data"
-                                                    style="margin-block-end:-1em !important;">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('PUT') }}
-                                                    <div class="col-md-12 p-2">
-                                                        <div class="form-group">
-                                                            <label>Precio Unitario</label> 
-                                                            <input type="number" step="0.01" class="form-control" placeholder="Precio" name="precio">
-                                                        </div>
-                                                      
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">
-                                                                <i class="fa fa-close" aria-hidden="true"></i>
-                                                                Cancelar</button>
-                                                            <button type="submit" class="btn btn-success mr-2"><i
-                                                                    class="fa fas fa-save"></i> Guardar</button>
-                                                        </div>
-                                                </form>
+                                          
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">
+                                                    <i class="fa fa-close" aria-hidden="true"></i>
+                                                    Cancelar</button>
+                                                <button type="submit" class="btn btn-success mr-2"><i
+                                                        class="fa fas fa-save"></i> Guardar</button>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>     
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
                 </tr>
                  @endforeach  
                 <tr>
@@ -149,31 +131,16 @@
                     </td>
                 </tr>
             </table>
-            <h6 style="text-align: left;padding: 5px;">*Campos Obligatorios</h6>
-        <div style="clear:both">
-            <br>
-            <br>
-            <p style="text-align: center;">-----------------------</p>
-            <h4 style="text-align: center;">Recibido Conforme</h4>
         </div>
     </div>
-    </div>
 </div>
-<div class="modal-footer">
-    <a type="button" class="btn btn-default float-left" href="{{url('/cortadoraPerfil')}}">Cerrar</a>
-    <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
-        <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-warning float-left" href="{{url('/cortadoraPerfil')}}">
+                <i class="fa fa-close" aria-hidden="true"></i> Cerrar</a>
+        </div>
+    </section>
 </div>
 @endsection
-<script>
-    function printDiv(nombreDiv) {
-        var contenido = document.getElementById(nombreDiv).innerHTML;
-        var contenidoOriginal = document.body.innerHTML;
-        document.body.innerHTML = contenido;
-        window.print();
-        document.body.innerHTML = contenidoOriginal;
-    }
-</script>
 <style>
     .input {
         border: 0 !important;
