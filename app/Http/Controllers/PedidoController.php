@@ -32,7 +32,7 @@ class PedidoController extends Controller
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
-        $carritoAll = Carrito::where('importadora','like',"%$importadora%")->paginate(10);
+        // $carritoAll = Carrito::where('importadora','like',"%$importadora%")->paginate(10);
          
         //dd( $producto );
         return view('pedidos.index', compact('carrito', 'user','carritoAll'));

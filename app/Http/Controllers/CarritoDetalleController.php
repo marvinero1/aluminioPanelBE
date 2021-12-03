@@ -53,8 +53,7 @@ class CarritoDetalleController extends Controller
      * @param  \App\carrito_detalle  $carrito_detalle
      * @return \Illuminate\Http\Response
      */
-    public function show(carrito_detalle $carrito_detalle, $id)
-    {   
+    public function show(carrito_detalle $carrito_detalle, $id){   
         
         $carrito = Carrito::find($id);
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
@@ -69,13 +68,13 @@ class CarritoDetalleController extends Controller
             $totalTotal +=  $total;
 
         }
-        //dd($tamanio); 
+ 
         return view('pedidos.show', compact('carrito_detalle','carrito','tamanio', 'total','totalTotal')); 
     }
 
 
-    public function carritoProductos(carrito_detalle $carrito_detalle, $id)
-    {
+    public function carritoProductos(carrito_detalle $carrito_detalle, $id){
+
         $carrito = Carrito::find($id)->first();
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get(); 
 
@@ -83,7 +82,6 @@ class CarritoDetalleController extends Controller
         $total = $carrito_detalles->cantidad_pedido * $carrito_detalles->precio;
         }
 
-        //dd($carrito_detalle);
         return view('pedidos.show', compact('carrito_detalle','carrito','total')); 
     }
 
