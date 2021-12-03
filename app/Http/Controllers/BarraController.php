@@ -59,16 +59,16 @@ class BarraController extends Controller
             $division = $ancho / 2;
             $restaJamba = 0;
 
-            $piezaResta = $division - 8;
+            $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 2;
-            $piezaResta2 = $alto - 28;
-            $piezaResta3 = $ancho - 12;
+            $piezaResta2 = $alto - 0.028;
+            $piezaResta3 = $ancho - 0.012;
 
             // PARA LINEA 20
             // DOS HOJAS 
             // RESTAR 79, DESPUES DIVIDIR ENTRE 2
 
-            $restaZocalo = $ancho - 79;
+            $restaZocalo = $ancho - 0.079;
             $restaZocalo = $restaZocalo / 2;
 
             $data = [
@@ -98,16 +98,16 @@ class BarraController extends Controller
             $piezas2005 = 6;
             $division = $ancho / 3;
 
-            $piezaResta = $division - 8;
-            $piezaResta1 = $piezaResta * 3;
-            $piezaResta2 = $alto - 28;
-            $piezaResta3 = $ancho - 12;
+            $piezaResta = $division - 0.008;
+            $piezaResta1 = $piezaResta * 0.003;
+            $piezaResta2 = $alto - 0.028;
+            $piezaResta3 = $ancho - 0.012;
 
             // PARA LINEA 20
             // TRES HOJAS
             // RESTAR 80, DIVIDO ENTRE 3,
 
-            $restaZocalo = $ancho - 80;
+            $restaZocalo = $ancho - 0.080;
             $restaZocalo = $restaZocalo / 3;
 
              $data = [
@@ -136,15 +136,15 @@ class BarraController extends Controller
             $piezas2005= 6;
             $division = $ancho / 4;
 
-            $piezaResta = $division - 8;
-            $piezaResta1 = $piezaResta * 3;
-            $piezaResta2 = $alto - 28;
-            $piezaResta3 = $ancho - 12;
+            $piezaResta = $division - 0.08;
+            $piezaResta1 = $piezaResta * 0.03;
+            $piezaResta2 = $alto - 0.028;
+            $piezaResta3 = $ancho - 0.012;
 
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho - 147;
+            $restaZocalo = $ancho - 0.147;
             $restaZocalo = $restaZocalo / 4;
 
 
@@ -178,18 +178,18 @@ class BarraController extends Controller
             $division = $ancho / 2;
             $restaJamba = 0;
 
-            $piezaResta = $division - 8;
-            $piezaResta1 = $piezaResta * 2;
-            $piezaResta2 = $anchoAlto - 31;
-            $piezaResta3 = $ancho - 16;
+            $piezaResta = $division - 0.008;
+            $piezaResta1 = $piezaResta * 0.002;
+            $piezaResta2 = $alto - 0.031;
+            $piezaResta3 = $ancho - 0.0016;
 
            // PARA LA LINEA 25 SOLO ZOCALO
             // PARA EL DE DOS HOJAS 106 LUEGO DIVIR EN DOS ZOCALO
 
-            $restaZocalo = $ancho - 106;
+            $restaZocalo = $ancho - 0.106;
             $restaZocalo = $restaZocalo / 2;
 
-            $restaEnganche = $anchoAlto - 31;
+            $restaEnganche = $ancho - 0.031;
             $restaEnganche = $restaEnganche / 2;
 
 
@@ -204,7 +204,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"106","restado"=>$restaZocalo,"piezas"=>"2",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$anchoAlto,"piezas"=>"2",
+                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$ancho,"piezas"=>"2",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
@@ -225,16 +225,16 @@ class BarraController extends Controller
             $piezas2005 = 6;
             $division = $ancho / 3;
 
-            $piezaResta = $division - 8;
-            $piezaResta1 = $piezaResta * 3;
-            $piezaResta2 = $alto - 31;
-            $piezaResta3 = $ancho - 16;
+            $piezaResta = $division - 0.008;
+            $piezaResta1 = $piezaResta * 0.003;
+            $piezaResta2 = $alto - 0.031;
+            $piezaResta3 = $ancho - 0.016;
 
             // PARA LINEA 25
             // TRES HOJAS
             // RESTAR 118, DIVIDO ENTRE 3 a zocalo,
 
-            $restaZocalo = $ancho - 118;
+            $restaZocalo = $ancho - 0.118;
             $restaZocalo = $restaZocalo / 3;
 
              $data = [
@@ -267,15 +267,15 @@ class BarraController extends Controller
             $piezas2005= 6;
             $division = $ancho / 4;
 
-            $piezaResta = $division - 8;
-            $piezaResta1 = $piezaResta * 3;
-            $piezaResta2 = $alto - 31;
-            $piezaResta3 = $ancho - 16;
+            $piezaResta = $division - 0.008;
+            $piezaResta1 = $piezaResta * 0.003;
+            $piezaResta2 = $alto - 0.031;
+            $piezaResta3 = $ancho - 0.016;
 
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho - 200;
+            $restaZocalo = $ancho - 0.200;
             $restaZocalo = $restaZocalo / 4;
 
 

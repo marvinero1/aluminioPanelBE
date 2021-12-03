@@ -64,15 +64,28 @@
                             <input class="input" type="text" style="text-align: center;" disabled="true" value="{{ $perfils->repeticion }}">
                         </div>
                     </td>
-                    <td><input class="input" class="cost" disabled="true"value="{{ $perfils->ancho * $perfils->alto }}" 
-                            style="text-align: center;width: 100%;">
-                    </td>    
+                    <td><?php       
+                        $alto = $perfils->alto;
+                        $ancho = $perfils->ancho;
+                        $resultado = $alto * $ancho;
+
+                        echo number_format($resultado, 3);       
+                    ?></td>    
                     <td><input class="input" class="cost" disabled="true" value="{{ $perfils->precio }}" 
                             style="text-align: center;width: 100%;">                       
                     </td>
                     <td >
-                        <input class="input" class="cost"style="text-align: center;width: 100%;" disabled="true"
-                        value="{{ $total }}">
+                        <?php
+                               
+                                      $alto = $perfils->alto;
+                                      $ancho = $perfils->ancho;
+                                      $precio = $perfils->precio;
+                                      $resultado = $alto * $ancho;
+                                      $subtotal = $precio * $resultado;
+
+                                      echo number_format($subtotal, 2);
+                                    
+                        ?>
                     </td>
                     <td>
                         <!-- Button trigger Confirmacion -->
@@ -126,7 +139,7 @@
                     <td colspan="2" class="total-line balance">Total:</td>
                     <td class="total-value">
                         <div disabled="true" id="total" style="text-align: center;">
-                          {{ $totalTotal }}
+                          {{ number_format($totalTotal, 2) }}
                         </div>
                     </td>
                 </tr>

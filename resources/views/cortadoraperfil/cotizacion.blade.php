@@ -44,13 +44,32 @@
                           <tr class="item-row">
                             <td class="text-center"><label>{{$perfils->linea}}</td></label>
                             <td class="text-center"><label>{{$perfils->repeticion}}</td></label>
-                            <td class="text-center"><label>{{$perfils->ancho * $perfils->alto}}</td></label>
+                            <td class="text-center"><label><?php
+                               
+                                      $alto = $perfils->alto;
+                                      $ancho = $perfils->ancho;
+                                      $resultado = $alto * $ancho;
+
+                                      echo number_format($resultado, 3);
+                                    
+                            ?></td></label>
                             <td class="text-center"><label>{{$perfils->precio}}</label></td>
 
 
                             {{-- Precio unitario --}}
                             {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
-                             <td class="text-center"><p>{{ ($perfils->ancho * $perfils->alto) * $perfils->precio }}</p></td>
+                            
+                             <td class="text-center"><?php
+                               
+                                      $alto = $perfils->alto;
+                                      $ancho = $perfils->ancho;
+                                      $precio = $perfils->precio;
+                                      $resultado = $alto * $ancho;
+                                      $subtotal = $precio * $resultado;
+
+                                      echo number_format($subtotal, 2);
+                                    
+                        ?></td>
                             
                               {{-- total --}}
                             <!-- <td class="text-center">
@@ -62,7 +81,7 @@
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center">
-                            <strong>{{ $totalTotal }} </strong>
+                            <strong>{{ number_format($totalTotal,2) }} </strong>
                         </td>
                       </tbody>
                     </table>
@@ -268,4 +287,3 @@ px
 
 </style>
 @endsection
-

@@ -63,8 +63,7 @@ class CortadoraController extends Controller
             $resta = $perfilBarrass->resta;
             $piezas = $perfilBarrass->piezas;
             $ancho = $perfilBarrass->ancho;
-            $anchoMilesima = $ancho * 1000;
-            $restaRecorte =  $anchoMilesima - $resta;
+            $restaRecorte =  $ancho - $resta;
             $fam_linea = $perfilBarrass->fam_linea;
             $perfil_id = $perfilBarrass->perfil_id;
                                   
@@ -107,8 +106,8 @@ class CortadoraController extends Controller
                     $ancho = $barras->largo;
                     $resta = $barras->resta;
                     $piezas = $barras->piezas;
-                    $anchoMilesima = $ancho * 1000;
-                    $restaRecorte =  $anchoMilesima - $resta;
+      
+                    $restaRecorte =  $ancho - $resta;
 
                     // echo count($barra);
                     // echo "<p>$fam_linea => $nombre => $restaRecorte => $piezas</p>";            
@@ -135,6 +134,15 @@ class CortadoraController extends Controller
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
         $barraL20 = barra::where('barras.perfil_id', '=', $id)->where('barras.linea', '==', 'L-20')->get();
 
+        foreach ($perfil as $perfils) {
+          $alto = $perfils->alto;
+          $ancho = $perfils->ancho;
+
+          $resultado = $alto * $ancho;
+
+          // echo $resultado.",";
+        }
+
         
         foreach($perfilBarras as $perfilBarrass){
             $id = $perfilBarrass->id; 
@@ -146,8 +154,7 @@ class CortadoraController extends Controller
             $piezas = $perfilBarrass->piezas;
             $ancho = $perfilBarrass->ancho;
             $alto = $perfilBarrass->alto;
-            $anchoMilesima = $ancho * 1000;
-            $restaRecorte =  $anchoMilesima - $resta;
+            $restaRecorte =  $ancho - $resta;
 
             $fam_linea = $perfilBarrass->fam_linea;
             $perfil_id = $perfilBarrass->perfil_id;
@@ -164,7 +171,7 @@ class CortadoraController extends Controller
                  $totalTotal +=  $total;
             }
 
-         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','descripcion','mt2','perfil','totalTotal','total','barraL20'));
+         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','descripcion','mt2','perfil','totalTotal','total','barraL20','resultado'));
     }
 
     public function precioEditCortadora($id){
@@ -190,8 +197,7 @@ class CortadoraController extends Controller
             $piezas = $perfilBarrass->piezas;
             $ancho = $perfilBarrass->ancho;
             $alto = $perfilBarrass->alto;
-            $anchoMilesima = $ancho * 1000;
-            $restaRecorte =  $anchoMilesima - $resta;
+            $restaRecorte =  $ancho - $resta;
 
             $fam_linea = $perfilBarrass->fam_linea;
             $perfil_id = $perfilBarrass->perfil_id;

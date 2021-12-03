@@ -83,16 +83,16 @@
               </div>
         </nav>
 
-        <div class="tab-content p-4" id="nav-tabContent">
+        <div class="tab-content p-2" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="float-right p-3">
+            <div class="float-right p-2">
                 <a href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
             </div>
-            <div class="float-left p-3">
+            <div class="float-left p-2">
                 <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
                 <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
             </div><br><br>
-                <div class="tab-content p-4" id="areaImprimir">
+                <div class="tab-content p-3" id="areaImprimir">
                 <div class="col">
                     <div class="class">
                         <p><strong>Resumen</strong></p>   
@@ -251,7 +251,6 @@
                     </div>
                 </div>
             </div>
-        
         </div>
 
 
@@ -288,9 +287,9 @@
                                         <td scope="row">{{ $barra2001s->fam_linea }}</td>
                                         <td class="text-center">{{ $barra2001s->alto }}</td> 
                                         <td class="text-center">{{ $barra2001s->ancho }}</td> 
-                                        <td class="text-center">{{ $barra2001s->restado }}</td> 
-                                        <td class="text-center">4</td> 
-                                        <td class="text-center">{{ $barra2001s->restado + 4 }}</td> 
+                                        <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{  number_format($barra2001s->restado,3) + 0.004 }}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -317,9 +316,9 @@
                                         <td scope="row">{{ $barra2002s->fam_linea }}</td>
                                         <td class="text-center">{{ $barra2002s->alto }}</td> 
                                         <td class="text-center">{{ $barra2002s->ancho }}</td> 
-                                        <td class="text-center">{{ $barra2002s->restado }}</td> 
-                                        <td class="text-center">4</td> 
-                                        <td class="text-center">{{ $barra2002s->restado + 4 }}</td> 
+                                        <td class="text-center">{{ number_format($barra2002s->restado,3)  }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2002s->restado,3) + 0.004 }}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -349,9 +348,9 @@
                                         <td scope="row">{{ $barra2005s->fam_linea }}</td>
                                         <td class="text-center">{{ $barra2005s->alto }}</td> 
                                         <td class="text-center">{{ $barra2005s->ancho }}</td> 
-                                        <td class="text-center">{{ $barra2005s->restado }}</td> 
-                                        <td class="text-center">4</td> 
-                                        <td class="text-center">{{ $barra2005s->restado + 4 }}</td> 
+                                        <td class="text-center">{{ number_format($barra2005s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2005s->restado,3) + 0.004 }}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -378,9 +377,9 @@
                                         <td scope="row">{{ $barra2009s->fam_linea }}</td>
                                         <td class="text-center">{{ $barra2009s->alto }}</td> 
                                         <td class="text-center">{{ $barra2009s->ancho }}</td> 
-                                        <td class="text-center">{{ $barra2009s->restado }}</td> 
-                                        <td class="text-center">4</td> 
-                                        <td class="text-center">{{ $barra2009s->restado + 4 }}</td> 
+                                        <td class="text-center">{{ number_format($barra2009s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2009s->restado,3) + 0.004 }}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -410,9 +409,9 @@
                                         <td scope="row">{{ $barra2010s->fam_linea }}</td>
                                         <td class="text-center">{{ $barra2010s->alto }}</td> 
                                         <td class="text-center">{{ $barra2010s->ancho }}</td> 
-                                        <td class="text-center">{{ $barra2010s->restado }}</td> 
-                                        <td class="text-center">4</td> 
-                                        <td class="text-center">{{ $barra2010s->restado + 4 }}</td> 
+                                        <td class="text-center">{{ number_format($barra2010s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2010s->restado,3)  + 0.004}}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -439,23 +438,19 @@
                                         <td scope="row">{{ $barra2011s->fam_linea }}</td>
                                         <td class="text-center">{{ $barra2011s->alto }}</td> 
                                         <td class="text-center">{{ $barra2011s->ancho }}</td> 
-                                        <td class="text-center">{{ $barra2011s->restado }}</td> 
-                                        <td class="text-center">4</td> 
-                                        <td class="text-center">{{ $barra2011s->restado + 4 }}</td> 
+                                        <td class="text-center">{{ number_format($barra2011s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2011s->restado,3) + 0.004 }}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
                             </table>
                         </div>
                     </div>
-                
-                   
                 </div>
             </div>
         </div> 
-        </div>
-
-        
+    </div>
         
         <script>
             function printDiv(nombreDiv) {

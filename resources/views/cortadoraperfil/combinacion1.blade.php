@@ -134,8 +134,8 @@
                         $repetecion = $perfils->repeticion;
                         $familia = $perfils->linea;
                         $cadena = "V";
-                        $ancho = $perfils->ancho * 1000;
-                        $alto = $perfils->alto * 1000;
+                        // $ancho = $perfils->ancho * 1000;
+                        // $alto = $perfils->alto * 1000;
                         $combinacion = $perfils->combinacion;
 
                         // $cortes_json = json_encode($corte_1);
@@ -190,59 +190,55 @@
     <!-- TERCERA HOJA -->    
     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <div class="row">
-            <div class="class">
-                <p><strong>Resumen</strong></p>   
-
-
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col" class="text-center">Linea y Familia</th>
-                      <th scope="col" class="text-center">#Barras a Usar</th>
-                      <th scope="col" class="text-center">Cortes</th>
-                      <th scope="col" class="text-center">Tamaño del Corte</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   @foreach($barra as $barras)
-
-                    <tr>
-                      <th scope="row" class="text-center">{{ $barras->fam_linea}}, {{ $barras->nombre}} </th>
-                        <th scope="row" class="text-center">
-                            <?php
-                                $piezas = $barras->piezas;
-
-                                $piezas_repeticiones = $piezas * $repetecion;
-                                $piezas_div = $piezas_repeticiones / 10;
-
-                                // echo  $piezas_div."---";
-
-                                $numBarras = ceil($division);
-                                 // echo($numBarras."---");
-
-                                $piezas_div1 = $piezas_div * $numBarras;
-                                
-                                 echo($piezas_div1);
-                            ?>
-                        </th>
-                        <th scope="row" class="text-center"><?php
-                            echo($repetecion);
-                        ?></th>
-                        <th scope="row" class="text-center"><?php
-                            echo($ancho_barra).' Metros';
-                        ?></th>
-                   
-                    </tr>
-                    @endforeach
-                   
-                  </tbody>
-                </table>
-
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col">
+               <div class="class">
+                <p><strong>Resumen</strong></p>   
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="text-center">Linea y Familia</th>
+                          <th scope="col" class="text-center">#Barras a Usar</th>
+                          <th scope="col" class="text-center">Cortes</th>
+                          <th scope="col" class="text-center">Tamaño del Corte</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       @foreach($barra as $barras)
+
+                        <tr>
+                          <th scope="row" class="text-center">{{ $barras->fam_linea}}, {{ $barras->nombre}} </th>
+                            <th scope="row" class="text-center">
+                                <?php
+                                    $piezas = $barras->piezas;
+
+                                    $piezas_repeticiones = $piezas * $repetecion;
+                                    $piezas_div = $piezas_repeticiones / 10;
+
+                                    // echo  $piezas_div."---";
+
+                                    $numBarras = ceil($division);
+                                     // echo($numBarras."---");
+
+                                    $piezas_div1 = $piezas_div * $numBarras;
+                                    
+                                     echo($piezas_div1);
+                                ?>
+                            </th>
+                            <th scope="row" class="text-center"><?php
+                                echo($repetecion);
+                            ?></th>
+                            <th scope="row" class="text-center"><?php
+                                echo($ancho_barra).' Metros';
+                            ?></th>
+                       
+                        </tr>
+                        @endforeach
+                       
+                      </tbody>
+                    </table>
+                </div> 
+            </div>
+            <div class="col p-3">
                 <p><?php 
                     //aca el elperfil (barra al)categorias junto a el corte
                     foreach($barra as $barras){ //aca el elperfil (barra al)categorias junto a el corte
@@ -252,8 +248,7 @@
                     $largos =  $barras->largo;  
                     $cate_json = json_encode($categorias.'-'.$nombre).",";
 
-                    $resumen = ""."\n"."Para la barra ".$cate_json." Se necesitara la cantidad de ".$division." barras de ".$largo_predeterminado." Metros.\n";
-                    
+                    $resumen = ""."\n"."Para la barra ".$cate_json." Se necesitara la cantidad de ".number_format($division, 3)." barras de ".$largo_predeterminado." Metros.\n";
                         echo nl2br($resumen);                     
                     }
                         
@@ -325,10 +320,10 @@
                             $piezas_div1 = $piezas_div * $division;
                             $piezas_div1 = ceil($piezas_div1);
                             
-                             echo($piezas_div1);                          
+                             echo($piezas_repeticiones);                          
                         ?></th>
 
-                        <th scope="row" class="text-center">{{ $barras->restado }}</th>                       
+                        <th scope="row" class="text-center">{{ number_format($barras->restado, 3) }}</th>                       
                         <th scope="row" class="text-center">{{ $barras->piezas }}</th>
                         <th scope="row" class="text-center"><?php
                             $piezas = $barras->piezas;
@@ -364,8 +359,8 @@
                                     $repetecion = $perfils->repeticion;
                                     $familia = $perfils->linea;
                                     $cadena = "V";
-                                    $ancho = $perfils->ancho * 1000;
-                                    $alto = $perfils->alto * 1000;
+                                    // $ancho = $perfils->ancho * 1000;
+                                    // $alto = $perfils->alto * 1000;
                                     $combinacion = $perfils->combinacion;
 
                                                                           
@@ -402,62 +397,6 @@
                        
                           </div><br>
 
-                          <!-- <div class="row">
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Restar</span>
-                                    </div>
-                                        <input type="number" class="form-control" name="resta">
-                                </div>
-                            </div>
-                         
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Piezas</span>
-                                    </div>
-                                        <input type="number" class="form-control" name="piezas">
-                                </div>
-                            </div>
-                           
-                          </div><br> -->
-
-                          <!-- <div class="row">
-                            <div class="col">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01">Lado</label>
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01" name="lado" required>
-                                    <option value="X1">X1</option>
-                                    <option value="X2">X2</option>
-                                    <option value="X3">X3</option>
-                                    <option value="X4">X4</option>
-                                    <option value="X5">X5</option>
-                                    <option value="X6">X6</option>
-                                    <option value="X7">X7</option>
-
-                                    </select>
-                                </div> 
-                            </div>
-                            <div class="col">
-                              <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Nombre</label>
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01" name="nombre" required> 
-                                        <option value="Riel_Inferior">Riel Inferior</option>
-                                        <option value="Riel_Superior">Riel Superior</option>
-                                        <option value="Zocalo">Zocalo</option>
-                                        <option value="Jamba">Jamba</option>
-                                        <option value="Pierna">Pierna</option>
-                                        <option value="Enganche">Enganche</option>
-                                    </select>
-                                </div>
-                            </div>
-                          </div> -->
-
                             <input hidden type="text" value="{{ $perfil_id }}" name="perfil_id">
                             <input hidden type="text" value="{{ $ancho_barra }}" name="ancho">  
                             <input hidden type="text" value="{{ $alto_barra }}" name="alto">  
@@ -475,8 +414,6 @@
             </div>
           </div>
         </div>
-     
-     
       </div>
     </div>
 
