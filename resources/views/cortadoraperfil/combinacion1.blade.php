@@ -90,39 +90,17 @@
 
     <nav class="p-3"> 
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hoja 1</a>
-        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
-        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hoja 3</a>
+       <!--  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hoja 1</a> -->
+        <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
+      <!--   <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Hoja 3</a> -->
         <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help" aria-selected="false">Hoja 4</a>
         <a class="nav-item nav-link " id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Hoja 5</a>
       </div>
     </nav>
     
 
-    <div class="tab-content p-4" id="nav-tabContent">
-        <!-- Hoja 1 Combinacion mas el for a la imagen  * la repeticion-->
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-       <!--  <div class="row" style="border: 2px gray solid;">
-          <div class="col" style="border: 2px gray solid;"><strong>Linea: </strong> {{$linea}}</div>
-          <div class="col" style="border: 2px gray solid;"><strong>Combinación: </strong>{{$combinacion}}</div>
-          <div class="col" style="border: 2px gray solid;"><strong>Alto: </strong>{{$alto_barra}} Mts.</div>
-          <div class="col" style="border: 2px gray solid;"><strong>Ancho: </strong>{{ $ancho_barra }} Mts.</div>
-          <div class="col" style="border: 2px gray solid;"><strong>Repeticion: </strong>{{$repetecion}}</div>
-        </div> -->
-     <!--    <div class="row">
-            <div class="col">
-              <img src="/images/cortadora/combinacion1.png" width="250px" style="display:block;margin: auto;">
-            </div>
-            <div class="col">
-                <p>
-                    <img src="/images/cortadora/corteCombi1.png" width="450px" align="float-left">
-                    <strong>Alto: </strong>{{$alto_barra}} Mts.
-                    <div class="text-center" style="padding-right: 158px;">
-                        <p><strong>Ancho: </strong>  {{ $ancho_barra }} Mts.</p> 
-                    </div>
-                </p>
-            </div>
-        </div> -->
+  <!--   <div class="tab-content p-4" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
          <div class="row"> 
             <table>
@@ -161,7 +139,7 @@
                 </tr>  
             </table>
         </div>
-      </div>
+    </div> -->
     
     <!-- SEGUNDA HOJA -->
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -188,7 +166,7 @@
 
 
     <!-- TERCERA HOJA -->    
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <!-- <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <div class="row">
             <div class="col">
                <div class="class">
@@ -255,7 +233,7 @@
                 ?></p>
             </div>
         </div>
-    </div> 
+    </div>  -->
 
     <!-- Cuarta Hoja -->
      <div class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
@@ -268,20 +246,17 @@
                     <tr>
                       <th scope="col" class="text-center">Linea</th>
                       <th scope="col" class="text-center">#Barras a Usar</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
                     
                    @foreach($barra as $barras)
                     <tr>
-                      <th scope="row" class="text-center">{{ $barras->linea}} </th>
-                      
+                      <th scope="row" class="text-center">{{ $barras->fam_linea}}, {{ $barras->nombre}} </th>
                         <th scope="row" class="text-center"><?php
                             $numBarras = ceil($division);
                             echo($numBarras);
                         ?></th>
-                      
                     </tr>
                     @endforeach
                   </tbody>
@@ -381,7 +356,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Linea</span>
                                     </div>
-                                    <?php
+                                   <!--  <?php
                                         foreach($perfil as $perfils){
                                             $linea = $perfils->linea;
                                         
@@ -391,7 +366,7 @@
                                                 echo "<input type='text' class='form-control' value='L-20' name='linea'>";
                                             } 
                                         }   
-                                    ?>
+                                    ?> -->
                                 </div>
                             </div>
                        

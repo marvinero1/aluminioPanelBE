@@ -51,7 +51,10 @@ Route::group(['middleware' => ['auth:api']], function(){
 //  Route::post('login', [App\Http\Controllers\Api\Auth\LoginController::class,'login']);
 });
 
-    Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);  
+    Route::put('actualizarCalculo/{id}', [CalculadoraHistorialController::class,'actualizarCalculo']);
+    Route::put('updateStatusHojaAll/{id}', [HojaCalculoController::class,'updateStatusHojaAll']);
+
+      
     Route::put('actualizarPerfil/{id}', [PerfilController::class,'actualizarPerfil']);
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
     Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);  
@@ -78,6 +81,9 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('getMyProducto/{id}', [ProductoController::class,'getMyProducto']); 
     Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']); 
     Route::get('getHojaCalculo/{id}', [HojaCalculoController::class,'getHojaCalculo']); 
+    Route::get('getHojaCalculoPerfilEditapp/{id}', [HojaCalculoController::class,'getHojaCalculoPerfilEditapp']); 
+
+    
     Route::get('getHojaCalculoPerfil/{id}', [HojaCalculoController::class,'getHojaCalculoPerfil']);
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
     Route::get('getHistorialCalculos/{id}', [PerfilController::class,'getHistorialCalculos']); 
@@ -92,6 +98,10 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
     Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
     Route::delete('HistorialDelete/{id}/', [PerfilController::class,'HistorialDelete']);  
+    Route::delete('deleteHojaPerfil/{id}/', [HojaCalculoController::class,'deleteHojaPerfil']); 
+    Route::delete('deletePerfil/{id}/', [PerfilController::class,'deletePerfil']);  
+
+    
     
     Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
     Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);

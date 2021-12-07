@@ -205,7 +205,7 @@
                   </p>
                 </a>
               </li> --}}
-              @if(Auth::user()->role == 'admin')
+              @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user')
               <li class="nav-item has-treeview">
                 <a href="/categoria" class="nav-link">
                   <i class="nav-icon fas fa-cogs"></i>
@@ -229,7 +229,9 @@
                   </li>
                 </ul>
               </li>
+              @endif
 
+              @if(Auth::user()->role == 'admin' )
                 <li class="nav-item has-treeview">
                   <a href="/categoria" class="nav-link">
                     <i class="nav-icon fas fa-cubes"></i>
@@ -253,7 +255,8 @@
                     </li>
                   </ul>
                 </li>
-              
+              @endif
+              @if(Auth::user()->role == 'admin' )
               <li class="nav-item">
                 <a href="/favoritos" class="nav-link">
                   <i class="nav-icon far fa-star"></i>
@@ -262,8 +265,7 @@
                   </p>
                 </a>
               </li>
-            @endif
-            
+              @endif
               
               <li class="nav-item has-treeview ">
                 <a href="#" class="nav-link">

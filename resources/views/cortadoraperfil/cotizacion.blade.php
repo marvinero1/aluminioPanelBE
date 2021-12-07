@@ -2,107 +2,120 @@
 
 @section('content')
 <br><br>
-<div id="areaImprimir">
-    
+<div class="content-wrapper" id="areaImprimir">
+    @if (Session::has('message'))
+      <div class="alert alert-success">{{ Session::get('message') }}</div>
+    @endif
+    @if (Session::has('error'))
+    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif  
+        <div class="container" style="padding-block-start: 40px;" id="template_invoice"><br><br><br><br>
+            <div class="text-center">
+                <h3 id="header">Cotización</h4>
+            </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading"><br>
+                    <h5 class="panel-title"><strong>ID Control:</strong>{{ $id_hoja }}</h5>
+                    <h5 class="panel-title"><strong>Nombre Cliente:</strong>{{ $hoja_calculo_perfil->nombre_cliente }}</h5>
+                    <h5 class="panel-title"><strong>Celular:</strong> {{ $hoja_calculo_perfil->celular }}</h5>
+                    <h5 class="panel-title"><strong>Descripción: </strong>{{ $hoja_calculo_perfil->descripcion }}</h5>  
+                </div>
+                <div class="panel-body"style="padding-block-start: 55px;">
+                    <div class="table-responsive">
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-borderless ">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center;">Lineas o Series</th>
+                                        <!-- <th style="text-align: center;">Cantidad Ventanas</th> -->
+                                        <th style="text-align: center;">MT2</th>
+                                        <th style="text-align: center;">Precio</th>
+                                        <th style="text-align: center;">Sub-Total</th>
+                                    </tr>
+                               </thead>
+                              <tbody>
+                                <tr>
+                                    @if($barraL20Alto != null || barraL20Ancho != null)
+                                        <td class="text-center"><label>Linea 20</label></td>
+                                    @endif
+                                
+                                    <td class="text-center"><label>{{ number_format($totalmt2,2) }}</label>
+                                        <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,2) }}" id="mt2"></td>
 
-<div class="content-wrapper">
-@if (Session::has('message'))
-  <div class="alert alert-success">{{ Session::get('message') }}</div>
-@endif
-@if (Session::has('error'))
-  <div class="alert alert-danger">{{ Session::get('error') }}</div>
-@endif  
-<div class="container" id="template_invoice">
-    <div class="text-center">
-        <h3 id="header">Cotización</h4>
-    </div>
-  <br>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading"><br>
-            <h5 class="panel-title"><strong>ID Control:</strong>{{ $id_hoja }}</h5>
-            <h5 class="panel-title"><strong>Nombre Cliente:</strong>{{ $hoja_calculo_perfil->nombre_cliente }}</h5>
-            <h5 class="panel-title"><strong>Celular:</strong> {{ $hoja_calculo_perfil->celular }}</h5>
-            <h5 class="panel-title"><strong>Descripción: </strong>{{ $hoja_calculo_perfil->descripcion }}</h5>  
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <div class="table-responsive">
-                    <table class="table table-condensed table-borderless ">
-                        <thead>
-                            <tr>
-                                <th style="text-align: center;">Lineas o Series</th>
-                                <th style="text-align: center;">Cantidad Ventanas</th>
-                                <th style="text-align: center;">MT2</th>
-                                <th style="text-align: center;">Precio</th>
-                                <th style="text-align: center;">Sub-Total</th>
-                            </tr>
-                       </thead>
-                      <tbody>
-                        @foreach($perfil as $perfils)
-                          <tr class="item-row">
-                            <td class="text-center"><label>{{$perfils->linea}}</td></label>
-                            <td class="text-center"><label>{{$perfils->repeticion}}</td></label>
-                            <td class="text-center"><label><?php
-                               
-                                      $alto = $perfils->alto;
-                                      $ancho = $perfils->ancho;
-                                      $resultado = $alto * $ancho;
-
-                                      echo number_format($resultado, 3);
-                                    
-                            ?></td></label>
-                            <td class="text-center"><label>{{$perfils->precio}}</label></td>
-
-
-                            {{-- Precio unitario --}}
-                            {{-- <td class="text-center"><label >Bs.</label><input class="monto input" type="number" value="{{$carrito_detalles->precio}}" ><p id="valueInput1"></p> </td> --}}
-                            
-                             <td class="text-center"><?php
-                               
-                                      $alto = $perfils->alto;
-                                      $ancho = $perfils->ancho;
-                                      $precio = $perfils->precio;
-                                      $resultado = $alto * $ancho;
-                                      $subtotal = $precio * $resultado;
-
-                                      echo number_format($subtotal, 2);
-                                    
-                        ?></td>
-                            
-                              {{-- total --}}
-                            <!-- <td class="text-center">
-                              <p>{{ $totalTotal }}</p></td> -->
-                          </tr>                  
-                        @endforeach
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center">
-                            <strong>{{ number_format($totalTotal,2) }} </strong>
-                        </td>
-                      </tbody>
-                    </table>
-                </div> 
+                                    <td class="text-center"><label id="precio_view"></label>
+                                        <input type="number" id="precio" name="precio" style="width: 25%;">
+                                    </td>
+                                   
+                                    <td class="text-center">
+                                         <strong><label id="sub-total"></label></strong>
+                                           
+                                    </td>    
+                                </tr>
+                                @if($barraL25Alto != null)
+                                    <tr>
+                                        <td class="text-center"><label>Linea 25</label></td>
+                                        <td class="text-center"><label>{{  number_format($totalmt225,2) }}</label>
+                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,2) }}" id="mt2L25"></td>
+                                        <td class="text-center"><label id="precio_view25"></label>
+                                            <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
+                                        </td>
+                                        <td class="text-center"> <strong><label id="sub-total25"></label></strong></td>
+                                    </tr>
+                                @endif 
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Total: &nbsp;</strong><label id="totalTotal"></label></td>
+                                </tr> 
+                              </tbody>
+                            </table>
+                        </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 </div>
-</div>
-    <div class="modal-footer">
-        <a type="button" class="btn btn-default float-left" href="{{url('/cortadoraPerfil')}}"> <i class="fa fa-close" aria-hidden="true"></i>
-        Cerrar</a>
-         <a href="javascript:pruebaDivAPdf()" id="btnCapturar" class="btn btn-danger"><strong>
-            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Pasar a PDF</strong></a>
-        <button type="button" class="btn btn-info" onclick="printDiv('areaImprimir')" value="imprimir div">
-            <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
-    </div> 
-</div>
-<script> 
+
+
+<div class="modal-footer">
+    <a type="button" class="btn btn-default float-left" href="{{url('/cortadoraPerfil')}}"> <i class="fa fa-close" aria-hidden="true"></i>
+    Cerrar</a>
+     <!-- <a href="javascript:pruebaDivAPdf()" id="btnCapturar" class="btn btn-danger"><strong>
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp; Pasar a PDF</strong></a> -->
+    <button type="button" class="btn btn-warning" onclick="calcular()" >
+    <i class="fa fa-calculator" aria-hidden="true"></i> Calcular</button>
+    <button type="button" class="btn btn-info" onclick="printDiv('areaImprimir')" value="imprimir div">
+        <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
+    
+</div> 
+<script>
+    function calcular(){
+        let precio = document.getElementById('precio').value;
+        let mt2 = document.getElementById('mt2').value;
+        
+        let mt2L25 = document.getElementById('mt2L25').value;
+        let precioL25 = document.getElementById('precioL25').value;
+
+        let subtotal = precio * mt2;
+        let subtotal25 = precioL25 * mt2L25;
+
+        let totalTotal = subtotal + subtotal25;
+
+        document.getElementById('sub-total').innerHTML = subtotal;
+        document.getElementById('precio_view').innerHTML = precio;
+
+        document.getElementById('sub-total25').innerHTML = subtotal25;
+        document.getElementById('precio_view25').innerHTML = precioL25;
+        document.getElementById('totalTotal').innerHTML = totalTotal;
+
+        console.log(subtotal);   
+    }
   function printDiv(nombreDiv) {
       var contenido = document.getElementById(nombreDiv).innerHTML;
       var contenidoOriginal = document.body.innerHTML;

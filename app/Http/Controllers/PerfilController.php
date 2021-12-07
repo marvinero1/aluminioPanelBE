@@ -26,7 +26,7 @@ class PerfilController extends Controller
      public function getHistorialCalculos($id){
         $perfil = Perfil::where('perfils.user_id', '=', $id)->get();
 
-        return response()->json($perfil, 201);
+        return response()->json($perfil, 201); 
     }
 
     /**
@@ -200,6 +200,12 @@ class PerfilController extends Controller
         return back()->withInput();
     }
 
+
+    public function deletePerfil($id){
+        $perfil = Perfil::find($id);
+        $perfil->delete();
+        return response()->json($perfil, 200);
+    }
 
     public function actualizarPerfil(Request $request, $id){
         

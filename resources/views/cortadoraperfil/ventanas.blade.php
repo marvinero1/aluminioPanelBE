@@ -79,7 +79,7 @@
         <nav class="p-2"> 
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hoja 1</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
+                <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a> -->
               </div>
         </nav>
 
@@ -136,7 +136,7 @@
                                                 } elseif ($combinacion == 'combinacion4') {
                                                     echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                                    echo $cadena.$x."\n".$familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                                    echo $cadena."100"."\n".$familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                                 } else {
                                                     echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
@@ -254,7 +254,7 @@
         </div>
 
 
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="float-right p-1">
                 <a href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
             </div>
@@ -271,7 +271,7 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    <!-- <th scope="col" class="text-center">#Ventas</th> -->
+                                    
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
@@ -300,7 +300,7 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    <!-- <th scope="col" class="text-center">#Ventas</th> -->
+                                 
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
@@ -332,7 +332,7 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    <!-- <th scope="col" class="text-center">#Ventas</th> -->
+                                  
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
@@ -361,7 +361,7 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    <!-- <th scope="col" class="text-center">#Ventas</th> -->
+                                    
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
@@ -393,7 +393,7 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    <!-- <th scope="col" class="text-center">#Ventas</th> -->
+                               
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
@@ -422,7 +422,7 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    <!-- <th scope="col" class="text-center">#Ventas</th> -->
+                                   
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
@@ -449,7 +449,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div> --> 
     </div>
         
         <script>

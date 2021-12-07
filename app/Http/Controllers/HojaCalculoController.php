@@ -40,6 +40,23 @@ class HojaCalculoController extends Controller
         return response()->json($hoja_calculo_perfil, 201);
     }
 
+     public function getHojaCalculoPerfilEditapp(Request $request, $id){
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', $id)
+        ->get();
+
+        return response()->json($hoja_calculo_perfil, 201);
+    }
+
+
+    public function deleteHojaPerfil(Request $request, $id){
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
+        $hoja_calculo_perfil->delete();
+
+        return response()->hoja_calculo_perfil($hoja_calculo_perfil, 200); 
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -91,7 +108,8 @@ class HojaCalculoController extends Controller
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
 
         $perfil_id = $id;
-        return view('cortadoraperfil.show', compact('perfil','barra'));
+       
+        return view('cortadoraperfil.show', compact('perfil','barra'));  
     }
 
     /**
@@ -117,6 +135,14 @@ class HojaCalculoController extends Controller
         //
     }
 
+    public function updateStatusHojaAll(Request $request, $id){
+        
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
+        $hoja_calculo_perfil->update($request->all());
+
+        return response()->json($hoja_calculo_perfil, 200);
+    }
+
     public function updateStatusHoja(Request $request, $id){
         
         $hoja_calculo = Hoja_calculo::findOrFail($id);
@@ -132,6 +158,11 @@ class HojaCalculoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-         
+        $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
+        $hoja_calculo_perfil->delete($request->all());
+
+        return response()->json($hoja_calculo_perfil, 200);
     }
+
+
 }

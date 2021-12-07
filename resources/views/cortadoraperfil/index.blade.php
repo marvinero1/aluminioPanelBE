@@ -40,9 +40,9 @@
                                         aria-hidden="true"></i> Ver
                                 </button></a>
 
-                             <a href="{{ route('cortadora.cortadoraInfoGeneral',$hoja_calculo_perfils->id ) }}">
+                             <!-- <a href="{{ route('cortadora.cortadoraInfoGeneral',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-info btn-sm"><i class="fa fa-files-o" aria-hidden="true"></i> Info General
-                                </button></a>
+                                </button></a> -->
                              <a href="{{ route('cortadora.cortadoraInfoVentanas',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-window-restore" aria-hidden="true"></i> Ventanas
                                 </button></a>
@@ -52,10 +52,10 @@
                                 <button class="btn btn-success btn-sm"><i class="fa fa-file-text-o" aria-hidden="true"></i> Cotización
                                 </button>
                             </a>
-                            <a href="{{ route('precioEditCortadora.precioEditCortadora',$hoja_calculo_perfils->id )}}">
+                           <!--  <a href="{{ route('precioEditCortadora.precioEditCortadora',$hoja_calculo_perfils->id )}}">
                                 <button class="btn btn-warning btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> Editar Cotización
                                 </button>
-                            </a>
+                            </a> -->
                             @endif
                             <form action="{{ route('cortadora.destroyHojaPerfil',$hoja_calculo_perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">

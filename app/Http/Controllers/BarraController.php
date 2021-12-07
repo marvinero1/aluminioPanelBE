@@ -35,7 +35,9 @@ class BarraController extends Controller
      */
     public function store(Request $request){
        
-        $request->all();
+        $data = $request->all();
+
+        // dd($data);
         $ancho = $request->ancho;
         $alto = $request->alto;
         $linea = $request->linea;
