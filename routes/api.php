@@ -86,7 +86,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     
     Route::get('getHojaCalculoPerfil/{id}', [HojaCalculoController::class,'getHojaCalculoPerfil']);
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
-    Route::get('getHistorialCalculos/{id}', [PerfilController::class,'getHistorialCalculos']); 
+    Route::get('getHistorialCalculos/{id}/{hoja_id}', [PerfilController::class,'getHistorialCalculos']); 
     Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);

@@ -23,8 +23,9 @@ class PerfilController extends Controller
         //
     }
 
-     public function getHistorialCalculos($id){
-        $perfil = Perfil::where('perfils.user_id', '=', $id)->get();
+     public function getHistorialCalculos($id, $hoja_id){
+        $perfil = Perfil::where('perfils.user_id', '=', $id)
+        ->where('perfils.hoja_id', '=', $hoja_id)->get();
 
         return response()->json($perfil, 201); 
     }

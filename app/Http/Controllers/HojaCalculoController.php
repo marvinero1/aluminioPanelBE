@@ -109,7 +109,7 @@ class HojaCalculoController extends Controller
 
         $perfil_id = $id;
        
-        return view('cortadoraperfil.show', compact('perfil','barra'));  
+        return view('cortadoraperfil.show', compact('perfil'));  
     }
 
     /**

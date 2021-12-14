@@ -37,34 +37,59 @@
                                     </tr>
                                </thead>
                               <tbody>
-                                <tr>
-                                    @if($barraL20Alto != null || barraL20Ancho != null)
-                                        <td class="text-center"><label>Linea 20</label></td>
-                                    @endif
-                                
+                                @if($barraL20Alto != null || barraL20Ancho != null)
+                                <tr><input type="text" hidden="true" value="{{ $barraL20Alto}}" id="barras_20">
+                                    
+                                    <td class="text-center"><label>Linea 20</label></td>
                                     <td class="text-center"><label>{{ number_format($totalmt2,2) }}</label>
-                                        <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,2) }}" id="mt2"></td>
-
+                                        <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,2) }}" id="mt2">
+                                    </td>
                                     <td class="text-center"><label id="precio_view"></label>
                                         <input type="number" id="precio" name="precio" style="width: 25%;">
                                     </td>
-                                   
                                     <td class="text-center">
                                          <strong><label id="sub-total"></label></strong>
                                            
-                                    </td>    
+                                    </td> 
                                 </tr>
+                                @else
+                                 <tr><input type="text" hidden="true" value="0" id="barras_20">
+                                    
+                                    <td class="text-center"><label>Linea 20</label></td>
+                                    <td class="text-center"><label>0</label>
+                                        <input hidden="true" type="text" name="mt2" value="0" id="mt2">
+                                    </td>
+                                    <td class="text-center"><label id="precio_view"></label>
+                                        <input type="number" id="precio" value="0" name="precio" style="width: 25%;">
+                                    </td>
+                                    <td class="text-center">
+                                         <strong><label id="sub-total"></label></strong>
+                                    </td>
+                                </tr>
+                                @endif
                                 @if($barraL25Alto != null)
-                                    <tr>
+                                    <tr><input type="text" hidden="true" value="{{ $barraL25Alto}}" id="barras_25">
                                         <td class="text-center"><label>Linea 25</label></td>
                                         <td class="text-center"><label>{{  number_format($totalmt225,2) }}</label>
-                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,2) }}" id="mt2L25"></td>
+                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,2) }}" 
+                                         id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
                                             <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
                                         </td>
                                         <td class="text-center"> <strong><label id="sub-total25"></label></strong></td>
                                     </tr>
-                                @endif 
+                                @else
+                                <tr><input type="text" hidden="true" value="0" id="barras_25">
+                                        <td class="text-center"><label>Linea 25</label></td>
+                                        <td class="text-center"><label>0</label>
+                                         <input hidden="true" type="text" name="mt2L25" value="0" 
+                                         id="mt2L25"></td>
+                                        <td class="text-center"><label id="precio_view25"></label>
+                                            <input type="number" id="precioL25" name="precioL25" value="0" style="width: 25%;">
+                                        </td>
+                                        <td class="text-center"> <strong><label id="sub-total25"></label></strong></td>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -96,37 +121,36 @@
 </div> 
 <script>
     function calcular(){
-        let precio = document.getElementById('precio').value;
+   
         let mt2 = document.getElementById('mt2').value;
-        
-        let mt2L25 = document.getElementById('mt2L25').value;
-        let precioL25 = document.getElementById('precioL25').value;
-
+        let precio = document.getElementById('precio').value;
         let subtotal = precio * mt2;
-        let subtotal25 = precioL25 * mt2L25;
-
-        let totalTotal = subtotal + subtotal25;
 
         document.getElementById('sub-total').innerHTML = subtotal;
         document.getElementById('precio_view').innerHTML = precio;
+       
+        let mt2L25 = document.getElementById('mt2L25').value;
 
+        let precioL25 = document.getElementById('precioL25').value;
+        let subtotal25 = precioL25 * mt2L25;
         document.getElementById('sub-total25').innerHTML = subtotal25;
         document.getElementById('precio_view25').innerHTML = precioL25;
-        document.getElementById('totalTotal').innerHTML = totalTotal;
-
-        console.log(subtotal);   
+        let totalTotal = subtotal + subtotal25;
+        
+        document.getElementById('totalTotal').innerHTML = totalTotal;  
     }
-  function printDiv(nombreDiv) {
-      var contenido = document.getElementById(nombreDiv).innerHTML;
-      var contenidoOriginal = document.body.innerHTML;
-      document.body.innerHTML = contenido;
-      window.print();
-      document.body.innerHTML = contenidoOriginal;
-  }
 
-  function pruebaDivAPdf(){
+    function printDiv(nombreDiv) {
+        var contenido = document.getElementById(nombreDiv).innerHTML;
+        var contenidoOriginal = document.body.innerHTML;
+        document.body.innerHTML = contenido;
+        window.print();
+        document.body.innerHTML = contenidoOriginal;
+    }
+
+    function pruebaDivAPdf(){
   
-     var doc = new jsPDF('p', 'mm', 'b3'),
+        var doc = new jsPDF('p', 'mm', 'b3'),
 
       source = $("#template_invoice")[0],
       margins = {
