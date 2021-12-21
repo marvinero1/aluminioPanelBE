@@ -50,6 +50,7 @@ Route::get('precioEditCortadora/{id}','CortadoraController@precioEditCortadora')
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad');
 Route::put('updateHojaPerfil/{id}/','CortadoraController@updateHojaPerfil')->name('hojaPerfil.updateHojaPerfil');
+Route::put('updatePerfil/{id}/','PerfilController@updatePerfil')->name('perfil.updatePerfil');
 Route::delete('destroyHojaPerfil/{id}','CortadoraController@destroyHojaPerfil')->name('cortadora.destroyHojaPerfil');
 
 

@@ -40,10 +40,10 @@ class HojaCalculoController extends Controller
         return response()->json($hoja_calculo_perfil, 201);
     }
 
-     public function getHojaCalculoPerfilEditapp(Request $request, $id){
+        public function getHojaCalculoPerfilEditapp(Request $request, $id){
 
         $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', $id)
-        ->get();
+        ->latest()->get();
 
         return response()->json($hoja_calculo_perfil, 201);
     }
@@ -105,11 +105,16 @@ class HojaCalculoController extends Controller
      */
     public function show(Hoja_calculo $hoja_calculo, $id){
 
-        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
+        $perfil = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.estado', '=', "false")->get();
 
+        $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.id','=',$id)->get();
         $perfil_id = $id;
+
+        foreach ($hoja_calculo_perfil as $hoja_calculo_perfils) {
+            $nombre_cliente = $hoja_calculo_perfils->nombre_cliente;
+        }
        
-        return view('cortadoraperfil.show', compact('perfil'));  
+        return view('cortadoraperfil.show', compact('perfil','perfil_id','nombre_cliente'));  
     }
 
     /**

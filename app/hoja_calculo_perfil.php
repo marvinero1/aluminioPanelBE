@@ -25,4 +25,6 @@ class hoja_calculo_perfil extends Model
                            'suma_m2',
                            'descripcion',
                             ];
+
+     
 }

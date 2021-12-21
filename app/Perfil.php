@@ -24,6 +24,7 @@ class Perfil extends Model
                         'categoria',
                         'hoja_id',
                         'linea',
+                        'estado',
                         'repeticion',
                         'user_id',
                         'precio',
@@ -33,5 +34,7 @@ class Perfil extends Model
         return $this->belongsTo(barra::class,'id','perfil_id');
     }
 
-     
+    public function hoja_perfil(){
+        return $this->hasOne(hoja_calculo_perfil::class,'id');
+    }
 }

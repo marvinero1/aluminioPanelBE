@@ -186,6 +186,20 @@ class PerfilController extends Controller
         // return back()->withInput();
     }
 
+    public function updatePerfil(Request $request, $id){
+
+
+        $perfil = Perfil::findOrFail($id);
+        $estado = $request->get('estado');
+
+        $perfil->estado = $estado;
+
+        $perfil->update();
+
+        return back()->withInput();
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *

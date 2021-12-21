@@ -178,13 +178,12 @@
                                         $barra_perfil_id = $barras->perfil_id;
                                             if($id_perfil == $barra_perfil_id){
                                                 $restado = $barras->restado;
-                                                $round = round($restado);
-                                                echo "<p>$round</p>";   
-                                                                                                        
+                                                echo "<p>$restado</p>";                                                   
                                             }
                                         }?>
                                     </td> 
                                     <td class="text-center">
+
                                         <?php
                                         foreach ($barra as $barras){
                                         $barra_perfil_id = $barras->perfil_id;
@@ -194,8 +193,7 @@
                                                 $ancho = $barras->largo;
                                                 $resta = $barras->resta;
                                                 $piezas = $barras->piezas;
-                                                $anchoMilesima = $ancho * 1000;
-                                                $restaRecorte =  $anchoMilesima - $resta;
+                                                $restaRecorte =  $ancho - $resta;
 
                                                 $piezas = $barras->piezas;
 
@@ -215,8 +213,7 @@
                                                 $ancho = $barras->largo;
                                                 $resta = $barras->resta;
                                                 $piezas = $barras->piezas;
-                                                $anchoMilesima = $ancho * 1000;
-                                                $restaRecorte =  $anchoMilesima - $resta;
+                                                $restaRecorte =  $ancho - $resta;
 
                                                  $piezas_repeticiones = $piezas * $repetecion;
 

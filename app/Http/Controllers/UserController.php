@@ -60,7 +60,8 @@ class UserController extends Controller
 
 
     public function getImportadora(){
-        return User::all()->where('role', 'empresa');
+        $user = User::where('role', '=' ,'empresa')->get();
+        return response()->json($user, 200);
 
          
     }

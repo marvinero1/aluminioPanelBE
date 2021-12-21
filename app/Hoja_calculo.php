@@ -22,4 +22,6 @@ class Hoja_calculo extends Model
                            'estado',
                            'total',
                         ];
+
+   
 }

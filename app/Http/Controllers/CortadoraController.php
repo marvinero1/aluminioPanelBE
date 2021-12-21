@@ -139,7 +139,12 @@ class CortadoraController extends Controller
         $barraL25Alto = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('alto');
         $barraL25Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('ancho');
 
+        
+        // echo $barraL20Alto, '*' ,$barraL20Ancho,'=';
         $totalmt2 = $barraL20Alto * $barraL20Ancho;
+        // echo number_format($totalmt2,3);
+
+
         $totalmt225 = $barraL25Alto * $barraL25Ancho;
         
         
@@ -184,7 +189,7 @@ class CortadoraController extends Controller
                  $totalTotal +=  $total;
             }
 
-         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','barraL20Alto','barraL20Ancho','barraL25Ancho','barraL25Alto','totalmt225','descripcion','mt2','perfil','totalTotal','total','barraL20','resultado','totalmt2'));
+         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','barraL20Alto','barraL20Ancho','barraL25Ancho','barraL25Alto','totalmt225','descripcion','mt2','perfil','totalTotal','total','resultado','totalmt2'));
     }
 
     public function precioEditCortadora($id){

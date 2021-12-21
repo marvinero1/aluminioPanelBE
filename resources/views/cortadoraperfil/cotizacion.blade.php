@@ -41,9 +41,12 @@
                                 <tr><input type="text" hidden="true" value="{{ $barraL20Alto}}" id="barras_20">
                                     
                                     <td class="text-center"><label>Linea 20</label></td>
-                                    <td class="text-center"><label>{{ number_format($totalmt2,2) }}</label>
-                                        <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,2) }}" id="mt2">
+                                    
+                                    <td class="text-center"><label>{{ number_format($totalmt2,3) }}</label>
+
+                                    <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,3) }}" id="mt2">
                                     </td>
+
                                     <td class="text-center"><label id="precio_view"></label>
                                         <input type="number" id="precio" name="precio" style="width: 25%;">
                                     </td>
@@ -70,8 +73,8 @@
                                 @if($barraL25Alto != null)
                                     <tr><input type="text" hidden="true" value="{{ $barraL25Alto}}" id="barras_25">
                                         <td class="text-center"><label>Linea 25</label></td>
-                                        <td class="text-center"><label>{{  number_format($totalmt225,2) }}</label>
-                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,2) }}" 
+                                        <td class="text-center"><label>{{  number_format($totalmt225,3) }}</label>
+                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,3) }}" 
                                          id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
                                             <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
@@ -121,22 +124,34 @@
 </div> 
 <script>
     function calcular(){
-   
         let mt2 = document.getElementById('mt2').value;
         let precio = document.getElementById('precio').value;
         let subtotal = precio * mt2;
 
+        subtotal = parseFloat(subtotal).toFixed(2);
         document.getElementById('sub-total').innerHTML = subtotal;
+
+        precio = parseFloat(precio).toFixed(2);
         document.getElementById('precio_view').innerHTML = precio;
        
-        let mt2L25 = document.getElementById('mt2L25').value;
+        let mt2L25 = parseFloat(document.getElementById('mt2L25').value);
+        mt2L25 = parseFloat(mt2L25).toFixed(2);
 
         let precioL25 = document.getElementById('precioL25').value;
+        precioL25 = parseFloat(precioL25).toFixed(2);
+
         let subtotal25 = precioL25 * mt2L25;
+        subtotal25 = parseFloat(subtotal25).toFixed(2);
         document.getElementById('sub-total25').innerHTML = subtotal25;
-        document.getElementById('precio_view25').innerHTML = precioL25;
-        let totalTotal = subtotal + subtotal25;
         
+        document.getElementById('precio_view25').innerHTML = precioL25;
+        precioL25 = parseFloat(precioL25).toFixed(2);
+        // console.log(subtotal , subtotal25);
+
+        let totalTotal = parseFloat(subtotal) + parseFloat(subtotal25);
+        // console.log(totalTotal);
+
+        totalTotal = parseInt(totalTotal).toFixed(2);
         document.getElementById('totalTotal').innerHTML = totalTotal;  
     }
 
