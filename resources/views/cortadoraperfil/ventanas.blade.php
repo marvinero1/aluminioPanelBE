@@ -129,14 +129,14 @@
                                         
                                         // $cortes_json = json_encode($corte_1);
                                             for ($x = 1; $x <= $repetecion; $x++){
-                                                 if ($combinacion == 'combinacion1') {
+                                                if ($combinacion == 'combinacion1') {
                                                     echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
                                                     echo $cadena.$x."\n".$familia."\n".'<img src="/images/cortadora/corteCombi2.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                                 } elseif ($combinacion == 'combinacion4') {
                                                     echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
-                                                    echo $cadena."100"."\n".$familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
+                                                    echo $cadena.$x."\n".$familia."\n".'<img src="/images/cortadora/combinacion4_1.png" width="200px">'."\n".'<div class="text-center">'.$ancho.'</div>';
                                                 } else {
                                                     echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
@@ -178,6 +178,7 @@
                                         $barra_perfil_id = $barras->perfil_id;
                                             if($id_perfil == $barra_perfil_id){
                                                 $restado = $barras->restado;
+                                                $restado = number_format($restado,3);
                                                 echo "<p>$restado</p>";                                                   
                                             }
                                         }?>

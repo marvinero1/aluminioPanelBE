@@ -27,7 +27,7 @@ class CortadoraController extends Controller
 
     public function cortadoraPerfil(){
 
-        $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', Auth::user()->id)->get();
+        $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
         return view('cortadoraperfil.index', compact('hoja_calculo_perfil'));
 
