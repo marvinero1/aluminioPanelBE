@@ -42,7 +42,7 @@
                                     
                                     <td class="text-center"><label>Linea 20</label></td>
                                     
-                                    <td class="text-center"><label>{{ number_format($totalmt2,3) }}</label>
+                                    <td class="text-center"><label>{{ number_format($mt2Total,3) }}</label>
 
                                     <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,3) }}" id="mt2">
                                     </td>
@@ -73,7 +73,7 @@
                                 @if($barraL25Alto != null)
                                     <tr><input type="text" hidden="true" value="{{ $barraL25Alto}}" id="barras_25">
                                         <td class="text-center"><label>Linea 25</label></td>
-                                        <td class="text-center"><label>{{  number_format($totalmt225,3) }}</label>
+                                        <td class="text-center"><label>{{  number_format($mt2Total25,3) }}</label>
                                          <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,3) }}" 
                                          id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
