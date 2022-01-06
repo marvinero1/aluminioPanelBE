@@ -45,13 +45,11 @@ class BarraController extends Controller
         $hoja_id = $request->hoja_id;
         $combinacion = $request->combinacion;
        
-
         // dd($combinacion);
       
         // 1er ancho primero dividir entre 2,
         // 2da a cada pieza restarle 8, 
         // del total de 4 piezas. el total seria 
-
 
         // PARA 20
 
@@ -63,14 +61,14 @@ class BarraController extends Controller
 
             $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 2;
-            $piezaResta2 = $alto - 0.028;
+            $piezaResta2 = $alto - 0.026;
             $piezaResta3 = $ancho - 0.012;
 
             // PARA LINEA 20
             // DOS HOJAS 
             // RESTAR 79, DESPUES DIVIDIR ENTRE 2
 
-            $restaZocalo = $ancho - 0.079;
+            $restaZocalo = $ancho + 1.006; 
             $restaZocalo = $restaZocalo / 2;
 
             $data = [
@@ -102,14 +100,14 @@ class BarraController extends Controller
 
             $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 0.003;
-            $piezaResta2 = $alto - 0.028;
+            $piezaResta2 = $alto - 0.026;
             $piezaResta3 = $ancho - 0.012;
 
             // PARA LINEA 20
             // TRES HOJAS
             // RESTAR 80, DIVIDO ENTRE 3,
 
-            $restaZocalo = $ancho - 0.080;
+            $restaZocalo = $ancho + 0.030;
             $restaZocalo = $restaZocalo / 3;
 
              $data = [
@@ -140,13 +138,13 @@ class BarraController extends Controller
 
             $piezaResta = $division - 0.08;
             $piezaResta1 = $piezaResta * 0.03;
-            $piezaResta2 = $alto - 0.028;
+            $piezaResta2 = $alto - 0.026;
             $piezaResta3 = $ancho - 0.012;
 
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho - 0.147;
+            $restaZocalo = $ancho - 0.024;
             $restaZocalo = $restaZocalo / 4;
 
 
@@ -169,7 +167,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"1",
+                ["linea"=>$linea, "fam_linea"=>"5008","lado"=>"X","nombre"=>"Union","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"1",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
             ];
 
@@ -182,19 +180,17 @@ class BarraController extends Controller
 
             $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 0.002;
-            $piezaResta2 = $alto - 0.031;
+            $piezaResta2 = $alto - 0.032;
             $piezaResta3 = $ancho - 0.0016;
 
            // PARA LA LINEA 25 SOLO ZOCALO
             // PARA EL DE DOS HOJAS 106 LUEGO DIVIR EN DOS ZOCALO
 
-            $restaZocalo = $ancho - 0.106;
+            $restaZocalo = $ancho + 0.012;
             $restaZocalo = $restaZocalo / 2;
 
             $restaEnganche = $ancho - 0.031;
             $restaEnganche = $restaEnganche / 2;
-
-
 
             $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
@@ -206,7 +202,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"106","restado"=>$restaZocalo,"piezas"=>"2",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$ancho,"piezas"=>"2",
+                ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
@@ -229,14 +225,14 @@ class BarraController extends Controller
 
             $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 0.003;
-            $piezaResta2 = $alto - 0.031;
+            $piezaResta2 = $alto - 0.032;
             $piezaResta3 = $ancho - 0.016;
 
             // PARA LINEA 25
             // TRES HOJAS
             // RESTAR 118, DIVIDO ENTRE 3 a zocalo,
 
-            $restaZocalo = $ancho - 0.118;
+            $restaZocalo = $ancho + 0.050;
             $restaZocalo = $restaZocalo / 3;
 
              $data = [
@@ -271,13 +267,13 @@ class BarraController extends Controller
 
             $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 0.003;
-            $piezaResta2 = $alto - 0.031;
+            $piezaResta2 = $alto - 0.032;
             $piezaResta3 = $ancho - 0.016;
 
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho - 0.200;
+            $restaZocalo = $ancho + 0.040;
             $restaZocalo = $restaZocalo / 4;
 
 
@@ -300,7 +296,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
+                ["linea"=>$linea, "fam_linea"=>"5008","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"200","restado"=>$restaZocalo, "piezas"=>"4",

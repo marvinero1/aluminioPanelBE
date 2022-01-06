@@ -177,7 +177,7 @@ class CortadoraController extends Controller
           
           $mt2Total += $mt2; 
 
-          echo $mt2Total;
+          // echo $mt2Total;
         }
 
 

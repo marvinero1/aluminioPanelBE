@@ -109,9 +109,8 @@
                                 </a>
                                 @endif
                             </div>
-
-
                         </td>
+                        
                         <td style="text-align:center;">
                             {{-- MODAL FAVORITOS --}}
                             <div class="modal fade" id="modalFavoritos{{$productos->id}}" tabindex="-1" role="dialog"

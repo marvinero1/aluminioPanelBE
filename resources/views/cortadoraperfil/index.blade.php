@@ -18,9 +18,9 @@
                         <th style="text-align:center;">ID</th>
                        <!--  <th style="text-align:center;">Estado</th> -->
                         <th style="text-align:center;">Nombre Cliente</th>
-                        <th style="text-align:center;">Celular</th>
+                        <!-- <th style="text-align:center;">Celular</th> -->
                       <!--   <th style="text-align:center;">M2</th> -->
-                        <th style="text-align:center;">Descripcion</th>
+                        <!-- <th style="text-align:center;">Descripcion</th> -->
                         <th style="text-align:center;">Acciones</th>
                     </tr>
                 </thead>
@@ -30,9 +30,9 @@
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->id }}</td>
                         <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->estado }}</td> -->
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->nombre_cliente }}</td>
-                        <td style="text-align:center;">{{ $hoja_calculo_perfils->celular }}</td>
+                        <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->celular }}</td> -->
                         <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->suma_m2 }}</td> -->
-                        <td style="text-align:center;">{{ $hoja_calculo_perfils->descripcion }}</td>
+                      <!--   <td style="text-align:center;">{{ $hoja_calculo_perfils->descripcion }}</td> -->
                         
                         <td style="text-align:center;">
                             <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">

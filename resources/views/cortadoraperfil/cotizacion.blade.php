@@ -44,7 +44,7 @@
                                     
                                     <td class="text-center"><label>{{ number_format($mt2Total,3) }}</label>
 
-                                    <input hidden="true" type="text" name="mt2" value="{{ number_format($totalmt2,3) }}" id="mt2">
+                                    <input hidden="true" type="text" name="mt2" value="{{ number_format($mt2Total,3) }}" id="mt2">
                                     </td>
 
                                     <td class="text-center"><label id="precio_view"></label>
@@ -74,7 +74,7 @@
                                     <tr><input type="text" hidden="true" value="{{ $barraL25Alto}}" id="barras_25">
                                         <td class="text-center"><label>Linea 25</label></td>
                                         <td class="text-center"><label>{{  number_format($mt2Total25,3) }}</label>
-                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($totalmt225,3) }}" 
+                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($mt2Total25,3) }}" 
                                          id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
                                             <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
@@ -126,6 +126,7 @@
     function calcular(){
         let mt2 = document.getElementById('mt2').value;
         let precio = document.getElementById('precio').value;
+        console.log(mt2, precio);
         let subtotal = precio * mt2;
 
         subtotal = parseFloat(subtotal).toFixed(2);
