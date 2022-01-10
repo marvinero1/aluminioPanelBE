@@ -79,7 +79,7 @@
         <nav class="p-2"> 
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hoja 1</a>
-                <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a> -->
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Hoja 2</a>
               </div>
         </nav>
 
@@ -252,7 +252,7 @@
         </div>
 
 
-        <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="float-right p-1">
                 <a href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
             </div>
@@ -288,7 +288,9 @@
                                         <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{  number_format($barra2001s->restado,3) + 0.004 }}</td> 
+                                        
                                     </tr>
+                                    <tr>ssss</tr>
                                 @endforeach                      
                               </tbody>
                             </table>
@@ -447,7 +449,7 @@
                     </div>
                 </div>
             </div>
-        </div> --> 
+        </div> 
     </div>
         
         <script>

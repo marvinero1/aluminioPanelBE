@@ -68,7 +68,7 @@ class BarraController extends Controller
             // DOS HOJAS 
             // RESTAR 79, DESPUES DIVIDIR ENTRE 2
 
-            $restaZocalo = $ancho + 1.006; 
+            $restaZocalo = $ancho + 6; 
             $restaZocalo = $restaZocalo / 2;
 
             $data = [
@@ -144,7 +144,7 @@ class BarraController extends Controller
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho - 0.024;
+            $restaZocalo = $ancho + 24;
             $restaZocalo = $restaZocalo / 4;
 
 
@@ -296,7 +296,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"5008","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
+                ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"200","restado"=>$restaZocalo, "piezas"=>"4",
