@@ -31,8 +31,8 @@
                     <tr>
                         <th style="text-align:center;">Combinación</th>
                         <th style="text-align:center;">Linea</th>
-                        <th style="text-align:center;">Ancho</th>
-                        <th style="text-align:center;">Alto</th>
+                     <!--    <th style="text-align:center;">Ancho</th>
+                        <th style="text-align:center;">Alto</th> -->
                         <!-- <th style="text-align:center;">#Repeticion</th> -->
                         <th style="text-align:center;">Acciones</th>
                     </tr>
@@ -40,6 +40,7 @@
                 <tbody>
                     @foreach($perfil as $perfils)
                     <tr> 
+                        
                         @if($perfils->combinacion == "combinacion1")
                         <td style="text-align:center;">Dos Hojas</td>
                         @endif
@@ -50,8 +51,8 @@
                         <td style="text-align:center;">Cuatro Hojas</td>
                         @endif
                         <td style="text-align:center;">{{ $perfils->linea }}</td>
-                        <td style="text-align:center;">{{ number_format( $perfils->ancho, 3) }}</td>
-                        <td style="text-align:center;">{{ number_format( $perfils->alto, 3) }}</td>
+                       <!--  <td style="text-align:center;">{{ number_format( $perfils->ancho, 3) }}</td>
+                        <td style="text-align:center;">{{ number_format( $perfils->alto, 3) }}</td> -->
                         <!-- <td style="text-align:center;">{{ $perfils->repeticion }}</td> -->
                         <td style="text-align:center;">
                             

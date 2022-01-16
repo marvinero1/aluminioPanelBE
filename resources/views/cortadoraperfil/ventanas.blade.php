@@ -203,7 +203,7 @@
                                             }
                                         }?>
                                     </td> 
-                                    <!-- <td class="text-center">
+                             <!--       <td class="text-center">
                                          <?php
                                         foreach ($barra as $barras){
                                         $barra_perfil_id = $barras->perfil_id;
@@ -241,7 +241,7 @@
                                                 ";   
                                             }
                                         }?> 
-                                    </td>  -->
+                                    </td>  --> 
                                 </tr>
                             @endforeach                      
                           </tbody>
@@ -263,19 +263,23 @@
 
             <div class="tab-content p-4" id="areaImprimir1">
                 <div class="class">
+                    <p><strong>Resumen Linea 20</strong></p>
+
                     <div class="row">
                         <div class="col-6">
                             <p><strong>Resumen 2001</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
                                     <th scope="col" class="text-center">Descuento</th>
                                     <th scope="col" class="text-center">Aumento</th>
                                     <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
                                 </tr>
                               </thead>
 
@@ -288,9 +292,10 @@
                                         <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{  number_format($barra2001s->restado,3) + 0.004 }}</td> 
-                                        
+                                        <td class="text-center">{{$piezas_repeticiones2001}}</td> 
+                                        <td class="text-center">{{ ($barra2001s->restado + 0.004 ) * $piezas_repeticiones2001}}</td>
                                     </tr>
-                                    <tr>ssss</tr>
+                                    
                                 @endforeach                      
                               </tbody>
                             </table>
@@ -300,13 +305,15 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                 
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
                                     <th scope="col" class="text-center">Descuento</th>
                                     <th scope="col" class="text-center">Aumento</th>
                                     <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
                                 </tr>
                               </thead>
 
@@ -319,6 +326,8 @@
                                         <td class="text-center">{{ number_format($barra2002s->restado,3)  }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{ number_format($barra2002s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2002}}</td> 
+                                        <td class="text-center">{{ ($barra2002s->restado + 0.004) * $piezas_repeticiones2002}}</td>
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -332,13 +341,15 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                  
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
                                     <th scope="col" class="text-center">Descuento</th>
                                     <th scope="col" class="text-center">Aumento</th>
                                     <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
                                 </tr>
                               </thead>
 
@@ -351,6 +362,8 @@
                                         <td class="text-center">{{ number_format($barra2005s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{ number_format($barra2005s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2005}}</td>
+                                        <td class="text-center">{{ ($barra2005s->restado + 0.004) * $piezas_repeticiones2005}}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -361,13 +374,15 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                    
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
                                     <th scope="col" class="text-center">Descuento</th>
                                     <th scope="col" class="text-center">Aumento</th>
                                     <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
                                 </tr>
                               </thead>
 
@@ -380,6 +395,8 @@
                                         <td class="text-center">{{ number_format($barra2009s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{ number_format($barra2009s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{ $piezas_repeticiones2009 }}</td> 
+                                        <td class="text-center">{{ ($barra2009s->restado + 0.004) * $piezas_repeticiones2009}}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -400,6 +417,9 @@
                                     <th scope="col" class="text-center">Descuento</th>
                                     <th scope="col" class="text-center">Aumento</th>
                                     <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
                                 </tr>
                               </thead>
 
@@ -412,6 +432,8 @@
                                         <td class="text-center">{{ number_format($barra2010s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{ number_format($barra2010s->restado,3)  + 0.004}}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2010}}</td> 
+                                        <td class="text-center">{{ ($barra2010s->restado + 0.004) * $piezas_repeticiones2010}}</td> 
                                     </tr>
                                 @endforeach                      
                               </tbody>
@@ -422,13 +444,15 @@
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
-                                   
                                     <th scope="col" class="text-center">Ventana</th>
                                     <th scope="col" class="text-center">Alto</th>
                                     <th scope="col" class="text-center">Ancho</th>
                                     <th scope="col" class="text-center">Descuento</th>
                                     <th scope="col" class="text-center">Aumento</th>
                                     <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
                                 </tr>
                               </thead>
 
@@ -441,11 +465,257 @@
                                         <td class="text-center">{{ number_format($barra2011s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
                                         <td class="text-center">{{ number_format($barra2011s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2011}}</td> 
+                                        <td class="text-center">{{ ($barra2011s->restado + 0.004) * $piezas_repeticiones2011}}</td>
                                     </tr>
                                 @endforeach                      
                               </tbody>
                             </table>
                         </div>
+                    </div><br><br>
+
+                    <p><strong>Resumen Linea 25</strong> </p>
+                    <div class="row">
+                         <div class="col-6">
+                            <p><strong>Resumen 2501</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2501 as $barra2501s)
+                                    <tr>
+                                        <td scope="text-center">{{ $barra2501s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2501s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2501s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2501s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2501s->restado,3)  + 0.004}}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2501}}</td> 
+                                        <td class="text-center">{{ ($barra2501s->restado + 0.004) * $piezas_repeticiones2501}}</td> 
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <p><strong>Resumen 2502</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2502 as $barra2502s)
+                                    <tr>
+                                        <td scope="row">{{ $barra2502s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2502s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2502s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2502s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2502s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2502}}</td> 
+                                        <td class="text-center">{{ ($barra2502s->restado + 0.004) * $piezas_repeticiones2502 }}</td>
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                         <div class="col-6">
+                            <p><strong>Resumen 2505</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2505 as $barra2505s)
+                                    <tr>
+                                        <td scope="text-center">{{ $barra2505s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2505s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2505s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2505s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2505s->restado,3)  + 0.004}}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2505}}</td> 
+                                        <td class="text-center">{{ ($barra2505s->restado + 0.004) * $piezas_repeticiones2505}}</td> 
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                         <div class="col-6">
+                            <p><strong>Resumen 2507</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2507 as $barra2507s)
+                                    <tr>
+                                        <td scope="text-center">{{ $barra2507s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2507s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2507s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2507s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2507s->restado,3)  + 0.004}}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2507}}</td> 
+                                        <td class="text-center">{{ ($barra2507s->restado + 0.004) * $piezas_repeticiones2507}}</td> 
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p><strong>Resumen 2509</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2509 as $barra2509s)
+                                    <tr>
+                                        <td scope="row">{{ $barra2509s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2509s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2509s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2509s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2509s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2509}}</td> 
+                                        <td class="text-center">{{ ($barra2509s->restado + 0.004) * $piezas_repeticiones2509 }}</td>
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <p><strong>Resumen 2510</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2510 as $barra2510s)
+                                    <tr>
+                                        <td scope="row">{{ $barra2510s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2510s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2510s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2510s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2510s->restado,3) + 0.004 }}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2509}}</td> 
+                                        <td class="text-center">{{ ($barra2510s->restado + 0.004) * $piezas_repeticiones2510 }}</td>
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+                       <div class="row">
+                         <div class="col-6">
+                            <p><strong>Resumen 2504</strong></p>   
+                            <table class="table-responsive-sm" border="1">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Ventana</th>
+                                    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th>
+                                    <th scope="col" class="text-center">Descuento</th>
+                                    <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Piezas</th>
+                                    <th scope="col" class="text-center">Total Mts</th>
+
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                @foreach($barra2504 as $barra2504s)
+                                    <tr>
+                                        <td scope="text-center">{{ $barra2504s->fam_linea }}</td>
+                                        <td class="text-center">{{ $barra2504s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2504s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2504s->restado,3) }}</td> 
+                                        <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2504s->restado,3)  + 0.004}}</td> 
+                                        <td class="text-center">{{$piezas_repeticiones2505}}</td> 
+                                        <td class="text-center">{{ ($barra2504s->restado + 0.004) * $piezas_repeticiones2504}}</td> 
+                                    </tr>
+                                @endforeach                      
+                              </tbody>
+                            </table>
+                        </div>
+                 
                     </div>
                 </div>
             </div>

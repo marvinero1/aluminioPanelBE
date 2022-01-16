@@ -68,8 +68,9 @@ class BarraController extends Controller
             // DOS HOJAS 
             // RESTAR 79, DESPUES DIVIDIR ENTRE 2
 
-            $restaZocalo = $ancho + 6; 
-            $restaZocalo = $restaZocalo / 2;
+            $restaZocalo = $ancho + 0.006;            
+            $restaZocaloDivision = $restaZocalo / 2;
+            // dd($restaZocaloDivision); 
 
             $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
@@ -78,7 +79,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"79","restado"=>$restaZocalo,"piezas"=>$piezas2005,
+                ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"79","restado"=>$restaZocaloDivision,"piezas"=>$piezas2005,
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
@@ -91,7 +92,7 @@ class BarraController extends Controller
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
             ];
 
-             barra::insert($data);
+            barra::insert($data);
 
         }elseif($combinacion == 'combinacion4' and  $linea == 'L-20'){
             //Tres Hojas
@@ -144,9 +145,8 @@ class BarraController extends Controller
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho + 24;
+            $restaZocalo = $ancho + 0.024;
             $restaZocalo = $restaZocalo / 4;
-
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
@@ -171,7 +171,10 @@ class BarraController extends Controller
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
             ];
 
-            barra::insert($data);// PARA 25
+             // dd($data);
+
+            barra::insert($data);
+        // PARA 25
         }if ($combinacion == 'combinacion1' and  $linea == 'L-25') {
 
             $piezas2005= 4;
@@ -181,8 +184,10 @@ class BarraController extends Controller
             $piezaResta = $division - 0.008;
             $piezaResta1 = $piezaResta * 0.002;
             $piezaResta2 = $alto - 0.032;
-            $piezaResta3 = $ancho - 0.0016;
+            $piezaResta3 = $ancho - 0.016;
 
+            // dd($piezaResta3);
+            
            // PARA LA LINEA 25 SOLO ZOCALO
             // PARA EL DE DOS HOJAS 106 LUEGO DIVIR EN DOS ZOCALO
 
