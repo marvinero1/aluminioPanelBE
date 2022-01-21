@@ -238,7 +238,7 @@ class BarraController extends Controller
             // RESTAR 118, DIVIDO ENTRE 3 a zocalo,
 
             $restaZocalo = $ancho + 0.050;
-            $restaZocalo = $restaZocalo / 3;
+            $restaZocalo1 = $restaZocalo / 3;
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,
@@ -247,7 +247,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
                 "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"118","restado"=>$restaZocalo,"piezas"=>"3",
+                ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"118","restado"=>$restaZocalo1,"piezas"=>"3",
                 "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
@@ -259,7 +259,7 @@ class BarraController extends Controller
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
                 "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
 
-                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"118","restado"=>$restaZocalo, "piezas"=>"3",
+                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"0.050","restado"=>$restaZocalo1, "piezas"=>"3",
                  "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
             ];
 
@@ -278,8 +278,8 @@ class BarraController extends Controller
             // PARA LINEA 20
             // CUATRO HOJAS
             // RESTAR 147, DIVIDO ENTRE 4,
-            $restaZocalo = $ancho + 0.040;
-            $restaZocalo = $restaZocalo / 4;
+            $restaZocalo9 = $ancho + 0.040;
+            $restaZocalo = $restaZocalo9 / 4;
 
 
              $data = [
