@@ -275,9 +275,9 @@ class BarraController extends Controller
             $piezaResta2 = $alto - 0.032;
             $piezaResta3 = $ancho - 0.016;
 
-            // PARA LINEA 20
+            // PARA LINEA 25
             // CUATRO HOJAS
-            // RESTAR 147, DIVIDO ENTRE 4,
+            // SUMAR 0.040, DIVIDO ENTRE 4,
             $restaZocalo9 = $ancho + 0.040;
             $restaZocalo = $restaZocalo9 / 4;
 

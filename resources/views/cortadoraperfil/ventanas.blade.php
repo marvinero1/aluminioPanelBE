@@ -83,6 +83,7 @@
                 <a class="nav-item nav-link" id="nav-res-tab" data-toggle="tab" href="#nav-res" role="tab" aria-controls="nav-res" aria-selected="false">Hoja 3</a>
               </div>
         </nav>
+        
 
         <!-- HOJA1 -->
         <div class="tab-content p-2" id="nav-tabContent">
@@ -95,6 +96,12 @@
                 <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
             </div><br><br>
                 <div class="tab-content p-3" id="areaImprimir">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <p><strong>Nombre Cliente: </strong></p> {{ $nombre_cliente }}
+                             
+                        </div>
+                    </div>
                 <div class="col">
                     <div class="class">
                         <p><strong>Resumen</strong></p>   
@@ -264,9 +271,15 @@
             </div><br><br>
 
             <div class="tab-content p-4" id="areaImprimir1">
+                <div class="col-md-6">
+                    <div class="row">
+                        <p><strong>Nombre Cliente: </strong></p> {{ $nombre_cliente }}
+                         
+                    </div>
+                </div>
                 <div class="class">
                     <p><strong>Resumen Linea 20</strong></p>
-
+                    
                     <div class="row">
                         <div class="col-6">
                             <p><strong>Resumen 2001</strong></p>   
@@ -308,7 +321,8 @@
                                             echo "$piezas_repeticiones2001";            
                                         
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2001s->restado + 0.004 ) * $piezas_repeticiones2001 }}</td>
+                                        <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td> 
+                                        <!-- <td class="text-center">{{ ($barra2001s->restado + 0.004 ) * $piezas_repeticiones2001 }}</td> -->
                                     
                                     </tr>
                                     
@@ -374,7 +388,8 @@
                                             echo "$piezas_repeticiones2002";            
                                         
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2002s->restado + 0.004) * $piezas_repeticiones2002}}</td>
+                                        <td class="text-center">{{ number_format($barra2002s->restado,3)  }}</td> 
+                                  <!--       <td class="text-center">{{ ($barra2002s->restado + 0.004) * $piezas_repeticiones2002}}</td> -->
                                     </tr>
                                 @endforeach  
                                 <!-- <td colspan="2" class="text-center">TOTAL</td>
@@ -441,6 +456,7 @@
 
                                                echo $piezas_repeticiones2005;
                                         ?></td>
+
                                         <td class="text-center">{{ ($barra2005s->restado + 0.004) * $piezas_repeticiones2005}}</td> 
                                     </tr>
                                 @endforeach   
@@ -504,8 +520,9 @@
                                               $piezas_repeticiones2009 = $piezas * $repeteciones;
 
                                                echo $piezas_repeticiones2009;
-                                        ?></td> 
-                                        <td class="text-center">{{ ($barra2009s->restado + 0.004) * $piezas_repeticiones2009}}</td> 
+                                        ?></td>
+                                        <td class="text-center">{{ number_format($barra2009s->restado,3) }}</td> 
+                                        <!-- <td class="text-center">{{ ($barra2009s->restado + 0.004) * $piezas_repeticiones2009}}</td> --> 
                                     </tr>
                                 @endforeach  
                                 <!-- <td colspan="2" class="text-center">TOTAL</td>
@@ -572,7 +589,8 @@
 
                                                echo $piezas_repeticiones2010;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2010s->restado + 0.004) * $piezas_repeticiones2010}}</td> 
+                                        <td class="text-center">{{ number_format($barra2010s->restado,3) }}</td> 
+                                        <!-- <td class="text-center">{{ ($barra2010s->restado + 0.004) * $piezas_repeticiones2010}}</td> --> 
                                     </tr>
                                 @endforeach    
                                 <!-- <td colspan="2" class="text-center">TOTAL</td>
@@ -635,7 +653,8 @@
 
                                                echo $piezas_repeticiones2011;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2011s->restado + 0.004) * $piezas_repeticiones2011}}</td>
+                                          <td class="text-center">{{ number_format($barra2011s->restado,3) }}</td> 
+                                  <!--       <td class="text-center">{{ ($barra2011s->restado + 0.004) * $piezas_repeticiones2011}}</td> -->
                                     </tr>
                                 @endforeach 
                               <!--   <td colspan="2" class="text-center">TOTAL</td>
@@ -702,7 +721,8 @@
 
                                                echo $piezas_repeticiones5008;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra5008s->restado + 0.004) * $piezas_repeticiones5008}}</td> 
+                                        <td class="text-center">{{ number_format($barra2010s->restado,3) }}</td> 
+                            <!--             <td class="text-center">{{ ($barra5008s->restado + 0.004) * $piezas_repeticiones5008}}</td>  -->
                                     </tr>
                                 @endforeach  
                                <!--  <td colspan="2" class="text-center">TOTAL</td>
@@ -768,7 +788,8 @@
 
                                                echo $piezas_repeticiones2501;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2501s->restado + 0.004) * $piezas_repeticiones2501}}</td> 
+                                        <td class="text-center">{{ number_format($barra2501s->restado,3) }}</td> 
+                                     <!--    <td class="text-center">{{ ($barra2501s->restado + 0.004) * $piezas_repeticiones2501}}</td>  -->
                                     </tr>
                                 @endforeach   
                             <!--     <td colspan="2" class="text-center">TOTAL</td>
@@ -831,7 +852,8 @@
 
                                                echo $piezas_repeticiones2502;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2502s->restado + 0.004) * $piezas_repeticiones2502 }}</td>
+                                         <td class="text-center">{{ number_format($barra2502s->restado,3) }}</td> 
+                                      <!--   <td class="text-center">{{ ($barra2502s->restado + 0.004) * $piezas_repeticiones2502 }}</td> -->
                                     </tr>
                                 @endforeach  
                                <!--  <td colspan="2" class="text-center">TOTAL</td>
@@ -897,7 +919,8 @@
 
                                                echo $piezas_repeticiones2505;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2505s->restado + 0.004) * $piezas_repeticiones2505}}</td> 
+                                        <td class="text-center">{{ number_format($barra2505s->restado,3) }}</td> 
+                                        <!-- <td class="text-center">{{ ($barra2505s->restado + 0.004) * $piezas_repeticiones2505}}</td>  -->
                                     </tr>
                                 @endforeach 
                                 <!-- <td colspan="2" class="text-center">TOTAL</td>
@@ -960,7 +983,8 @@
 
                                                echo $piezas_repeticiones2507;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2507s->restado + 0.004) * $piezas_repeticiones2507}}</td> 
+                                         <td class="text-center">{{ number_format($barra2507s->restado,3) }}</td> 
+                                     <!--    <td class="text-center">{{ ($barra2507s->restado + 0.004) * $piezas_repeticiones2507}}</td>  -->
                                     </tr>
                                 @endforeach  
                             <!--     <td colspan="2" class="text-center">TOTAL</td>
@@ -1026,7 +1050,8 @@
 
                                                echo $piezas_repeticiones2509;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2509s->restado + 0.004) * $piezas_repeticiones2509 }}</td>
+                                          <td class="text-center">{{ number_format($barra2509s->restado,3) }}</td> 
+                                       <!--  <td class="text-center">{{ ($barra2509s->restado + 0.004) * $piezas_repeticiones2509 }}</td> -->
                                     </tr>
                                 @endforeach  
                              <!--    <td colspan="2" class="text-center">TOTAL</td>
@@ -1088,7 +1113,8 @@
 
                                                echo $piezas_repeticiones2510;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2510s->restado + 0.004) * $piezas_repeticiones2510 }}</td>
+                                         <td class="text-center">{{ number_format($barra2510s->restado,3) }}</td> 
+                                       <!--  <td class="text-center">{{ ($barra2510s->restado + 0.004) * $piezas_repeticiones2510 }}</td> -->
                                     </tr>
                                 @endforeach  
                                 <!-- <td colspan="2" class="text-center">TOTAL</td>
@@ -1120,13 +1146,14 @@
                               <thead>
                                 <tr>
                                     <th scope="col" class="text-center">Ventana</th>
-                                    <th scope="col" class="text-center">Alto</th>
-                                    <th scope="col" class="text-center">Ancho</th>
-                                    <th scope="col" class="text-center">Descuento</th>
-                                    <th scope="col" class="text-center">Aumento</th>
-                                    <th scope="col" class="text-center">Total</th>
+                                 <!--    <th scope="col" class="text-center">Alto</th>
+                                    <th scope="col" class="text-center">Ancho</th> -->
                                     <th scope="col" class="text-center">Piezas</th>
                                     <th scope="col" class="text-center">Descuento</th>
+                                    
+                                  <!--   <th scope="col" class="text-center">Aumento</th>
+                                    <th scope="col" class="text-center">Total</th>
+                                    <th scope="col" class="text-center">Descuento</th> -->
 
                                 </tr>
                               </thead>
@@ -1135,12 +1162,9 @@
                                 @foreach($barra2504 as $barra2504s)
                                     <tr>
                                         <td scope="text-center">{{ $barra2504s->fam_linea }}</td>
-                                        <td class="text-center">{{ $barra2504s->alto }}</td> 
-                                        <td class="text-center">{{ $barra2504s->ancho }}</td> 
-                                        <td class="text-center">{{ number_format($barra2504s->restado,3) }}</td> 
-                                        <td class="text-center">0.004</td> 
-                                        <td class="text-center">{{ number_format($barra2504s->restado,3)  + 0.004}}</td> 
-                                        <td class="text-center"><?php
+                                        <!-- <td class="text-center">{{ $barra2504s->alto }}</td>  -->
+                                        <!-- <td class="text-center">{{ $barra2504s->ancho }}</td>  -->
+                                         <td class="text-center"><?php
                                            
                                               $fam_linea = $barra2504s->fam_linea;
                                               $nombre = $barra2504s->nombre;
@@ -1154,13 +1178,19 @@
 
                                                echo $piezas_repeticiones2504;
                                         ?></td> 
-                                        <td class="text-center">{{ ($barra2504s->restado + 0.004) * $piezas_repeticiones2504}}</td> 
+                                        <td class="text-center">{{ number_format($barra2504s->restado,3) }}</td> 
+                                       <!--  <td class="text-center">0.004</td> 
+                                        <td class="text-center">{{ number_format($barra2504s->restado,3)  + 0.004}}</td>  -->
+                                        
+                                   <!--      <td class="text-center">{{ ($barra2504s->restado + 0.004) * $piezas_repeticiones2504}}</td>  -->
                                     </tr>
                                 @endforeach 
-                              <!--   <td colspan="2" class="text-center">TOTAL</td>
-                                <td colspan="" rowspan="" headers="" style="text-align: center;"><?php
+                                <!-- <td colspan="2" class="text-center">TOTAL</td> -->
+                               <!--  <td colspan="" rowspan="" headers="" style="text-align: center;"><?php
                                     $totalSumado = 0;
                                     $suma = 0.004;
+                                    $barra = 6.000;
+                                    $totalPiezas = 0;
                                   
                                     foreach ($barra2504 as $barra2504s) {
                                         $restado = $barra2504s->restado;
@@ -1171,9 +1201,23 @@
                                         $totalMts = $piezas_repeticiones2504 * $restaSuma;
 
                                         $totalSumado += $totalMts;
+
+                                        $totalPiezas += $piezas;
+                                        // echo json_encode($totalPiezas);
+
+                                        if($totalSumado > 6.000){
+                                            echo "2 Barras"."--".$totalPiezas."--";
+                                            $totalPiezas - 1;
+
+                                            $restante = $totalSumado - $barra;
+
+                                            echo "<hr>$restante</hr>";
+                                            //recorrer todas las piezas y sacar la mas p[roxima al restante o en su defecto la piezas mas peque;a
+                                        }
+
                                     }
-                                    echo "$totalSumado";
-                                ?></td>   -->                       
+                                    echo "--"."$totalSumado";
+                                ?></td>  -->                       
                               </tbody>
                             </table>
                         </div>
@@ -1198,11 +1242,11 @@
                                 @foreach($barra2521 as $barra2521s)
                                     <tr>
                                         <td scope="text-center">{{ $barra2521s->fam_linea }}</td>
-                                  <!--       <td class="text-center">{{ $barra2504s->alto }}</td> 
-                                        <td class="text-center">{{ $barra2504s->ancho }}</td> 
-                                        <td class="text-center">{{ number_format($barra2504s->restado,3) }}</td> 
+                                  <!--       <td class="text-center">{{ $barra2521s->alto }}</td> 
+                                        <td class="text-center">{{ $barra2521s->ancho }}</td> 
+                                        <td class="text-center">{{ number_format($barra2521s->restado,3) }}</td> 
                                         <td class="text-center">0.004</td> 
-                                        <td class="text-center">{{ number_format($barra2504s->restado,3)  + 0.004}}</td>  -->
+                                        <td class="text-center">{{ number_format($barra2521s->restado,3)  + 0.004}}</td>  -->
                                         <td class="text-center"><?php
                                            
                                               $fam_linea = $barra2521s->fam_linea;
@@ -1216,8 +1260,9 @@
                                               $piezas_repeticiones2521 = $piezas * $repeteciones;
 
                                                echo $piezas_repeticiones2521;
-                                        ?></td> 
-                                        <td class="text-center">{{ ($barra2521s->restado + 0.004) * $piezas_repeticiones2521}}</td> 
+                                        ?></td>
+                                        <td class="text-center">{{ number_format($barra2521s->restado,3) }}</td>  
+                                    <!--     <td class="text-center">{{ ($barra2521s->restado + 0.004) * $piezas_repeticiones2521}}</td>  -->
                                     </tr>
                                 @endforeach  
                            <!--      <td colspan="2" class="text-center">TOTAL</td>
@@ -1257,26 +1302,32 @@
             </div><br><br>
 
             <div class="tab-content p-4" id="areaImprimir2">
+                <div class="col-md-6">
+                    <div class="row">
+                        <p><strong>Nombre Cliente: </strong></p> {{ $nombre_cliente }}
+                         
+                    </div>
+                </div>
                 <div class="class">
                     <p><strong>Resumen Linea 20</strong></p>
 
                     <div class="row">
                         <div class="col-6">
                             <!-- <p><strong>Resumen 2001</strong></p>    -->
-                            <table class="table-responsive-sm" border="1">
+                            <table class="table-responsive-xl" border="2">
                                 <thead>
-                                    <tr>
+                                    <tr  class="bg-info">
                                         <th scope="col" class="text-center">Linea</th>
-                                        <th scope="col" class="text-center">Nombre</th>
-                                        <th scope="col" class="text-center">Barras</th>
+                                        <th scope="col" class="text-center" colspan="3">Nombre</th>
+                                        <th scope="col" class="text-center" colspan="2">Barras</th>
                                     </tr>
-                              </thead>
+                                </thead>
 
                                 <tbody>
                                     <tr>
                                         <td scope="row">2001</td>
-                                        <td scope="row">Riel Superior</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Riel Superior</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1291,28 +1342,28 @@
                                                 $totalSumado += $totalMts;
                                                  
                                             }
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td>
                                     </tr>
 
                                     <tr>
                                         <td scope="row">2002</td>
-                                        <td scope="row">Riel Inferior</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Riel Inferior</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1327,27 +1378,28 @@
                                                 $totalSumado += $totalMts;
                                             }
 
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>
+
                                     <tr>
                                         <td scope="row">2005</td>
-                                        <td scope="row">Zocalo</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Zocalo</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1362,27 +1414,27 @@
                                                 $totalSumado += $totalMts;
                                             }
 
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>
                                     <tr>
                                         <td scope="row">2009</td>
-                                        <td scope="row">Jamba</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Jamba</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1397,28 +1449,28 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>
 
                                     <tr>
                                         <td scope="row">2010</td>
-                                        <td scope="row">Pierna</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Pierna</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1433,28 +1485,28 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td>  
                                     </tr>
 
                                     <tr>
                                         <td scope="row">2011</td>
-                                        <td scope="row">Enganche</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Enganche</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                         $totalSumado = 0;
                                         $suma = 0.004;
                                       
@@ -1469,20 +1521,20 @@
                                             $totalSumado += $totalMts;
                                         }
                                         
-                                        if ($totalSumado <= 6.000){
-                                            echo "Se necesitara 1 Barra";
+                                        if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            echo "1";
                                         }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                          echo "Se necesitara 2 Barras";  
+                                          echo "2";  
                                         }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                          echo "Se necesitara 3 Barras";  
+                                          echo "3";  
                                         }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                          echo "Se necesitara 4 Barras";  
+                                          echo "4";  
                                         }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                          echo "Se necesitara 5 Barras";  
+                                          echo "5";  
                                         }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                          echo "Se necesitara 6 Barras";  
+                                          echo "6";  
                                         }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "Se necesitara 7 Barras";  
+                                          echo "7";  
                                         }
                                         
                                     ?></td>  
@@ -1490,8 +1542,8 @@
 
                                     <tr>
                                         <td scope="row">5008</td>
-                                        <td scope="row">Union</td>
-                                         <td scope="row"><?php
+                                        <td scope="row" colspan="3">Union</td>
+                                         <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1506,20 +1558,20 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>
@@ -1529,11 +1581,11 @@
 
                     <div class="col-6">
                             <p><strong>Resumen Linea 25</strong></p>   
-                            <table class="table-responsive-sm" border="1">
+                            <table class="table-responsive-xl" border="2">
                                 <thead>
-                                    <tr>
+                                    <tr  class="bg-info">
                                         <th scope="col" class="text-center">Linea</th>
-                                        <th scope="col" class="text-center">Nombre</th>
+                                        <th scope="col" class="text-center" colspan="3">Nombre</th>
                                         <th scope="col" class="text-center">Barras</th>
                                     </tr>
                                 </thead>
@@ -1541,8 +1593,8 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">2501</td>
-                                        <td scope="row">Riel Superior</td>
-                                         <td scope="row"><?php
+                                        <td scope="row" colspan="3">Riel Superior</td>
+                                         <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1556,29 +1608,29 @@
 
                                                 $totalSumado += $totalMts;
                                             }
-                                            
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
-                                            }
+                                              echo "7";  
+                                            }  
                                         ?></td> 
                                     </tr> 
 
                                     <tr>
                                         <td scope="row">2502</td>
-                                        <td scope="row">Riel Inferior</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Riel Inferior</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1593,28 +1645,28 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>    
 
                                     <tr>
                                         <td scope="row">2504</td>
-                                        <td scope="row">Cabezal</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Cabezal</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1629,28 +1681,28 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>
 
                                     <tr>
                                         <td scope="row">2505</td>
-                                        <td scope="row">Zocalo</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Zocalo</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1665,28 +1717,28 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>
 
                                     <tr>
                                         <td scope="row">2507</td>
-                                        <td scope="row">Enganche</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Enganche</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1701,28 +1753,28 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr> 
 
                                     <tr>
                                         <td scope="row">2509</td>
-                                        <td scope="row">Jamba</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Jamba</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1737,20 +1789,20 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                   
@@ -1758,8 +1810,8 @@
 
                                     <tr>
                                         <td scope="row">2510</td>
-                                        <td scope="row">Pierna</td>
-                                        <td scope="row"><?php
+                                        <td scope="row" colspan="3">Pierna</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1774,26 +1826,27 @@
                                                 $totalSumado += $totalMts;
                                             }
                                             
-                                            if ($totalSumado <= 6.000){
-                                                echo "Se necesitara 1 Barra";
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "Se necesitara 2 Barras";  
+                                              echo "2";  
                                             }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "Se necesitara 3 Barras";  
+                                              echo "3";  
                                             }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "Se necesitara 4 Barras";  
+                                              echo "4";  
                                             }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "Se necesitara 5 Barras";  
+                                              echo "5";  
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "Se necesitara 6 Barras";  
+                                              echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                              echo "Se necesitara 7 Barras";  
+                                              echo "7";  
                                             }
                                         ?></td> 
                                     </tr>        
                                 </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>   
             </div>

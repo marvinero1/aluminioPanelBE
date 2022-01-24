@@ -50,7 +50,6 @@ class CortadoraController extends Controller
     }
 
     public function cortadoraInfoVentanas($id){
-
         $piezas_repeticiones2001=0;
         $piezas_repeticiones2502=0;
         $piezas_repeticiones2504=0;
@@ -59,9 +58,6 @@ class CortadoraController extends Controller
         $piezas_repeticiones2509=0;
         $piezas_repeticiones2510=0;
 
-
-
-
         $perfilBarras = DB::table('hoja_calculo_perfils')
             ->join('perfils', 'hoja_calculo_perfils.id', '=', 'perfils.hoja_id')
             ->join('barras', 'hoja_calculo_perfils.id', '=', 'barras.hoja_id')
@@ -69,7 +65,6 @@ class CortadoraController extends Controller
             ->get();
 
         $recortesuma = 0.004;
-
 
         foreach($perfilBarras as $perfilBarrass){
             $nombre = $perfilBarrass->nombre;
@@ -82,6 +77,13 @@ class CortadoraController extends Controller
                                   
                 $data = [["Codigo"=>$fam_linea],["Nombre"=>$nombre],["Medida Descuento"=>$restaRecorte],["Piezas Cortar"=>$piezas]];
                 // echo json_encode($perfilBarrass);
+        }
+
+        $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.id','=',$id)->get();
+      
+
+        foreach ($hoja_calculo_perfil as $hoja_calculo_perfils) {
+            $nombre_cliente = $hoja_calculo_perfils->nombre_cliente;
         }
 
 
@@ -141,7 +143,7 @@ class CortadoraController extends Controller
         $largo_predeterminado = 6;
         $numberRepeteat = $ancho_barra * $repeteciones;
         $division = $numberRepeteat / $largo_predeterminado;
-       }      
+       }     
 
        $repeteciones = +$repeteciones;
 
@@ -164,7 +166,7 @@ class CortadoraController extends Controller
             }
         }  
      
-        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011','barra5008','barra2501','barra2502','barra2505','barra2509','barra2507','barra2510','barra2504','barra2521'));
+        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011','barra5008','barra2501','barra2502','barra2505','barra2509','barra2507','barra2510','barra2504','barra2521','nombre_cliente'));
     }
 
 

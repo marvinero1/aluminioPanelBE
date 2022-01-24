@@ -128,7 +128,7 @@
                           <div class="modal-dialog" role="document">
                             <div class="modal-content text-center">
                               <div class="modal-header" style="display: block;">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
                               </div>
                                 <form action="{{route('perfil.updatePerfil', $perfils->id ) }}" method="POST">
                                 {{ csrf_field() }}
