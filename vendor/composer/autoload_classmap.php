@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Carrito' => $baseDir . '/app/Carrito.php',
+    'App\\Carusel' => $baseDir . '/app/Carusel.php',
     'App\\Categoria' => $baseDir . '/app/Categoria.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Contactano' => $baseDir . '/app/Contactano.php',
@@ -33,6 +34,7 @@ return array(
     'App\\Http\\Controllers\\ContactanoController' => $baseDir . '/app/Http/Controllers/ContactanoController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CortadoraController' => $baseDir . '/app/Http/Controllers/CortadoraController.php',
+    'App\\Http\\Controllers\\CorteController' => $baseDir . '/app/Http/Controllers/CorteController.php',
     'App\\Http\\Controllers\\FavoritoController' => $baseDir . '/app/Http/Controllers/FavoritoController.php',
     'App\\Http\\Controllers\\HojaCalculoController' => $baseDir . '/app/Http/Controllers/HojaCalculoController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',

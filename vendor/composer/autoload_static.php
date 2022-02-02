@@ -598,6 +598,7 @@ class ComposerStaticInitcd3a7dd37d0ff8a5545cd9e9890a15bf
 
     public static $classMap = array (
         'App\\Carrito' => __DIR__ . '/../..' . '/app/Carrito.php',
+        'App\\Carusel' => __DIR__ . '/../..' . '/app/Carusel.php',
         'App\\Categoria' => __DIR__ . '/../..' . '/app/Categoria.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contactano' => __DIR__ . '/../..' . '/app/Contactano.php',
@@ -624,6 +625,7 @@ class ComposerStaticInitcd3a7dd37d0ff8a5545cd9e9890a15bf
         'App\\Http\\Controllers\\ContactanoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactanoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CortadoraController' => __DIR__ . '/../..' . '/app/Http/Controllers/CortadoraController.php',
+        'App\\Http\\Controllers\\CorteController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorteController.php',
         'App\\Http\\Controllers\\FavoritoController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavoritoController.php',
         'App\\Http\\Controllers\\HojaCalculoController' => __DIR__ . '/../..' . '/app/Http/Controllers/HojaCalculoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',

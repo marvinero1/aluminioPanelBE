@@ -418,7 +418,7 @@
               
               @endif
               @if(Auth::user()->role == 'admin')
-              <li class="nav-item">
+          <!--     <li class="nav-item">
                 <a href="/vendedores" class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>
                   <p>Vendedores</p>
@@ -431,6 +431,35 @@
                       <p>Registrar Vendedor</p>
                     </a>
                   </li>
+                </ul>
+              </li> -->
+
+
+
+
+               <li class="nav-item has-treeview ">
+                <a class="nav-link">
+                  <i class="far fa-user-circle nav-icon"></i>
+                  <p>Vendedores
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/vendedores" class="nav-link">
+                      <i class="nav-icon far fa-user"></i>
+                      <p>Vendedores
+                        {{-- <span class="badge badge-info right">2</span> --}}
+                      </p>
+                    </a>
+                  </li>
+                 <li class="nav-item">
+                    <a href="/viewRegisVendedor" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Registrar Vendedor</p>
+                    </a>
+                  </li>
+                 
                 </ul>
               </li>
               

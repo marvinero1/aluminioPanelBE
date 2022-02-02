@@ -456,8 +456,8 @@
 
                                                echo $piezas_repeticiones2005;
                                         ?></td>
-
-                                        <td class="text-center">{{ ($barra2005s->restado + 0.004) * $piezas_repeticiones2005}}</td> 
+                                        <td class="text-center">{{ number_format($barra2005s->restado,3) }}</td> 
+                                        <!-- <td class="text-center">{{ ($barra2005s->restado + 0.004) * $piezas_repeticiones2005}}</td>  -->
                                     </tr>
                                 @endforeach   
                                 <!-- <td colspan="2" class="text-center">TOTAL</td>
@@ -1842,7 +1842,42 @@
                                               echo "7";  
                                             }
                                         ?></td> 
-                                    </tr>        
+                                    </tr>    
+                                    <tr>
+                                        <td scope="row">2521</td>
+                                        <td scope="row" colspan="3">Union</td>
+                                        <td scope="row" colspan="2" class="text-center"><?php
+                                            $totalSumado = 0;
+                                            $suma = 0.004;
+                                          
+                                            foreach ($barra2521 as $barra2521s) {
+                                                $restado = $barra2521s->restado;
+                                                $restaSuma = $restado + $suma;
+                                                $piezas = $barra2521s->piezas;
+                                                $piezas_repeticiones2521 = $piezas * $repeteciones;
+
+                                                $totalMts = $piezas_repeticiones2521 * $restaSuma;
+
+                                                $totalSumado += $totalMts;
+                                            }
+                                            
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
+                                            }if($totalSumado > 6.000 && $totalSumado <= 12.000){
+                                              echo "2";  
+                                            }if($totalSumado > 12.000 && $totalSumado <= 18.000){
+                                              echo "3";  
+                                            }if($totalSumado > 18.000 && $totalSumado <= 24.000){
+                                              echo "4";  
+                                            }if($totalSumado > 24.000 && $totalSumado <= 30.000){
+                                              echo "5";  
+                                            }if($totalSumado > 30.000 && $totalSumado <= 36.000){
+                                              echo "6";  
+                                            }if($totalSumado > 36.000 && $totalSumado <= 42.000){
+                                              echo "7";  
+                                            }
+                                        ?></td> 
+                                    </tr>     
                                 </tbody>
                         </table>
                     </div>
