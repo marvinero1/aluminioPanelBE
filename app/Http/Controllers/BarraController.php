@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\barra;
+use App\Perfil;
 use Illuminate\Http\Request;
 
 class BarraController extends Controller
@@ -14,6 +15,11 @@ class BarraController extends Controller
      */
     public function index(){
 
+         
+    }
+
+    public function confirmacionBlade($id){
+        return view('cortadoraperfil.confirmacion', ['perfil' =>Perfil::findOrFail($id)]);
          
     }
 
@@ -312,7 +318,12 @@ class BarraController extends Controller
         }
         
 
-      return back()->withInput();
+      // return back()->withInput();
+
+
+      return redirect()->action(
+            [BarraController::class, 'confirmacionBlade'], ['id' => $perfil_id]
+        );
 
         // PARA LINEA 20
         // DOS HOJAS 

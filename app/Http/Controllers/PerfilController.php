@@ -137,7 +137,7 @@ class PerfilController extends Controller
         }
 
         
-        return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','corte','repetecion','ancho_barra',
+        return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','repetecion','ancho_barra',
             'alto_barra','linea','combinacion','largo_predeterminado','cate_json','largos','resumen',
             'division','totalmtsbarra','data','barraArray','cortesName','barraArrayLargo','dataCortes','resta',
             'piezas_repeticiones','piezas_div','piezas','hoja_id'));
@@ -187,18 +187,16 @@ class PerfilController extends Controller
     }
 
     public function updatePerfil(Request $request, $id){
-
-
         $perfil = Perfil::findOrFail($id);
+        $hoja_id =$request->get('hoja_id'); 
         $estado = $request->get('estado');
 
         $perfil->estado = $estado;
 
         $perfil->update();
-
-        return back()->withInput();
-
+        return redirect()->route('hojaCalculo.show',$hoja_id);
     }
+
 
     /**
      * Remove the specified resource from storage.

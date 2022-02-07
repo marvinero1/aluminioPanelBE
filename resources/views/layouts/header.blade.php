@@ -387,6 +387,15 @@
                     </a>
                   </li>
                 </ul>
+
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/viewRegisVendedor" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Registrar Vendedor</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             
               <li class="nav-item has-treeview ">
@@ -432,11 +441,7 @@
                     </a>
                   </li>
                 </ul>
-              </li> -->
-
-
-
-
+               </li>  -->
                <li class="nav-item has-treeview ">
                 <a class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>

@@ -273,40 +273,35 @@
             <div class="tab-content p-4" id="areaImprimir1">
                 <div class="col-md-6">
                     <div class="row">
-                        <p><strong>Nombre Cliente: </strong></p> {{ $nombre_cliente }}
-                         
+                        <p><strong>Nombre Cliente: </strong></p>{{ $nombre_cliente }}
                     </div>
                 </div>
                 <div class="class">
+                    @if(count($barra2001) > 0 && count($barra2002) > 0)
                     <p><strong>Resumen Linea 20</strong></p>
-                    
+                    @endif
                     <div class="row">
                         <div class="col-6">
-                            <p><strong>Resumen 2001</strong></p>   
+                            @if(count($barra2001) > 0)  
+                            <p><strong>Resumen 2001</strong></p>
                             <table class="table-responsive-sm" border="1">
-                              <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">Ventana</th>
-                                    <!-- <th scope="col" class="text-center">Alto</th>
-                                    <th scope="col" class="text-center">Ancho</th>
-                                    <th scope="col" class="text-center">Descuento</th>
-                                    <th scope="col" class="text-center">Aumento</th>
-                                    <th scope="col" class="text-center">Total</th> -->
-                                    <th scope="col" class="text-center">Piezas</th>
-                                    <th scope="col" class="text-center">Descuento</th>
-
-                                </tr>
-                              </thead>
+                                  <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">Ventana</th>
+                                        <!-- <th scope="col" class="text-center">Alto</th>
+                                        <th scope="col" class="text-center">Ancho</th>
+                                        <th scope="col" class="text-center">Descuento</th>
+                                        <th scope="col" class="text-center">Aumento</th>
+                                        <th scope="col" class="text-center">Total</th> -->
+                                        <th scope="col" class="text-center">Piezas</th>
+                                        <th scope="col" class="text-center">Descuento</th>
+                                    </tr>
+                                  </thead>
 
                               <tbody>
                                 @foreach($barra2001 as $barra2001s)
                                     <tr>
                                         <td scope="row">{{ $barra2001s->fam_linea }}</td>
-                                       <!--  <td class="text-center">{{ $barra2001s->alto }}</td> 
-                                        <td class="text-center">{{ $barra2001s->ancho }}</td> 
-                                        <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td> 
-                                        <td class="text-center">0.004</td> 
-                                        <td class="text-center">{{  number_format($barra2001s->restado,3) + 0.004 }}</td>  -->
                                         <td class="text-center"><?php
 
                                             $fam_linea = $barra2001s->fam_linea;
@@ -318,37 +313,17 @@
 
                                             $piezas_repeticiones2001 = $piezas * $repeteciones;   
 
-                                            echo "$piezas_repeticiones2001";            
-                                        
+                                            echo "$piezas_repeticiones2001";        
                                         ?></td> 
-                                        <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td> 
-                                        <!-- <td class="text-center">{{ ($barra2001s->restado + 0.004 ) * $piezas_repeticiones2001 }}</td> -->
-                                    
+                                        <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td>
                                     </tr>
-                                    
                                 @endforeach
-                                <!-- <td colspan="2" class="text-center">TOTAL</td>
-                                <td colspan="" rowspan="" headers="" style="text-align: center;"><?php
-                                    $totalSumado = 0;
-                                    $suma = 0.004;
-                                  
-                                    foreach ($barra2001 as $barra2001s) {
-                                        $restado = $barra2001s->restado;
-                                        $restaSuma = $restado + $suma;
-                                        $piezas = $barra2001s->piezas;
-                                        $piezas_repeticiones2001 = $piezas * $repeteciones;
-
-                                        $totalMts = $piezas_repeticiones2001 * $restaSuma;
-
-                                        $totalSumado += $totalMts;
-                                         
-                                    }
-                                    echo "$totalSumado";
-                                ?></td> -->
                               </tbody>
                             </table>
+                            @endif
                         </div>
                          <div class="col-6">
+                            @if(count($barra2002) > 0)
                             <p><strong>Resumen 2002</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -412,24 +387,21 @@
                                 ?></td> -->                    
                               </tbody>
                             </table>
+                            @endif
                         </div>
                         
                     </div><br>
                     <div class="row">
                          <div class="col-6">
-                            <p><strong>Resumen 2005</strong></p>   
+                            @if(count($barra2005) > 0)
+
+                            <p><strong>Resumen 2005 ACA</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
                                     <th scope="col" class="text-center">Ventana</th>
-                                    <!-- <th scope="col" class="text-center">Alto</th>
-                                    <th scope="col" class="text-center">Ancho</th>
-                                    <th scope="col" class="text-center">Descuento</th>
-                                    <th scope="col" class="text-center">Aumento</th>
-                                    <th scope="col" class="text-center">Total</th> -->
                                     <th scope="col" class="text-center">Piezas</th>
                                     <th scope="col" class="text-center">Descuento</th>
-
                                 </tr>
                               </thead>
 
@@ -480,8 +452,10 @@
                                 ?></td>  -->                    
                               </tbody>
                             </table>
+                            @endif
                         </div>
                         <div class="col-6">
+                        @if(count($barra2009) > 0)
                             <p><strong>Resumen 2009</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -544,11 +518,14 @@
                                 ?></td>  -->                       
                               </tbody>
                             </table>
+                            @endif
                         </div>
                     </div><br>
 
                      <div class="row">
                          <div class="col-6">
+                            @if(count($barra2010) > 0)
+
                             <p><strong>Resumen 2010</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -612,8 +589,11 @@
                                 ?></td>  -->                  
                               </tbody>
                             </table>
+                            @endif
                         </div>
                         <div class="col-6">
+                            @if(count($barra2011) > 0)
+
                             <p><strong>Resumen 2011</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -676,11 +656,15 @@
                                 ?></td>  -->                     
                               </tbody>
                             </table>
+                            @endif
+
                         </div>
                     </div><br><br>
 
                     <div class="row">
                          <div class="col-6">
+                            @if(count($barra5008) > 0)
+
                             <p><strong>Resumen 5008</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -744,12 +728,18 @@
                                 ?></td>  -->                      
                               </tbody>
                             </table>
-                        </div>
-                    </div><br><br>
+                            @endif
 
-                    <p><strong>Resumen Linea 25</strong> </p>
+                        </div>
+                    </div><br>
+
+                    @if(count($barra2501) > 0 && count($barra2502) > 0)
+                    <p><strong>Resumen Linea 25</strong></p>
+                    @endif
+                    
                     <div class="row">
                          <div class="col-6">
+                            @if(count($barra2501) > 0) 
                             <p><strong>Resumen 2501</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -811,8 +801,11 @@
                                 ?></td>  -->                   
                               </tbody>
                             </table>
+                            @endif
                         </div>
                         <div class="col-6">
+                            @if(count($barra2502) > 0)
+
                             <p><strong>Resumen 2502</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -875,11 +868,14 @@
                                 ?></td>  -->                    
                               </tbody>
                             </table>
+                            @endif
                         </div>
                     </div><br>
 
                     <div class="row">
                          <div class="col-6">
+                            @if(count($barra2505) > 0)
+
                             <p><strong>Resumen 2505</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -942,8 +938,12 @@
                                 ?></td>  -->                    
                               </tbody>
                             </table>
+                            @endif
                         </div>
-                         <div class="col-6">
+
+                        <div class="col-6">
+                            @if(count($barra2507) > 0)
+
                             <p><strong>Resumen 2507</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -1006,12 +1006,15 @@
                                 ?></td>    -->                  
                               </tbody>
                             </table>
+                             @endif
                         </div>
                     </div><br>
 
 
                     <div class="row">
                         <div class="col-6">
+                            @if(count($barra2509) > 0)
+
                             <p><strong>Resumen 2509</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -1073,8 +1076,10 @@
                                 ?></td> -->                     
                               </tbody>
                             </table>
+                              @endif
                         </div>
                         <div class="col-6">
+                            @if(count($barra2510) > 0)
                             <p><strong>Resumen 2510</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -1136,24 +1141,22 @@
                                 ?></td>  -->                    
                               </tbody>
                             </table>
+                            @endif
                         </div>
                     </div><br>
 
-                       <div class="row">
+                    <div class="row">
                          <div class="col-6">
+                            @if(count($barra2504) > 0)
                             <p><strong>Resumen 2504</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
                                 <tr>
                                     <th scope="col" class="text-center">Ventana</th>
-                                 <!--    <th scope="col" class="text-center">Alto</th>
-                                    <th scope="col" class="text-center">Ancho</th> -->
                                     <th scope="col" class="text-center">Piezas</th>
-                                    <th scope="col" class="text-center">Descuento</th>
-                                    
-                                  <!--   <th scope="col" class="text-center">Aumento</th>
-                                    <th scope="col" class="text-center">Total</th>
-                                    <th scope="col" class="text-center">Descuento</th> -->
+                                    <th scope="col">Descuento</th>
+                                    <th scope="col" class="text-center">X</th>
+                                    <th scope="col" class="text-center">Barra</th>
 
                                 </tr>
                               </thead>
@@ -1162,29 +1165,57 @@
                                 @foreach($barra2504 as $barra2504s)
                                     <tr>
                                         <td scope="text-center">{{ $barra2504s->fam_linea }}</td>
-                                        <!-- <td class="text-center">{{ $barra2504s->alto }}</td>  -->
-                                        <!-- <td class="text-center">{{ $barra2504s->ancho }}</td>  -->
-                                         <td class="text-center"><?php
-                                           
-                                              $fam_linea = $barra2504s->fam_linea;
-                                              $nombre = $barra2504s->nombre;
-                                              $ancho = $barra2504s->largo;
-                                              $resta = $barra2504s->resta;
-                                              $piezas = $barra2504s->piezas;
-                                              $restaRecorte =  $ancho - $resta;
+                                    
+                                        <td class="text-center"><?php
+                                            $fam_linea = $barra2504s->fam_linea;
+                                            $nombre = $barra2504s->nombre;
+                                            $ancho = $barra2504s->largo;
+                                            $resta = $barra2504s->resta;
+                                            $piezas = $barra2504s->piezas;
+                                            $restaRecorte =  $ancho - $resta;
 
-                                              $piezas = $barra2504s->piezas;
-                                              $piezas_repeticiones2504 = $piezas * $repeteciones;
+                                            $piezas = $barra2504s->piezas;
+                                            $piezas_repeticiones2504 = $piezas * $repeteciones;
 
-                                               echo $piezas_repeticiones2504;
+                                            echo $piezas_repeticiones2504;
                                         ?></td> 
-                                        <td class="text-center">{{ number_format($barra2504s->restado,3) }}</td> 
-                                       <!--  <td class="text-center">0.004</td> 
-                                        <td class="text-center">{{ number_format($barra2504s->restado,3)  + 0.004}}</td>  -->
+                                        <td class="text-center">{{ number_format($barra2504s->restado,3)}}</td>
                                         
-                                   <!--      <td class="text-center">{{ ($barra2504s->restado + 0.004) * $piezas_repeticiones2504}}</td>  -->
+                                        <td class="text-center">{{ ($barra2504s->restado) * $piezas_repeticiones2504}}</td> 
                                     </tr>
-                                @endforeach 
+                                @endforeach
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><?php
+                                        $barra = 6000;
+                                        $totalSumaBarra = 0;
+                                        foreach ($barra2504 as $barra2504s) {
+                                            
+                                            $restado = $barra2504s->restado;
+                                            $piezas = $barra2504s->piezas;
+
+                                            $piezas_repeticiones2504 = $piezas * $repeteciones;
+
+                                            //el valor de la X
+                                            $piezasDescuento = $piezas_repeticiones2504*$restado;
+
+                                            $totalSumaBarra += $piezasDescuento;
+                                            for ($i=0; $i < $piezas_repeticiones2504; $i++) { 
+
+                                                 echo $restado.",-,";
+                                            }
+                                        }
+
+                                        echo "=".$totalSumaBarra.",";
+                                        ?></td>
+                                    </tr> 
+                                <tr>
+                                    
+                                    
+                                </tr>
                                 <!-- <td colspan="2" class="text-center">TOTAL</td> -->
                                <!--  <td colspan="" rowspan="" headers="" style="text-align: center;"><?php
                                     $totalSumado = 0;
@@ -1220,8 +1251,11 @@
                                 ?></td>  -->                       
                               </tbody>
                             </table>
+                            @endif
                         </div>
                         <div class="col-6">
+                            @if(count($barra2521) > 0)
+
                             <p><strong>Resumen 2521</strong></p>   
                             <table class="table-responsive-sm" border="1">
                               <thead>
@@ -1284,6 +1318,8 @@
                                 ?></td>   -->                  
                               </tbody>
                             </table>
+                            @endif
+
                         </div>
                  
                     </div>
@@ -1309,12 +1345,11 @@
                     </div>
                 </div>
                 <div class="class">
-                    <p><strong>Resumen Linea 20</strong></p>
-
                     <div class="row">
-                        <div class="col-6">
-                            <!-- <p><strong>Resumen 2001</strong></p>    -->
-                            <table class="table-responsive-xl" border="2">
+                        <!-- <div class="col-6"> -->
+                            @if(count($barra2001) > 0)
+                            <p><strong>Resumen Linea 20</strong></p>
+                            <table class="table-responsive-md" border="2" style="width: 82%;">
                                 <thead>
                                     <tr  class="bg-info">
                                         <th scope="col" class="text-center">Linea</th>
@@ -1322,7 +1357,7 @@
                                         <th scope="col" class="text-center" colspan="2">Barras</th>
                                     </tr>
                                 </thead>
-
+                               
                                 <tbody>
                                     <tr>
                                         <td scope="row">2001</td>
@@ -1575,13 +1610,16 @@
                                             }
                                         ?></td> 
                                     </tr>
-                              </tbody>
+                                </tbody>
                             </table>
-                        </div>
-
-                    <div class="col-6">
+                            @endif
+                        <!-- </div> --> 
+                    </div><br><br>
+                    <div class="row">
+                          <!--<div class="col-6"> -->
+                            @if(count($barra2501) > 0)
                             <p><strong>Resumen Linea 25</strong></p>   
-                            <table class="table-responsive-xl" border="2">
+                            <table class="table-responsive-md" border="2" style="width: 82%;">
                                 <thead>
                                     <tr  class="bg-info">
                                         <th scope="col" class="text-center">Linea</th>
@@ -1879,11 +1917,11 @@
                                         ?></td> 
                                     </tr>     
                                 </tbody>
-                        </table>
+                            </table>
+                            @endif
+                      <!-- </div> -->
                     </div>
-                    
-                </div>
-            </div>   
+                </div>   
             </div>
             </div>
         </div>

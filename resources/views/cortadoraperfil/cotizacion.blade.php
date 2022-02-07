@@ -37,7 +37,7 @@
                                     </tr>
                                </thead>
                               <tbody>
-                                @if($barraL20Alto != null || barraL20Ancho != null)
+                                @if($barraL20Alto != null)
                                 <tr><input type="text" hidden="true" value="{{ $barraL20Alto}}" id="barras_20">
                                     
                                     <td class="text-center"><label>Linea 20</label></td>

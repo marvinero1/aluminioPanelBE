@@ -45,7 +45,7 @@ Route::get('cortadoraInfoGeneral/{id}','CortadoraController@cortadoraInfoGeneral
 Route::get('cortadoraInfoVentanas/{id}','CortadoraController@cortadoraInfoVentanas')->name('cortadora.cortadoraInfoVentanas'); 
 Route::get('cotizadorCortadoraPerfil/{id}','CortadoraController@cotizacion')->name('cotizacion.cotizacion'); 
 Route::get('precioEditCortadora/{id}','CortadoraController@precioEditCortadora')->name('precioEditCortadora.precioEditCortadora'); 
-
+Route::get('confirmacionBlade/{id}','BarraController@confirmacionBlade')->name('cortadora.confirmacionBlade'); 
 
 Route::put('user/{user}/subscripcion','UserController@subscripcion')->name('user.subscripcion'); 
 Route::put('producto/{producto}/addNovedad','ProductoController@addNovedad')->name('producto.addNovedad');

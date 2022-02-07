@@ -114,26 +114,24 @@ class CortadoraController extends Controller
         $barra2011 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2011')->get();
 
         $barra5008 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','5008')->get();
-
-
+        
         // LINEA 25
-          $piezas_repeticiones2501 = 0;
+        $piezas_repeticiones2501 = 0;
+        $barra2501 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2501')->get();
 
-          $barra2501 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2501')->get();
+        $barra2502 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2502')->get();
 
-          $barra2502 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2502')->get();
+        $barra2504 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2504')->get();
 
-          $barra2504 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2504')->get();
+        $barra2505 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2505')->get();
 
-          $barra2505 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2505')->get();
+        $barra2507 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2507')->get();
 
-           $barra2507 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2507')->get();
+        $barra2509 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2509')->get();
 
-          $barra2509 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2509')->get();
+        $barra2510 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2510')->get();
 
-          $barra2510 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2510')->get();
-
-           $barra2521 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2521')->get();
+        $barra2521 = barra::where('barras.hoja_id', '=', $id)->where('barras.fam_linea','=','2521')->get();
         //FIN
 
        foreach($perfil as $perfils){
@@ -145,10 +143,8 @@ class CortadoraController extends Controller
         $division = $numberRepeteat / $largo_predeterminado;
        }     
 
-       $repeteciones = +$repeteciones;
-
+        $repeteciones = +$repeteciones;
         $l = $perfils->sum('repeticion');
-         // echo $l;
 
         foreach ($barra as $barras){
           $barra_perfil_id = $barras->perfil_id;
@@ -160,7 +156,6 @@ class CortadoraController extends Controller
               $piezas = $barras->piezas;
 
               $restaRecorte =  $ancho - $resta;
-
               // echo count($barra);
               // echo "<p>$fam_linea => $nombre => $restaRecorte => $piezas</p>";            
             }
@@ -168,7 +163,6 @@ class CortadoraController extends Controller
      
         return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011','barra5008','barra2501','barra2502','barra2505','barra2509','barra2507','barra2510','barra2504','barra2521','nombre_cliente'));
     }
-
 
     public function cotizacion($id){
 
@@ -238,10 +232,8 @@ class CortadoraController extends Controller
           $ancho25 = $perfilL25s->ancho;
 
           $mt2 = $alto25 * $ancho25;
-
           $mt2Total25 += $mt2; 
-
-          echo $mt2Total25;
+          // echo $mt2Total25;
         }
         
         foreach($perfilBarras as $perfilBarrass){
