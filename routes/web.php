@@ -20,8 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 // Route::update('updatepassword','UserController@updatepassword');
 Route::post('store1','UserController@store1')->name('user.store1');
-Route::resource('user', 'UserController');
-
 Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
 Route::middleware(['auth'] )->group(function () {
@@ -53,7 +51,7 @@ Route::put('updateHojaPerfil/{id}/','CortadoraController@updateHojaPerfil')->nam
 Route::put('updatePerfil/{id}/','PerfilController@updatePerfil')->name('perfil.updatePerfil');
 Route::delete('destroyHojaPerfil/{id}','CortadoraController@destroyHojaPerfil')->name('cortadora.destroyHojaPerfil');
 
-
+Route::resource('user', 'UserController');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('sub-categoria', 'SubcategoriaController');
 Route::resource('favoritos', 'FavoritoController');

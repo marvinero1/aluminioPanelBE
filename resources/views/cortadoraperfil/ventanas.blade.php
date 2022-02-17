@@ -281,7 +281,7 @@
                     <p><strong>Resumen Linea 20</strong></p>
                     @endif
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             @if(count($barra2001) > 0)  
                             <p><strong>Resumen 2001</strong></p>
                             <table class="table-responsive-sm" border="1">
@@ -322,7 +322,8 @@
                             </table>
                             @endif
                         </div>
-                         <div class="col-6">
+
+                        <div class="col-md-6">
                             @if(count($barra2002) > 0)
                             <p><strong>Resumen 2002</strong></p>   
                             <table class="table-responsive-sm" border="1">
@@ -389,7 +390,6 @@
                             </table>
                             @endif
                         </div>
-                        
                     </div><br>
                     <div class="row">
                          <div class="col-6">
@@ -734,7 +734,7 @@
                     </div><br>
 
                     @if(count($barra2501) > 0 && count($barra2502) > 0)
-                    <p><strong>Resumen Linea 25</strong></p>
+                    <!-- <p><strong>Resumen Linea 25</strong></p> -->
                     @endif
                     
                     <div class="row">
@@ -1192,24 +1192,152 @@
                                         <td><?php
                                         $barra = 6000;
                                         $totalSumaBarra = 0;
+                                        $piezas_2504Total=0;
+                                        $suma = 0.004;
+                                        $cercano = 0;
+                                        $menor =0;
+                                        $mayor=0;
                                         foreach ($barra2504 as $barra2504s) {
                                             
                                             $restado = $barra2504s->restado;
                                             $piezas = $barra2504s->piezas;
-
+                                            $restadoSuma2504 = $restado + $suma;
                                             $piezas_repeticiones2504 = $piezas * $repeteciones;
 
                                             //el valor de la X
-                                            $piezasDescuento = $piezas_repeticiones2504*$restado;
-
-                                            $totalSumaBarra += $piezasDescuento;
-                                            for ($i=0; $i < $piezas_repeticiones2504; $i++) { 
-
-                                                 echo $restado.",-,";
-                                            }
+                                            $piezasDescuento = $piezas_repeticiones2504*$restadoSuma2504;
+                                            $piezas_2504Total += $piezas_repeticiones2504;
+                                            $piezasDescuentoSuma = $piezasDescuento ;
+                                            $totalSumaBarra += $piezasDescuentoSuma;
+                                            
                                         }
 
-                                        echo "=".$totalSumaBarra.",";
+
+                                        //la sumatoria total de todos los cortes mas 0.004
+                                        // echo "=".$totalSumaBarra.",---";
+
+
+                                       
+                                        if ($totalSumaBarra > 0.001 && $totalSumaBarra <= 6.000){
+                                                echo "1";
+
+
+                                            }if($totalSumaBarra > 6.000 && $totalSumaBarra <= 12.000){
+                                                 
+
+                                                $restadoalTotal = $totalSumaBarra-6.000;
+                                                $menos_corte = $piezas_2504Total - 1;     
+
+                                               
+                                                $saldos=array();
+
+                                                foreach($barra2504 as $barra2504s){
+                                                    $restado = $barra2504s->restado;
+                                                    $piezas = $barra2504s->piezas;
+                                                    $restadoSuma2504 = $restado + $suma;
+                                                     $piezas_repeticiones2504 = $piezas * $repeteciones;
+                                                    $piezasDescuento = $piezas_repeticiones2504*$restadoSuma2504;
+                                                   
+                                                    
+                                                    $saldos[] = $restadoSuma2504;
+
+                                                    for ($i=0; $i < $piezas_repeticiones2504; $i++){
+                                                    // impresion mas 0.004
+                                                    echo "|".$restadoSuma2504."|";
+                                                
+                                                    // echo $restado.",-,";
+                                                    }
+
+
+                                                }
+
+                                                //la sumatoria total de todos los cortes mas 0.004
+                                                echo "=".$totalSumaBarra;
+
+                                                //el numero de cortes en total
+                                                // echo($piezas_2504Total);
+                                                // echo json_encode($saldos);
+                                                // echo "<br>".$restadoalTotal.", se quita 1 corte y quedan";
+                                                // echo($menos_corte);
+
+                                                //Ordenamos el array de menor a mayor
+                                                sort($saldos);
+
+                                                //Obtenemos el valor menor
+                                                $menor = json_encode($saldos[0]);
+
+                                                //Obtenemos el valor mayor
+                                                $mayor = $saldos[count($saldos)-1];
+
+                                                //Ubicamos cual es el valor más cercano desde la derecha al numero faltante
+                                                if($restadoalTotal > $mayor){
+                                                    $cercano = $mayor;
+                                                }else{
+                                                    foreach($saldos as $a){
+                                                        if( ($a - $restadoalTotal) >= 0 ){
+                                                            $cercano = $a;
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+
+                                                // unset($saldos[$menor]);
+
+                                                // echo json_encode($saldos);
+
+
+                                                $barraMenosSobrante = $totalSumaBarra - $cercano;
+
+
+                                               
+                                                echo "<br>"."Primera Barra= ".($barraMenosSobrante);
+
+                                                echo "<br>"."Segunda Barra= ".($cercano * ($piezas_repeticiones2504 - 1)) ;
+                                                echo "<li>Restante: ".$restadoalTotal."</li>";
+                                               
+                                                echo "<li>Barras: "."2"."</li>";
+                                                echo "<li>Corte sacado : ".$cercano."</li>";
+                                                echo "<li>Cortes Barra #1: ".$menos_corte."</li>";
+                                                echo "<li>Cortes Barra #2: "."1"."</li>";
+                                                echo "<li>Cortes Total: ".$piezas_2504Total."</li>";
+                                                echo "<li>Cercano: ".$cercano."</li>";
+
+
+                                                // echo json_encode($restadoSuma2504);
+
+                                                                            
+                                                                    
+                                                //Mostramos el resultado
+                                                // echo "<li>Menor: ".$menor."</li>";
+                                                // echo "<li>Mayor: ".$mayor."</li>";
+                                                // echo "<li>Buscado: ".$restadoalTotal."</li>";
+                                                // echo "<li>Cercano: ".$cercano."</li>";
+
+                                            }if($totalSumaBarra > 12.000 && $totalSumaBarra <= 18.000){
+                                              echo "3";  
+                                            }if($totalSumaBarra > 18.000 && $totalSumaBarra <= 24.000){
+                                              echo "4";  
+                                            }if($totalSumaBarra > 24.000 && $totalSumaBarra <= 30.000){
+                                              echo "5";  
+                                            }if($totalSumaBarra > 30.000 && $totalSumaBarra <= 36.000){
+                                              echo "6";  
+                                            }if($totalSumaBarra > 36.000 && $totalSumaBarra <= 42.000){
+                                              echo "7";  
+                                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         ?></td>
                                     </tr> 
                                 <tr>
@@ -1348,7 +1476,7 @@
                     <div class="row">
                         <!-- <div class="col-6"> -->
                             @if(count($barra2001) > 0)
-                            <p><strong>Resumen Linea 20</strong></p>
+                           <!--  <p><strong>Resumen Linea 20</strong></p> -->
                             <table class="table-responsive-md" border="2" style="width: 82%;">
                                 <thead>
                                     <tr  class="bg-info">
@@ -1362,7 +1490,7 @@
                                     <tr>
                                         <td scope="row">2001</td>
                                         <td scope="row" colspan="3">Riel Superior</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" colspan="2" class="text-center" ><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1618,11 +1746,11 @@
                     <div class="row">
                           <!--<div class="col-6"> -->
                             @if(count($barra2501) > 0)
-                            <p><strong>Resumen Linea 25</strong></p>   
+                            <!-- <p><strong>Resumen Linea 25</strong></p>    -->
                             <table class="table-responsive-md" border="2" style="width: 82%;">
                                 <thead>
                                     <tr  class="bg-info">
-                                        <th scope="col" class="text-center">Linea</th>
+                                        <th scope="col" class="text-center">Codigo</th>
                                         <th scope="col" class="text-center" colspan="3">Nombre</th>
                                         <th scope="col" class="text-center">Barras</th>
                                     </tr>

@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="modal-footer text-center">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary">Guardar Barra</button>
+                                        <button  type="submit" class="btn btn-primary">Guardar Barra</button>
                                     </div>
                                 </form>
                             </div>
