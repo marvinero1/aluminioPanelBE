@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="content-wrapper pt-3">
+<div class="content-wrapper pt-3" onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="">
     <h1 style="text-align: center" class="mb-4">Combinaciones y Medidas</h1>
     <div class="content">
         @if (Session::has('message'))
@@ -157,4 +157,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    window.history.forward();
+    function sinVueltaAtras(){ window.history.forward(); }
+</script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<div class="content-wrapper pt-3">
+<div class="content-wrapper pt-3" onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="">
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -66,4 +66,9 @@
             </div>
     </section>
 </div>
+
+<script type="text/javascript">
+    window.history.forward();
+    function sinVueltaAtras(){ window.history.forward(); }
+</script>
 @endsection

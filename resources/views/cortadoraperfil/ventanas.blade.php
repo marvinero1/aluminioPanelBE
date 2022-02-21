@@ -1287,8 +1287,6 @@
 
 
                                                 $barraMenosSobrante = $totalSumaBarra - $cercano;
-
-
                                                
                                                 echo "<br>"."Primera Barra= ".($barraMenosSobrante);
 
@@ -1480,7 +1478,7 @@
                             <table class="table-responsive-md" border="2" style="width: 82%;">
                                 <thead>
                                     <tr  class="bg-info">
-                                        <th scope="col" class="text-center">Linea</th>
+                                        <th scope="col" class="text-center">Codigo</th>
                                         <th scope="col" class="text-center" colspan="3">Nombre</th>
                                         <th scope="col" class="text-center" colspan="2">Barras</th>
                                     </tr>
@@ -1488,9 +1486,9 @@
                                
                                 <tbody>
                                     <tr>
-                                        <td scope="row">2001</td>
-                                        <td scope="row" colspan="3">Riel Superior</td>
-                                        <td scope="row" colspan="2" class="text-center" ><?php
+                                        <td scope="row" class="size">2001</td>
+                                        <td scope="row" colspan="3" class="size">Riel Superior</td>
+                                        <td scope="row" colspan="2" class="size text-center" ><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1524,9 +1522,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">2002</td>
-                                        <td scope="row" colspan="3">Riel Inferior</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2002</td>
+                                        <td scope="row" colspan="3" class="size">Riel Inferior</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1560,9 +1558,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">2005</td>
-                                        <td scope="row" colspan="3">Zocalo</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2005</td>
+                                        <td scope="row" colspan="3" class="size">Zocalo</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1595,9 +1593,9 @@
                                         ?></td> 
                                     </tr>
                                     <tr>
-                                        <td scope="row">2009</td>
-                                        <td scope="row" colspan="3">Jamba</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2009</td>
+                                        <td scope="row" colspan="3" class="size">Jamba</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1631,9 +1629,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">2010</td>
-                                        <td scope="row" colspan="3">Pierna</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2010</td>
+                                        <td scope="row" colspan="3" class="size">Pierna</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1667,9 +1665,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">2011</td>
-                                        <td scope="row" colspan="3">Enganche</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2011</td>
+                                        <td scope="row" colspan="3" class="size">Enganche</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                         $totalSumado = 0;
                                         $suma = 0.004;
                                       
@@ -1704,9 +1702,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">5008</td>
-                                        <td scope="row" colspan="3">Union</td>
-                                         <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">5008</td>
+                                        <td scope="row" colspan="3" class="size">Union</td>
+                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1758,9 +1756,9 @@
 
                                 <tbody>
                                     <tr>
-                                        <td scope="row">2501</td>
-                                        <td scope="row" colspan="3">Riel Superior</td>
-                                         <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2501</td>
+                                        <td scope="row" colspan="3" class="size">Riel Superior</td>
+                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1794,9 +1792,9 @@
                                     </tr> 
 
                                     <tr>
-                                        <td scope="row">2502</td>
-                                        <td scope="row" colspan="3">Riel Inferior</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2502</td>
+                                        <td scope="row" colspan="3" class="size">Riel Inferior</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1830,9 +1828,9 @@
                                     </tr>    
 
                                     <tr>
-                                        <td scope="row">2504</td>
-                                        <td scope="row" colspan="3">Cabezal</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2504</td>
+                                        <td scope="row" colspan="3" class="size">Cabezal</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1866,9 +1864,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">2505</td>
-                                        <td scope="row" colspan="3">Zocalo</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2505</td>
+                                        <td scope="row" colspan="3" class="size">Zocalo</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1902,9 +1900,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td scope="row">2507</td>
-                                        <td scope="row" colspan="3">Enganche</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2507</td>
+                                        <td scope="row" colspan="3" class="size">Enganche</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1938,9 +1936,9 @@
                                     </tr> 
 
                                     <tr>
-                                        <td scope="row">2509</td>
-                                        <td scope="row" colspan="3">Jamba</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2509</td>
+                                        <td scope="row" colspan="3" class="size">Jamba</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -1975,9 +1973,9 @@
                                     </tr>   
 
                                     <tr>
-                                        <td scope="row">2510</td>
-                                        <td scope="row" colspan="3">Pierna</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2510</td>
+                                        <td scope="row" colspan="3" class="size">Pierna</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -2010,9 +2008,9 @@
                                         ?></td> 
                                     </tr>    
                                     <tr>
-                                        <td scope="row">2521</td>
-                                        <td scope="row" colspan="3">Union</td>
-                                        <td scope="row" colspan="2" class="text-center"><?php
+                                        <td scope="row" class="size">2521</td>
+                                        <td scope="row" colspan="3" class="size">Union</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                           
@@ -2055,6 +2053,11 @@
         </div>
     </div> 
 </div>
+<style type="text/css">
+    .size{
+        font-size: 1.2rem;
+    }
+</style>
         
         <script>
             function printDiv(nombreDiv) {
