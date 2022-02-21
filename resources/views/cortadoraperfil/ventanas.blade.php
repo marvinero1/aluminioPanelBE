@@ -318,6 +318,140 @@
                                         <td class="text-center">{{ number_format($barra2001s->restado,3) }}</td>
                                     </tr>
                                 @endforeach
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><?php
+                                    $barra = 6000;
+                                    $totalSumaBarra = 0;
+                                    $piezas_2001Total=0;
+                                    $suma = 0.004;
+                                    $cercano = 0;
+                                    $menor =0;
+                                    $mayor=0;
+                                    foreach ($barra2001 as $barra2001s) {
+                                        
+                                        $restado = $barra2001s->restado;
+                                        $piezas = $barra2001s->piezas;
+                                        $restadoSuma2001 = $restado + $suma;
+                                        $piezas_repeticiones2001 = $piezas * $repeteciones;
+
+                                        //el valor de la X
+                                        $piezasDescuento = $piezas_repeticiones2001*$restadoSuma2001;
+                                        $piezas_2001Total += $piezas_repeticiones2001;
+                                        $piezasDescuentoSuma = $piezasDescuento ;
+                                        $totalSumaBarra += $piezasDescuentoSuma;
+                                        
+                                    }
+
+                                    //la sumatoria total de todos los cortes mas 0.004
+                                    // echo "=".$totalSumaBarra.",---";
+                                   
+                                    if ($totalSumaBarra > 0.001 && $totalSumaBarra <= 6.000){
+                                            echo "1";
+
+
+                                        }if($totalSumaBarra > 6.000 && $totalSumaBarra <= 12.000){
+                                             
+                                            $restadoalTotal = $totalSumaBarra-6.000;
+                                                $menos_corte = $piezas_2001Total - 1;     
+
+                                               
+                                                $saldos=array();
+
+                                                foreach($barra2001 as $barra2001s){
+                                                    $restado = $barra2001s->restado;
+                                                    $piezas = $barra2001s->piezas;
+                                                    $restadoSuma2001 = $restado + $suma;
+                                                     $piezas_repeticiones2001 = $piezas * $repeteciones;
+                                                    $piezasDescuento = $piezas_repeticiones2001*$restadoSuma2001;
+                                                   
+                                                    
+                                                    $saldos[] = $restadoSuma2001;
+
+                                                    for ($i=0; $i < $piezas_repeticiones2001; $i++){
+                                                    // impresion mas 0.004
+                                                   
+                                                    echo "|".$restadoSuma2001."|";
+                                                
+                                                    // // echo $restado.",-,";
+                                                   }
+                                                }
+
+                                                //la sumatoria total de todos los cortes mas 0.004
+                                                echo "=".$totalSumaBarra."<br>";
+
+                                                //el numero de cortes en total
+                                                // echo($piezas_2504Total);
+                                                // echo json_encode($saldos);
+                                                // echo "<br>".$restadoalTotal.", se quita 1 corte y quedan";
+                                                // echo($menos_corte);
+
+                                                //Ordenamos el array de menor a mayor
+                                                sort($saldos);
+
+                                                //Obtenemos el valor menor
+                                                $menor = json_encode($saldos[0]);
+
+                                                //Obtenemos el valor mayor
+                                                $mayor = $saldos[count($saldos)-1];
+
+                                                //Ubicamos cual es el valor más cercano desde la derecha al numero faltante
+                                                if($restadoalTotal > $mayor){
+                                                    $cercano = $mayor;
+                                                }else{
+                                                    foreach($saldos as $a){
+                                                        if( ($a - $restadoalTotal) >= 0){
+                                                            $cercano = $a;
+                                                            // break;
+                                                        }elseif($restadoalTotal < $barra){
+                                                            echo "Creada primera barra";
+                                                        }
+                                                    }
+                                                }
+
+
+
+                                                unset($saldos[$cercano]);
+                                                echo "<br>".$cercano;
+                                                foreach($saldos as $a){
+                                                    echo "|".$a."|";
+                                                }
+
+                                                // echo json_encode($saldos);
+
+
+                                                $barraMenosSobrante = $totalSumaBarra - $cercano;
+                                               
+                                                echo "<br>"."Primera Barra= ".($barraMenosSobrante);
+
+                                                echo "<br>"."Segunda Barra= ".($cercano * ($piezas_repeticiones2001 - 1)) ;
+                                                echo "<li>Restante: ".$restadoalTotal."</li>";
+                                               
+                                                echo "<li>Barras: "."2"."</li>";
+                                                echo "<li>Corte sacado : ".$cercano."</li>";
+                                                echo "<li>Cortes Barra #1: ".$menos_corte."</li>";
+                                                echo "<li>Cortes Barra #2: "."1"."</li>";
+                                                echo "<li>Cortes Total: ".$piezas_2001Total."</li>";
+                                                echo "<li>Cercano: ".$cercano."</li>";
+                                           
+
+                                        }if($totalSumaBarra > 12.000 && $totalSumaBarra <= 18.000){
+                                          echo "3";  
+                                        }if($totalSumaBarra > 18.000 && $totalSumaBarra <= 24.000){
+                                          echo "4";  
+                                        }if($totalSumaBarra > 24.000 && $totalSumaBarra <= 30.000){
+                                          echo "5";  
+                                        }if($totalSumaBarra > 30.000 && $totalSumaBarra <= 36.000){
+                                          echo "6";  
+                                        }if($totalSumaBarra > 36.000 && $totalSumaBarra <= 42.000){
+                                          echo "7";  
+                                        }
+
+                                    ?></td>
+                                </tr> 
                               </tbody>
                             </table>
                             @endif
@@ -1243,16 +1377,15 @@
 
                                                     for ($i=0; $i < $piezas_repeticiones2504; $i++){
                                                     // impresion mas 0.004
+                                                   
                                                     echo "|".$restadoSuma2504."|";
                                                 
-                                                    // echo $restado.",-,";
-                                                    }
-
-
+                                                    // // echo $restado.",-,";
+                                                   }
                                                 }
 
                                                 //la sumatoria total de todos los cortes mas 0.004
-                                                echo "=".$totalSumaBarra;
+                                                echo "=".$totalSumaBarra."<br>";
 
                                                 //el numero de cortes en total
                                                 // echo($piezas_2504Total);
@@ -1281,7 +1414,13 @@
                                                     }
                                                 }
 
-                                                // unset($saldos[$menor]);
+
+
+                                                unset($saldos[$cercano]);
+                                                echo "<br>".$cercano;
+                                                foreach($saldos as $a){
+                                                    echo "|".$a."|";
+                                                }
 
                                                 // echo json_encode($saldos);
 
@@ -1322,19 +1461,6 @@
                                             }if($totalSumaBarra > 36.000 && $totalSumaBarra <= 42.000){
                                               echo "7";  
                                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                         ?></td>
                                     </tr> 
@@ -1478,7 +1604,7 @@
                             <table class="table-responsive-md" border="2" style="width: 82%;">
                                 <thead>
                                     <tr  class="bg-info">
-                                        <th scope="col" class="text-center">Codigo</th>
+                                        <th scope="col" class="text-center">Linea</th>
                                         <th scope="col" class="text-center" colspan="3">Nombre</th>
                                         <th scope="col" class="text-center" colspan="2">Barras</th>
                                     </tr>

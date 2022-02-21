@@ -147,8 +147,6 @@ class CortadoraController extends Controller
         $repeteciones = +$repeteciones;
         $l = $perfils->sum('repeticion');
 
-        $b = 0;
-
         foreach ($barra as $barras){
           $barra_perfil_id = $barras->perfil_id;
             if($id_perfil == $barra_perfil_id){
@@ -163,12 +161,9 @@ class CortadoraController extends Controller
                 // echo "<p>$fam_linea => $nombre => $restaRecorte => $piezas</p>";            
             }
         }  
-
-
-
        
      
-        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011','barra5008','barra2501','barra2502','barra2505','barra2509','barra2507','barra2510','barra2504','barra2521','nombre_cliente',));
+        return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','division','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','l','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011','barra5008','barra2501','barra2502','barra2505','barra2509','barra2507','barra2510','barra2504','barra2521','nombre_cliente'));
     }
 
     public function cotizacion($id){
