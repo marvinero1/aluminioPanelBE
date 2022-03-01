@@ -220,13 +220,23 @@ class PerfilController extends Controller
         return response()->json($perfil, 200);
     }
 
+
+
+
+
+
+
     public function actualizarPerfil(Request $request, $id){
         
         $perfil = Perfil::findOrFail($id);
+
         $perfil->update($request->all());
+        
 
         return response()->json($perfil, 200);
     }
+
+
 
     public function HistorialDelete($id){
 
