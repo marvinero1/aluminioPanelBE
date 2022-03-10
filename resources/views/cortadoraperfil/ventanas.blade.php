@@ -548,6 +548,8 @@
                                     }
                                     echo "=".$totalSumaBarra;
                                     }if($totalSumaBarra > 6.000 && $totalSumaBarra <= 12.000){
+                                          echo "2";  
+
                                         }if($totalSumaBarra > 12.000 && $totalSumaBarra <= 18.000){
                                           echo "3";  
                                         }if($totalSumaBarra > 18.000 && $totalSumaBarra <= 24.000){
@@ -1763,9 +1765,7 @@
                                             $piezasDescuento = $piezas_repeticiones2504*$restadoSuma2504;
                                             $piezas_2504Total += $piezas_repeticiones2504;
                                             $piezasDescuentoSuma = $piezasDescuento ;
-                                            $totalSumaBarra += $piezasDescuentoSuma;
-
-                                            
+                                            $totalSumaBarra += $piezasDescuentoSuma;   
                                         }
 
                                         //la sumatoria total de todos los cortes mas 0.004
@@ -1788,8 +1788,6 @@
 
 
                                             }if($totalSumaBarra > 6.000 && $totalSumaBarra <= 12.000){
-                                                 
-
                                                 $restadoalTotal = $totalSumaBarra-6.000;
                                                 $menos_corte = $piezas_2504Total - 1;     
 
@@ -1819,11 +1817,9 @@
                                                 //Obtenemos el valor menor
                                                 $menor = json_encode($saldos[0]);
 
-
                                                 //Obtenemos el valor mayor
                                                 
                                                 $mayor = $saldos[count($saldos)-1];
-                                                
 
                                                 //Ubicamos cual es el valor más cercano desde la derecha al numero faltante
                                                 if($restadoalTotal > $mayor){
@@ -1843,19 +1839,14 @@
 
                                                 {{-- echo "<br>"."Segunda Barra= ".($cercano * ($piezas_repeticiones2504)) ; --}}
 
-
-
-
                                                 {{-- echo "<br>"."Segunda Barra= ".($cercano ) ; --}}
-                                                echo "<li>Restante: ".$restadoalTotal."</li>";
-                                               
+                                                {{-- echo "<li>Restante: ".$restadoalTotal."</li>"; --}}
                                                 echo "<li>Barras: "."2"."</li>";
-                                                echo "<li>Corte sacado : ".$cercano."</li>";
+                                                echo "<li>Corte Sacado : ".$cercano."</li>";
                                                 echo "<li>Cortes Barra #1: ".$menos_corte."</li>";
                                                 echo "<li>Cortes Barra #2: "."1"."</li>";
                                                 echo "<li>Cortes Total: ".$piezas_2504Total."</li>";
-                                                echo "<li>Cercano: ".$cercano."</li>";
-
+                                                {{-- echo "<li>Cercano: ".$cercano."</li>"; --}}
                                                
                                                 foreach($barra2504 as $barra2504s){
                                                     $restado = $barra2504s->restado;
@@ -1865,57 +1856,80 @@
                                                     $piezasDescuento = $piezas_repeticiones2504*$restadoSuma2504;
                                                     
                                                     $saldos[] = $restadoSuma2504;
-
                                                     $repeat = ($restadoSuma2504) * $piezas_repeticiones2504;
-
                                                     
-                                                    $dataSaldos[] = [
-                                                    ["repetecion"=>$piezas_repeticiones2504]
-                                                    ];   
+                                                    $dataSaldos[] = array("corte"=>$restadoSuma2504, "repeticion"=>$piezas_repeticiones2504);   
                                                 }
 
-                                                 {{-- echo json_encode($dataSaldos); --}}
+                                                {{-- echo json_encode($dataSaldos);  --}}                                                
                                                 
+                                                {{-- SEGUNDA BARRA --}}
+                                                echo "<div><strong>Segunda Barra</strong></div>";
                                                 
+                                                foreach ($dataSaldos as $key => $val){ 
+                                                    if (($clave = array_search("$cercano", $val)) !== false) {
+                                                        unset($val[$clave]);
+                                                        $rep = $val;
+                                                        foreach($val as $num){
+                                                            $numero = $num;
+                                                            $multiplicacion = $cercano * $numero;
+                                                        }
+                                                        {{-- echo $multiplicacion; --}}
+                                                    }
+                                                } 
+
+                                                $p = $totalSumaBarra - $multiplicacion;
+
+                                                if ($p < 6.000) {
+
+                                                    echo  "|".$cercano."|"."=".$multiplicacion;
+                                                                                   
+
+                                                }else{
+                                                    echo "|".$cercano."|".$menor."|"."=";
+
+                                                }
+
+
                                                 {{-- PRIMERA BARRA --}}
                                                 echo "<div><strong>Primera Barra</strong></div>";
-                                                $saldoSinrepeat = array_unique($saldos);
+
                                                 {{-- print_r($saldoSinrepeat); --}}
 
-                                                if (($clave = array_search("$cercano", $saldoSinrepeat)) !== false) {
-                                                    unset($saldoSinrepeat[$clave]);
-                                                    echo json_encode($saldoSinrepeat);
+                                                if ($p < 6.000) {
+                                                    unset($dataSaldos[$clave]);
+                                                    echo json_encode($dataSaldos);
+
+                                                    echo "=".($p)."<br>";
+                                                }else{
+                                                   echo "<br><br>";
+                                                    unset($dataSaldos[$clave]);
+
+                                                    foreach ($dataSaldos as $key => $val){ 
+                                                        if (($clave = array_search("$menor", $val)) !== false) {
+                                                            unset($val[$clave]);
+                                                            $rep = $val;
+                                                            foreach($val as $num){
+                                                                $numero = $num;
+                                                                $multiplicacionMenor = $menor * $numero;
+                                                            }
+                                                            unset($val[$menor]);
+
+                                                            {{-- echo $multiplicacionMenor; --}}
+                                                        }
+                                                    }
+
+                                                    echo json_encode($val); 
+                                                    echo "=".($multiplicacionMenor)."<br>"; 
                                                 }
+                                                
 
+                                                
 
-                                                {{-- unset($saldoSinrepeat[$cercano]); --}}
+                                            //CUANDO SACAMOS UN CORTE PERO AUN SIGUE SIENDO MAYOR A 6000
+                                            //POR LO TANTO HAY Q SACAR OTRO CORTE(YA SEA EL PROXIMO MAYOR O EL PROXIMO MENOR)
 
-                                                {{-- print_r($saldoSinrepeat); --}}
-
-
-                                                $saldosExcluyente = $saldos;
-                                                $saldosExcluyente = array_diff($saldos,array($cercano));
-
-                                            
-                                                $saldosJSON = json_encode($saldosExcluyente);
-                                                {{-- echo ("|".$saldosJSON."|");--}}
-
-
-                                                {{-- var_dump($saldosExcluyente); --}}
-
-                                                //la sumatoria total de todos los cortes mas 0.004
-
-                                                $p = $totalSumaBarra - $cercano;
-                                               
-                                                echo "=".($p)."<br>";
-
-
-                                                {{-- SEGUNDA BARRA --}} 
-                                                echo "<div><strong>Segunda Barra</strong></div>";
-                                                    
-                                                // impresion mas 0.004
-                                                echo "|".$cercano."|";                                                 
-                                                echo "=".$cercano;     
+                                             
 
                                             }if($totalSumaBarra > 12.000 && $totalSumaBarra <= 18.000){
                                               echo "3";  
