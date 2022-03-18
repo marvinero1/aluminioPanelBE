@@ -379,7 +379,7 @@
                         <div class="col-6">
                             @if(count($barra2005) > 0)
                             <p><strong>Resumen 2005</strong></p>   
-                            <table class="table-responsive-sm" border="1" style=" table-layout: fixed;width: 100%;" border="1">
+                            <table class="table-responsive-sm" border="1" style=" table-layout: fixed;width: 100%;">
                               <thead>
                                 <tr>
                                     <th scope="col" class="text-center">Ventana</th>
@@ -676,7 +676,6 @@
                                         }if($totalSumaBarra > 42.000 && $totalSumaBarra <= 48.000){
                                           echo "8";  
                                         }
-
                                     ?></td>
                                 </tr>                      
                               </tbody>

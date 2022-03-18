@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Perfil;
 use App\barra;
 use App\Corte;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -61,13 +61,9 @@ class PerfilController extends Controller
         
         $perfil = Perfil::where('perfils.id', '=', $id)->get();
         $perfil_id = $id;
-
         $numberRepeteat;
-
         $barra = barra::where('barras.perfil_id', '=', $id)->get();
-
         $linea20 = array("2001", "2002", "2005", "2009","2010","2011");
-
         $linea25 = array("2501", "2502", "2504", "2505","2507", "2509","2510","5008");
 
         $cortesName = array("Corte 1", "Corte 2", "Corte 3", "Corte 4","Corte 5", "Corte 6","Corte 7","Corte 8","Corte 9",
@@ -80,16 +76,11 @@ class PerfilController extends Controller
             $alto_barra = $perfils->alto;
             $linea = $perfils->linea;
             $combinacion = $perfils->combinacion;
-
             $hoja_id = $perfils->hoja_id;
             // echo($hoja_id);
-
             $largo_predeterminado = 6;
-
             $numberRepeteat = $ancho_barra * $repetecion;
-
             $division = $numberRepeteat / $largo_predeterminado;
-
             $totalmtsbarra = $division * $largo_predeterminado;
  
             $ancho_barra; 
@@ -98,7 +89,6 @@ class PerfilController extends Controller
             $combinacion;
             $linea_familia;
         }
-
                 
         $barraArray = [];
 
@@ -135,7 +125,6 @@ class PerfilController extends Controller
 
             // echo $cate_json;           
         }
-
         
         return view('cortadoraperfil.combinacion1', compact('perfil','perfil_id','barra','repetecion','ancho_barra',
             'alto_barra','linea','combinacion','largo_predeterminado','cate_json','largos','resumen',
@@ -162,8 +151,6 @@ class PerfilController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-
-        //  dd($request);
         $mensaje = "Precio Unitario Editado Exitosamente!!!";
 
         $perfil = Perfil::findOrFail($id);
@@ -177,13 +164,6 @@ class PerfilController extends Controller
 
         Session::flash('message',$mensaje);
         return back()->withInput();
-
-        // $request->all();
-        // $barra = barra::find($id);
-
-        // $barra::update();
-        
-        // return back()->withInput();
     }
 
     public function updatePerfil(Request $request, $id){
@@ -196,7 +176,6 @@ class PerfilController extends Controller
         $perfil->update();
         return redirect()->route('hojaCalculo.show',$hoja_id);
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -213,30 +192,24 @@ class PerfilController extends Controller
         return back()->withInput();
     }
 
-
     public function deletePerfil($id){
         $perfil = Perfil::find($id);
         $perfil->delete();
         return response()->json($perfil, 200);
     }
 
-
-
-
-
-
-
     public function actualizarPerfil(Request $request, $id){
-        
-        $perfil = Perfil::findOrFail($id);
+        $perfil_id = Perfil::find($id);
+        $results = DB::select('select * from barras where perfil_id = :perfil_id', ['perfil_id' => $perfil_id]);
 
-        $perfil->update($request->all());
-        
-
-        return response()->json($perfil, 200);
+        if (count($results) > 0){
+            $deleted = DB::delete('delete from barras where perfil_id = :perfil_id', ['perfil_id' => $perfil_id]);
+            $perfil_id->update($request->all());
+        }else{
+            $perfil_id->update($request->all());
+        }
+        return response()->json($perfil_id, 200);
     }
-
-
 
     public function HistorialDelete($id){
 
@@ -245,6 +218,4 @@ class PerfilController extends Controller
 
         return response()->json($perfil, 200);     
     }
-
-
 }

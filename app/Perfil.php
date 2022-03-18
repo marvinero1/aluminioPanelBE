@@ -26,6 +26,7 @@ class Perfil extends Model
                         'linea',
                         'estado',
                         'repeticion',
+                        'descripcion',
                         'user_id',
                         'precio',
                     ];

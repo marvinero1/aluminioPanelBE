@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<br><br>
 <div class="content-wrapper" id="areaImprimir">
     @if (Session::has('message'))
       <div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -9,9 +8,10 @@
     @if (Session::has('error'))
     <div class="alert alert-danger">{{ Session::get('error') }}</div>
     @endif  
-        <div class="container" style="padding-block-start: 40px;" id="template_invoice"><br><br><br><br>
+        <div class="container" style="padding-block-start: 5px;" id="template_invoice"><br><br><br><br>
             <div class="text-center">
-                <h3 id="header">Cotización</h4>
+                <p id="header" style="font-size: 1.7rem;">
+                    <strong>COTIZACION</strong></p>
             </div>
           <br>
           <div class="row">
@@ -26,7 +26,7 @@
                 <div class="panel-body"style="padding-block-start: 55px;">
                     <div class="table-responsive">
                         <div class="table-responsive">
-                            <table class="table table-condensed table-borderless ">
+                            <table class="table table-condensed table-borderless" style="font-size:1.2rem">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;">Lineas o Series</th>
@@ -39,10 +39,9 @@
                               <tbody>
                                 @if($barraL20Alto != null)
                                 <tr><input type="text" hidden="true" value="{{ $barraL20Alto}}" id="barras_20">
-                                    
                                     <td class="text-center"><label>Linea 20</label></td>
                                     
-                                    <td class="text-center"><label>{{ number_format($mt2Total,3) }}</label>
+                                    <td class="text-center"><label>{{ number_format($mt2Total,2) }}</label>
 
                                     <input hidden="true" type="text" name="mt2" value="{{ number_format($mt2Total,3) }}" id="mt2">
                                     </td>
@@ -73,8 +72,8 @@
                                 @if($barraL25Alto != null)
                                     <tr><input type="text" hidden="true" value="{{ $barraL25Alto}}" id="barras_25">
                                         <td class="text-center"><label>Linea 25</label></td>
-                                        <td class="text-center"><label>{{  number_format($mt2Total25,3) }}</label>
-                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($mt2Total25,3) }}" 
+                                        <td class="text-center"><label>{{  number_format($mt2Total25,2) }}</label>
+                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($mt2Total25,2) }}" 
                                          id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
                                             <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
@@ -152,7 +151,7 @@
         let totalTotal = parseFloat(subtotal) + parseFloat(subtotal25);
         // console.log(totalTotal);
 
-        totalTotal = parseInt(totalTotal).toFixed(2);
+        totalTotal = parseFloat(totalTotal).toFixed(2);
         document.getElementById('totalTotal').innerHTML = totalTotal;  
     }
 
