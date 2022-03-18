@@ -207,45 +207,6 @@
                                             }
                                         }?>
                                     </td> 
-                             <!--       <td class="text-center">
-                                         <?php
-                                        foreach ($barra as $barras){
-                                        $barra_perfil_id = $barras->perfil_id;
-                                            if($id_perfil == $barra_perfil_id){
-                                                $fam_linea = $barras->fam_linea;
-                                                $nombre = $barras->nombre;
-                                                $repetecion = $perfils->repeticion;
-                                                $ancho = $barras->largo;
-                                                $resta = $barras->resta;
-                                                $piezas = $barras->piezas;
-                                                $restaRecorte =  $ancho - $resta;
-
-                                                 $piezas_repeticiones = $piezas * $repetecion;
-
-                                                $piezas = $barras->piezas;
-                                                $restado = $barras->restado;
-                                                $round = round($restado);
-                                                   
-                                                $a = ($round * $piezas_repeticiones);
-                                                $seis = '6000';
-                                                $rsta = $a - $seis;
-                                                if ($rsta > '0') {
-                                                    echo "<p>Se necesitara 1 barra, mas $rsta</p>";
-                                                }if($rsta >= $seis){
-                                                    echo '<p>Se necesitara mas de 2 barra</p>';
-
-                                                }if($rsta > '12000'){
-                                                    echo '<p>Se necesitara mas de 3 barra</p>';
-
-                                                }
-                                                                                               
-                                                echo "<p>resultado: $a</p>
-                                                <p>Barra: $seis</p>
-                                                <p>$rsta</p>
-                                                ";   
-                                            }
-                                        }?> 
-                                    </td>  --> 
                                 </tr>
                             @endforeach                      
                           </tbody>
@@ -268,11 +229,10 @@
             <div class="tab-content p-4" id="areaImprimir2">
                 <div class="col-md-6">
                     <div class="row">
-                        <p><strong>Nombre Cliente: </strong></p> {{ $nombre_cliente }}
-                         
+                        <p><strong>Nombre Cliente: </strong></p> {{ $nombre_cliente }} 
                     </div>
                 </div>
-                <div class="class">
+                <div class="class p-4">
                     <div class="row">
                         <!-- <div class="col-6"> -->
                             @if(count($barra2001) > 0)
@@ -299,7 +259,6 @@
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2001s->piezas;
                                                 $piezas_repeticiones2001 = $piezas * $repeteciones;
-
                                                 $totalMts = $piezas_repeticiones2001 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
@@ -333,6 +292,38 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                         ?></td>
                                     </tr>
@@ -349,7 +340,6 @@
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2002s->piezas;
                                                 $piezas_repeticiones2002 = $piezas * $repeteciones;
-
                                                 $totalMts = $piezas_repeticiones2002 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
@@ -368,23 +358,55 @@
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
                                               echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "7";  
-                                        }if($totalSumado > 42.000 && $totalSumado <= 48.000){
-                                          echo "8";  
-                                        }if($totalSumado > 48.000 && $totalSumado <= 54.000){
-                                          echo "9";  
-                                        }if($totalSumado > 54.000 && $totalSumado <= 60.000){
-                                          echo "10";  
-                                        }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                          echo "11";  
-                                        }if($totalSumado > 66.000 && $totalSumado <= 72.000){
-                                          echo "12";  
-                                        }if($totalSumado > 72.000 && $totalSumado <= 78.000){
-                                          echo "13";  
-                                        }if($totalSumado > 78.000 && $totalSumado <= 84.000){
-                                          echo "14";  
-                                        }
-                                        ?></td> 
+                                                echo "7";  
+                                            }if($totalSumado > 42.000 && $totalSumado <= 48.000){
+                                              echo "8";  
+                                            }if($totalSumado > 48.000 && $totalSumado <= 54.000){
+                                              echo "9";  
+                                            }if($totalSumado > 54.000 && $totalSumado <= 60.000){
+                                              echo "10";  
+                                            }if($totalSumado > 60.000 && $totalSumado <= 66.000){
+                                              echo "11";  
+                                            }if($totalSumado > 66.000 && $totalSumado <= 72.000){
+                                              echo "12";  
+                                            }if($totalSumado > 72.000 && $totalSumado <= 78.000){
+                                              echo "13";  
+                                            }if($totalSumado > 78.000 && $totalSumado <= 84.000){
+                                              echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
+                                            }
+                                            ?></td> 
                                     </tr>
 
                                     <tr>
@@ -399,7 +421,6 @@
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2005s->piezas;
                                                 $piezas_repeticiones2005 = $piezas * $repeteciones;
-
                                                 $totalMts = $piezas_repeticiones2005 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
@@ -418,22 +439,54 @@
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
                                               echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "7";  
-                                        }if($totalSumado > 42.000 && $totalSumado <= 48.000){
-                                          echo "8";  
-                                        }if($totalSumado > 48.000 && $totalSumado <= 54.000){
-                                          echo "9";  
-                                        }if($totalSumado > 54.000 && $totalSumado <= 60.000){
-                                          echo "10";  
-                                        }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                          echo "11";  
-                                        }if($totalSumado > 66.000 && $totalSumado <= 72.000){
-                                          echo "12";  
-                                        }if($totalSumado > 72.000 && $totalSumado <= 78.000){
-                                          echo "13";  
-                                        }if($totalSumado > 78.000 && $totalSumado <= 84.000){
-                                          echo "14";  
-                                        }
+                                              echo "7";  
+                                            }if($totalSumado > 42.000 && $totalSumado <= 48.000){
+                                              echo "8";  
+                                            }if($totalSumado > 48.000 && $totalSumado <= 54.000){
+                                              echo "9";  
+                                            }if($totalSumado > 54.000 && $totalSumado <= 60.000){
+                                              echo "10";  
+                                            }if($totalSumado > 60.000 && $totalSumado <= 66.000){
+                                              echo "11";  
+                                            }if($totalSumado > 66.000 && $totalSumado <= 72.000){
+                                              echo "12";  
+                                            }if($totalSumado > 72.000 && $totalSumado <= 78.000){
+                                              echo "13";  
+                                            }if($totalSumado > 78.000 && $totalSumado <= 84.000){
+                                              echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
+                                            }
                                         ?></td> 
                                     </tr>
                                     <tr>
@@ -448,58 +501,7 @@
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2009s->piezas;
                                                 $piezas_repeticiones2009 = $piezas * $repeteciones;
-
                                                 $totalMts = $piezas_repeticiones2009 * $restaSuma;
-
-                                                $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
-                                                echo "1";
-                                            }if($totalSumado > 6.000 && $totalSumado <= 12.000){
-                                              echo "2";  
-                                            }if($totalSumado > 12.000 && $totalSumado <= 18.000){
-                                              echo "3";  
-                                            }if($totalSumado > 18.000 && $totalSumado <= 24.000){
-                                              echo "4";  
-                                            }if($totalSumado > 24.000 && $totalSumado <= 30.000){
-                                              echo "5";  
-                                            }if($totalSumado > 30.000 && $totalSumado <= 36.000){
-                                              echo "6";  
-                                            }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "7";  
-                                        }if($totalSumado > 42.000 && $totalSumado <= 48.000){
-                                          echo "8";  
-                                        }if($totalSumado > 48.000 && $totalSumado <= 54.000){
-                                          echo "9";  
-                                        }if($totalSumado > 54.000 && $totalSumado <= 60.000){
-                                          echo "10";  
-                                        }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                          echo "11";  
-                                        }if($totalSumado > 66.000 && $totalSumado <= 72.000){
-                                          echo "12";  
-                                        }if($totalSumado > 72.000 && $totalSumado <= 78.000){
-                                          echo "13";  
-                                        }if($totalSumado > 78.000 && $totalSumado <= 84.000){
-                                          echo "14";  
-                                        }
-                                        ?></td> 
-                                    </tr>
-
-                                    <tr>
-                                        <td scope="row" class="size">2010</td>
-                                        <td scope="row" colspan="3" class="size">Pierna</td>
-                                        <td scope="row" colspan="2" class="size text-center"><?php
-                                            $totalSumado = 0;
-                                            $suma = 0.004;
-                                          
-                                            foreach ($barra2011 as $barra2011s) {
-                                                $restado = $barra2011s->restado;
-                                                $restaSuma = $restado + $suma;
-                                                $piezas = $barra2011s->piezas;
-                                                $piezas_repeticiones2011 = $piezas * $repeteciones;
-
-                                                $totalMts = $piezas_repeticiones2011 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
                                             }
@@ -525,13 +527,127 @@
                                             }if($totalSumado > 54.000 && $totalSumado <= 60.000){
                                               echo "10";  
                                             }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                              echo "11"; 
+                                              echo "11";  
                                             }if($totalSumado > 66.000 && $totalSumado <= 72.000){
                                               echo "12";  
                                             }if($totalSumado > 72.000 && $totalSumado <= 78.000){
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
+                                            }
+                                        ?></td> 
+                                    </tr>
+
+                                    <tr>
+                                        <td scope="row" class="size">2010</td>
+                                        <td scope="row" colspan="3" class="size">Pierna</td>
+                                        <td scope="row" colspan="2" class="size text-center"><?php
+                                            $totalSumado = 0;
+                                            $suma = 0.004;
+                                          
+                                            foreach ($barra2011 as $barra2011s) {
+                                                $restado = $barra2011s->restado;
+                                                $restaSuma = $restado + $suma;
+                                                $piezas = $barra2011s->piezas;
+                                                $piezas_repeticiones2011 = $piezas * $repeteciones;
+
+                                                $totalMts = $piezas_repeticiones2011 * $restaSuma;
+
+                                                $totalSumado += $totalMts;
+                                            }
+                                            
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                echo "1";
+                                            }if($totalSumado > 6.000 && $totalSumado <= 12.000){
+                                                echo "2";  
+                                            }if($totalSumado > 12.000 && $totalSumado <= 18.000){
+                                                echo "3";  
+                                            }if($totalSumado > 18.000 && $totalSumado <= 24.000){
+                                                echo "4";  
+                                            }if($totalSumado > 24.000 && $totalSumado <= 30.000){
+                                                echo "5";  
+                                            }if($totalSumado > 30.000 && $totalSumado <= 36.000){
+                                                echo "6";  
+                                            }if($totalSumado > 36.000 && $totalSumado <= 42.000){
+                                                echo "7";  
+                                            }if($totalSumado > 42.000 && $totalSumado <= 48.000){
+                                                echo "8";  
+                                            }if($totalSumado > 48.000 && $totalSumado <= 54.000){
+                                                echo "9";  
+                                            }if($totalSumado > 54.000 && $totalSumado <= 60.000){
+                                                echo "10";  
+                                            }if($totalSumado > 60.000 && $totalSumado <= 66.000){
+                                                echo "11"; 
+                                            }if($totalSumado > 66.000 && $totalSumado <= 72.000){
+                                                echo "12";  
+                                            }if($totalSumado > 72.000 && $totalSumado <= 78.000){
+                                                echo "13";  
+                                            }if($totalSumado > 78.000 && $totalSumado <= 84.000){
+                                                echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                             ?></td>  
                                     </tr>
@@ -548,14 +664,13 @@
                                             $restaSuma = $restado + $suma;
                                             $piezas = $barra2011s->piezas;
                                             $piezas_repeticiones2011 = $piezas * $repeteciones;
-
                                             $totalMts = $piezas_repeticiones2011 * $restaSuma;
 
                                             $totalSumado += $totalMts;
                                         }
                                         
                                         if ($totalSumado > 0.001 && $totalSumado <= 6.000){
-                                            echo "Barra 1";
+                                            echo "1";
                                         }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                           echo "2";  
                                         }if($totalSumado > 12.000 && $totalSumado <= 18.000){
@@ -582,8 +697,39 @@
                                           echo "13";  
                                         }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                           echo "14";  
+                                        }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                          echo "15";  
+                                        }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                          echo "16";  
+                                        }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                          echo "17";  
+                                        }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                          echo "18";  
+                                        }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                          echo "19";  
+                                        }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                          echo "20";  
+                                        }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                          echo "21";  
+                                        }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                          echo "22";  
+                                        }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                          echo "23";  
+                                        }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                          echo "24";  
+                                        }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                          echo "25";  
+                                        }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                          echo "26";  
+                                        }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                          echo "27";  
+                                        }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                          echo "28";  
+                                        }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                          echo "29";  
+                                        }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                          echo "30";  
                                         }
-                                        
                                     ?></td>  
                                     </tr>
 
@@ -633,6 +779,38 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                             ?></td> 
                                         </tr>
@@ -687,23 +865,55 @@
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
                                               echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "7";  
-                                        }if($totalSumado > 42.000 && $totalSumado <= 48.000){
-                                          echo "8";  
-                                        }if($totalSumado > 48.000 && $totalSumado <= 54.000){
-                                          echo "9";  
-                                        }if($totalSumado > 54.000 && $totalSumado <= 60.000){
-                                          echo "10";  
-                                        }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                          echo "11";  
-                                        }if($totalSumado > 66.000 && $totalSumado <= 72.000){
-                                          echo "12";  
-                                        }if($totalSumado > 72.000 && $totalSumado <= 78.000){
-                                          echo "13";  
-                                        }if($totalSumado > 78.000 && $totalSumado <= 84.000){
-                                          echo "14";  
-                                        } 
-                                        ?></td> 
+                                              echo "7";  
+                                            }if($totalSumado > 42.000 && $totalSumado <= 48.000){
+                                              echo "8";  
+                                            }if($totalSumado > 48.000 && $totalSumado <= 54.000){
+                                              echo "9";  
+                                            }if($totalSumado > 54.000 && $totalSumado <= 60.000){
+                                              echo "10";  
+                                            }if($totalSumado > 60.000 && $totalSumado <= 66.000){
+                                              echo "11";  
+                                            }if($totalSumado > 66.000 && $totalSumado <= 72.000){
+                                              echo "12";  
+                                            }if($totalSumado > 72.000 && $totalSumado <= 78.000){
+                                              echo "13";  
+                                            }if($totalSumado > 78.000 && $totalSumado <= 84.000){
+                                              echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
+                                            }
+                                            ?></td> 
                                     </tr> 
 
                                     <tr>
@@ -737,23 +947,55 @@
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
                                               echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "7";  
-                                        }if($totalSumado > 42.000 && $totalSumado <= 48.000){
-                                          echo "8";  
-                                        }if($totalSumado > 48.000 && $totalSumado <= 54.000){
-                                          echo "9";  
-                                        }if($totalSumado > 54.000 && $totalSumado <= 60.000){
-                                          echo "10";  
-                                        }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                          echo "11";  
-                                        }if($totalSumado > 66.000 && $totalSumado <= 72.000){
-                                          echo "12";  
-                                        }if($totalSumado > 72.000 && $totalSumado <= 78.000){
-                                          echo "13";  
-                                        }if($totalSumado > 78.000 && $totalSumado <= 84.000){
-                                          echo "14";  
-                                        }
-                                        ?></td> 
+                                              echo "7";  
+                                            }if($totalSumado > 42.000 && $totalSumado <= 48.000){
+                                              echo "8";  
+                                            }if($totalSumado > 48.000 && $totalSumado <= 54.000){
+                                              echo "9";  
+                                            }if($totalSumado > 54.000 && $totalSumado <= 60.000){
+                                              echo "10";  
+                                            }if($totalSumado > 60.000 && $totalSumado <= 66.000){
+                                              echo "11";  
+                                            }if($totalSumado > 66.000 && $totalSumado <= 72.000){
+                                              echo "12";  
+                                            }if($totalSumado > 72.000 && $totalSumado <= 78.000){
+                                              echo "13";  
+                                            }if($totalSumado > 78.000 && $totalSumado <= 84.000){
+                                              echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
+                                            }
+                                    ?></td> 
                                     </tr>    
 
                                     <tr>
@@ -787,23 +1029,55 @@
                                             }if($totalSumado > 30.000 && $totalSumado <= 36.000){
                                               echo "6";  
                                             }if($totalSumado > 36.000 && $totalSumado <= 42.000){
-                                          echo "7";  
-                                        }if($totalSumado > 42.000 && $totalSumado <= 48.000){
-                                          echo "8";  
-                                        }if($totalSumado > 48.000 && $totalSumado <= 54.000){
-                                          echo "9";  
-                                        }if($totalSumado > 54.000 && $totalSumado <= 60.000){
-                                          echo "10";  
-                                        }if($totalSumado > 60.000 && $totalSumado <= 66.000){
-                                          echo "11";  
-                                        }if($totalSumado > 66.000 && $totalSumado <= 72.000){
-                                          echo "12";  
-                                        }if($totalSumado > 72.000 && $totalSumado <= 78.000){
-                                          echo "13";  
-                                        }if($totalSumado > 78.000 && $totalSumado <= 84.000){
-                                          echo "14";  
-                                        }
-                                        ?></td> 
+                                              echo "7";  
+                                            }if($totalSumado > 42.000 && $totalSumado <= 48.000){
+                                              echo "8";  
+                                            }if($totalSumado > 48.000 && $totalSumado <= 54.000){
+                                              echo "9";  
+                                            }if($totalSumado > 54.000 && $totalSumado <= 60.000){
+                                              echo "10";  
+                                            }if($totalSumado > 60.000 && $totalSumado <= 66.000){
+                                              echo "11";  
+                                            }if($totalSumado > 66.000 && $totalSumado <= 72.000){
+                                              echo "12";  
+                                            }if($totalSumado > 72.000 && $totalSumado <= 78.000){
+                                              echo "13";  
+                                            }if($totalSumado > 78.000 && $totalSumado <= 84.000){
+                                              echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
+                                            }
+                                            ?></td> 
                                     </tr>
 
                                     <tr>
@@ -852,6 +1126,38 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                         ?></td> 
                                     </tr>
@@ -902,6 +1208,38 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                             ?></td> 
                                     </tr> 
@@ -952,6 +1290,38 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                         ?></td> 
                                     </tr>   
@@ -1002,9 +1372,42 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                             ?></td> 
-                                        </tr>    
+                                        </tr> 
+                                    @if(count($barra2521) > 0)  
                                     <tr>
                                         <td scope="row" class="size">2521</td>
                                         <td scope="row" colspan="3" class="size">Union</td>
@@ -1051,9 +1454,42 @@
                                               echo "13";  
                                             }if($totalSumado > 78.000 && $totalSumado <= 84.000){
                                               echo "14";  
+                                            }if($totalSumado > 84.000 && $totalSumado <= 90.000){
+                                              echo "15";  
+                                            }if($totalSumado > 90.000 && $totalSumado <= 96.000){
+                                              echo "16";  
+                                            }if($totalSumado > 96.000 && $totalSumado <= 102.000){
+                                              echo "17";  
+                                            }if($totalSumado > 102.000 && $totalSumado <= 108.000){
+                                              echo "18";  
+                                            }if($totalSumado > 108.000 && $totalSumado <= 114.000){
+                                              echo "19";  
+                                            }if($totalSumado > 114.000 && $totalSumado <= 120.000){
+                                              echo "20";  
+                                            }if($totalSumado > 120.000 && $totalSumado <= 126.000){
+                                              echo "21";  
+                                            }if($totalSumado > 126.000 && $totalSumado <= 132.000){
+                                              echo "22";  
+                                            }if($totalSumado > 132.000 && $totalSumado <= 138.000){
+                                              echo "23";  
+                                            }if($totalSumado > 138.000 && $totalSumado <= 144.000){
+                                              echo "24";  
+                                            }if($totalSumado > 144.000 && $totalSumado <= 150.000){
+                                              echo "25";  
+                                            }if($totalSumado > 150.000 && $totalSumado <= 156.000){
+                                              echo "26";  
+                                            }if($totalSumado > 162.000 && $totalSumado <= 168.000){
+                                              echo "27";  
+                                            }if($totalSumado > 168.000 && $totalSumado <= 174.000){
+                                              echo "28";  
+                                            }if($totalSumado > 174.000 && $totalSumado <= 180.000){
+                                              echo "29";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "30";  
                                             }
                                         ?></td> 
-                                    </tr>     
+                                    </tr>   
+                                    @endif  
                                 </tbody>
                             </table>
                             @endif
