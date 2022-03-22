@@ -207,11 +207,11 @@
               </li> --}}
 
               @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user')
-              <li class="nav-item has-treeview">
-                <a href="/categoria" class="nav-link">
+              <li class="nav-item has-treeview" style="cursor:pointer;">
+                <a  class="nav-link">
                   <i class="nav-icon fas fa-cogs"></i>
                   <p>
-                    Cortadoras
+                    Cortadora
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
@@ -223,9 +223,15 @@
                     </a>
                   </li> -->
                   <li class="nav-item">
-                    <a href="/cortadoraPerfil" class="nav-link ">
+                    <a href="/cortadora" class="nav-link ">
                       <i class="far fa fa-scissors nav-icon"></i>
-                      <p>Cortadoras Perfil</p>
+                      <p>Cortadora de Perfil</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/cortadoraPerfilHistorial" class="nav-link ">
+                      <i class="far fa fa-scissors nav-icon"></i>
+                      <p>Historial Cortadoras Perfil</p>
                     </a>
                   </li>
                 </ul>

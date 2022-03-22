@@ -35,21 +35,6 @@ class ProductoController extends Controller
         return view('pedidoRealizado.index', compact('pedidoRealizado'));
     }
 
-    // public function getProductoImportadora(){
-    //     $nombre = $request->get('buscarpor');
-
-    //     $producto = Producto::where('nombre','like',"%$nombre%")
-    //     ->where('productos.importadora', '=', '')->get();
-    //     $producto = Producto::where('nombre','like',"%$nombre%")
-    //     ->join('contacts', 'productos.importadora', '=', 'contacts.user_id')
-    //     ->join('orders', 'productos.id', '=', 'orders.user_id')
-    //     ->select('productos.*', 'contacts.phone', 'orders.price')
-    //     ->get();
-         
-    //     dd( $producto );
-    //     return view('mi-pedido.index', compact('producto'));
-    // }
-
     public function showProducto($id){
         return Producto::findOrFail($id);
     }
@@ -65,9 +50,7 @@ class ProductoController extends Controller
         return response()->json($producto, 200);
     }
 
-
     public function getMyProducto(Request $request, $id){
-
         $producto = Producto::findOrFail($id);
 
         return response()->json($producto, 200);
@@ -98,8 +81,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   
+    public function create(){   
         $categoria = Categoria::all();
         $subcategoria = subcategoria::all();
 
@@ -116,33 +98,12 @@ class ProductoController extends Controller
     {   
         $imagen = null;
         $mensaje= 'Producto Registrado correctamente';
-        //dd($request);
-        // $data = $request->imagen;
-        // dd($data);
-
-        // $request->validate([
-        //     'nombre' => 'required',
-        //     'estado' => 'required',
-        //     'imagen' => 'nullable|image',
-        //     'precio' => 'required',
-        //     'medida' => 'required',
-        //     'tipo_medida' => 'required',
-        //     'puntuacion'  => 'nullable',
-        //     'descripcion'  => 'nullable',
-        //     'importadora' => 'required',
-        //     'categorias_id' => 'required',
-        //     'subcategorias_id' => 'required',
-        // ]);
-        
+            
         DB::beginTransaction();
         
         $requestData = $request->all();
         $color = $requestData['color'];
-        // $disponibilidad = $requestData['disponibilidad'];
-        // $requestData['disponibilidad'] = implode(', ', $disponibilidad);
         $requestData['color'] = implode(', ', $color);
-
-        //dd($disponibilidad);
         
         if($request->imagen != null){
            
@@ -182,7 +143,6 @@ class ProductoController extends Controller
         Session::flash('message',$mensaje);
 
         return redirect()->route('mis-productos'); 
-
     }
 
     /**
@@ -191,8 +151,7 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
         $producto = Producto::findOrFail($id);
         $categoria = Categoria::all();
 
@@ -228,8 +187,7 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $producto = Producto::find($id);
 
         $producto->delete();
@@ -239,7 +197,6 @@ class ProductoController extends Controller
     }
 
     public function addNovedad(Request $request, $id){ 
-        
         $producto = Producto::find($id);
 
         $request->validate([

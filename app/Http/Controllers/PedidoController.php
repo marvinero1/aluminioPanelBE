@@ -11,7 +11,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use Image;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; 
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller

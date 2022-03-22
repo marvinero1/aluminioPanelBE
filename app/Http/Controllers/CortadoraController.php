@@ -19,16 +19,28 @@ class CortadoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view('cortadora.index');
+
+    public function index(Request $request){
+        $hoja_calculo_perfil = hoja_calculo_perfil::where('estado','false')
+        ->where('hoja_calculo_perfils.user_id', '=', Auth::user()->id)
+        ->first();
+
+        if ($hoja_calculo_perfil != null) {
+            $id = $hoja_calculo_perfil->id;
+            $estado = $hoja_calculo_perfil->estado;
+
+            return view('cortadoraperfil.index', compact('hoja_calculo_perfil','estado','id'));
+        }else{
+            $id = 0;
+            $estado = false;
+            return view('cortadoraperfil.index', compact('hoja_calculo_perfil','estado','id'));
+        }
     }
 
-    public function cortadoraPerfil(){
-
+    public function cortadoraPerfilHistorial(){
         $hoja_calculo_perfil = hoja_calculo_perfil::where('hoja_calculo_perfils.user_id', '=', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
-        return view('cortadoraperfil.index', compact('hoja_calculo_perfil'));
-
+        return view('cortadoraperfil.historial', compact('hoja_calculo_perfil'));
     }
 
     public function updateStatusHojaCortadora(Request $request, $id){
@@ -42,9 +54,7 @@ class CortadoraController extends Controller
     public function cortadoraInfoGeneral($id){
         $barra = barra::where('barras.hoja_id', '=', $id)->get();
      
-
         return view('cortadoraperfil.info', compact('barra','barra_perfil_id'));
-
     }
 
     public function cortadoraInfoVentanas($id){
@@ -143,8 +153,7 @@ class CortadoraController extends Controller
         $largo_predeterminado = 6;
         $numberRepeteat = $ancho_barra * $repeteciones;
         $division = $numberRepeteat / $largo_predeterminado;
-       }     
-
+       }    
         $repeteciones = +$repeteciones;
         // $l = $perfils->sum('repeticion');
 
@@ -163,14 +172,14 @@ class CortadoraController extends Controller
             }
         }  
        
-     
         return view('cortadoraperfil.ventanas', compact('perfil','barra','ancho_barra','fam_linea','nombre','perfilBarras','repeteciones','perfil_id','data','restaRecorte','piezas','barra','barra2001','barra2002','barra2005','barra2009','barra2010','barra2011','barra5008','barra2501','barra2502','barra2505','barra2509','barra2507','barra2510','barra2504','barra2521','nombre_cliente'));
     }
 
     public function cotizacion($id){
-
-      $mt2Total=0;
-      $mt2Total25=0;
+        $mt2Total=0;
+        $mt2Total25=0;
+        $sumaRepeticion20=0;
+        $sumaRepeticion25=0;
 
         $perfilBarras = DB::table('hoja_calculo_perfils')
             ->join('perfils', 'hoja_calculo_perfils.id', '=', 'perfils.hoja_id')
@@ -218,25 +227,22 @@ class CortadoraController extends Controller
         // echo json_encode($barraL20Alto.','.$barraL20Ancho.",".$totalmt2);
 
         foreach ($perfilL20 as $perfilL20s) {
-          $alto = $perfilL20s->alto;
-          $ancho = $perfilL20s->ancho;
-
-          $mt2 = $alto * $ancho;
-
-          
-          $mt2Total += $mt2; 
-
-          // echo $mt2Total;
+            $repeticion = $perfilL20s->repeticion;
+            $sumaRepeticion20 += $repeticion;
+            $alto = $perfilL20s->alto;
+            $ancho = $perfilL20s->ancho;
+            $mt2 = $alto * $ancho;
+            $mt2Total += $mt2;
         }
 
 
         foreach ($perfilL25 as $perfilL25s) {
-          $alto25 = $perfilL25s->alto;
-          $ancho25 = $perfilL25s->ancho;
-
-          $mt2 = $alto25 * $ancho25;
-          $mt2Total25 += $mt2; 
-          // echo $mt2Total25;
+            $repeticion = $perfilL25s->repeticion;
+            $sumaRepeticion25 += $repeticion;
+            $alto25 = $perfilL25s->alto;
+            $ancho25 = $perfilL25s->ancho;
+            $mt2 = $alto25 * $ancho25;
+            $mt2Total25 += $mt2;
         }
         
         foreach($perfilBarras as $perfilBarrass){
@@ -258,15 +264,15 @@ class CortadoraController extends Controller
 
           $totalTotal = 0;
             
-            foreach($perfil as $perfils){
-                $mt2 = $perfils->alto * $perfils->ancho;
-                $precio = $perfils->precio;
-                $total = $mt2 * $precio;
+        foreach($perfil as $perfils){
+            $mt2 = $perfils->alto * $perfils->ancho;
+            $precio = $perfils->precio;
+            $total = $mt2 * $precio;
 
-                 $totalTotal +=  $total;
-            }
+             $totalTotal +=  $total;
+        }
 
-         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','barraL20Alto','barraL20Ancho','barraL25Ancho','barraL25Alto','totalmt225','descripcion','mt2','perfil','totalTotal','total','mt2Total','totalmt2','mt2Total25'));
+         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','barraL20Alto','barraL20Ancho','barraL25Ancho','barraL25Alto','totalmt225','descripcion','mt2','perfil','totalTotal','total','mt2Total','totalmt2','mt2Total25','sumaRepeticion20','sumaRepeticion25'));
     }
 
     public function precioEditCortadora($id){
@@ -318,20 +324,20 @@ class CortadoraController extends Controller
 
         $requestData = $request->all();
 
+
         $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
 
         $hoja_calculo_perfil->nombre_cliente = $request->get('nombre_cliente');
         $hoja_calculo_perfil->celular = $request->get('celular');
-        $hoja_calculo_perfil->precio = $request->get('precio');
-        $hoja_calculo_perfil->suma_m2 = $request->get('suma_m2');
+        $hoja_calculo_perfil->estado = $request->get('estado');
         $hoja_calculo_perfil->descripcion = $request->get('descripcion');
-
 
         $hoja_calculo_perfil->update();
         
         Session::flash('message','Hoja de Calculo Para Cortadora de Perfil de Aluminio Editado Exisitosamente!');
-        return back()->withInput();
-        
+        return redirect()->action(
+                 [BarraController::class, 'indexBlade'], ['id' => $id]
+             );
     }
 
     /**
@@ -339,9 +345,10 @@ class CortadoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+
+
+    public function create(){
+        
     }
 
     /**

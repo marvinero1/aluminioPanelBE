@@ -19,7 +19,7 @@
 
             <div class="col-md-6">
                 <div class="float-right">
-                    <a  href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
+                    <a  href="/cortadoraPerfilHistorial" class="btn btn-warning">Atras</a>
                 </div> 
            </div>
         </div>
@@ -51,11 +51,6 @@
                             @if($perfils->estado != "true")
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal{{$perfils->id}}">
                                 <i class="fa fa-bars" aria-hidden="true"></i> Crear Conjunto de Barras </button> 
-
-                                <!-- <a href="{{ route('perfil.show', $perfils->id ) }}">
-                                    <button class="btn btn-dark btn-sm"><i class="fa fa-check" aria-hidden="true"></i> Confirmar Pedido
-                                    </button>
-                                </a> -->
                             @endif
                             <form action="{{ route('perfil.destroy',$perfils->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
@@ -94,8 +89,7 @@
                                             <input hidden type="text" value="{{ $perfils->ancho }}" name="ancho">  
                                             <input hidden type="text" value="{{ $perfils->alto }}" name="alto">  
                                             <input hidden type="text" value="{{ $perfils->hoja_id }}" name="hoja_id">
-
-
+                                            <input hidden type="text" value="{{ $perfils->repeticion }}" name="repeticion">
                                             <input hidden type="text" value="{{ $perfils->combinacion }}" name="combinacion">  
                                         </div>
                                     </div>
@@ -107,50 +101,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- modal confirmacion estado -->
-                    <!-- <div class="modal fade" id="exampleModal1{{$perfils->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{$perfils->id}}" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content text-center">
-                              <div class="modal-header" style="display: block;">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
-                              </div>
-                                <form action="{{route('perfil.updatePerfil', $perfils->id ) }}" method="POST">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
-                                    <div class="modal-body text-center">
-                                        <div class="container">
-                                            <div class="row"> 
-                                                <div class="col">
-                                                     <h5>Confirmar Creacion para linea</h5><p><strong>{{ $perfils->linea }}</strong></p>
-                                                </div>
-                                                
-                                                <div class="col-md-12">
-                                                    <div class="input-group mb-3">
-                                                        <input hidden type="text" value="true" 
-                                                        name="estado">
-                                                    </div>
-                                                </div>
-                                                 <div class="col-md-12">
-                                                    <div class="input-group mb-3">
-                                                        <input hidden type="text" value="{{ $perfils->hoja_id }}" name="hoja_id">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer text-center">
-                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-                                            Cancelar
-                                        </button>
-
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button>
-                                    </div>
-                                </form>
-                            </div>
-                          </div>
-                    </div> -->
                     @endforeach
                 </tbody>
             </table>

@@ -8,6 +8,7 @@ use App\Perfil;
 use App\barra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class HojaCalculoController extends Controller
 {
@@ -65,6 +66,21 @@ class HojaCalculoController extends Controller
     public function create()
     {
         //
+    }
+
+    public function createHojaPerfil(Request $request){
+        $requestData =$request->validate([
+            'user_id' => 'required',
+            'estado' => 'nullable',
+        ]);
+        
+        hoja_calculo_perfil::create([
+            'user_id' => $request->user_id,
+            'estado' => $request->estado,
+        ]);
+        
+        Session::flash('message','Hoja de Calculo para Perfil creado exisitosamente!');
+        return back()->withInput();
     }
 
 

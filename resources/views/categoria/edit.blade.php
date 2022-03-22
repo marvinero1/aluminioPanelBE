@@ -5,15 +5,11 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
                 <div class="col-md-12">
-                    <!-- general form elements -->
                     <div class="card card-dark">
                         <div class="card-header">
                             <h3 class="card-title">Registro Categoria</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form action="{{route('categoria.update', $categoria->id )}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}

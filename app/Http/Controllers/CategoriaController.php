@@ -29,9 +29,6 @@ class CategoriaController extends Controller
         return response()->json($subcategoria, 200);
          
     }
-        
-    
-
 
     /**
      * Show the form for creating a new resource.

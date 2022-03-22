@@ -88,7 +88,7 @@
         <div class="tab-content p-2" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="float-right p-2">
-                <a href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
+                <a href="/cortadoraPerfilHistorial" class="btn btn-warning">Atras</a>
             </div>
             <div class="float-left p-2">
                 <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
@@ -122,7 +122,7 @@
                                     <td style="display:block;" width="335" nowrap><?php  
                                          //aca el elperfil (barra al)categorias junto a el corte
                                         $id_perfil =  $perfils->id;
-                                        $repetecion = $perfils->repeticion;
+                                        $repeticion = $perfils->repeticion;
                                         $familia = $perfils->linea;
                                         $cadena = "V";
                                         $ancho = $perfils->ancho * 1000;
@@ -130,7 +130,7 @@
                                         $combinacion = $perfils->combinacion;
                                         
                                         // $cortes_json = json_encode($corte_1);
-                                        for ($x = 1; $x <= $repetecion; $x++){
+                                        for ($x = 1; $x <= $repeticion; $x++){
                                             if ($combinacion == 'combinacion1') {
                                                 echo "<div class='float-right pr-2' style='padding-top:50px;'>$alto</div>";
 
@@ -149,7 +149,7 @@
                                             // echo "\n".$ancho;
                                         }
                                         $descripcion = $perfils->descripcion;
-                                        echo "<textarea rows='3' cols='40' disabled>$descripcion</textarea>"; 
+                                        echo "<textarea rows='3' cols='38' disabled>$descripcion</textarea>"; 
                                     ?></td>
                                     
                                     <td class="text-center">
@@ -159,8 +159,7 @@
                                             if($id_perfil == $barra_perfil_id){
                                                 $fam_linea = $barras->fam_linea;
                                                                                        
-                                                echo "<p>$fam_linea</p>";
-                                                       
+                                                echo "<p>$fam_linea</p>";     
                                             }
                                         }?>
                                     </td>   
@@ -202,7 +201,7 @@
 
                                                 $piezas = $barras->piezas;
 
-                                                $piezas_repeticiones = $piezas * $repetecion;
+                                                $piezas_repeticiones = $piezas * $repeticion;
                                                 echo  "<p>$piezas_repeticiones</p>";   
                                             }
                                         }?>
@@ -219,7 +218,7 @@
         <!-- HOJA3 -->
         <div class="tab-pane fade" id="nav-res" role="tabpanel" aria-labelledby="nav-res-tab">
             <div class="float-right p-1">
-                <a href="/cortadoraPerfil" class="btn btn-warning">Atras</a>
+                <a href="/cortadoraPerfilHistorial" class="btn btn-warning">Atras</a>
             </div>
             <div class="float-left p-3">
                 <button type="button" class="btn btn-success" onclick="printDiv2('areaImprimir2')" value="imprimir div">
@@ -253,18 +252,28 @@
                                         <td scope="row" colspan="2" class="size text-center" ><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
-                                          
+                                            $sumaRepeticion2001 = 0;
+                                            
                                             foreach ($barra2001 as $barra2001s) {
                                                 $restado = $barra2001s->restado;
+                                                $repeticion = $barra2001s->repeticion;
+                                                $sumaRepeticion2001 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2001s->piezas;
-                                                $piezas_repeticiones2001 = $piezas * $repeteciones;
+                                                $piezas_repeticiones2001 = $piezas * $sumaRepeticion2001;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2001 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                                 
                                             }
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            {{-- echo "=".$piezas_repeticiones2001;
+                                            echo "<br>";
+                                            echo "Suma repeticiones".$sumaRepeticion2001."|";
+                                            echo "<br>";
+                                            echo "<br>";
+                                            echo "$totalSumado | "; --}}
+
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -334,13 +343,17 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2002 = 0;
                                           
-                                            foreach ($barra2002 as $barra2002s) {
+                                            foreach ($barra2002 as $barra2002s){
                                                 $restado = $barra2002s->restado;
+                                                $repeticion = $barra2002s->repeticion;
+                                                $sumaRepeticion2002 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2002s->piezas;
-                                                $piezas_repeticiones2002 = $piezas * $repeteciones;
-                                                $totalMts = $piezas_repeticiones2002 * $restaSuma;
+                                                $piezas_repeticiones2001 = $piezas * $sumaRepeticion2002;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
+                                                $totalMts = $piezas_repeticiones2001 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
                                             }
@@ -415,12 +428,16 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2005 = 0;
                                           
-                                            foreach ($barra2005 as $barra2005s) {
+                                            foreach ($barra2005 as $barra2005s){
                                                 $restado = $barra2005s->restado;
+                                                $repeticion = $barra2005s->repeticion;
+                                                $sumaRepeticion2005 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2005s->piezas;
-                                                $piezas_repeticiones2005 = $piezas * $repeteciones;
+                                                $piezas_repeticiones2005 = $piezas * $sumaRepeticion2005;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2005 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
@@ -495,18 +512,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
-                                          
-                                            foreach ($barra2009 as $barra2009s) {
+                                            $sumaRepeticion2009 = 0;
+
+                                            foreach ($barra2009 as $barra2009s){
                                                 $restado = $barra2009s->restado;
+                                                $repeticion = $barra2009s->repeticion;
+                                                $sumaRepeticion2009 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2009s->piezas;
-                                                $piezas_repeticiones2009 = $piezas * $repeteciones;
+                                                $piezas_repeticiones2009 = $piezas * $sumaRepeticion2009;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2009 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -576,19 +595,21 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2010 = 0;
                                           
-                                            foreach ($barra2011 as $barra2011s) {
-                                                $restado = $barra2011s->restado;
+                                            foreach ($barra2010 as $barra2010s) {
+                                                $restado = $barra2010s->restado;
+                                                $repeticion = $barra2010s->repeticion;
+                                                $sumaRepeticion2010 += $repeticion;
                                                 $restaSuma = $restado + $suma;
-                                                $piezas = $barra2011s->piezas;
-                                                $piezas_repeticiones2011 = $piezas * $repeteciones;
-
-                                                $totalMts = $piezas_repeticiones2011 * $restaSuma;
+                                                $piezas = $barra2010s->piezas;
+                                                $piezas_repeticiones2010 = $piezas * $sumaRepeticion2010;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
+                                                $totalMts = $piezas_repeticiones2010 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+
+                                            }if ($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                                 echo "2";  
@@ -658,18 +679,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                         $totalSumado = 0;
                                         $suma = 0.004;
+                                        $sumaRepeticion2011 = 0;
                                       
-                                        foreach ($barra2011 as $barra2011s) {
+                                        foreach ($barra2011 as $barra2011s){
                                             $restado = $barra2011s->restado;
+                                            $repeticion = $barra2011s->repeticion;
+                                            $sumaRepeticion2011 += $repeticion;
                                             $restaSuma = $restado + $suma;
                                             $piezas = $barra2011s->piezas;
-                                            $piezas_repeticiones2011 = $piezas * $repeteciones;
+                                            $piezas_repeticiones2011 = $piezas * $sumaRepeticion2011;
+                                            {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                             $totalMts = $piezas_repeticiones2011 * $restaSuma;
 
                                             $totalSumado += $totalMts;
-                                        }
-                                        
-                                        if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                        }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                             echo "1";
                                         }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                           echo "2";  
@@ -740,12 +763,16 @@
                                          <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion5008 = 0;
                                           
-                                            foreach($barra5008 as $barra5008s) {
+                                            foreach($barra5008 as $barra5008s){
                                                 $restado = $barra5008s->restado;
+                                                $repeticion = $barra5008s->repeticion;
+                                                $sumaRepeticion5008 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra5008s->piezas;
-                                                $piezas_repeticiones5008 = $piezas * $repeteciones;
+                                                $piezas_repeticiones5008 = $piezas * $sumaRepeticion5008;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones5008 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
@@ -840,19 +867,20 @@
                                          <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
-                                          
-                                            foreach ($barra2501 as $barra2501s) {
+                                            $sumaRepeticion2501 = 0;
+                                            
+                                            foreach ($barra2501 as $barra2501s){
                                                 $restado = $barra2501s->restado;
+                                                $repeticion = $barra2501s->repeticion;
+                                                $sumaRepeticion2501 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2501s->piezas;
-                                                $piezas_repeticiones2501 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2501 = $piezas * $sumaRepeticion2501;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2501 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -922,19 +950,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2502 = 0;
                                           
-                                            foreach ($barra2502 as $barra2502s) {
+                                            foreach ($barra2502 as $barra2502s){
                                                 $restado = $barra2502s->restado;
+                                                $repeticion = $barra2502s->repeticion;
+                                                $sumaRepeticion2502 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2502s->piezas;
-                                                $piezas_repeticiones2502 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2502 = $piezas * $sumaRepeticion2502;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2502 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1004,19 +1033,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2504 = 0;
                                           
-                                            foreach ($barra2504 as $barra2504s) {
+                                            foreach ($barra2504 as $barra2504s){
                                                 $restado = $barra2504s->restado;
+                                                $repeticion = $barra2504s->repeticion;
+                                                $sumaRepeticion2504 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2504s->piezas;
-                                                $piezas_repeticiones2504 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2504 = $piezas * $sumaRepeticion2504;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2504 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1086,19 +1116,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2505 = 0;
                                           
-                                            foreach ($barra2505 as $barra2505s) {
+                                            foreach ($barra2505 as $barra2505s){
                                                 $restado = $barra2505s->restado;
+                                                $repeticion = $barra2505s->repeticion;
+                                                $sumaRepeticion2505 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2505s->piezas;
-                                                $piezas_repeticiones2505 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2505 = $piezas * $sumaRepeticion2505;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2505 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1168,19 +1199,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2507 = 0;
                                           
-                                            foreach ($barra2507 as $barra2507s) {
+                                            foreach($barra2507 as $barra2507s){
                                                 $restado = $barra2507s->restado;
+                                                $repeticion = $barra2507s->repeticion;
+                                                $sumaRepeticion2507 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2507s->piezas;
-                                                $piezas_repeticiones2507 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2507 = $piezas * $sumaRepeticion2507;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2507 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1250,13 +1282,16 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2509 = 0;
                                           
-                                            foreach ($barra2509 as $barra2509s) {
+                                            foreach ($barra2509 as $barra2509s){
                                                 $restado = $barra2509s->restado;
+                                                $repeticion = $barra2509s->repeticion;
+                                                $sumaRepeticion2509 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2509s->piezas;
-                                                $piezas_repeticiones2509 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2509 = $piezas * $sumaRepeticion2509;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2509 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
@@ -1332,19 +1367,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
-                                          
-                                            foreach ($barra2510 as $barra2510s) {
+                                            $sumaRepeticion2510 = 0;
+                                            
+                                            foreach ($barra2510 as $barra2510s){
                                                 $restado = $barra2510s->restado;
+                                                $repeticion = $barra2510s->repeticion;
+                                                $sumaRepeticion2510 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2510s->piezas;
-                                                $piezas_repeticiones2510 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2510 = $piezas * $sumaRepeticion2510;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2510 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1414,19 +1450,20 @@
                                         <td scope="row" colspan="2" class="size text-center"><?php
                                             $totalSumado = 0;
                                             $suma = 0.004;
+                                            $sumaRepeticion2521 = 0;
                                           
-                                            foreach ($barra2521 as $barra2521s) {
+                                            foreach ($barra2521 as $barra2521s){
                                                 $restado = $barra2521s->restado;
+                                                $repeticion = $barra2521s->repeticion;
+                                                $sumaRepeticion2521 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2521s->piezas;
-                                                $piezas_repeticiones2521 = $piezas * $repeteciones;
-
+                                                $piezas_repeticiones2521 = $piezas * $sumaRepeticion2521;
+                                                {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2521 * $restaSuma;
 
                                                 $totalSumado += $totalMts;
-                                            }
-                                            
-                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  

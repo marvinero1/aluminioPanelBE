@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 // Route::update('updatepassword','UserController@updatepassword');
 Route::post('store1','UserController@store1')->name('user.store1');
+Route::post('createHojaPerfil','HojaCalculoController@createHojaPerfil')->name('HojaCalculoController.createHojaPerfil');
 Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
 Route::middleware(['auth'] )->group(function () {
@@ -38,7 +39,8 @@ Route::get('viewRegisUsuario','UserController@viewRegisUsuario')->name('user.vie
 Route::get('viewRegisEmpresa','UserController@viewRegisEmpresa')->name('user.viewRegisEmpresa'); 
 Route::get('index','PedidoController@index')->name('pedido'); 
 Route::get('viewRegisVendedor','UserController@viewRegisVendedor')->name('user.viewRegisVendedor'); 
-Route::get('cortadoraPerfil','CortadoraController@cortadoraPerfil')->name('cortadora.cortadoraPerfil'); 
+Route::get('cortadoraPerfil','CortadoraController@cortadoraPerfil')->name('cortadora.cortadoraPerfil');
+Route::get('cortadoraPerfilHistorial','CortadoraController@cortadoraPerfilHistorial')->name('cortadoraPerfilHistorial');  
 Route::get('cortadoraInfoGeneral/{id}','CortadoraController@cortadoraInfoGeneral')->name('cortadora.cortadoraInfoGeneral'); 
 Route::get('cortadoraInfoVentanas/{id}','CortadoraController@cortadoraInfoVentanas')->name('cortadora.cortadoraInfoVentanas'); 
 Route::get('cotizadorCortadoraPerfil/{id}','CortadoraController@cotizacion')->name('cotizacion.cotizacion'); 

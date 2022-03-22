@@ -46,9 +46,33 @@ class PerfilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $estado = "false";
+        $requestData =$request->validate([
+            'alto' => 'required|between:0,99.99',
+            'ancho' => 'required|between:0,99.99',
+            'combinacion' => 'nullable',
+            'linea' => 'nullable',
+            'repeticion' => 'nullable',
+            'descripcion' => 'nullable',
+            'user_id' => 'required',
+            'hoja_id' => 'required',
+        ]);
+
+        Perfil::create([
+            'alto' => $request->alto,
+            'ancho' => $request->ancho,
+            'combinacion' => $request->combinacion,
+            'linea' => $request->linea,
+            'estado'=> $estado,
+            'repeticion' => $request->repeticion,
+            'descripcion' => $request->descripcion,
+            'hoja_id' => $request->hoja_id,
+            'user_id' => $request->user_id,
+        ]);
+        
+        Session::flash('message','Perfil creado exisitosamente!');
+        return back()->withInput();
     }
 
     /**

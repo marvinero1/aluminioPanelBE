@@ -43,7 +43,6 @@ class BarraController extends Controller
     public function store(Request $request){
        
         $data = $request->all();
-
         // dd($data);
         $ancho = $request->ancho;
         $alto = $request->alto;
@@ -51,8 +50,8 @@ class BarraController extends Controller
         $perfil_id = $request->perfil_id;
         $hoja_id = $request->hoja_id;
         $combinacion = $request->combinacion;
-       
-         // dd($perfil_id);
+        $repeticion = $request->repeticion;
+
         
         $results = DB::select('select * from barras where perfil_id = :perfil_id', ['perfil_id' => $perfil_id]);
 
@@ -85,22 +84,22 @@ class BarraController extends Controller
 
             $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"79","restado"=>$restaZocaloDivision,"piezas"=>$piezas2005,
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
             barra::insert($data);
@@ -124,22 +123,22 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,
-                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"80","restado"=>$restaZocalo,"piezas"=>$piezas2005,
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
             barra::insert($data);
@@ -161,25 +160,25 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"8","restado"=>$restaZocalo,"piezas"=>"8",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"5008","lado"=>"X","nombre"=>"Union","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
              // dd($data);
@@ -210,25 +209,25 @@ class BarraController extends Controller
 
             $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"106","restado"=>$restaZocalo,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                  ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"106","restado"=>$restaZocalo, "piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion] 
             ];
 
              barra::insert($data);
@@ -253,25 +252,25 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,
-                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"118","restado"=>$restaZocalo1,"piezas"=>"3",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                  ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"0.050","restado"=>$restaZocalo1, "piezas"=>"3",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion] 
             ];
 
              barra::insert($data);
@@ -295,28 +294,28 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"200","restado"=>$restaZocalo,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"200","restado"=>$restaZocalo, "piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
             barra::insert($data);
@@ -349,22 +348,22 @@ class BarraController extends Controller
 
             $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"79","restado"=>$restaZocaloDivision,"piezas"=>$piezas2005,
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
             barra::insert($data);
@@ -388,22 +387,22 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3,
-                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3,"piezas"=>"1",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"80","restado"=>$restaZocalo,"piezas"=>$piezas2005,
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
             barra::insert($data);
@@ -425,25 +424,25 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2001","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2002","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"12","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2005","lado"=>"X4","nombre"=>"Zocalo","resta"=>"8","restado"=>$restaZocalo,"piezas"=>"8",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2009","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2010","lado"=>"X5","nombre"=>"Pierna","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2011","lado"=>"X6","nombre"=>"Enganche","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"5008","lado"=>"X","nombre"=>"Union","resta"=>"28","restado"=>$piezaResta2,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
              // dd($data);
@@ -474,25 +473,25 @@ class BarraController extends Controller
 
             $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"106","restado"=>$restaZocalo,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                  ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"106","restado"=>$restaZocalo, "piezas"=>"2",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion] 
             ];
 
              barra::insert($data);
@@ -517,25 +516,25 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3,
-                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "piezas"=>"1","ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3,"piezas"=>"1",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"118","restado"=>$restaZocalo1,"piezas"=>"3",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
-                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto,"perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                  ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"0.050","restado"=>$restaZocalo1, "piezas"=>"3",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id] 
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion] 
             ];
 
              barra::insert($data);
@@ -559,28 +558,28 @@ class BarraController extends Controller
 
              $data = [
                 ["linea"=>$linea, "fam_linea"=>"2501","lado"=>"X1","nombre"=>"Riel_Superior","resta"=>"16","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2502","lado"=>"X2","nombre"=>"Riel_Inferior","resta"=>"16","restado"=>$piezaResta3, "piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2505","lado"=>"X4","nombre"=>"Zocalo","resta"=>"200","restado"=>$restaZocalo,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2509","lado"=>"X3","nombre"=>"Jamba","resta"=>"0","restado"=>$alto,"piezas"=>"2",
-                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2510","lado"=>"X5","nombre"=>"Pierna","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2507","lado"=>"X6","nombre"=>"Enganche","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2521","lado"=>"X","nombre"=>"Union","resta"=>"31","restado"=>$piezaResta2,"piezas"=>"1",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id],
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion],
 
                 ["linea"=>$linea, "fam_linea"=>"2504","lado"=>"X7","nombre"=>"Cabezal","resta"=>"200","restado"=>$restaZocalo, "piezas"=>"4",
-                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id]
+                 "ancho"=>$ancho, "alto"=>$alto, "perfil_id"=>$perfil_id,"hoja_id"=>$hoja_id,"repeticion"=>$repeticion]
             ];
 
             barra::insert($data);
