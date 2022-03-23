@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main') 
 
 @section('content')
 <div class="content-wrapper" id="areaImprimir">
@@ -31,22 +31,18 @@
                                     <tr>
                                         <th style="text-align: center;">Lineas o Series</th>
                                         <th style="text-align: center;">MT2</th>
-                                        <th style="text-align: center;">Cantidad</th>
                                         <th style="text-align: center;">Precio</th>
                                         <th style="text-align: center;">Sub-Total</th>
                                     </tr>
                                </thead>
                               <tbody>
                                 @if($barraL20Alto != null)
-                                <tr><input type="text" hidden="true" value="{{ $barraL20Alto}}" id="barras_20">
+                                <tr>
                                     <td class="text-center"><label>Linea 20</label></td>
-                                    <td class="text-center"><label>{{ number_format($mt2Total,2) }}</label>
-                                    <td class="text-center"><label>{{ $sumaRepeticion20 }}</label>
-                                    <input hidden="true" type="text" name="repeticion" value="{{ $sumaRepeticion20 }}" id="repeticion">
-
-                                    <input hidden="true" type="text" name="mt2" value="{{ number_format($mt2Total,3) }}" id="mt2">
+                                    <td class="text-center"><label>{{ number_format($totalmt2,2) }}</label>
+                                                                        
+                                    <input hidden="true" type="text" name="mt2" value="{{ $totalmt2 }}" id="mt2">
                                     </td>
-
                                     <td class="text-center"><label id="precio_view"></label>
                                         <input type="number" id="precio" name="precio" style="width: 25%;">
                                     </td>
@@ -55,13 +51,12 @@
                                     </td> 
                                 </tr>
                                 @else
-                                 <tr><input type="text" hidden="true" value="0" id="barras_20">
+                                 <tr>
                                     <td class="text-center"><label>Linea 20</label></td>
-                                    <td class="text-center"><label>0</label>
-                                        <input hidden="true" type="text" name="mt2" value="0" id="mt2">
-                                    </td>
+                                    <input hidden="true" type="text" name="mt2" value="0" id="mt2">
+                                    <td class="text-center"><label>0</label></td>
                                     <td class="text-center"><label id="precio_view"></label>
-                                        <input type="number" id="precio" value="0" name="precio" style="width: 25%;">
+                                        <input disabled type="number" id="precio" value="0" name="precio" style="width: 25%;">
                                     </td>
                                     <td class="text-center">
                                          <strong><label id="sub-total"></label></strong>
@@ -69,13 +64,10 @@
                                 </tr>
                                 @endif
                                 @if($barraL25Alto != null)
-                                    <tr><input type="text" hidden="true" value="{{ $barraL25Alto}}" id="barras_25">
+                                    <tr>
                                         <td class="text-center"><label>Linea 25</label></td>
-                                        <td class="text-center"><label>{{  number_format($mt2Total25,2) }}</label>
-                                        <td class="text-center"><label>{{ $sumaRepeticion25 }}</label>
-                                        <input hidden="true" type="text" name="repeticion" value="{{ $sumaRepeticion25 }}" id="repeticion25">    
-
-                                         <input hidden="true" type="text" name="mt2L25" value="{{ number_format($mt2Total25,2) }}" 
+                                        <td class="text-center"><label>{{ number_format($totalmt225,2) }}</label>
+                                        <input hidden="true" type="text" name="mt2L25" value="{{ $totalmt225 }}" 
                                          id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
                                             <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
@@ -83,19 +75,18 @@
                                         <td class="text-center"> <strong><label id="sub-total25"></label></strong></td>
                                     </tr>
                                 @else
-                                <tr><input type="text" hidden="true" value="0" id="barras_25">
-                                        <td class="text-center"><label>Linea 25</label></td>
-                                        <td class="text-center"><label>0</label>
-                                         <input hidden="true" type="text" name="mt2L25" value="0" 
-                                         id="mt2L25"></td>
-                                        <td class="text-center"><label id="precio_view25"></label>
-                                            <input type="number" id="precioL25" name="precioL25" value="0" style="width: 25%;">
-                                        </td>
-                                        <td class="text-center"> <strong><label id="sub-total25"></label></strong></td>
+                                <tr>
+                                    <td class="text-center"><label>Linea 25</label></td>
+                                    <td class="text-center"><label>0</label></td>
+                                    <input hidden="true" type="text" name="mt2L25" value="0" id="mt2L25"></td>
+                                    <input hidden="true" type="text" name="repeticion25" value="0" id="repeticion25">
+                                    <td class="text-center"><label id="precio_view25"></label>
+                                        <input disabled type="number" id="precioL25" name="precioL25" value="0" style="width: 25%;">
+                                    </td>
+                                    <td class="text-center"> <strong><label id="sub-total25"></label></strong></td>
                                     </tr>
                                 @endif
                                 <tr>
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -125,29 +116,30 @@
 <script>
     function calcular(){
         let mt2 = document.getElementById('mt2').value;
+        mt2 = parseFloat(mt2).toFixed(5);
         let precio = document.getElementById('precio').value;
-        let repeticion = document.getElementById('repeticion').value;
+        
 
         console.log(mt2, precio);
-        let preciomt2 = precio * mt2;
-        let subtotal = preciomt2*repeticion;
+        let subtotal = precio * mt2;
 
         subtotal = parseFloat(subtotal).toFixed(2);
         document.getElementById('sub-total').innerHTML = subtotal;
+        console.log(subtotal);
 
-        precio = parseFloat(precio).toFixed(2);
+        // precio = parseFloat(precio).toFixed(2);
         document.getElementById('precio_view').innerHTML = precio;
        
-        let mt2L25 = parseFloat(document.getElementById('mt2L25').value);
-        mt2L25 = parseFloat(mt2L25).toFixed(2);
+        let mt2L25 = document.getElementById('mt2L25').value;
+        // mt2L25 = parseFloat(mt2L25).toFixed(2);
 
         let precioL25 = document.getElementById('precioL25').value;
         precioL25 = parseFloat(precioL25).toFixed(2);
-        let repeticion25 = document.getElementById('repeticion25').value;
-
-        let preciomt225 = precioL25 * mt2L25;
-        let subtotal25 = preciomt225*repeticion25;
         
+        console.log(mt2L25, precioL25);
+
+        let subtotal25 = precioL25 * mt2L25;
+
         subtotal25 = parseFloat(subtotal25).toFixed(2);
         document.getElementById('sub-total25').innerHTML = subtotal25;
         

@@ -197,34 +197,9 @@ class CortadoraController extends Controller
         $perfilL20 = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea','=',
           'L-20')->get();
 
-
         $perfilL25 = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea','=',
           'L-25')->get();
 
-        $barraL20Alto = Perfil::where('perfils.hoja_id','=',$id)->where('perfils.linea', '=', 'L-20')->sum('alto');
-        $barraL20Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-20')->sum('ancho');
-
-
-        $barraL25Alto = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('alto');
-        $barraL25Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('ancho');
-
-        
-        // echo $barraL20Alto, '*' ,$barraL20Ancho,'=';
-        $totalmt2 = $barraL20Alto * $barraL20Ancho;
-        // echo number_format($totalmt2,3)."<hr>";
-
-
-
-        // echo $barraL25Alto, '*' ,$barraL25Ancho,'=';
-        $totalmt225 = $barraL25Alto * $barraL25Ancho;
-        // echo number_format($totalmt225,3)."<hr>";
-
-
-        // $t1 = $totalmt2 + $totalmt225;
-        
-        // echo "Total =".  $t1;
-        
-        // echo json_encode($barraL20Alto.','.$barraL20Ancho.",".$totalmt2);
 
         foreach ($perfilL20 as $perfilL20s) {
             $repeticion = $perfilL20s->repeticion;
@@ -234,17 +209,47 @@ class CortadoraController extends Controller
             $mt2 = $alto * $ancho;
             $mt2Total += $mt2;
         }
-
-
+        
         foreach ($perfilL25 as $perfilL25s) {
             $repeticion = $perfilL25s->repeticion;
             $sumaRepeticion25 += $repeticion;
-            $alto25 = $perfilL25s->alto;
+            $alto25 = $perfilL25s->alto; 
             $ancho25 = $perfilL25s->ancho;
             $mt2 = $alto25 * $ancho25;
             $mt2Total25 += $mt2;
+            // echo $alto25;
+            // echo $mt2."<br>";
+
         }
+        // echo "Repeticiones =".$sumaRepeticion25."<br>";
+
+        $barraL20Alto = Perfil::where('perfils.hoja_id','=',$id)->where('perfils.linea', '=', 'L-20')->sum('alto');
+        $barraL20Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-20')->sum('ancho');
+
+
+        $totalmt20Ancho = $sumaRepeticion20 * $barraL20Ancho;
+        $totalmt20Alto = $sumaRepeticion20 * $barraL20Alto;
+
+        // echo number_format($totalmt20Ancho,3)."<br>";
+        // echo number_format($totalmt20Alto,3)."<br>";
+
+        $totalmt2 = $totalmt20Ancho * $totalmt20Alto;
+        // echo $totalmt2."<br>";
+
+        $barraL25Alto = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('alto');
+        $barraL25Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('ancho');
+                
         
+        $totalmt225Ancho = $sumaRepeticion25 * $barraL25Ancho;
+        $totalmt225Alto = $sumaRepeticion25 * $barraL25Alto;
+
+        // echo number_format($totalmt225Ancho,3)."<br>";
+        // echo number_format($totalmt225Alto,3)."<br>";
+
+        $totalmt225 = $totalmt225Ancho * $totalmt225Alto;
+        // echo $totalmt225;
+        
+
         foreach($perfilBarras as $perfilBarrass){
             $id = $perfilBarrass->id; 
             $nombre_cliente = $perfilBarrass->nombre_cliente;
@@ -269,10 +274,10 @@ class CortadoraController extends Controller
             $precio = $perfils->precio;
             $total = $mt2 * $precio;
 
-             $totalTotal +=  $total;
+            $totalTotal +=  $total;
         }
 
-         return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','barraL20Alto','barraL20Ancho','barraL25Ancho','barraL25Alto','totalmt225','descripcion','mt2','perfil','totalTotal','total','mt2Total','totalmt2','mt2Total25','sumaRepeticion20','sumaRepeticion25'));
+        return view('cortadoraperfil.cotizacion', compact('hoja_calculo_perfil','perfilBarras','id_hoja','metros2','nombre_cliente','celular','barraL20Alto','barraL20Ancho','barraL25Ancho','barraL25Alto','totalmt225','totalmt225Ancho','descripcion','mt2','perfil','totalTotal','total','mt2Total','totalmt2','mt2Total25','sumaRepeticion20','sumaRepeticion25'));
     }
 
     public function precioEditCortadora($id){
@@ -324,7 +329,6 @@ class CortadoraController extends Controller
 
         $requestData = $request->all();
 
-
         $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
 
         $hoja_calculo_perfil->nombre_cliente = $request->get('nombre_cliente');
@@ -335,10 +339,9 @@ class CortadoraController extends Controller
         $hoja_calculo_perfil->update();
         
         Session::flash('message','Hoja de Calculo Para Cortadora de Perfil de Aluminio Editado Exisitosamente!');
-        return redirect()->action(
-                 [BarraController::class, 'indexBlade'], ['id' => $id]
-             );
-    }
+        // return return redirect()->back();
+        return back()->withInput();
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -409,7 +412,6 @@ class CortadoraController extends Controller
 
     public function destroyHojaPerfil($id){
         $hoja_calculo_perfil = hoja_calculo_perfil::find($id);
-
         $hoja_calculo_perfil->delete();
 
         Session::flash('message','Hoja de Calculo para Perfil de Aluminio eliminado exitosamente!');

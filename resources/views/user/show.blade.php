@@ -56,18 +56,18 @@
                             </div>
                             <div class="col-md-6">
                                 <h4><strong>Desde:</strong> </h4>
-                                <h5>{{ $user->created_at->format('j M, Y') }}</h5>
+                                <h5>{{ date('d-M-y', strtotime($user->created_at)) }}</h5>
                             </div>
                         </div>
                         <h4><strong>Subscripcion</strong></h4>
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <h4><strong>Fecha Inicio:</strong> </h4>
-                                <h5>{{ $user->fecha_inicio->format('j M, Y') }}</h5>
+                                <h5>{{ date('d-M-y', strtotime($user->fecha_inicio ))}}</h5>
                             </div>
                             <div class="col-md-6">
                                 <h4><strong>Fecha Fin:</strong> </h4>
-                                <h5>{{ $user->fecha_fin->format('j M, Y') }}</h5>
+                                <h5>{{ date('d-M-y', strtotime($user->fecha_fin))}}</h5>
                             </div>
                         </div>
                     </div>
@@ -125,18 +125,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h4><strong>Desde:</strong> </h4>
-                                    <h5>{{ $user->created_at->format('j M, Y') }}</h5>
+                                    <h5>{{ date('d-M-y', strtotime($user->created_at)) }}</h5>
                                 </div>
                             </div>
                             <h4><strong>Subscripcion</strong></h4>
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <h4><strong>Fecha Inicio:</strong> </h4>
-                                    <h5>{{ $user->fecha_inicio->format('j M, Y') }}</h5>
+                                    <h5>{{ date('d-M-y', strtotime($user->fecha_inicio ))}}</h5>
+
                                 </div>
                                 <div class="col-md-6">
                                     <h4><strong>Fecha Fin:</strong> </h4>
-                                    <h5>{{ $user->fecha_fin->format('j M, Y') }}</h5>
+                                    <h5>{{ date('d-M-y', strtotime($user->fecha_fin))}}</h5>
                                 </div>
                             </div>
                         </div>
