@@ -254,6 +254,8 @@
                                             $suma = 0.004;
                                             $sumaRepeticion2001 = 0;
                                             
+                                            $contador = 0;
+
                                             foreach ($barra2001 as $barra2001s) {
                                                 $restado = $barra2001s->restado;
                                                 $repeticion = $barra2001s->repeticion;
@@ -263,15 +265,20 @@
                                                 $piezas_repeticiones2001 = $piezas * $sumaRepeticion2001;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2001 * $restaSuma;
-
-                                                $totalSumado += $totalMts;
                                             }
-                                            {{-- echo "=".$piezas_repeticiones2001;
+
+                                            $totalSumado += $totalMts;
+
+                                            {{-- echo "**".$barra2001s->id;
+
+                                            echo "*---*".$sumaRepeticion2001."*---*";
+
+                                            $contador = count($barra2001);
+                                            echo "Cantidad de Ventanas =".$contador."<br>";
+                                            echo "# Repetecion=".$piezas_repeticiones2001;
                                             echo "<br>";
-                                            echo "Suma repeticiones".$sumaRepeticion2001."|";
-                                            echo "<br>";
-                                            echo "<br>";
-                                            echo "$totalSumado | "; --}}
+                                            echo "<br>".$totalSumado;
+                                            echo "|Barras|="; --}}
 
                                             if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
@@ -333,6 +340,10 @@
                                               echo "29";  
                                             }if($totalSumado > 174.000 && $totalSumado <= 180.000){
                                               echo "30";  
+                                            }if($totalSumado > 180.000 && $totalSumado <= 186.000){
+                                              echo "31";  
+                                            }if($totalSumado > 186.000 && $totalSumado <= 192.000){
+                                              echo "32";  
                                             }
                                         ?></td>
                                     </tr>
@@ -351,13 +362,11 @@
                                                 $sumaRepeticion2002 += $repeticion;
                                                 $restaSuma = $restado + $suma;
                                                 $piezas = $barra2002s->piezas;
-                                                $piezas_repeticiones2001 = $piezas * $sumaRepeticion2002;
+                                                $piezas_repeticiones2002 = $piezas * $sumaRepeticion2002;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2001 * $restaSuma;
-
-                                                $totalSumado += $totalMts;
+                                                $totalMts = $piezas_repeticiones2002 * $restaSuma; 
                                             }
-
+                                            $totalSumado += $totalMts;
                                             if ($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
@@ -507,9 +516,6 @@
                                               echo "30";  
                                             }
                                             ?></td>
-
-
-
                                     </tr>
                                     <tr>
                                         <td scope="row" class="size">2009</td>
@@ -527,10 +533,12 @@
                                                 $piezas = $barra2009s->piezas;
                                                 $piezas_repeticiones2009 = $piezas * $sumaRepeticion2009;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2009 * $restaSuma;
+                                                $totalMts = $piezas_repeticiones2009 * $restaSuma;   
+                                            }
 
-                                                $totalSumado += $totalMts;
-                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            $totalSumado += $totalMts;
+
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -611,10 +619,11 @@
                                                 $piezas_repeticiones2010 = $piezas * $sumaRepeticion2010;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2010 * $restaSuma;
+                                            }
 
-                                                $totalSumado += $totalMts;
+                                            $totalSumado += $totalMts;
 
-                                            }if ($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            if ($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                                 echo "2";  
@@ -873,6 +882,7 @@
                                             $totalSumado = 0;
                                             $suma = 0.004;
                                             $sumaRepeticion2501 = 0;
+                                            $contador =0;
                                             
                                             foreach ($barra2501 as $barra2501s){
                                                 $restado = $barra2501s->restado;
@@ -884,8 +894,10 @@
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2501 * $restaSuma;
 
-                                                $totalSumado += $totalMts;
-                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                                
+                                            }
+                                            $totalSumado += $totalMts;
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -965,10 +977,11 @@
                                                 $piezas = $barra2502s->piezas;
                                                 $piezas_repeticiones2502 = $piezas * $sumaRepeticion2502;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2502 * $restaSuma;
+                                                $totalMts = $piezas_repeticiones2502 * $restaSuma;   
+                                            }
 
-                                                $totalSumado += $totalMts;
-                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            $totalSumado += $totalMts;
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1048,10 +1061,12 @@
                                                 $piezas = $barra2504s->piezas;
                                                 $piezas_repeticiones2504 = $piezas * $sumaRepeticion2504;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2504 * $restaSuma;
+                                                $totalMts = $piezas_repeticiones2504 * $restaSuma; 
+                                            }
 
-                                                $totalSumado += $totalMts;
-                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            $totalSumado += $totalMts;
+
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1131,10 +1146,11 @@
                                                 $piezas = $barra2505s->piezas;
                                                 $piezas_repeticiones2505 = $piezas * $sumaRepeticion2505;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2505 * $restaSuma;
-
+                                                $totalMts = $piezas_repeticiones2505 * $restaSuma; 
+                                            }
                                                 $totalSumado += $totalMts;
-                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
+
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  
@@ -1214,20 +1230,9 @@
                                                 $piezas = $barra2507s->piezas;
                                                 $piezas_repeticiones2507 = $piezas * $sumaRepeticion2507;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2507 * $restaSuma;
-                                                
-                                                $totalSumado += $totalMts;
+                                                $totalMts = $piezas_repeticiones2507 * $restaSuma; 
                                             }
-                                            
-
-                                            echo "=".$piezas_repeticiones2507;
-                                            echo "<br>";
-                                            echo "Suma repeticiones".$sumaRepeticion2507."|";
-                                            echo "<br>";
-                                            echo "<br>";
-                                            echo "$totalSumado | ";
-
-
+                                            $totalSumado += $totalMts;
                                             if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
@@ -1308,10 +1313,9 @@
                                                 $piezas = $barra2509s->piezas;
                                                 $piezas_repeticiones2509 = $piezas * $sumaRepeticion2509;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
-                                                $totalMts = $piezas_repeticiones2509 * $restaSuma;
-
-                                                $totalSumado += $totalMts;
+                                                $totalMts = $piezas_repeticiones2509 * $restaSuma; 
                                             }
+                                            $totalSumado += $totalMts;
                                             
                                             if ($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
@@ -1394,9 +1398,9 @@
                                                 $piezas_repeticiones2510 = $piezas * $sumaRepeticion2510;
                                                 {{-- echo "(piezas".$piezas.")*("."repeticiones".$repeticion.")"; --}}
                                                 $totalMts = $piezas_repeticiones2510 * $restaSuma;
-
-                                                $totalSumado += $totalMts;
-                                            }if($totalSumado > 0.001 && $totalSumado <= 6.000){
+                                            }
+                                            $totalSumado += $totalMts;
+                                            if($totalSumado > 0.001 && $totalSumado <= 6.000){
                                                 echo "1";
                                             }if($totalSumado > 6.000 && $totalSumado <= 12.000){
                                               echo "2";  

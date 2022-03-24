@@ -191,7 +191,6 @@ class CortadoraController extends Controller
 
         $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
 
-
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
 
         $perfilL20 = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea','=',
@@ -200,16 +199,20 @@ class CortadoraController extends Controller
         $perfilL25 = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea','=',
           'L-25')->get();
 
+        $contador = 0;
+        $contador = count($perfilL20);
+        $mt2=0;
 
-        foreach ($perfilL20 as $perfilL20s) {
+        foreach ($perfilL20 as $perfilL20s){
             $repeticion = $perfilL20s->repeticion;
             $sumaRepeticion20 += $repeticion;
             $alto = $perfilL20s->alto;
             $ancho = $perfilL20s->ancho;
+       
             $mt2 = $alto * $ancho;
             $mt2Total += $mt2;
         }
-        
+
         foreach ($perfilL25 as $perfilL25s) {
             $repeticion = $perfilL25s->repeticion;
             $sumaRepeticion25 += $repeticion;
@@ -217,24 +220,18 @@ class CortadoraController extends Controller
             $ancho25 = $perfilL25s->ancho;
             $mt2 = $alto25 * $ancho25;
             $mt2Total25 += $mt2;
-            // echo $alto25;
-            // echo $mt2."<br>";
-
         }
-        // echo "Repeticiones =".$sumaRepeticion25."<br>";
+
 
         $barraL20Alto = Perfil::where('perfils.hoja_id','=',$id)->where('perfils.linea', '=', 'L-20')->sum('alto');
         $barraL20Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-20')->sum('ancho');
-
+        
 
         $totalmt20Ancho = $sumaRepeticion20 * $barraL20Ancho;
         $totalmt20Alto = $sumaRepeticion20 * $barraL20Alto;
-
-        // echo number_format($totalmt20Ancho,3)."<br>";
-        // echo number_format($totalmt20Alto,3)."<br>";
+;
 
         $totalmt2 = $totalmt20Ancho * $totalmt20Alto;
-        // echo $totalmt2."<br>";
 
         $barraL25Alto = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('alto');
         $barraL25Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('ancho');

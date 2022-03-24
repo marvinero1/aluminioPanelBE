@@ -1,4 +1,4 @@
-@extends('layouts.main') 
+@extends('layouts.main')
 
 @section('content')
 <div class="content-wrapper" id="areaImprimir">
@@ -37,37 +37,37 @@
                                </thead>
                               <tbody>
                                 @if($barraL20Alto != null)
-                                <tr>
-                                    <td class="text-center"><label>Linea 20</label></td>
-                                    <td class="text-center"><label>{{ number_format($totalmt2,2) }}</label>
-                                                                        
-                                    <input hidden="true" type="text" name="mt2" value="{{ $totalmt2 }}" id="mt2">
-                                    </td>
-                                    <td class="text-center"><label id="precio_view"></label>
-                                        <input type="number" id="precio" name="precio" style="width: 25%;">
-                                    </td>
-                                    <td class="text-center">
-                                         <strong><label id="sub-total"></label></strong>  
-                                    </td> 
-                                </tr>
+                                    <tr>
+                                        <td class="text-center"><label>Linea 20</label></td>
+                                        <td class="text-center"><label>{{ number_format($mt2Total,2) }}</label>
+                                                                            
+                                        <input hidden="true" type="text" name="mt2" value="{{ $mt2Total }}" id="mt2">
+                                        </td>
+                                        <td class="text-center"><label id="precio_view"></label>
+                                            <input type="number" id="precio" name="precio" style="width: 25%;">
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><label id="sub-total"></label></strong>  
+                                        </td>
+                                    </tr>
                                 @else
-                                 <tr>
-                                    <td class="text-center"><label>Linea 20</label></td>
-                                    <input hidden="true" type="text" name="mt2" value="0" id="mt2">
-                                    <td class="text-center"><label>0</label></td>
-                                    <td class="text-center"><label id="precio_view"></label>
-                                        <input disabled type="number" id="precio" value="0" name="precio" style="width: 25%;">
-                                    </td>
-                                    <td class="text-center">
-                                         <strong><label id="sub-total"></label></strong>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="text-center"><label>Linea 20</label></td>
+                                        <input hidden="true" type="text" name="mt2" value="0" id="mt2">
+                                        <td class="text-center"><label>0</label></td>
+                                        <td class="text-center"><label id="precio_view"></label>
+                                            <input disabled type="number" id="precio" value="0" name="precio" style="width: 25%;">
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><label id="sub-total"></label></strong>
+                                        </td>
+                                    </tr>
                                 @endif
                                 @if($barraL25Alto != null)
                                     <tr>
                                         <td class="text-center"><label>Linea 25</label></td>
-                                        <td class="text-center"><label>{{ number_format($totalmt225,2) }}</label>
-                                        <input hidden="true" type="text" name="mt2L25" value="{{ $totalmt225 }}" 
+                                        <td class="text-center"><label>{{ number_format($mt2Total25,2) }}</label>
+                                        <input hidden="true" type="text" name="mt2L25" value="{{ $mt2Total25 }}" 
                                          id="mt2L25"></td>
                                         <td class="text-center"><label id="precio_view25"></label>
                                             <input type="number" id="precioL25" name="precioL25" style="width: 25%;">
