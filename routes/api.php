@@ -20,10 +20,12 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\CortadoraController;
 use App\Http\Controllers\PerfilController;
-
+use App\Http\Controllers\HojaVidrioController;
+use App\Http\Controllers\CalculoVidrioController;
 //use App\Http\Controllers\Api\Auth\LoginController;
-
 //use App\Http\Controllers\Api\LoginController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -57,13 +59,15 @@ Route::group(['middleware' => ['auth:api']], function(){
       
     Route::put('actualizarPerfil/{id}', [PerfilController::class,'actualizarPerfil']);
     Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);  
-    Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);  
+    Route::put('updateStatusHoja/{id}', [HojaCalculoController::class,'updateStatusHoja']);
+    Route::put('updateStatusHojaVidrio/{id}', [HojaVidrioController::class,'updateStatusHojaVidrio']);   
     Route::put('updateStatusHojaCortadora/{id}', [CortadoraController::class,'updateStatusHojaCortadora']);  
     Route::put('updatepasswordIonic/{id}', [UserController::class,'updatepasswordIonic']);  
     
     Route::get('productos',[ProductoController::class, 'getProducto']);
     Route::get('getSubCategoria',[CategoriaController::class, 'getSubCategoria']);
     Route::get('calculos/{id}/{hoja_id}',[CalculadoraController::class, 'calculos']);
+    Route::get('calculosVidrio/{id}/{hoja_id}',[CalculoVidrioController::class, 'calculosVidrio']);
     Route::get('productosNovedad',[ProductoController::class, 'getProductoNovedad']);
     Route::get('favoritos/{id}',[FavoritoController::class, 'getFavoritos']);
     Route::get('importadoras',[UserController::class, 'getImportadora']);
@@ -85,14 +89,32 @@ Route::group(['middleware' => ['auth:api']], function(){
 
     
     Route::get('getHojaCalculoPerfil/{id}', [HojaCalculoController::class,'getHojaCalculoPerfil']);
+
+    Route::get('getHojaCalculoVidrio/{id}', [HojaVidrioController::class,'getHojaCalculoVidrio']); 
+
     Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
     Route::get('getHistorialCalculos/{id}/{hoja_id}', [PerfilController::class,'getHistorialCalculos']); 
     Route::get('downloads/{file}','PedidoController@download')->name('downloads');
+
+
+    //Route get contactos
+    Route::get('contactgetLPZ',[ContactanoController::class, 'contactgetLPZ']);
+    Route::get('contactgetCBBA',[ContactanoController::class, 'contactgetCBBA']);
+    Route::get('contactgetSTCZ',[ContactanoController::class, 'contactgetSTCZ']);
+    Route::get('contactgetOR',[ContactanoController::class, 'contactgetOR']);
+    Route::get('contactgetPOT',[ContactanoController::class, 'contactgetPOT']);
+    Route::get('contactgetSUC',[ContactanoController::class, 'contactgetSUC']);
+    Route::get('contactgetTAR',[ContactanoController::class, 'contactgetTAR']);
+    Route::get('contactgetBENI',[ContactanoController::class, 'contactgetBENI']);
+    Route::get('contactgetPANDO',[ContactanoController::class, 'contactgetPANDO']);
+
 
     Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
     Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
     Route::delete('carritoDelete/{id}/', [CarritoController::class, 'carritoDelete']);
     Route::delete('calculadoraDelete/{id}/', [CalculadoraController::class, 'calculadoraDelete']);
+    Route::delete('calculadoraDeleteVidrio/{id}/', [CalculoVidrioController::class, 'calculadoraDeleteVidrio']);
+
     Route::delete('calculadoraDeleteAll/{id}', [CalculadoraController::class, 'calculadoraDeleteAll']);
     Route::delete('calculadoraHistorialDelete/{id}/', [CalculadoraHistorialController::class,'calculadoraHistorialDelete']);
     Route::delete('deleteProductoCarrito/{id}/', [CarritoDetalleController::class,'deleteProductoCarrito']);
@@ -108,18 +130,14 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('guardarPedidoRealizado',[PedidoRealizadoController::class, 'guardarPedidoRealizado']);
     Route::post('guardarCalculadora',[CalculadoraController::class, 'guardarCalculadora']);
     Route::post('guardarCalculadoraHistorial',[CalculadoraHistorialController::class, 'guardarCalculadoraHistorial']);
+    Route::post('guardarCalculadoraVidrio',[CalculoVidrioController::class, 'guardarCalculadoraVidrio']);
+
     Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
     Route::post('guardarHoja',[HojaCalculoController::class, 'guardarHoja']);
     Route::post('guardarHojaCortadoraPerfil',[HojaCalculoController::class, 'guardarHojaCortadoraPerfil']);
     Route::post('guardarCombinacion',[HojaCalculoController::class, 'guardarCombinacion']);
+
+
+    Route::post('guardarHojaVidrio',[HojaVidrioController::class, 'guardarHojaVidrio']);
     
-    //Route get contactos
-    Route::get('contactgetLPZ',[ContactanoController::class, 'contactgetLPZ']);
-    Route::get('contactgetCBBA',[ContactanoController::class, 'contactgetCBBA']);
-    Route::get('contactgetSTCZ',[ContactanoController::class, 'contactgetSTCZ']);
-    Route::get('contactgetOR',[ContactanoController::class, 'contactgetOR']);
-    Route::get('contactgetPOT',[ContactanoController::class, 'contactgetPOT']);
-    Route::get('contactgetSUC',[ContactanoController::class, 'contactgetSUC']);
-    Route::get('contactgetTAR',[ContactanoController::class, 'contactgetTAR']);
-    Route::get('contactgetBENI',[ContactanoController::class, 'contactgetBENI']);
-    Route::get('contactgetPANDO',[ContactanoController::class, 'contactgetPANDO']);
+ 

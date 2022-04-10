@@ -180,6 +180,8 @@ class CortadoraController extends Controller
         $mt2Total25=0;
         $sumaRepeticion20=0;
         $sumaRepeticion25=0;
+        $mt2Total25=0;
+        $mt25=0;
 
         $perfilBarras = DB::table('hoja_calculo_perfils')
             ->join('perfils', 'hoja_calculo_perfils.id', '=', 'perfils.hoja_id')
@@ -191,6 +193,7 @@ class CortadoraController extends Controller
 
         $hoja_calculo_perfil = hoja_calculo_perfil::findOrFail($id);
 
+
         $perfil = Perfil::where('perfils.hoja_id', '=', $id)->get();
 
         $perfilL20 = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea','=',
@@ -201,37 +204,61 @@ class CortadoraController extends Controller
 
         $contador = 0;
         $contador = count($perfilL20);
-        $mt2=0;
+        // echo $contador."<br>";
 
         foreach ($perfilL20 as $perfilL20s){
             $repeticion = $perfilL20s->repeticion;
             $sumaRepeticion20 += $repeticion;
             $alto = $perfilL20s->alto;
             $ancho = $perfilL20s->ancho;
-       
+            // echo $alto;
+            // echo "alto".$alto."*"."ancho".$ancho;
             $mt2 = $alto * $ancho;
-            $mt2Total += $mt2;
+            // echo "= ".$mt2."<br><br><br>";
         }
 
+
+        for ($i=0; $i < $sumaRepeticion20 ; $i++) { 
+            // echo "HOLA,-";
+            $mt2Total += $mt2;
+        }
+        
+        
+        // echo $mt2Total;
+        // echo "Repeticiones =".$sumaRepeticion20."<br>";
+        // echo "Ancho =".$ancho."<br>";
+        // $total20Ancho = $sumaRepeticion20 * $ancho;
+        // echo $total20Ancho."<br><br><br>";
+
+        // $mt220 = $total20Ancho * $total20Alto;
+        // echo "MT2 = ".$mt220."<br>";
+        
         foreach ($perfilL25 as $perfilL25s) {
             $repeticion = $perfilL25s->repeticion;
             $sumaRepeticion25 += $repeticion;
             $alto25 = $perfilL25s->alto; 
             $ancho25 = $perfilL25s->ancho;
-            $mt2 = $alto25 * $ancho25;
-            $mt2Total25 += $mt2;
+            $mt25 = $alto25 * $ancho25;
         }
 
+        for ($i=0; $i < $sumaRepeticion25 ; $i++){
+            // echo "HOLA,-";
+            $mt2Total25 += $mt25;
+        }
 
         $barraL20Alto = Perfil::where('perfils.hoja_id','=',$id)->where('perfils.linea', '=', 'L-20')->sum('alto');
         $barraL20Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-20')->sum('ancho');
-        
 
+        // echo $barraL20Alto."<br>";
+        
         $totalmt20Ancho = $sumaRepeticion20 * $barraL20Ancho;
         $totalmt20Alto = $sumaRepeticion20 * $barraL20Alto;
-;
+
+        // echo number_format($totalmt20Ancho,3)."<br>";
+        // echo number_format($totalmt20Alto,3)."<br>";
 
         $totalmt2 = $totalmt20Ancho * $totalmt20Alto;
+        // echo $totalmt2."<br>";
 
         $barraL25Alto = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('alto');
         $barraL25Ancho = Perfil::where('perfils.hoja_id', '=', $id)->where('perfils.linea', '=', 'L-25')->sum('ancho');

@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hoja_calculo extends Model
-{
+class CalculoVidrio extends Model{
+
     protected $auditTimestamps = true;
     protected $auditStrict = true;
     protected $auditThreshold = 100;
@@ -18,8 +18,9 @@ class Hoja_calculo extends Model
         'updated'
     ];
 
-    protected $fillable = ['user_id',
-                           'estado',
-                           'total',
-                        ];
+    protected $fillable = [ 'user_id',
+                            'numero1',
+                            'numero2',
+                            'piezas',
+                            'hoja_calculo_id'];
 }

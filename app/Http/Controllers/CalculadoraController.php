@@ -12,8 +12,7 @@ class CalculadoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function calculos(Request $request, $id, $hoja_id)
-    {
+    public function calculos(Request $request, $id, $hoja_id){
         $calculadora = calculadora::where('calculadoras.user_id', '=', $id)
         ->where('calculadoras.hoja_calculo_id', '=', $hoja_id)
         ->get();
@@ -92,9 +91,7 @@ class CalculadoraController extends Controller
          
     }
     
-    public function guardarCalculadora(Request $request)
-    {
-        
+    public function guardarCalculadora(Request $request){
         $calculadora = calculadora::create($request->all());
         return response()->json($calculadora, 201);
     }

@@ -236,6 +236,37 @@
                   </li>
                 </ul>
               </li>
+
+
+              <li class="nav-item has-treeview" style="cursor:pointer;">
+                <a  class="nav-link">
+                  <i class="nav-icon fa fa-windows" aria-hidden="true"></i>
+                  <p>
+                    Vidrio
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                 <!--<li class="nav-item">
+                    <a href="/cortadora" class="nav-link ">
+                      <i class="far fa fa-scissors nav-icon"></i>
+                      <p>Cortadoras Plancha</p>
+                    </a>
+                  </li> -->
+                  <li class="nav-item">
+                    <a href="/hoja_vidrio" class="nav-link ">
+                      <i class="far fa fa-windows nav-icon"></i>
+                      <p>Vidrios</p>
+                    </a>
+                  </li>
+                 {{--  <li class="nav-item">
+                    <a href="/cortadoraPerfilHistorial" class="nav-link ">
+                      <i class="far fa fa-scissors nav-icon"></i>
+                      <p>Historial Cortadoras Perfil</p>
+                    </a>
+                  </li> --}}
+                </ul>
+              </li>
               @endif
 
               @if(Auth::user()->role == 'admin' )
@@ -381,9 +412,6 @@
                     </a>
                   </li>
                 </ul>
-            
-                
-
                
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
@@ -433,7 +461,7 @@
               
               @endif
               @if(Auth::user()->role == 'admin')
-          <!--     <li class="nav-item">
+              <!--<li class="nav-item">
                 <a href="/vendedores" class="nav-link">
                   <i class="far fa-user-circle nav-icon"></i>
                   <p>Vendedores</p>

@@ -70,8 +70,10 @@ Route::resource('hojaCalculo', 'HojaCalculoController');
 Route::resource('perfil', 'PerfilController');
 Route::resource('barra', 'BarraController');
 Route::resource('corte', 'CorteController');
+Route::resource('hoja_vidrio', 'HojaVidrioController');
 
 });
+
 Route::get('images/{filename}', function ($filename)
 {
     $file = \Illuminate\Support\Facades\Storage::get($filename);
