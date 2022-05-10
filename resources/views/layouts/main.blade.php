@@ -20,6 +20,12 @@
   
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+  <script src="https://code.highcharts.com/modules/treemap.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 
   <body class="hold-transition sidebar-mini layout-fixed">

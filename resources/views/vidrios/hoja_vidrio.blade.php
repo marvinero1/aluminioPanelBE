@@ -17,7 +17,6 @@
                     <tr>
                         {{-- <th>Id</th>  --}}
                         <th style="text-align:center;">ID</th>
-                       <!--  <th style="text-align:center;">Estado</th> -->
                         <th style="text-align:center;">Nombre Cliente</th>
                         <th style="text-align:center;">Ancho</th>
                         <th style="text-align:center;">Alto</th>
@@ -29,12 +28,10 @@
                     @foreach($hojaVidrio as $hoja_calculo_perfils)
                     <tr>
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->id }}</td>
-                        <!-- <td style="text-align:center;">{{ $hoja_calculo_perfils->estado }}</td> -->
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->nombre_cliente }}</td>
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->ancho_lamina }}</td> 
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->alto_lamina }}</td>
                         <td style="text-align:center;">{{ $hoja_calculo_perfils->descripcion }}</td>
-                        
                         <td style="text-align:center;">
                             <a href="{{ route('hojaCalculo.show',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-light btn-sm"><i class="fa fa-eye"
@@ -44,7 +41,7 @@
                              <!-- <a href="{{ route('cortadora.cortadoraInfoGeneral',$hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-info btn-sm"><i class="fa fa-files-o" aria-hidden="true"></i> Info General
                                 </button></a> -->
-                             <a href="{{ route('cortadora.cortadoraInfoVentanas',$hoja_calculo_perfils->id ) }}">
+                             <a href="{{ route('vidrio.establecerGrafico', $hoja_calculo_perfils->id ) }}">
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-window-restore" aria-hidden="true"></i> Vidrios
                                 </button></a>
 

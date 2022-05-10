@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CalculoVidrio;
+use App\HojaVidrio;
 use Illuminate\Http\Request;
 
 class CalculoVidrioController extends Controller
@@ -23,6 +24,16 @@ class CalculoVidrioController extends Controller
         ->get();
 
         return response()->json($calculoVidrio, 200);
+    }
+
+    public function establecerGrafico($hoja_id){ 
+        $calculoVidrio = CalculoVidrio::where('calculo_vidrios.hoja_calculo_id', '=', $hoja_id)
+        ->get();
+
+        $hojaVidrio = HojaVidrio::findOrFail($hoja_id)
+        ->get();
+
+        return view('vidrios.grafico', ['calculoVidrio' => $calculoVidrio, 'hojaVidrio'=>$hojaVidrio]);
     }
 
     /**
